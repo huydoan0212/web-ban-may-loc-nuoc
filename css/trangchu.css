@@ -8,6 +8,8 @@ body {
 /*Header*/
 #header {
     background-color: #4a90e2;
+    position: fixed;
+    width: 100%;
 }
 #header-top {
     display: flex;
@@ -133,9 +135,24 @@ body {
     text-align: center;
 
 }
+
+#header-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#header-bottom .headbot-items {
+    text-decoration: none;
+    margin: 5px 15px 20px 15px;
+    font-size: 14px;
+    color: white;
+    font-weight: bold;
+
+}
 /*Poster*/
 #poster > img{
     width: 100%;
+    margin-top: 109px;
 
 }
 /*Navigation*/
@@ -191,10 +208,82 @@ body {
     width: 70px;
     height: 35px;
 }
+/*Content*/
+.deal-soc {
+    display: flex;
+    align-items: center;
 
-
-/*Id*/
-#container {
+}
+#deal-soc-content >img  {
+   width: 1180px;
+    border: 10px solid #f13ba7;
+}
+.deal-soc .deal-soc-items {
+    padding: 10px 12px 15px 12px;
+    border: 5px solid #f13ba7;
+}
+.deal-soc .deal-items {
+    text-decoration: none;
+}
+.deal-soc .item-label > span {
+    background-color: #f1f1f1;
+    color: #333;
+    font-size: 11px;
+    padding: 3px;
+}
+.deal-soc .item-img > img {
+    width: 200px;
+}
+.deal-soc .label-gia-re {
+    display: flex;
+    align-items: center;
+    background-color: #db2663;
+    width: 105px;
+    border-radius: 20px;
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+}
+.deal-soc .label-gia-re >span {
+    padding-top: 3px;
+}
+.deal-soc .label-gia-re > img {
+    width: 18px;
+    height: 20px;
+    margin-right: 8px;
+}
+.deal-soc h3 {
+    font-size: 14px;
+    color: #333333;
+}
+.deal-soc .item-compare > span {
+    background-color: white;
+    color: #333;
+    padding: 3px;
+    border: 1px solid #e0e0e0;
+}
+.deal-soc p {
+    color: #333333;
+}
+.deal-soc .gia-sale > p {
+    text-decoration-line: line-through;
+    display: inline-block;
+    margin-top: 0;
+}
+.deal-soc .price-sale {
+    font-size: 18px;
+    line-height: 24px;
+    color: #e83a45;
+}
+.deal-soc .item-rating > p{
+    display: inline-block;
+}
+.deal-soc .item-ss {
+    text-decoration: none;
+    color: #333333;
+}
+/*Class*/
+.container {
     width: 1200px;
     margin: auto;
 }
