@@ -5,10 +5,7 @@ body {
     font-size: 12px;
 }
 
-#container {
-    width: 1375px;
-    margin: auto;
-}
+/*Header*/
 #header {
     background-color: #4a90e2;
 }
@@ -16,7 +13,6 @@ body {
     display: flex;
     text-align: center;
     justify-content: space-between;
-
     height: 72px;
 
 }
@@ -137,7 +133,70 @@ body {
     text-align: center;
 
 }
+/*Poster*/
+#poster > img{
+    width: 100%;
+
+}
+/*Navigation*/
+#nav-bar {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+#nav-bar .nav-item {
+    font-size: 12px;
+    line-height: 17px;
+    margin: 0 30px;
+    width: 97px;
+    text-decoration: none;
+    text-align: center;
+    color: #2f497f;
+}
+
+#nav-bar .nav-item:hover > img {
+    background-color: #0b3481;
+
+}
+#nav-bar .nav-item:hover > span {
+    font-weight: bold;
+    color: #0b3481;
+}
+
+#nav-bar .nav-item > img {
+    align-items: center;
+    background-color: #cee8f7;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 10px;
+    width: 35px;
+}
+
+#nav .nav-thuong-hieu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+#nav .nav-thuong-hieu .nav-thuong-hieu-items {
+    margin: 0 20px;
+    background-color: white;
+    /*border: 1px solid #e0e0e0;*/
+    padding: 3px;
+}
+#nav .nav-thuong-hieu .nav-thuong-hieu-items >img {
+    width: 70px;
+    height: 35px;
+}
 
 
+/*Id*/
+#container {
+    width: 1200px;
+    margin: auto;
+}
 
 
