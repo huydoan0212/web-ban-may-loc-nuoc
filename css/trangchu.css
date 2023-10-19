@@ -209,13 +209,17 @@ body {
     height: 35px;
 }
 /*Content*/
+#content {
+    margin-top: 10px;
+}
 .deal-soc {
     display: flex;
     align-items: center;
 
+
 }
 #deal-soc-content >img  {
-   width: 1180px;
+   width: 1181px;
     border: 10px solid #f13ba7;
 }
 .deal-soc .deal-soc-items {
