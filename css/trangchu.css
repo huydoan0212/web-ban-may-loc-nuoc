@@ -620,6 +620,7 @@ body {
 }
 .product-content-top{
     margin-bottom: 30px;
+    border-bottom: 1px solid #e0e0e0;
 }
 .product-content-top p {
     font-family: Arial, Tahoma, sans-serif;
@@ -632,24 +633,29 @@ body {
 
 }
 .product-content-left{
-    width: 80%;
-    display:inline-flex;
+    width: 95%;
+    display: flex;
+    height: fit-content;
 }
 .product-content-left-big-img{
-    width: 100%;
+    width: 90%;
     margin-right: 20px;
+    height: fit-content;
 }
 .product-content-left-big-img img{
     cursor: pointer;
     width: 100%;
+    height: fit-content;
+
 }
 .product-content-left-small-img{
-    width: 25%;
+    width: 40%;
 }
 .product-content-left-small-img img{
     cursor: pointer;
     width: 100%;
-    padding-top: 25px;
+    padding-top: 37px;
+
 }
 .product-content-right{
     width: 40%;
@@ -679,14 +685,20 @@ body {
     border: none;
     background-color: #2f80ed;
     color: #f1f1f1;
-    margin-top: 5px;
+    margin-top: 15px;
     cursor: pointer;
+    margin-left: 40px;
 }
 .product-content-right-product-button{
     display: flex;
-    margin: auto;
-    justify-content: space-between;
-    padding-top: 10px;
+    justify-content: space-around;
+    text-align: center;
+  }
+.product-content-right-goidatmua{
+    text-align: center;
+    padding-top: 5px;
+    cursor: pointer;
+    padding-left: 30px;
 }
 .product-content-big-content-title{
     border-bottom: 2px solid #e0e0e0;
@@ -699,7 +711,8 @@ body {
 .product-content{
     padding-top: 30px;
 }
-.product-content p{font-family: Arial, Tahoma, sans-serif;
+.product-content p{
+    font-family: Arial, Tahoma, sans-serif;
     font-size: 12px;
 }
 .product-content-title-item p {
@@ -726,6 +739,7 @@ body {
 }
 .product-related-title{
     margin: 20px 0;
+    border-top: 1px solid #e0e0e0;
 }
 .product-related-title p{
     font-size: 14px;
@@ -751,6 +765,62 @@ body {
     font-size: 12px;
 
 }
+.product-content-baohanh{
+    border-radius: 5px;
+    background-color: #f1f1f1;
+    width: 56%;
+    margin-top: 40px;
+}
+.product-content-baohanh-head{
+    font-size: 12px;
+    font-family: Arial, Tahoma, sans-serif;
+    border-bottom: 1px solid #e0e0e0;
+    text-align: center;
+    padding-top: 3px;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+.product-content-baohanh-bottom{
+    font-size: 12px;
+    font-family: Arial, Tahoma, sans-serif;
+    text-align: center;
+    padding-bottom: 3px;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-bottom: 10px;
+}
+.thong-tin-them{
+    display: flex;
+    background-color: #f1f1f1;
+    margin-top: 10px;
+    text-align: center;
+    justify-content: space-around;
+    padding-top: 10px;
+    border-radius: 5px;
+    width: 503px;
+}
+.thong-tin-them-qr p{
+    font-style: italic;
+    font-family: Arial, Tahoma, sans-serif;
+    font-size: 12px;
+}
+.thong-tin-them-chplay p{
+    font-family: Arial, Tahoma, sans-serif;
+    font-size: 12px;
+    cursor: pointer;
+}
+.thong-tin-them-appstore p{
+    font-family: Arial, Tahoma, sans-serif;
+    font-size: 12px;
+    cursor: pointer;
+
+}
+
+
 /*khuyenmai*/
 .khuyenmai{
     display: block;
@@ -790,7 +860,7 @@ body {
     display: block;
     border-radius: 5px;
     background-color: #f1f1f1;
-    width: max-content;
+    width:503px;
     text-align: left;
 }
 .khuyenmai-them-title h1{
@@ -807,4 +877,7 @@ body {
 .khuyenmai-them-content{
     padding-right: 20px;
     padding-bottom: 5px;
+}
+.banner-khuyenmai img{
+    width: 502px;
 }
