@@ -371,6 +371,7 @@ body {
     border-radius: 4px;
 }
 
+/*Content Filter loại máy*/
 #content .filter-loai-may .loai-may-label {
     position: relative;
 }
@@ -455,9 +456,6 @@ body {
     display: none;
 }
 
-#content .filter-chung {
-    padding-bottom: 20px;
-}
 
 #content .filter-loai-may:hover .loai-may-label::after {
     display: block;
@@ -467,6 +465,432 @@ body {
     display: block;
 }
 
+/*Content Filter công nghệ lọc*/
+#content .filter-cong-nghe-loc .cong-nghe-loc-options {
+    display: none;
+}
+
+#content .filter-cong-nghe-loc .cong-nghe-loc {
+    position: absolute;
+    width: 533px;
+    display: flex;
+    flex-wrap: wrap;
+    top: 36px;
+    padding: 10px 10px 56px 10px;
+    background-color: white;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, .5);
+}
+
+#content .filter-cong-nghe-loc .cong-nghe-loc a {
+    margin-right: 7px;
+    margin-bottom: 7px;
+    padding: 5px 10px;
+    border: 1px solid #e0e0e0;
+    text-decoration: none;
+    color: #333333;
+    border-radius: 4px;
+    font-size: 13px;
+
+}
+
+#content .filter-cong-nghe-loc .cong-nghe-loc a:hover {
+    border: 1px solid #2f80ed;
+    color: #2f80ed;
+}
+
+#content .filter-cong-nghe-loc .xem-ket-qua {
+    width: 553px;
+    height: 50px;
+    position: absolute;
+    top: 116px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, .05);
+}
+
+#content .filter-cong-nghe-loc .xem-ket-qua .bo-chon {
+    margin-right: 10px;
+    text-decoration: none;
+    padding: 10px 53px;
+    border: 1px solid #e0e0e0;
+    border: 1px solid #dd1c1a;
+    color: #dd1c1a;
+    border-radius: 4px;
+}
+
+#content .filter-cong-nghe-loc .xem-ket-qua .xem-ket-qua-mini {
+    text-decoration: none;
+    padding: 10px 40px;
+    border: 1px solid #e0e0e0;
+    background-color: #288ad6;
+    color: #fff;
+    border-radius: 4px;
+}
+
+#content .filter-cong-nghe-loc .cong-nghe-loc-label::after {
+    content: "";
+    position: absolute;
+    width: 27px;
+    height: 27px;
+    background: #fff;
+    transform: rotate(45deg);
+    top: 37px;
+    left: 16px;
+    box-shadow: -2px -2px 5px -4px;
+    display: none;
+}
+
+#content .filter-cong-nghe-loc:hover .cong-nghe-loc-label::after {
+    display: block;
+}
+
+#content .filter-cong-nghe-loc:hover .cong-nghe-loc-options {
+    display: block;
+}
+
+/*Content Kiểu lắp đặt*/
+#content .filter-kieu-lap-dat .kieu-lap-dat-options {
+    display: none;
+}
+
+#content .filter-kieu-lap-dat .kieu-lap-dat {
+    position: absolute;
+    width: 320px;
+    display: flex;
+    flex-wrap: wrap;
+    top: 36px;
+    padding: 10px 10px 56px 10px;
+    background-color: white;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, .5);
+}
+
+#content .filter-kieu-lap-dat .kieu-lap-dat a {
+    margin-right: 7px;
+    margin-bottom: 7px;
+    padding: 5px 10px;
+    border: 1px solid #e0e0e0;
+    text-decoration: none;
+    color: #333333;
+    border-radius: 4px;
+    font-size: 13px;
+
+}
+
+#content .filter-kieu-lap-dat .xem-ket-qua {
+    width: 340px;
+    height: 50px;
+    position: absolute;
+    top: 85px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, .05);
+}
+
+#content .filter-kieu-lap-dat .xem-ket-qua .bo-chon {
+    margin-right: 10px;
+    text-decoration: none;
+    padding: 10px 53px;
+    border: 1px solid #e0e0e0;
+    border: 1px solid #dd1c1a;
+    color: #dd1c1a;
+    border-radius: 4px;
+}
+
+#content .filter-kieu-lap-dat .xem-ket-qua .xem-ket-qua-mini {
+    text-decoration: none;
+    padding: 10px 40px;
+    border: 1px solid #e0e0e0;
+    background-color: #288ad6;
+    color: #fff;
+    border-radius: 4px;
+}
+
+#content .filter-kieu-lap-dat .kieu-lap-dat-label::after {
+    content: "";
+    position: absolute;
+    width: 27px;
+    height: 27px;
+    background: #fff;
+    transform: rotate(45deg);
+    top: 37px;
+    left: 16px;
+    box-shadow: -2px -2px 5px -4px;
+    display: none;
+}
+
+#content .filter-kieu-lap-dat:hover .kieu-lap-dat-label::after {
+    display: block;
+}
+
+#content .filter-kieu-lap-dat:hover .kieu-lap-dat-options {
+    display: block;
+}
+
+#content .filter-kieu-lap-dat .kieu-lap-dat a:hover {
+    border: 1px solid #2f80ed;
+    color: #2f80ed;
+}
+
+/*Content Số lõi lọc*/
+#content .filter-so-loi-loc .so-loi-loc-options {
+    display: none;
+}
+
+#content .filter-so-loi-loc .so-loi-loc {
+    position: absolute;
+    width: 320px;
+    display: flex;
+    flex-wrap: wrap;
+    top: 36px;
+    padding: 10px 10px 56px 10px;
+    background-color: white;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, .5);
+}
+
+#content .filter-so-loi-loc .so-loi-loc a {
+    margin-right: 7px;
+    margin-bottom: 7px;
+    padding: 5px 10px;
+    border: 1px solid #e0e0e0;
+    text-decoration: none;
+    color: #333333;
+    border-radius: 4px;
+    font-size: 13px;
+
+}
+
+#content .filter-so-loi-loc .xem-ket-qua {
+    width: 340px;
+    height: 50px;
+    position: absolute;
+    top: 85px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, .05);
+}
+
+#content .filter-so-loi-loc .xem-ket-qua .bo-chon {
+    margin-right: 10px;
+    text-decoration: none;
+    padding: 10px 53px;
+    border: 1px solid #e0e0e0;
+    border: 1px solid #dd1c1a;
+    color: #dd1c1a;
+    border-radius: 4px;
+}
+
+#content .filter-so-loi-loc .xem-ket-qua .xem-ket-qua-mini {
+    text-decoration: none;
+    padding: 10px 40px;
+    border: 1px solid #e0e0e0;
+    background-color: #288ad6;
+    color: #fff;
+    border-radius: 4px;
+}
+
+#content .filter-so-loi-loc .so-loi-loc-label::after {
+    content: "";
+    position: absolute;
+    width: 27px;
+    height: 27px;
+    background: #fff;
+    transform: rotate(45deg);
+    top: 37px;
+    left: 16px;
+    box-shadow: -2px -2px 5px -4px;
+    display: none;
+}
+
+#content .filter-so-loi-loc:hover .so-loi-loc-label::after {
+    display: block;
+}
+
+#content .filter-so-loi-loc:hover .so-loi-loc-options {
+    display: block;
+}
+
+#content .filter-so-loi-loc .so-loi-loc a:hover {
+    border: 1px solid #2f80ed;
+    color: #2f80ed;
+}
+
+/*Content Tiện ích*/
+#content .filter-tien-ich .tien-ich-options {
+    display: none;
+}
+
+#content .filter-tien-ich .tien-ich {
+    position: absolute;
+    width: 542px;
+    display: flex;
+    flex-wrap: wrap;
+    top: 36px;
+    padding: 10px 10px 56px 10px;
+    background-color: white;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, .5);
+}
+
+#content .filter-tien-ich .tien-ich a {
+    margin-right: 7px;
+    margin-bottom: 7px;
+    padding: 5px 10px;
+    border: 1px solid #e0e0e0;
+    text-decoration: none;
+    color: #333333;
+    border-radius: 4px;
+    font-size: 13px;
+
+}
+
+#content .filter-tien-ich .xem-ket-qua {
+    width: 562px;
+    height: 50px;
+    position: absolute;
+    top: 184px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, .05);
+}
+
+#content .filter-tien-ich .xem-ket-qua .bo-chon {
+    margin-right: 10px;
+    text-decoration: none;
+    padding: 10px 53px;
+    border: 1px solid #e0e0e0;
+    border: 1px solid #dd1c1a;
+    color: #dd1c1a;
+    border-radius: 4px;
+}
+
+#content .filter-tien-ich .xem-ket-qua .xem-ket-qua-mini {
+    text-decoration: none;
+    padding: 10px 40px;
+    border: 1px solid #e0e0e0;
+    background-color: #288ad6;
+    color: #fff;
+    border-radius: 4px;
+}
+
+#content .filter-tien-ich .tien-ich-label::after {
+    content: "";
+    position: absolute;
+    width: 27px;
+    height: 27px;
+    background: #fff;
+    transform: rotate(45deg);
+    top: 37px;
+    left: 16px;
+    box-shadow: -2px -2px 5px -4px;
+    display: none;
+}
+
+#content .filter-tien-ich:hover .tien-ich-label::after {
+    display: block;
+}
+
+#content .filter-tien-ich:hover .tien-ich-options {
+    display: block;
+}
+
+#content .filter-tien-ich .tien-ich a:hover {
+    border: 1px solid #2f80ed;
+    color: #2f80ed;
+}
+
+/*Content Nơi sản xuất*/
+#content .filter-noi-san-xuat .noi-san-xuat-options {
+    display: none;
+}
+
+#content .filter-noi-san-xuat .noi-san-xuat {
+    position: absolute;
+    width: 320px;
+    display: flex;
+    flex-wrap: wrap;
+    top: 36px;
+    padding: 10px 10px 56px 10px;
+    background-color: white;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, .5);
+}
+
+#content .filter-noi-san-xuat .noi-san-xuat a {
+    margin-right: 7px;
+    margin-bottom: 7px;
+    padding: 5px 10px;
+    border: 1px solid #e0e0e0;
+    text-decoration: none;
+    color: #333333;
+    border-radius: 4px;
+    font-size: 13px;
+
+}
+
+#content .filter-noi-san-xuat .xem-ket-qua {
+    width: 340px;
+    height: 50px;
+    position: absolute;
+    top: 85px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, .05);
+}
+
+#content .filter-noi-san-xuat .xem-ket-qua .bo-chon {
+    margin-right: 10px;
+    text-decoration: none;
+    padding: 10px 53px;
+    border: 1px solid #e0e0e0;
+    border: 1px solid #dd1c1a;
+    color: #dd1c1a;
+    border-radius: 4px;
+}
+
+#content .filter-noi-san-xuat .xem-ket-qua .xem-ket-qua-mini {
+    text-decoration: none;
+    padding: 10px 40px;
+    border: 1px solid #e0e0e0;
+    background-color: #288ad6;
+    color: #fff;
+    border-radius: 4px;
+}
+
+#content .filter-noi-san-xuat .noi-san-xuat-label::after {
+    content: "";
+    position: absolute;
+    width: 27px;
+    height: 27px;
+    background: #fff;
+    transform: rotate(45deg);
+    top: 37px;
+    left: 16px;
+    box-shadow: -2px -2px 5px -4px;
+    display: none;
+}
+
+#content .filter-noi-san-xuat:hover .noi-san-xuat-label::after {
+    display: block;
+}
+
+#content .filter-noi-san-xuat:hover .noi-san-xuat-options {
+    display: block;
+}
+
+#content .filter-noi-san-xuat .noi-san-xuat a:hover {
+    border: 1px solid #2f80ed;
+    color: #2f80ed;
+}
+
+/*Product content*/
 #content .product-content {
     margin-top: 50px;
 
@@ -768,4 +1192,8 @@ body {
 .container {
     width: 1200px;
     margin: auto;
+}
+
+#content .filter-chung {
+    padding-bottom: 20px;
 }
