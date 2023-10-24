@@ -378,17 +378,19 @@ body {
 #content .filter-loai-may .loai-may-options {
     position: absolute;
     top: 36px;
+    display: none;
 }
 
 #content .filter-loai-may .loai-may-img {
     display: flex;
     background-color: white;
     box-shadow: 0 2px 20px rgba(0, 0, 0, .5);
-    padding: 10px 10px 58px 10px;
+    padding: 10px 10px 67px 10px;
     text-align: center;
 
 
 }
+
 #content .filter-loai-may .loai-may-img a {
     margin-right: 20px;
     text-decoration: none;
@@ -396,12 +398,19 @@ body {
     padding: 8px 9px;
     border: 1px solid #e0e0e0;
     border-radius: 4px;
-    height: 125px;
+    height: 100px;
 }
+
+#content .filter-loai-may .loai-may-img a:hover {
+    border: 1px solid #2f80ed;
+    color: #2f80ed;
+}
+
 #content .filter-loai-may .loai-may-img img {
     width: 100px;
     width: 100px;
 }
+
 #content .filter-loai-may .xem-ket-qua {
     width: 578px;
     height: 50px;
@@ -432,6 +441,7 @@ body {
     color: #fff;
     border-radius: 4px;
 }
+
 #content .filter-loai-may .loai-may-label::after {
     content: "";
     position: absolute;
@@ -444,6 +454,19 @@ body {
     box-shadow: -2px -2px 5px -4px;
     display: none;
 }
+
+#content .filter-chung {
+    padding-bottom: 20px;
+}
+
+#content .filter-loai-may:hover .loai-may-label::after {
+    display: block;
+}
+
+#content .filter-loai-may:hover .loai-may-options {
+    display: block;
+}
+
 #content .product-content {
     margin-top: 50px;
 
