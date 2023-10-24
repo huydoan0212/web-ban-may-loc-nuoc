@@ -47,10 +47,9 @@
     margin-top: 60px;
     background-color: #ffffff;
     width: 400px;
-    height: 600px;
+    height: 400px;
     float: right;
     border-radius: 15px;
-
 }
 .slider .slider-logo{
     float: left;
@@ -98,15 +97,7 @@
     color: white;
     font-weight: 600;
 }
-.check{
-    padding-bottom: 10px;
-    margin-top: -10px;
-}
-.check input{
-    float: left;
-    margin-left: 35px;
-    margin-right: 10px ;
-}
+
 
 
 
