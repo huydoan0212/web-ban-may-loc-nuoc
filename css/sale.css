@@ -159,7 +159,7 @@ body {
 .slider-ul {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
     grid-gap: 30px; /* Khoảng cách giữa các phần tử */
 }
 .slider-ul li img{
@@ -196,6 +196,7 @@ body {
 .countdown-item p, .countdown-item span {
     font-size: 24px;
     font-weight: bold;
+
 }
 .countdown-item span {
     margin-right: 5px;
