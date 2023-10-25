@@ -10,6 +10,7 @@ body {
     background-color: #4a90e2;
     position: fixed;
     width: 100%;
+    top: 0;
 }
 #header-top {
     display: flex;
@@ -151,4 +152,14 @@ body {
 .container {
     width: 1200px;
     margin: auto;
+}
+.slider-ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 10px; /* Khoảng cách giữa các phần tử */
+}
+.slider-ul li img{
+    height: 200px;
+    width: 100px;
 }
