@@ -75,6 +75,7 @@
     width: 85%;
     height: 100%;
     outline: none;
+    padding-left: 10px;
 }
 .input-box input:hover{
     cursor: pointer;
