@@ -66,20 +66,19 @@ body {
 }
 
 #header-top #input-search {
-    width: 350px;
-    height: 36px;
+    width: 310px;
+    height: 39px;
     border-radius: 4px;
     margin-top: 16px;
     border: none;
+    padding: 0 20px;
+    outline: none;
 }
 
 #header-top .search-bar {
     position: relative;
 }
 
-#input-search::placeholder {
-    padding-left: 8px;
-}
 
 #header-top .search-bar .fa-magnifying-glass {
     width: 20px;
@@ -120,6 +119,7 @@ body {
     align-items: center;
     justify-content: space-between;
     text-align: center;
+    cursor: pointer;
 }
 
 #header-top .khuyen-mai {
