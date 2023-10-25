@@ -731,6 +731,11 @@ body {
     color: #2f80ed;
 
 }
+.product-content-right-product-name i{
+   color: #ee1b1b;
+    margin-left: 5px;
+    font-size: 12px;
+}
 .product-content-right-product-price{
     margin: 10px 0;
 }
@@ -782,183 +787,252 @@ body {
     font-family: Arial, Tahoma, sans-serif;
     font-size: 14px;
 }
-
-.product-content-thongsokythuat{
-    display: none;
-    font-family: Arial, Tahoma, sans-serif;
-    font-size: 18px;
-}
-.product-content-thongsokythuat img{
+/*thongsokythuat*/
+.table-content-tskt table,th,td{
+    border: 1px solid #efe9e9;
     width: 56.5%;
-    height: 450px;
-    margin-bottom: 15px;
-    margin-top: 15px;
+    border-collapse: collapse;
+    text-align: left;
+    padding: 10px;
 }
-.product-content-thongsokythuat p{
-    font-size: 14.5px;
-}
-.product-content-thongtinsanpham{
-    font-family: Arial, Tahoma, sans-serif;
-    font-size: 18px;
-}
-.product-content-thongtinsanpham img{
-    width: 56.5%;
-    height: 375px;
-    margin-bottom: 15px;
-    margin-top: 15px;
-}
-.product-content-thongtinsanpham p{
-    font-size: 14.5px;
-}
+.table-content-tskt-tongquan th{
+    font-size: 17px;
+    background-color: #e0e0e0;
 
-
-/*san pham lien quan trong product(chi tiet san pham)*/
-.product-related-content{
-    display: flex;
 }
-.product-related{
-    margin-bottom: 50px;
-}
-.product-related-title{
-    margin: 20px 0;
-    border-top: 1px solid #e0e0e0;
-}
-.product-related-title p{
+.table-content-tskt-tongquan td{
     font-size: 14px;
-    font-family: Arial, Tahoma, sans-serif;
-    font-weight: bold;
-    color: #333333;
 }
-.product-related-item{
-    width:30%;
-    text-align: center;
-    margin: 0 6px;
-}
-.product-related-item img{
-    width: 100%;
-}
-.product-related-item h1{
-    font-size: 13.5px;
-    font-family: Arial, Tahoma, sans-serif;
-    color: #333333;
-    margin-top: 6px;
-}
-.product-related-item p {
-    font-size: 15px;
-    color: #f18f31;
+.table-content-tskt-thongtinloiloc th{
+    font-size: 17px;
+    background-color: #e0e0e0;
 
 }
-.product-content-baohanh{
-    border-radius: 5px;
-    background-color: #f1f1f1;
-    margin-top: 40px;
-    width: 56.5%;
+.table-content-tskt-thongtinloiloc td {
+    font-size: 14px;
 }
-.product-content-baohanh-head{
-    font-family: Arial, Tahoma, sans-serif;
-    border-bottom: 1px solid #e0e0e0;
-    text-align: center;
-    padding-top: 3px;
-    display: flex;
-    justify-content: space-between;
-    padding-left: 25px;
-    padding-right: 25px;
-}
-.product-content-baohanh-bottom{
-    font-family: Arial, Tahoma, sans-serif;
-    text-align: center;
-    padding-bottom: 3px;
-    display: flex;
-    justify-content: space-between;
-    padding-left: 25px;
-    padding-right: 25px;
-    margin-bottom: 15px;
-}
-.thong-tin-them{
-    display: flex;
-    background-color: #f1f1f1;
-    margin-top: 10px;
-    text-align: center;
-    justify-content: space-around;
-    padding-top: 10px;
-    border-radius: 5px;
-    width: 503px;
-}
-.thong-tin-them-qr p{
-    font-style: italic;
-    font-family: Arial, Tahoma, sans-serif;
-    font-size: 12px;
-    font-weight: bold;
-}
-.thong-tin-them-chplay p{
-    font-family: Arial, Tahoma, sans-serif;
-    font-size: 12px;
-    cursor: pointer;
-    font-weight: bold;
+.table-content-tskt-bangdieukhien th {
+    font-size: 17px;
+    background-color: #e0e0e0;
 
 }
-.thong-tin-them-appstore p{
-    font-family: Arial, Tahoma, sans-serif;
-    font-size: 12px;
-    cursor: pointer;
-    font-weight: bold;
+.table-content-tskt-bangdieukhien td {
+    font-size: 14px;
+}
+.table-content-tskt-hethonghoatdong th {
+    background-color: #e0e0e0;
+
+    font-size: 17px;
+}
+.table-content-tskt-hethonghoatdong td{
+    font-size: 14px;
+}
+.table-content-tskt-thongtinlapdatvabaohanh th {
+    font-size: 17px;
+    background-color: #e0e0e0;
 
 }
+.table-content-tskt-thongtinlapdatvabaohanh td {
+    font-size: 14px;
+}
+/*thongsokythuat*/
+
+.product-content-thongsokythuat {
+        display: none;
+        font-family: Arial, Tahoma, sans-serif;
+        font-size: 18px;
+    }
+
+    .product-content-thongsokythuat img {
+        width: 56.5%;
+        height: 460px;
+        margin-bottom: 15px;
+        margin-top: 15px;
+    }
+
+    .product-content-thongsokythuat p {
+        font-size: 14.5px;
+    }
+
+    .product-content-thongtinsanpham {
+        font-family: Arial, Tahoma, sans-serif;
+        font-size: 18px;
+    }
+
+    .product-content-thongtinsanpham img {
+        width: 56.5%;
+        height: 375px;
+        margin-bottom: 15px;
+        margin-top: 15px;
+    }
+
+    .product-content-thongtinsanpham p {
+        font-size: 14.5px;
+    }
 
 
-/*khuyenmai*/
-.khuyenmai{
-    display: block;
-    justify-content: left;
-    text-align: left;
-    border-radius: 5px;
-    width: max-content;
-    background-color: #f1f1f1;
-}
-.khuyenmai-title{
-    border-bottom: 1px solid #e0e0e0;
-}
-.khuyenmai-title h1{
-    font-family: Arial, Tahoma, sans-serif;
-    font-weight: bold;
-    text-align: left;
-    padding-top: 6px;
-    padding-left: 6px;
-}
-.khuyenmai-title h2{
-    font-family: Arial, Tahoma, sans-serif;
-    font-style: italic;
-    padding-top: 6px;
-    padding-left: 6px;
-    color: #807e7e;
-}
-.khuyenmai-content{
-    font-family: Arial, Tahoma, sans-serif;
-    text-align: left;
-    padding: 0 5px 5px 0;
+    /*san pham lien quan trong product(chi tiet san pham)*/
 
-}
-.khuyenmai-them{
-    display: block;
-    border-radius: 5px;
-    background-color: #f1f1f1;
-    width:503px;
-    text-align: left;
-}
-.khuyenmai-them-title h1{
-    font-family: Arial, Tahoma, sans-serif;
-    border-bottom: 1px solid #e0e0e0;
-    padding-bottom: 6px;
-    padding-left: 6px;
-    padding-top: 6px;
-    background-color: #e32e2e;
-    color: #f1f1f1;
+    .product-related-content {
+        display: flex;
+    }
 
-}
-.khuyenmai-them-content{
-    padding-right: 20px;
-    padding-bottom: 5px;
-}
-.banner-khuyenmai img{
-    width: 503px;
-}
+    .product-related {
+        margin-bottom: 50px;
+    }
+
+    .product-related-title {
+        margin: 20px 0;
+        border-top: 1px solid #e0e0e0;
+    }
+
+    .product-related-title p {
+        font-size: 14px;
+        font-family: Arial, Tahoma, sans-serif;
+        font-weight: bold;
+        color: #333333;
+    }
+
+    .product-related-item {
+        width: 30%;
+        text-align: center;
+        margin: 0 6px;
+    }
+
+    .product-related-item img {
+        width: 100%;
+    }
+
+    .product-related-item h1 {
+        font-size: 13.5px;
+        font-family: Arial, Tahoma, sans-serif;
+        color: #333333;
+        margin-top: 6px;
+    }
+
+    .product-related-item p {
+        font-size: 15px;
+        color: #f18f31;
+
+    }
+
+    .product-content-baohanh {
+        border-radius: 5px;
+        background-color: #f1f1f1;
+        margin-top: 40px;
+        width: 56.5%;
+    }
+
+    .product-content-baohanh-head {
+        font-family: Arial, Tahoma, sans-serif;
+        border-bottom: 1px solid #e0e0e0;
+        text-align: center;
+        padding-top: 3px;
+        display: flex;
+        justify-content: space-between;
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    .product-content-baohanh-bottom {
+        font-family: Arial, Tahoma, sans-serif;
+        text-align: center;
+        padding-bottom: 3px;
+        display: flex;
+        justify-content: space-between;
+        padding-left: 25px;
+        padding-right: 25px;
+        margin-bottom: 15px;
+    }
+
+    .thong-tin-them {
+        display: flex;
+        background-color: #f1f1f1;
+        margin-top: 10px;
+        text-align: center;
+        justify-content: space-around;
+        padding-top: 10px;
+        border-radius: 5px;
+        width: 503px;
+    }
+
+    .thong-tin-them-qr p {
+        font-style: italic;
+        font-family: Arial, Tahoma, sans-serif;
+        font-size: 12px;
+    }
+    .thong-tin-them-chplay p {
+        font-family: Arial, Tahoma, sans-serif;
+        font-size: 12px;
+        cursor: pointer;
+    }
+    .thong-tin-them-appstore p {
+        font-family: Arial, Tahoma, sans-serif;
+        font-size: 12px;
+        cursor: pointer;
+    }
+    /*khuyenmai*/
+
+    .khuyenmai {
+        display: block;
+        justify-content: left;
+        text-align: left;
+        border-radius: 5px;
+        width: max-content;
+        background-color: #f1f1f1;
+    }
+
+    .khuyenmai-title {
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    .khuyenmai-title h1 {
+        font-family: Arial, Tahoma, sans-serif;
+        font-weight: bold;
+        text-align: left;
+        padding-top: 6px;
+        padding-left: 6px;
+    }
+
+    .khuyenmai-title h2 {
+        font-family: Arial, Tahoma, sans-serif;
+        font-style: italic;
+        padding-top: 6px;
+        padding-left: 6px;
+        color: #807e7e;
+    }
+
+    .khuyenmai-content {
+        font-family: Arial, Tahoma, sans-serif;
+        text-align: left;
+        padding: 0 5px 5px 0;
+
+    }
+
+    .khuyenmai-them {
+        display: block;
+        border-radius: 5px;
+        background-color: #f1f1f1;
+        width: 503px;
+        text-align: left;
+    }
+
+    .khuyenmai-them-title h1 {
+        font-family: Arial, Tahoma, sans-serif;
+        border-bottom: 1px solid #e0e0e0;
+        padding-bottom: 6px;
+        padding-left: 6px;
+        padding-top: 6px;
+        background-color: #e32e2e;
+        color: #f1f1f1;
+
+    }
+
+    .khuyenmai-them-content {
+        padding-right: 20px;
+        padding-bottom: 5px;
+    }
+
+    .banner-khuyenmai img {
+        width: 503px;
+    }
