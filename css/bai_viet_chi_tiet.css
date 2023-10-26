@@ -241,17 +241,17 @@ h4 {
     max-height: none;
     font-size: 13px;
     position: absolute;
-    right: 55px;
-    width: 189px;
+    width: 250px;
     display: inline-block;
     top: -15px;
     color: #333333;
+    left: 130px;
 }
 
 #content .other .link-mini-small > span {
     position: absolute;
-    top: 43px;
-    right: 168px;
+    top: 52px;
+    left: 133px;
     color: #a8a8a8;
     font-size: 11px;
 }

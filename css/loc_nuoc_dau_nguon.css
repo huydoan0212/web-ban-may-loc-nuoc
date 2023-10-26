@@ -214,7 +214,7 @@ body {
     margin-bottom: 10px;
 }
 
-#content .filter-img-mini .first-filter-img {
+#content .filter-img-mini .third-filter-img {
     border: 1px solid #288ad6;
 }
 
@@ -920,9 +920,12 @@ body {
     border-left: 5px solid #f13ba7;
     border-right: 5px solid #f13ba7;
 }
-
+.content-may-loc .item-label {
+    margin-bottom: 20px;
+}
 .content-may-loc .deal-items {
     text-decoration: none;
+
 }
 
 .content-may-loc .item-label > span {
@@ -961,9 +964,6 @@ body {
     font-size: 14px;
     color: #333333;
     font-weight: 100;
-}
-.content-may-loc .item-label {
-    margin-bottom: 20px;
 }
 
 .content-may-loc .item-compare > span {

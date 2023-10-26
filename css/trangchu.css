@@ -245,7 +245,9 @@ body {
     border: 5px solid #f13ba7;
     background-color: #ffffff;
 }
-
+.deal-soc .deal-soc-items:hover {
+    box-shadow: 0 10px 30px rgba(0,0,0,.12);
+}
 .deal-soc .deal-items {
     text-decoration: none;
 }
@@ -285,6 +287,7 @@ body {
 .deal-soc h3 {
     font-size: 14px;
     color: #333333;
+    font-weight: 100;
 }
 
 .deal-soc .item-compare > span {
@@ -380,7 +383,9 @@ body {
     border: 1px solid #e0e0e0;
 
 }
-
+#content .content-may-loc-mini:hover {
+    box-shadow: 0 2px 12px rgba(0,0,0,.12);
+}
 #content .content-may-loc-mini .item-img > img {
     width: 200px;
 }
@@ -431,6 +436,10 @@ body {
 .content-may-loc h3 {
     font-size: 14px;
     color: #333333;
+    font-weight: 100;
+}
+.item-label {
+    margin-bottom: 20px;
 }
 
 .content-may-loc .item-compare > span {
