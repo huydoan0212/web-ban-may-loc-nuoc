@@ -10,6 +10,7 @@ body {
     position: fixed;
     width: 100%;
     box-shadow: 0 4px 10px rgba(0, 0, 0, .1);
+    top: 0;
 }
 #header-top {
     display: flex;
@@ -341,6 +342,13 @@ body {
 .countdown-item .label {
     font-size: 13px;
 }
+.btn-oder {
+    display: flex;
+    justify-content: center;
+}
+
+
+/*footer*/
 #footer {
     margin-top: 50px;
     border-top: 1px solid #e0e0e0;
