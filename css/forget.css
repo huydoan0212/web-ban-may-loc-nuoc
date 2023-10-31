@@ -27,7 +27,7 @@
 .label h2 {
     color: #222;
     font-size: 20px;
-    padding-top: 35px;
+    padding-top: 25px;
 }
 .help {
     float: right;
@@ -75,14 +75,10 @@
     width: 85%;
     height: 100%;
     outline: none;
-    padding-left: 10px;
+    padding-left: 15px;
 }
 .input-box input:hover{
     cursor: pointer;
-}
-.input-box input::placeholder{
-    padding-left: 10px;
-
 }
 .signin-btn{
     display: flex;
