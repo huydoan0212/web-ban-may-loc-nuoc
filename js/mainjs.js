@@ -54,4 +54,13 @@ smallImg.forEach(function (imgItem, X){
     })
 })
 
+//------------------------- vietdanhgia------------------------
+const danhgiabtn = document.querySelector('.vietdanhgia')
+const  dongbtn = document.querySelector('.form-danhgia-close')
+danhgiabtn.addEventListener('click', function (){
+    document.querySelector('.form-danhgia').style.display = "flex"
+})
+dongbtn.addEventListener('click', function (){
+    document.querySelector('.form-danhgia').style.display = "none"
+})
 
