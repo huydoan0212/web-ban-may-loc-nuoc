@@ -10,12 +10,25 @@ img {
     height: 75px;
 }
 
+h4 {
+    display: block;
+    overflow: hidden;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #333;
+    font-weight: 10;
+    margin-left: 35px;
+}
+
+
+
 /*Header*/
 #header {
     background-color: #4a90e2;
     position: fixed;
     width: 100%;
     box-shadow: 0 4px 10px rgba(0, 0, 0, .1);
+    z-index: 9999;
 }
 
 #header-top {
@@ -123,6 +136,7 @@ img {
     justify-content: space-between;
     text-align: center;
     cursor: pointer;
+    margin-bottom: 20px;
 }
 
 #header-top .khuyen-mai {
@@ -162,6 +176,7 @@ img {
 #content {
     background-color: #f0f0f0;
     padding-top: 127px;
+    padding-bottom: 25px;
 }
 
 #content .gio-hang {
@@ -185,9 +200,11 @@ img {
     margin: 0 3px 2px 0;
     transform: rotate(-45deg);
 }
+
 #content .list-san-pham {
     padding-left: 30px;
 }
+
 #content .san-pham {
     list-style: none;
     padding-top: 30px;
@@ -305,6 +322,7 @@ img {
     border: 1px solid #666666;
     cursor: pointer;
 }
+
 #content .total-san-pham {
     margin-top: 185px;
     height: 40px;
@@ -312,16 +330,229 @@ img {
     font-size: 14px;
     color: #333333;
 }
+
 #content .total-san-pham .quanlity-san-pham {
     float: left;
     margin-left: 35px;
 }
+
 #content .total-san-pham .total-money {
     float: right;
     margin-right: 40px;
 }
+
 #content .thong-tin-khach-hang {
     margin-top: 20px;
+    border-bottom: 1px solid #d1d1d1;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+}
+#content .thong-tin .gioi-tinh-khach-hang {
+
+}
+
+#content .thong-tin .gioi-tinh-nam {
+    display: inline-block;
+    margin-left: 32px;
+    position: relative;
+
+}
+
+#content .thong-tin .gioi-tinh-nu {
+    margin-left: 35px;
+}
+
+#content .thong-tin .gioi-tinh-nam .label-gioi-tinh {
+    position: absolute;
+    top: 2px;
+    font-size: 14px;
+}
+
+#content .form-thong-tin {
+    margin-left: 35px;
+    margin-top: 20px;
+}
+
+#content .form-thong-tin .input-name {
+    position: relative;
+    display: inline-block;
+}
+
+#content #cus-name {
+    width: 235px;
+    height: 18px;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #d1d1d1;
+    outline: none;
+    margin-right: 10px;
+}
+
+#content #cus-phone {
+    width: 235px;
+    height: 18px;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #d1d1d1;
+    outline: none;
+
+}
+
+#content .form-thong-tin .label-name {
+    position: absolute;
+    left: 25px;
+    top: -7px;
+    background: white;
+    padding: 0 3px;
+}
+
+#content .form-thong-tin .label-phone {
+    position: absolute;
+    left: 25px;
+    top: -7px;
+    background: white;
+    padding: 0 3px;
+}
+
+#content .dia-chi {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#content .size {
+    width: 40%;
+    margin-left: 35px;
+    margin-bottom: 10px;
+}
+
+#content .dia-chi select {
+    width: 257px;
+    height: 38px;
+    border: 1px solid #d1d1d1;
+}
+#content .dia-chi input {
+    width: 235px;
+    height: 36px;
+    border: 1px solid #d1d1d1;
+    outline: none;
+    padding: 0 10px;
+}
+#content .dia-chi .input-dia-chi {
+    margin-left: 30px;
+}
+
+#content .dia-chi .huyen {
+    margin-left: 30px;
+}
+
+#content .label-total-big .text-total-big {
+    float: left;
+    margin-left: 35px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333333;
+}
+#content .label-total-big .money-big {
+    float: right;
+    margin-right: 39px;
+    color: #f30c28;
+    font-weight: bold;
+    font-size: 14px;
+}
+#content .label-total-big {
+    padding-bottom: 30px;
+}
+#content .policy {
+    width: 526px;
+    border-top: 1px solid #f1f1f1;
+    margin-left: 35px;
+    position: relative;
+}
+#content .policy #checkbox-policy {
+    position: absolute;
+    top: 18px;
+}
+#content .policy .text-policy {
+    font-size: 14px;
+    position: absolute;
+    top: 20px;
+    left: 30px;
+}
+
+#content .btn-order-frame {
+    margin-top: 50px;
+    text-align: center;
+}
+#content .btn-order-frame .btn-order {
+    width: 527px;
+    height: 50px;
+    background-color: #f7712e;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    border: none;
+    margin-bottom: 10px;
+}
+#content .note {
+    text-align: center;
+    color: #666;
+    font-size: 12px;
+    padding-bottom: 20px;
+}
+/*Footer*/
+#footer {
+
+    border-top: 1px solid #e0e0e0;
+}
+
+#footer .container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#footer .container .tong-dai {
+    width: 50%;
+    text-align: center;
+    margin-top: 20px;
+}
+
+#footer .tong-dai .tong-dai-ho-tro {
+    font-weight: bold;
+    font-size: 13px;
+}
+
+#footer .tong-dai a {
+    text-decoration: none;
+    color: #2f80ed;
+}
+
+#footer .container .lien-he {
+    width: 50%;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#footer .social .facebook {
+    text-decoration: none;
+    color: #2f80ed;
+    margin-right: 15px;
+}
+
+#footer .social .youtube {
+    text-decoration: none;
+    color: #2f80ed;
+}
+
+#footer .tap-doan p {
+    font-weight: 500;
+}
+
+#footer .tap-doan a > img {
+    width: 120px;
+    height: 30px;
 }
 
 /*Phần tỉnh thành*/
