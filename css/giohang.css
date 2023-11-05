@@ -5,6 +5,11 @@ body {
     font-size: 12px;
 }
 
+img {
+    width: 75px;
+    height: 75px;
+}
+
 /*Header*/
 #header {
     background-color: #4a90e2;
@@ -76,7 +81,6 @@ body {
 #header-top .search-bar {
     position: relative;
 }
-
 
 
 #header-top .search-bar .fa-magnifying-glass {
@@ -153,6 +157,7 @@ body {
     font-weight: bold;
 
 }
+
 /*Content*/
 #content {
     background-color: #f0f0f0;
@@ -162,11 +167,13 @@ body {
 #content .gio-hang {
     background-color: #fff;
 }
+
 #content .nav-section .mua-them {
     text-decoration: none;
     font-size: 14px;
     color: #358cd6;
 }
+
 #content .nav-section .mua-them::before {
     content: "";
     width: 8px;
@@ -178,10 +185,145 @@ body {
     margin: 0 3px 2px 0;
     transform: rotate(-45deg);
 }
+#content .list-san-pham {
+    padding-left: 30px;
+}
+#content .san-pham {
+    list-style: none;
+    padding-top: 30px;
+    position: relative;
+    z-index: 1;
+}
+
 #content .nav-section span {
     float: right;
     font-size: 14px;
 }
+
+#content .img-sp {
+    display: inline-block;
+    position: absolute;
+}
+
+#content .link-sp {
+    display: inline-block;
+    text-align: center;
+}
+
+#content .link-sp img {
+    display: block;
+    margin-bottom: 15px;
+}
+
+#content .link-sp .remove {
+    border: none;
+    color: #999;
+    background-color: white;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+#content .data-sp {
+    display: inline-block;
+    width: 380px;
+    margin-left: 20px;
+    position: absolute;
+    left: 75px;
+}
+
+#content .data-sp .data-sp-title {
+    width: 450px;
+}
+
+#content .data-sp .data-sp-title-label {
+    color: #333333;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#content .data-sp .data-sp-price {
+    margin-left: 100px;
+    font-size: 14px;
+    color: #f30c28;
+}
+
+#content .data-sp .data-sp-price strike {
+    margin-left: 374px;
+    font-size: 14px;
+    color: #666666;
+}
+
+#content .data-sp .data-sp-discount {
+    list-style: none;
+    padding-left: 10px;
+    font-size: 12px;
+    color: #666666;
+    width: 325px;
+    line-height: 20px;
+    position: absolute;
+    top: 20px;
+}
+
+#content .data-sp-quantity-color {
+    margin-top: 110px;
+    width: 437px;
+}
+
+#content .data-sp-quantity-color .data-sp-color {
+    color: #666666;
+    font-size: 12px;
+    display: inline-block;
+    float: left;
+    margin-top: 6px;
+}
+
+#content .data-sp-quantity-color .data-sp-quantity {
+    display: inline-block;
+    float: right;
+}
+
+#content .data-sp-quantity-color .data-sp-quantity .except {
+    display: inline-block;
+    text-align: center;
+    padding: 5px 10px;
+    border: 1px solid #666666;
+    cursor: pointer;
+}
+
+#content .data-sp-quantity-color .data-sp-quantity #quantity-sp {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+}
+
+#content .data-sp-quantity-color .data-sp-quantity .plus {
+    display: inline-block;
+    text-align: center;
+    padding: 5px 10px;
+    border: 1px solid #666666;
+    cursor: pointer;
+}
+#content .total-san-pham {
+    margin-top: 185px;
+    height: 40px;
+    border-bottom: 1px solid #d1d1d1;
+    font-size: 14px;
+    color: #333333;
+}
+#content .total-san-pham .quanlity-san-pham {
+    float: left;
+    margin-left: 35px;
+}
+#content .total-san-pham .total-money {
+    float: right;
+    margin-right: 40px;
+}
+#content .thong-tin-khach-hang {
+    margin-top: 20px;
+}
+
 /*Phần tỉnh thành*/
 .modal-tinh-thanh {
     position: fixed;
@@ -287,20 +429,22 @@ body {
     padding-right: 10px;
 
 
-
 }
+
 .modal-tinh-thanh .content-modal p {
     text-align: center;
     font-size: 13px;
     font-weight: bold;
     margin: 10px;
 }
+
 .modal-tinh-thanh .content-modal ul {
     columns: 2;
     -webkit-columns: 2;
     -moz-columns: 2;
     overflow-x: hidden;
 }
+
 .modal-tinh-thanh .content-modal ul li {
     list-style: none;
     display: inline-block;
@@ -309,8 +453,8 @@ body {
     width: 140px;
 
 
-
 }
+
 .modal-tinh-thanh .content-modal ul li a {
     text-decoration: none;
     border-bottom: 1px solid #f1f1f1;
@@ -321,12 +465,12 @@ body {
 }
 
 
-
 /*Class*/
 .container {
     width: 1200px;
     margin: auto;
 }
+
 .section {
     width: 600px;
     margin: auto;
