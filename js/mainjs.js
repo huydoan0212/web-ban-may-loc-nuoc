@@ -64,3 +64,24 @@ dongbtn.addEventListener('click', function (){
     document.querySelector('.form-danhgia').style.display = "none"
 })
 
+// -----------------------------lichsumuahang--------------------------------
+
+const dhdm = document.querySelector('.lichsumuahang-damua-donhangdamua')
+const ttvsdc = document.querySelector('.lichsumuahang-damua-thongtinvadiachi')
+if(dhdm) {
+    dhdm.addEventListener("click", function () {
+        document.querySelector(".lichsumuahang-content-second").style.display = "none"
+        document.querySelector(".lichsumuahang-content-first").style.display = "block"
+
+    })
+    if (ttvsdc) {
+        ttvsdc.addEventListener("click", function () {
+            document.querySelector('.lichsumuahang-content-second').style.display = "block"
+            document.querySelector('.lichsumuahang-content-first').style.display = "none"
+
+        })
+    }
+}
+
+
+
