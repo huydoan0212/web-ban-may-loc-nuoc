@@ -1,5 +1,5 @@
 // Đặt thời gian đích cho đồng hồ đếm ngược (định dạng: "YYYY-MM-DD HH:MM:SS")
-var targetDate = new Date("2023-11-10 23:59:59");
+var targetDate = new Date("2023-11-17 23:59:59");
 
 function updateCountdown() {
     var now = new Date();
