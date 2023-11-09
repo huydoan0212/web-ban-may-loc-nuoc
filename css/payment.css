@@ -332,6 +332,9 @@ body {
     display: flex;
     justify-content: space-between;
 }
+.payment-id-title{
+    color: #2f80ed;
+}
 .payment-right-title, .product, .tax, .total{
     display: flex;
     justify-content: space-between;
@@ -353,6 +356,12 @@ body {
     padding: 10px;
     font-size: 14px;
     text-decoration: none;
+}
+#voucher-select:hover{
+    color: #2f80ed;
+}
+.voucher-title i{
+    color: #2f80ed;
 }
 .payment-type{
     display: flex;
@@ -376,10 +385,24 @@ body {
     width: 60%;
     text-align: center;
     margin-left: 25%;
-    border-radius: 2px;
-    border-style: solid;
     cursor: pointer;
+    background-color: #2f80ed;
+    color: white;
+    border-radius: 5px;
+    border: 1px solid ;
 }
+.submit:hover{
+    background-color: #4b90e2;
+    color: white;
+}
+
+
+
+
+
+
+
+
 
 
 
@@ -574,6 +597,7 @@ body {
     padding-bottom: 10px;
     color: #333333;
     display: block;
+
 }
 
 

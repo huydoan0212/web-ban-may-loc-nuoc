@@ -81,10 +81,14 @@
 .input-box input:hover{
     cursor: pointer;
 }
-
+.signin-btn button:hover{
+    background-color: #4b90e2;
+    color: white;
+}
 .signin-btn{
     display: flex;
     justify-content: center;
+    margin-top: 20px;
 }
 .signin-btn button{
     width: 90%;
@@ -95,10 +99,11 @@
     font-size: 16px ;
     color: white;
     font-weight: 600;
+
 }
 .check{
     padding-bottom: 10px;
-    margin-top: -10px;
+    margin-top: 10px;
 }
 .check input{
     float: left;

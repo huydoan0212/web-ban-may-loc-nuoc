@@ -84,6 +84,10 @@
     display: flex;
     justify-content: center;
 }
+.signin-btn button:hover{
+    background-color: #4b90e2;
+    color: white;
+}
 .signin-btn button{
     width: 90%;
     height: 45px;
