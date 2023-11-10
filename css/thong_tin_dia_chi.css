@@ -181,6 +181,7 @@ body {
     color: #333333;
     font-size: 14px;
 
+
 }
 #content .mini-menu-toolbar > div {
     width: 290px;
@@ -392,6 +393,70 @@ body {
 #content .btn-cancel-save .save-btn {
     color: #4A90E2;
     font-weight: bold;
+}
+#content .infor-address {
+    background-color: white;
+    padding: 20px;
+}
+#content .dia-chi-nhan-hang p {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 14px;
+}
+#content .nhap-dia-chi {
+    margin-left: 15px;
+
+
+}
+#content .nhap-dia-chi .all {
+    width: 252.1px;
+    height: 41.6px;
+    padding: 0 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    outline: none;
+    margin-right: 25px;
+
+
+}
+#content .nhap-dia-chi {
+    margin-bottom: 20px;
+}
+#content .nhap-dia-chi span {
+    font-size: 14px;
+    margin-right: 37px;
+}
+#content .nhap-dia-chi #dia-chi {
+    width: 230.5px;
+    height: 40px;
+}
+#content .nhap-dia-chi .dia-chi-label {
+    margin-right: 51px;
+}
+#content .mac-dinh {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+#content .mac-dinh input {
+    margin: 0;
+    margin-left: 15px;
+    margin-right: 5px;
+
+}
+#content .mac-dinh span {
+    font-size: 14px;
+}
+#content .btn-frame {
+    text-align: center;
+}
+#content .btn-frame .cap-nhat {
+    text-decoration: none;
+    font-size: 16px;
+    color: white;
+    padding: 10px 100px;
+    background-color: #4a90e2;
+    border-radius: 4px;
 }
 /*Footer*/
 #footer {
