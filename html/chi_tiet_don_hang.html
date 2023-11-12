@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Giỏ hàng</title>
-    <link rel="stylesheet" href="../css/giohang.css">
+    <title>Chi tiết đơn hàng</title>
+    <link rel="stylesheet" href="../css/chi_tiet_don_hang.css">
     <script src="https://kit.fontawesome.com/3e135170bd.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -39,112 +39,85 @@
         </div>
     </div>
     <div id="content">
-        <div class="section">
-            <div class="nav-section">
-                <a href="trangchu.html" class="mua-them">Mua thêm sản phẩm khác</a>
-                <span>Giỏ hàng của bạn</span>
-            </div>
-            <div class="gio-hang">
-                <ul class="list-san-pham">
-                    <li class="san-pham">
-                        <div class="img-sp">
-                            <a href="" class="link-sp">
-                                <img src="../img/ro-mutosi-mp-290sk-9-loi-140223-054510-600x600-1-600x600.jpg" alt="">
-                                <button class="remove">Xóa</button>
-                            </a>
+        <div class="container">
+            <div class="display">
+                <div class="toolbar">
+                    <h4><span>Anh </span>ĐOÀN QUỐC HUY</h4>
+                    <div class="mini-menu-toolbar">
+                        <div class="order-frame">
+                            <i class="fa-solid fa-rectangle-list" style="color: #4cdda0;"></i>
+                            <a href="" class="order">Đơn hàng đã mua</a>
                         </div>
-                        <div class="data-sp">
-                            <div class="data-sp-title">
-                                <a href="" class="data-sp-title-label">Máy lọc nước RO Mutosi MP-290SK 9 lõi
-                                </a>
-                                <span class="data-sp-price">3.690.000 <strike>6.670.000</strike></span>
+                        <div class="infor-frame">
+                            <i class="fa-solid fa-address-card"></i>
+                            <a href="thong_tin_dia_chi.html" class="thong-tin-va-dia-chi">Thông tin và địa chỉ</a>
+                        </div>
+                        <div class="log-off">
+                            <a href="" class="dang-xuat">Đăng xuất</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-mini">
+                    <div class="title">
+                        <span class="title-ordered">Chi tiết đơn hàng <span
+                                class="">#77777777</span> - <span>Đã hủy</span></span>
+                        <p class="ly-do-huy">Lý do: <span class="ly-do">Tìm thấy chỗ khác tốt hơn</span></p>
+                    </div>
+                    <div class="information-receive">
+                        <div class="thong-tin-nhan-hang">
+                            <div class="title-infor">
+                                <p><i class="fa-solid fa-map-location-dot"></i>THÔNG TIN NHẬN
+                                    HÀNG</p>
                             </div>
-                            <ul class="data-sp-discount">
-                                <li>- Miễn phí công lắp đặt</li>
-                                <li>- Giảm thêm 10% khi mua cùng sản phẩm có giá cao hơn (trừ Xe đạp, sản phẩm Apple,
-                                    sản phẩm giá sốc)
-                                </li>
-                                <li>- Cơ hội trúng TIVI LG 65 inch.</li>
-                                <li>- Tặng coupon Miễn phí lõi lọc thô số 1 và 3 coupon Giảm 20% khi mua lõi lần sau.
-                                </li>
-                            </ul>
-                            <div class="data-sp-quantity-color">
-                                <div class="data-sp-color">
-                                    <span>Màu: <span class="data-sp-choose-color">Đen</span></span>
-                                </div>
-                                <div class="data-sp-quantity">
-                                    <div class="except">-</div>
-                                    <input type="text" maxlength="3" id="quantity-sp">
-                                    <div class="plus">+</div>
-                                </div>
+                            <div class="content-receive">
+                                <p>Người nhận: </p>
+                                <span>Anh <span class="name-receive">ĐOÀN QUỐC HUY</span> - <span class="phone-receive"> 0586485990</span></span>
+                                <p>Địa chỉ: </p>
+                                <span class="dia-chi">81/11 QL1K, Phường Long Phước, TP.Thủ Đức, Hồ Chí Minh</span>
+                                <p>Giao lúc: </p>
+                                <span class="time">Trước 16:00 - Thứ 6 (10/11)</span>
                             </div>
                         </div>
-                    </li>
+                        <div class="payment">
+                            <div class="title-infor">
+                                <p><i class="fa-regular fa-credit-card"></i>HÌNH THỨC THANH TOÁN
+                                </p>
+                            </div>
+                            <div class="content-payment">
+                                <p>Thanh toán online thất bại</p>
+                                <span class="describe">Đơn hàng sẽ được giao đến anh bằng hình thức Thanh toán tiền mặt khi nhận hàng</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-detail">
+                        <div class="title-infor">
+                            <p><i class="fa-solid fa-bag-shopping" ></i>THÔNG TIN SẢN PHẨM</p>
+                        </div>
+                        <div class="detail-pd">
+                            <div class="product-san-pham">
+                                <img src="../img/Sunhouse-SHD4026-0-min-400x400.jpg" alt="">
+                                <div class="label-pd">
+                                    <p class="label-name">Nồi chiên không dầu 6.0L Sunhouse SHD4026 <span class="cost">1.550.000₫</span></p>
 
-                </ul>
-                <div class="total-san-pham">
-                    <span class="quanlity-san-pham"><span class="total-label">Tạm tính</span>(1 sản phẩm):</span>
-                    <span class="total-money">3.690.000</span>
-                </div>
-                <div class="thong-tin-khach-hang">
-                    <h4>Thông tin tài khoản</h4>
-                    <div class="thong-tin">
-                        <form action="" class="form-khach-hang">
-                            <div class="gioi-tinh-khach-hang">
-                                <div class="gioi-tinh-nam">
-                                    <input class="radio-input" id="radio1" type="radio">
-                                    <span class="label-gioi-tinh">Nam</span>
-                                </div>
-                                <div class="gioi-tinh-nam gioi-tinh-nu">
-                                    <input class="radio-input" id="radio2" type="radio">
-                                    <span class="label-gioi-tinh">Nữ</span>
+                                    <p class="discount-label">Khuyến mãi</p>
+                                    <ul class="discount">
+                                        <li>- Giảm 855,000đ</li>
+                                        <li>- Khay giấy lót chống dính nồi chiên không dầu La Fonte</li>
+                                    </ul>
+                                    <p class="amount-label">Số lượng: <span class="amount">1</span></p>
                                 </div>
                             </div>
-                            <div class="form-thong-tin">
-                                <div class="input-name">
-                                    <input type="text" id="cus-name">
-                                    <label for="cus-name" class="label-name">Họ và tên</label>
-                                </div>
-                                <div class="input-name">
-                                    <input type="text" id="cus-phone">
-                                    <label for="cus-name" class="label-phone">Số điện thoại</label>
+                            <div class="total-pd">
+                                <div class="frame-flex">
+                                    <span class="tam-tinh">Tạm tính: </span><span class="money">1.550.000₫</span>
+                                    <span class="can-thanh-toan">Cần thanh toán </span><span class="strong-money">1.550.000₫</span>
                                 </div>
                             </div>
-                        </form>
-                        <h4>Địa chỉ</h4>
-                        <form action="" class="dia-chi">
-                            <div class="tinh size">
-                                <select name="" id="select-tinh">
-                                    <option value="">Hồ Chí Minh</option>
-                                </select>
+                            <div class="btn-return">
+                                <a href="" class="return-btn">VỀ TRANG DANH SÁCH ĐƠN HÀNG</a>
                             </div>
-                            <div class="input-dia-chi size">
-                                <span>Địa chỉ</span>
-                                <input type="text" id="input-dia-chi">
-                            </div>
-                        </form>
+                        </div>
                     </div>
-                </div>
-                <div class="voucher">
-                    <p class="label-voucher">Mã giảm giá/ Phiếu mua hàng</p>
-                    <div class="nhap-voucher">
-                        <input type="text" placeholder="Nhập mã giảm giá/ Phiếu mua hàng" id="ma-giam-gia">
-                        <a href="" class="ap-dung">Áp dụng</a>
-                    </div>
-                </div>
-                <div class="total-money-big">
-                    <div class="label-total-big">
-                        <span class="text-total-big">Tổng tiền:</span>
-                        <span class="money-big">3.690.000đ</span>
-                    </div>
-                    <div class="policy">
-                        <input type="checkbox" id="checkbox-policy">
-                        <span class="text-policy">Tôi đồng ý với Chính sách xử lý dữ liệu cá nhân của Healthy Water</span>
-                    </div>
-                    <div class="btn-order-frame">
-                        <button class="btn-order">Đặt hàng</button>
-                    </div>
-                    <div class="note"><span>Bạn có thể chọn hình thức thanh toán sau khi đặt hàng</span></div>
                 </div>
             </div>
         </div>

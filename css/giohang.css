@@ -423,12 +423,15 @@ h4 {
     width: 40%;
     margin-left: 35px;
     margin-bottom: 10px;
+
 }
 
 #content .dia-chi select {
     width: 257px;
     height: 38px;
     border: 1px solid #d1d1d1;
+    padding: 0 5px;
+    border-radius: 4px;
 }
 #content .dia-chi input {
     width: 235px;
@@ -436,9 +439,18 @@ h4 {
     border: 1px solid #d1d1d1;
     outline: none;
     padding: 0 10px;
+    border-radius: 4px;
 }
 #content .dia-chi .input-dia-chi {
     margin-left: 30px;
+    position: relative;
+}
+#content .dia-chi .input-dia-chi span {
+    position: absolute;
+    left: 25px;
+    top: -7px;
+    background: white;
+    padding: 0 3px;
 }
 
 #content .dia-chi .huyen {
@@ -501,6 +513,38 @@ h4 {
     color: #666;
     font-size: 12px;
     padding-bottom: 20px;
+}
+#content .voucher {
+    border-bottom: 1px solid #d1d1d1;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+#content .voucher .label-voucher {
+    display: block;
+    overflow: hidden;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #333;
+    font-weight: 10;
+    margin-left: 35px;
+}
+#content .nhap-voucher #ma-giam-gia {
+    width: 358px;
+    height: 36px;
+    margin-left: 35px;
+    border: 1px solid #d1d1d1;
+    border-radius: 4px;
+    padding: 0 10px;
+    outline: none;
+}
+#content .nhap-voucher .ap-dung {
+    text-decoration: none;
+    font-size: 14px;
+    padding: 10px 30px;
+    background-color: #999999;
+    border-radius: 4px;
+    color: white;
+    margin-left: 30px;
 }
 /*Footer*/
 #footer {
