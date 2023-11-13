@@ -292,53 +292,59 @@ body {
 }
 /*silder*/
 .slider{
-    margin-top: 155px;
+    margin-top: 100px;
     height: 550px;
-
+    background-color: #f0f0f0;
 }
 .payment{
-    display: flex;
-    justify-content: space-between;
+    width: 600px;
+    height: 100%;
+    border: 1px solid #d1d1d1;
+    margin: auto;
+    background-color: white;
+    padding: 10px;
 }
-.payment-left,
-.payment-right {
-    width: 45%;
+.payment .payment-h1{
+    color: #2f80ed;
+    margin-left: 35%;
 }
-.payment-left .input-box{
-    width: 80%;
-    margin-bottom: 10px;
-    height: 34px;
+.payment .payment-h1 i{
+    color: #2f80ed;
+}
+.payment-information{
+    width: 550px;
+    height: 150px;
+    color: #333333;
+    background-color: #f0f0f0;
+    margin: auto;
+    border: 1px solid #d1d1d1;
+}
+.information-1 p, .information-1 h4, .information-2 p, .information-2 h4, .information-3 p, .information-3 h4{
+    display: inline-block;
     padding-left: 10px;
-    outline: none ;
-    cursor: pointer;
 }
-.payment-left .input-area{
-    width: 81%;
-    height: 90px;
-    padding-left: 10px;
-    padding-top: 10px;
-    outline: none;
-    cursor: pointer;
-}
-/*payment right*/
-.payment-right{
 
-}
-.payment-right-id{
-    display: flex;
-    justify-content: space-between;
-}
 .payment-id{
     display: flex;
     justify-content: space-between;
 }
-.payment-id-title{
+.payment-id{
     color: #2f80ed;
 }
-.payment-right-title, .product, .tax, .total{
+.payment-id a{
+    margin-top: 15px;
+    font-size: 14px;
+    text-decoration: none;
+    cursor: pointer;
+}
+.payment-id a:hover{
+    color: #2f80ed;
+}
+
+.payment-title, .product, .tax, .total{
     display: flex;
     justify-content: space-between;
-    border-bottom: solid 1px ;
+    border-bottom: solid 1px #d1d1d1;
     padding: 10px;
 }
 .product-1, .product-price,.total-price,.title-1, .title-2,.total-title,.tax-title, .tax-price{
@@ -347,22 +353,7 @@ body {
 .voucher, .payment-right-title, .product, .tax, .total p{
     font-size: 14px;
 }
-.voucher{
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-}
-#voucher-select {
-    padding: 10px;
-    font-size: 14px;
-    text-decoration: none;
-}
-#voucher-select:hover{
-    color: #2f80ed;
-}
-.voucher-title i{
-    color: #2f80ed;
-}
+
 .payment-type{
     display: flex;
     justify-content: space-between;
@@ -384,7 +375,7 @@ body {
     height: 45px;
     width: 60%;
     text-align: center;
-    margin-left: 25%;
+    margin-left: 20%;
     cursor: pointer;
     background-color: #2f80ed;
     color: white;
@@ -395,6 +386,70 @@ body {
     background-color: #4b90e2;
     color: white;
 }
+.cancel-form{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: black;
+    /*display: none;*/
+    z-index: 999;
+}
+.cancel-form-content{
+    width: 450px;
+    height: 450px;
+    background-color: #ffff;
+    border-radius: 5px;
+}
+.cancel-1 input, .cancel-1 p, .cancel-2 input, .cancel-2 p,.cancel-3 input, .cancel-3 p,.cancel-4 input, .cancel-4 p{
+    display: inline-block;
+    cursor: pointer;
+}
+.cancel-form-content{
+    position: relative;
+}
+.cancel-form-content i{
+    padding-top: 10px;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    font-size: 14px;
+
+
+}
+.cancel-form-content i:hover{
+    color: #2f80ed;
+}
+.cancel-form-content textarea {
+    width: 90%;
+    outline: none;
+    cursor: pointer;
+    padding-left: 10px;
+}
+.cancel-form-content button{
+    margin-top: 20px;
+    height: 45px;
+    width: 80%;
+    text-align: center;
+    cursor: pointer;
+    background-color: #2f80ed;
+    color: white;
+    border-radius: 5px;
+    border: 1px solid ;
+}
+.cancel-form-content button:hover{
+    background-color: #4b90e2;
+    color: white;
+}
+
 
 
 
