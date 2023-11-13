@@ -5,6 +5,7 @@
     <title>Thanh Toán</title>
   <script src="https://kit.fontawesome.com/3e135170bd.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="/css/payment.css">
+
 </head>
 <body>
 <!--header-->
@@ -165,7 +166,7 @@
         <div class="payment-id">
           <h2 class="payment-id-title">Đơn hàng của bạn</h2>
           <h3 id="payment-id-main">Mã đơn hàng: #6789</h3>
-          <a href="">Huỷ đơn hàng</a>
+          <button href="" id="cancel-form" >Huỷ đơn hàng</button>
         </div>
       <div class="payment-information">
         <div class="information-1">
@@ -218,7 +219,7 @@
   </div>
 <div class="cancel-form">
       <div class="cancel-form-content">
-        <i class="fa-solid fa-x"></i>
+        <i class="fa-solid fa-x" id="close"></i>
         <h3>Vui lòng chọn lý do bạn muốn huỷ đơn hàng</h3>
         <div class="cancel-1">
           <input type="radio" class="checkbox-cancel-1" >
@@ -237,8 +238,6 @@
           <p>Lý do khác</p></div>
         <textarea name="" id="" cols="30" rows="10" placeholder="Nhập lý do muốn huỷ đơn hàng"></textarea>
         <button>Xác nhận</button>
-
-
       </div>
 </div>
 <!--footer-->
@@ -270,5 +269,6 @@
   </div>
 </div>
 </div>
+<script src="/js/payment.js"></script>
 </body>
 </html>

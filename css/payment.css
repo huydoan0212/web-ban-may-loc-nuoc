@@ -331,16 +331,19 @@ body {
 .payment-id{
     color: #2f80ed;
 }
-.payment-id a{
-    margin-top: 15px;
+.payment-id button{
     font-size: 14px;
-    text-decoration: none;
     cursor: pointer;
+    height: 30px;
+    margin-top: 10px;
 }
-.payment-id a:hover{
+.payment-id button:hover{
     color: #2f80ed;
 }
-
+.payment-id #payment-id-main{
+    margin-top: 18px;
+    font-size: 14px;
+}
 .payment-title, .product, .tax, .total{
     display: flex;
     justify-content: space-between;
@@ -350,7 +353,7 @@ body {
 .product-1, .product-price,.total-price,.title-1, .title-2,.total-title,.tax-title, .tax-price{
     margin: 0;
 }
-.voucher, .payment-right-title, .product, .tax, .total p{
+.payment-right-title, .product, .tax, .total p{
     font-size: 14px;
 }
 
@@ -398,7 +401,7 @@ body {
     justify-content: center;
     text-align: center;
     color: black;
-    /*display: none;*/
+    display: none;
     z-index: 999;
 }
 .cancel-form-content{
