@@ -292,69 +292,167 @@ body {
 }
 /*silder*/
 .slider{
-    margin-top: 155px;
+    margin-top: 100px;
+    height: 550px;
+    background-color: #f0f0f0;
 }
-.container {
-    width: 1200px;
+.payment{
+    width: 600px;
+    height: 100%;
+    border: 1px solid #d1d1d1;
     margin: auto;
+    background-color: white;
+    padding: 10px;
 }
-.slider-ul {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-    grid-gap: 30px;
+.payment .payment-h1{
+    color: #2f80ed;
+    margin-left: 35%;
 }
-.slider-ul li img{
-    height: 284px;
-    width: 564px;
-    cursor: pointer;
-}
-.slider-ul li{
-    list-style-type: none;
-    background-color: #f7f7f7;
-    padding-bottom: 60px;
-}
-.slider-ul li a{
-    text-decoration: none;
-    color: #333333;
-    font-weight: bold;
-    font-size: 16px;
-}
-.slider-ul li a:hover{
+.payment .payment-h1 i{
     color: #2f80ed;
 }
-.slider #countdown {
-    display: flex;
-    justify-content: center;
+.payment-information{
+    width: 550px;
+    height: 150px;
+    color: #333333;
+    background-color: #f0f0f0;
+    margin: auto;
+    border: 1px solid #d1d1d1;
 }
-#countdown {
-    display: flex;
-    align-items: center;
-}
-
-.countdown-item {
-    display: flex;
-    align-items: center;
-    margin-right: 10px;
+.information-1 p, .information-1 h4, .information-2 p, .information-2 h4, .information-3 p, .information-3 h4{
+    display: inline-block;
+    padding-left: 10px;
 }
 
-.countdown-item p, .countdown-item span {
-    font-size: 24px;
-    font-weight: bold;
-
-}
-.countdown-item span {
-    margin-right: 5px;
-}
-.countdown-item .label {
-    font-size: 13px;
-}
-.btn-oder {
+.payment-id{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+}
+.payment-id{
+    color: #2f80ed;
+}
+.payment-id button{
+    font-size: 14px;
+    cursor: pointer;
     height: 30px;
+    margin-top: 10px;
+}
+.payment-id button:hover{
+    color: #2f80ed;
+}
+.payment-id #payment-id-main{
+    margin-top: 18px;
+    font-size: 14px;
+}
+.payment-title, .product, .tax, .total{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: solid 1px #d1d1d1;
+    padding: 10px;
+}
+.product-1, .product-price,.total-price,.title-1, .title-2,.total-title,.tax-title, .tax-price{
+    margin: 0;
+}
+.payment-right-title, .product, .tax, .total p{
+    font-size: 14px;
+}
+
+.payment-type{
+    display: flex;
+    justify-content: space-between;
+}
+.payment-type .payment-type-1{
+    display: inline-block;
 
 }
+.payment-type-1 input,
+.payment-type-1 p {
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+}
+.payment-type{
+    padding-bottom: 10px;
+}
+.submit{
+    height: 45px;
+    width: 60%;
+    text-align: center;
+    margin-left: 20%;
+    cursor: pointer;
+    background-color: #2f80ed;
+    color: white;
+    border-radius: 5px;
+    border: 1px solid ;
+}
+.submit:hover{
+    background-color: #4b90e2;
+    color: white;
+}
+.cancel-form{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: black;
+    display: none;
+    z-index: 999;
+}
+.cancel-form-content{
+    width: 450px;
+    height: 450px;
+    background-color: #ffff;
+    border-radius: 5px;
+}
+.cancel-1 input, .cancel-1 p, .cancel-2 input, .cancel-2 p,.cancel-3 input, .cancel-3 p,.cancel-4 input, .cancel-4 p{
+    display: inline-block;
+    cursor: pointer;
+}
+.cancel-form-content{
+    position: relative;
+}
+.cancel-form-content i{
+    padding-top: 10px;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    font-size: 14px;
+
+
+}
+.cancel-form-content i:hover{
+    color: #2f80ed;
+}
+.cancel-form-content textarea {
+    width: 90%;
+    outline: none;
+    cursor: pointer;
+    padding-left: 10px;
+}
+.cancel-form-content button{
+    margin-top: 20px;
+    height: 45px;
+    width: 80%;
+    text-align: center;
+    cursor: pointer;
+    background-color: #2f80ed;
+    color: white;
+    border-radius: 5px;
+    border: 1px solid ;
+}
+.cancel-form-content button:hover{
+    background-color: #4b90e2;
+    color: white;
+}
+
 
 
 
@@ -548,6 +646,7 @@ body {
     width: 100%;
     font-size: 13px;
     width: 140px;
+
 }
 .modal-tinh-thanh .content-modal ul li a {
     text-decoration: none;
@@ -556,4 +655,13 @@ body {
     padding-bottom: 10px;
     color: #333333;
     display: block;
+
 }
+
+
+
+
+
+
+
+

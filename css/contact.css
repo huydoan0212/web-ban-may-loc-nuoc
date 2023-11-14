@@ -280,7 +280,6 @@ body {
     width: 100%;
     font-size: 13px;
     width: 140px;
-
 }
 .modal-tinh-thanh .content-modal ul li a {
     text-decoration: none;
@@ -293,68 +292,127 @@ body {
 /*silder*/
 .slider{
     margin-top: 155px;
+
 }
-.container {
-    width: 1200px;
+.contact-in{
+    width: 100%;
+    height: 620px;
     margin: auto;
+    display: flex;
+    flex-wrap: wrap ;
+    padding: 10px;
+    border-radius: 10px;
+    background: #ffffff;
+    box-shadow: 0px 0px 10px 0px #666;
+
 }
-.slider-ul {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-    grid-gap: 30px;
+.contact-map{
+    width: 100%;
+    height: auto;
+    flex: 50%;
+
 }
-.slider-ul li img{
-    height: 284px;
-    width: 564px;
+.contact-map iframe{
+    width: 100%;
+    height: 100%;
+
+}
+.contact-form{
+    width: 100%;
+    height: auto;
+    flex: 50%;
+    text-align: center;
+}
+.contact-form h2{
+    margin-bottom: 30px;
+
+
+}
+.input-box{
+    width: 80%;
+    height: 15px;
+    color: #000;
+    border: 1px solid #bcbcbc;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    padding: 15px;
+    cursor: pointer;
+    outline: none;
+}
+.input-textarea{
+    width: 80%;
+    height: 100px;
+    color: #000;
+    border: 1px solid #bcbcbc;
+    border-radius: 10px;
+    cursor: pointer;
+    outline: none;
+    padding: 15px;
+    margin-bottom: 10px;
+
+}
+.btn-submit{
+    width: 85%;
+    border: none;
+    outline: none;
+    border-radius: 50px;
+    background-color: #2f80ed;
+    color: white;
+    padding: 10px;
+    font-size: 15px;
+    margin-bottom: 10px;
+    cursor: pointer;
+
+}
+.btn-submit:hover{
+    background-color: #4b90e2;
+
+}
+.location-des {
+    display: flex;
+    align-items: center;
+    padding-left: 40px;
     cursor: pointer;
 }
-.slider-ul li{
-    list-style-type: none;
-    background-color: #f7f7f7;
-    padding-bottom: 60px;
+.fa-location-dot {
+    margin-right: 5px;
+    font-size: 20px;
+    color: #2f80ed;
+
 }
-.slider-ul li a{
-    text-decoration: none;
-    color: #333333;
-    font-weight: bold;
-    font-size: 16px;
+.phone-des{
+    display: flex;
+    align-items: center;
+    padding-left: 40px;
+    cursor: pointer;
 }
-.slider-ul li a:hover{
+.phone-des p:hover{
     color: #2f80ed;
 }
-.slider #countdown {
-    display: flex;
-    justify-content: center;
-}
-#countdown {
-    display: flex;
-    align-items: center;
-}
-
-.countdown-item {
-    display: flex;
-    align-items: center;
-    margin-right: 10px;
-}
-
-.countdown-item p, .countdown-item span {
-    font-size: 24px;
-    font-weight: bold;
-
-}
-.countdown-item span {
+.fa-phone{
     margin-right: 5px;
+    font-size: 20px;
+    color: #2f80ed;
 }
-.countdown-item .label {
-    font-size: 13px;
-}
-.btn-oder {
+.email-des{
     display: flex;
-    justify-content: center;
-    height: 30px;
+    align-items: center;
+    padding-left: 40px;
+    cursor: pointer;
+}
+.fa-envelope{
+    margin-right: 5px;
+    font-size: 20px;
+    color: #2f80ed;
 
 }
+.email-des p:hover{
+    color: #2f80ed;
+}
+
+
+
+
 
 
 
@@ -548,6 +606,7 @@ body {
     width: 100%;
     font-size: 13px;
     width: 140px;
+
 }
 .modal-tinh-thanh .content-modal ul li a {
     text-decoration: none;
@@ -557,3 +616,4 @@ body {
     color: #333333;
     display: block;
 }
+
