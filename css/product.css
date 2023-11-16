@@ -889,6 +889,7 @@ body {
         border:1px solid #efe9e9;
         margin-top: 15px;
 
+
     }
     .danhgia-sp img{
         display:inline-flex;
@@ -944,6 +945,124 @@ body {
         cursor: pointer;
 
     }
+    .form-danhgia{
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0,0,0,0.8);
+        top: 0;
+        left: 0;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        display: none;
+          }
+    .form-danhgia-khung{
+        width: 650px;
+        height: 600px;
+        background-color: #fff;
+    }
+    .form-danhgia-close{
+        font-family: Arial, Tahoma, sans-serif;
+        font-size: 15px;
+        padding-top: 10px;
+        padding-left: 570px;
+        padding-bottom: 20px;
+
+
+    }
+    .form-danhgia-close button{
+        cursor: pointer;
+        font-weight: bold;
+        border: 1px solid #a49b9b;
+        border-radius: 10px;
+        background-color: #fff;
+    }
+    .form-danhgia-img{
+        padding-right: 35px;
+         }
+    .form-danhgia-tensp{
+        padding-left: 98px;
+        padding-top: 10px;
+    }
+    .form-danhgia-tensp p{
+    font-size: 16px;
+    font-family: Arial, Tahoma, sans-serif;
+    font-weight: bold;
+}
+    .form-danhgia-text input{
+        width: 600px;
+        height: 90px;
+        border-radius: 10px;
+        border: 1px solid #a49b9b;
+        padding-left: 5px;
+    }
+.form-danhgia-text input::placeholder{
+    font-family: Arial, Tahoma, sans-serif;
+    font-size: 13px;
+}
+.form-danhgia-khungcheck {
+    display: flex;
+
+}
+.form-danhgia-khungcheck p {
+    font-size: 14px;
+    font-family: Arial, Tahoma, sans-serif;
+}
+.form-danhgia-thongtin {
+    display: flex;
+    text-align: center;
+    justify-content: space-around;
+    padding-top: 5px;
+}
+.form-danhgia-thongtin1{
+    padding-right: 55px;
+    }
+.form-danhgia-thongtin1 input{
+    width: 250px;
+    height: 50px;
+    border-radius: 10px;
+    border: 1px solid #a49b9b;
+
+}
+.form-danhgia-thongtin2 input{
+    width: 250px;
+    height: 50px;
+    border-radius: 10px;
+    border: 1px solid #a49b9b;
+}
+.form-danhgia-thongtin1 input::placeholder{
+    padding-left: 5px;
+}
+.form-danhgia-thongtin2 input::placeholder{
+    padding-left: 5px;
+}
+.form-danhgia-camket{
+    padding-top: 5px;
+}
+.form-danhgia-camket i{
+    color: #53ee3d;
+    font-size: 14px;
+}
+.form-danhgia-camket p{
+    font-size: 14px;
+}
+.form-danhgia-gui{
+    padding-top: 3px;
+}
+.form-danhgia-gui button{
+    border-radius: 10px;
+    width: 605px;
+    height: 45px;
+    background-color: #2f80ed;
+    color: #f1f1f1;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+
+}
+
+
 
    /*san pham lien quan trong product(chi tiet san pham)*/
 
@@ -992,6 +1111,7 @@ body {
     .product-related-item p {
         font-size: 15px;
         color: #f18f31;
+        text-align: center;
 
     }
 
