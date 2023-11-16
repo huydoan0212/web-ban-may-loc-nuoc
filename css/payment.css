@@ -293,7 +293,7 @@ body {
 /*silder*/
 .slider{
     margin-top: 100px;
-    height: 550px;
+    height: 700px;
     background-color: #f0f0f0;
 }
 .payment{
@@ -406,13 +406,10 @@ body {
 }
 .cancel-form-content{
     width: 450px;
-    height: 450px;
+    height: 200px;
     background-color: #ffff;
     border-radius: 5px;
-}
-.cancel-1 input, .cancel-1 p, .cancel-2 input, .cancel-2 p,.cancel-3 input, .cancel-3 p,.cancel-4 input, .cancel-4 p{
-    display: inline-block;
-    cursor: pointer;
+
 }
 .cancel-form-content{
     position: relative;
@@ -425,22 +422,14 @@ body {
     padding-right: 10px;
     padding-bottom: 10px;
     font-size: 14px;
-
-
 }
 .cancel-form-content i:hover{
     color: #2f80ed;
 }
-.cancel-form-content textarea {
-    width: 90%;
-    outline: none;
-    cursor: pointer;
-    padding-left: 10px;
-}
 .cancel-form-content button{
     margin-top: 20px;
     height: 45px;
-    width: 80%;
+    width: 50%;
     text-align: center;
     cursor: pointer;
     background-color: #2f80ed;
@@ -452,6 +441,18 @@ body {
     background-color: #4b90e2;
     color: white;
 }
+.payment-style-type{
+    display: none;
+    margin-bottom: 20px;
+}
+.title-payment-style-type p{
+    display: inline-block;
+}
+.payment-style-type input{
+    width: 200px;
+    padding: 5px;
+    margin-left: 5px;
+}
 
 
 
@@ -466,9 +467,7 @@ body {
 
 
 
-
-
-/*footer*/
+    /*footer*/
 #footer {
     margin-top: 50px;
     border-top: 1px solid #e0e0e0;

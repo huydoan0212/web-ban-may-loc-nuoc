@@ -40,14 +40,14 @@
 }
 .slider {
     width: 100%;
-    height: 700px;
+    height: 800px;
     background-color: #4b90e2;
 }
 .slider .slider-form{
     margin-top: 60px;
     background-color: #ffffff;
     width: 400px;
-    height: 600px;
+    height: 650px;
     float: right;
     border-radius: 15px;
 

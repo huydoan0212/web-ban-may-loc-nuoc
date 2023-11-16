@@ -8,3 +8,12 @@ cancelbtn.addEventListener("click",function(){
 closebtn.addEventListener("click",function(){
     document.querySelector('.cancel-form').style.display = "none"
 })
+
+const checkboxbtn = document.getElementById('checkbox-2');
+
+checkboxbtn.addEventListener("click", function () {
+    document.querySelector('.payment-style-type').style.display = "flex";
+});
+
+
+

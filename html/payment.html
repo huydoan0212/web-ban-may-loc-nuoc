@@ -191,10 +191,6 @@
           <p class="product-1">Máy lọc nước x 1</p>
           <p class="product-price">5.990.000₫</p>
         </div>
-<!--        <div class="tax">-->
-<!--          <p class="tax-title">Thuế VAT 5%</p>-->
-<!--          <p class="tax-price">299.500₫</p>-->
-<!--        </div>-->
         <div class="total">
           <p class="total-title">Tồng tiền</p>
           <p class="total-price">5.990.000₫</p>
@@ -206,10 +202,18 @@
               <p>Thanh toán bằng tiền mặt</p>
             </div>
           <div class="payment-type-1">
-            <input type="radio" class="checkbox-2" >
+            <input type="radio" class="checkbox-2" id="checkbox-2">
             <p>Thanh toán bằng thẻ ngân hàng</p>
           </div>
         </div>
+      <div class="payment-style-type">
+        <div class="title-payment-style-type">
+          <i class="fa-solid fa-credit-card"></i>
+          <p>Ngân hàng kĩ thuật số ABC</p>
+        </div>
+        <input type="text" placeholder="Số tài khoản">
+        <input type="text" placeholder="Lời nhắn">
+      </div>
         <button class="submit">
           <i class="fa-solid fa-bag-shopping"></i>
           Thanh Toán
@@ -220,23 +224,7 @@
 <div class="cancel-form">
       <div class="cancel-form-content">
         <i class="fa-solid fa-x" id="close"></i>
-        <h3>Vui lòng chọn lý do bạn muốn huỷ đơn hàng</h3>
-        <div class="cancel-1">
-          <input type="radio" class="checkbox-cancel-1" >
-          <p>Cần thay đổi thông tin địa chỉ giao hàng</p>
-        </div>
-        <div class="cancel-2">
-          <input type="radio" class="checkbox-cancel-2" >
-          <p>Cần thay đổi sdt người nhận</p>
-        </div>
-      <div class="cancel-3">
-        <input type="radio" class="checkbox-cancel-3" >
-        <p>Cần thay đổi sdt người nhận</p>
-      </div>
-        <div class="cancel-4">
-          <input type="radio" class="checkbox-cancel-4" >
-          <p>Lý do khác</p></div>
-        <textarea name="" id="" cols="30" rows="10" placeholder="Nhập lý do muốn huỷ đơn hàng"></textarea>
+        <h3>Bạn có muốn huỷ đơn hàng </h3>
         <button>Xác nhận</button>
       </div>
 </div>
