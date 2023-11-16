@@ -355,7 +355,11 @@ body {
     height: 30px;
 
 }
-
+.price p.price-old,
+.price span.percent {
+    display: inline-block;
+    font-size: 14px;
+}
 
 
 
