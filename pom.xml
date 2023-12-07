@@ -2,10 +2,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.example</groupId>
-    <artifactId>Lab5</artifactId>
+    <artifactId>ProjectLTW</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>Lab5 Maven Webapp</name>
+    <name>ProjectLTW Maven Webapp</name>
     <url>http://maven.apache.org</url>
     <dependencies>
         <dependency>
@@ -34,7 +34,7 @@
 
     </dependencies>
     <build>
-        <finalName>Lab5</finalName>
+        <finalName>ProjectLTW</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
