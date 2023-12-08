@@ -13,6 +13,21 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, .1);
     z-index: 9999;
 }
+#header-top .lien-he {
+    height: 30px;
+    color: #ffffff;
+    text-decoration: none;
+    border: 1px solid #a8d0ff61;
+    line-height: 15px;
+    border-radius: 4px;
+    padding: 4px 15px;
+    position: relative;
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+}
 
 #header-top {
     display: flex;
@@ -123,7 +138,6 @@ body {
 }
 
 #header-top .khuyen-mai {
-    width: 68px;
     height: 30px;
     color: #ffffff;
     text-decoration: none;

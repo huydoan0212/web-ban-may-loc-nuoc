@@ -5,10 +5,6 @@ body {
     font-size: 12px;
 }
 
-img {
-    width: 75px;
-    height: 75px;
-}
 
 h4 {
     display: block;
@@ -140,7 +136,6 @@ h4 {
 }
 
 #header-top .khuyen-mai {
-    width: 68px;
     height: 30px;
     color: #ffffff;
     text-decoration: none;
@@ -169,6 +164,21 @@ h4 {
     font-size: 14px;
     color: white;
     font-weight: bold;
+
+}
+#header-top .lien-he {
+    height: 30px;
+    color: #ffffff;
+    text-decoration: none;
+    border: 1px solid #a8d0ff61;
+    line-height: 15px;
+    border-radius: 4px;
+    padding: 4px 15px;
+    position: relative;
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    text-align: center;
 
 }
 
@@ -230,6 +240,8 @@ h4 {
 #content .link-sp img {
     display: block;
     margin-bottom: 15px;
+    width: 75px;
+    height: 75px;
 }
 
 #content .link-sp .remove {
