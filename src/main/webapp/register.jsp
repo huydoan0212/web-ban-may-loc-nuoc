@@ -1,9 +1,10 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Đăng kí ngay</title>
-    <link rel="stylesheet" href="/css/register.css">
+    <link rel="stylesheet" href="./css/register.css">
     <script src="https://kit.fontawesome.com/3e135170bd.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -11,13 +12,13 @@
   <div class="container">
     <ul>
       <li class="logo">
-        <img src="/img/logo-removebg-preview.png" alt="logo">
+        <img src="./img/logo-removebg-preview.png" alt="logo">
       </li>
       <li class="label">
         <h2>Đăng ký</h2>
       </li>
       <li class="help">
-        <a href="contact.html">Bạn cần giúp đỡ?</a>
+        <a href="contact.jsp">Bạn cần giúp đỡ?</a>
       </li>
     </ul>
   </div>
@@ -25,7 +26,7 @@
 <div class="slider">
   <div class="container">
     <div class="slider-logo">
-      <img src="/img/logo-removebg-preview.png" alt="">
+      <img src="./img/logo-removebg-preview.png" alt="">
     </div>
     <div class="slider-form">
       <form action="">
@@ -38,6 +39,9 @@
         </div>
         <div class="input-box">
           <input type="text" placeholder="Số điện thoại">
+        </div>
+        <div class="input-box">
+          <input type="password" placeholder="Tên đăng nhập">
         </div>
         <div class="input-box">
           <input type="password" placeholder="Mật khẩu">
@@ -59,34 +63,7 @@
     </div>
   </div>
 </div>
-<div id="footer">
-  <div class="container">
-    <div class="tong-dai">
-      <span class="tong-dai-ho-tro">Tổng đài hỗ trợ </span>
-      <span>(Miễn phí gọi)</span>
-      <p>Khiếu nại: <a href="">1800.1063</a><span> (8:00 - 21:30)</span></p>
-      <p>Bảo hành: <a href="">1800.1065</a><span> (8:00 - 21:00)</span></p>
-    </div>
-    <div class="lien-he">
-      <div class="social">
-        <a href="" class="facebook"><i class="fa-brands fa-facebook" style="color: #005eff;"></i> <span> 3886.8k Fan</span></a>
-        <a href="" class="youtube"><i class="fa-brands fa-youtube" style="color: #ff0000;"></i><span> 649k Đăng Ký</span></a>
-      </div>
-      <div class="tap-doan">
-        <p>Website cùng tập đoàn</p>
-        <a href=""><img src="../img/logo-tgdd.png" alt=""></a>
-        <a href=""><img src="../img/logo-top-zone.png" alt=""></a>
-        <a href=""><img src="../img/logo-bach-hoa-xanh.png" alt=""></a>
-        <a href=""><img src="../img/logo-an-khang.png" alt=""></a>
-        <a href=""><img src="../img/logo-kid.png" alt=""></a>
-        <a href=""><img src="../img/logo-tan-tam.png" alt=""></a>
-        <a href=""><img src="../img/logo-4k.png" alt=""></a>
-        <a href=""><img src="../img/logo-viec-lam.png" alt=""></a>
-      </div>
-    </div>
-  </div>
+<%@include file="footer.jsp"%>
 </div>
-</div>
-
 </body>
 </html>
