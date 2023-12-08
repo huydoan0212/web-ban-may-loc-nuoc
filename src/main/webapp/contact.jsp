@@ -18,7 +18,7 @@
                 <input class="input-box" type="email" placeholder="Email">
                 <input class="input-box" type="text" placeholder="Số điện thoại">
                 <textarea class="input-textarea" placeholder="Nội dung"></textarea>
-                <button class="btn-submit">Gửi phản hồi</button>
+                <button class="btn-submit">Gửi liên hệ</button>
                 <div class="des">
                     <div class="location-des">
                         <i class="fa-solid fa-location-dot"></i>
@@ -26,7 +26,7 @@
                     </div>
                     <div class="phone-des">
                         <i class="fa-solid fa-phone"></i>
-                        <p>123456789</p>
+                        <p>6868-6688</p>
                     </div>
                     <div class="email-des">
                         <i class="fa-regular fa-envelope"></i>

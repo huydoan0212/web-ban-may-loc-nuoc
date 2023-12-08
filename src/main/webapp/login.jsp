@@ -39,7 +39,7 @@
             <form action="">
                 <h1>Đăng Nhập</h1>
                 <div class="input-box">
-                    <input type="text" placeholder="Email/ Tên đăng nhập">
+                    <input type="text" placeholder="Tên đăng nhập">
                 </div>
                 <div class="input-box">
                     <input type="password" placeholder="Mật khẩu">
@@ -49,7 +49,7 @@
                     <button type="submit" class="btn">Đăng Nhập</button>
                 </div>
                 <div class="label-forget">
-                    <a href="forget.html" class="forget">Quên mật khẩu</a>
+                    <a href="forget.jsp" class="forget">Quên mật khẩu</a>
 
                 </div>
                 <div class="label-or">
