@@ -1,9 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
+<%--
+  Created by IntelliJ IDEA.
+  User: Thanhhoai
+  Date: 12/8/2023
+  Time: 8:00 PM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Liên hệ</title>
-    <link rel="stylesheet" href="/css/contact.css">
+    <title>Title</title>
+    <link rel="stylesheet" href="./css/header.css">
     <script src="https://kit.fontawesome.com/3e135170bd.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -12,7 +18,7 @@
         <div class="container">
             <div id="header-top">
                 <div class="logo">
-                    <img src="../img/logo-removebg-preview.png" alt="">
+                    <img src="./img/logo-removebg-preview.png" alt="">
                 </div>
                 <a class="tinh js-tim-tinh">
                     Xem giá, tồn kho tại:
@@ -21,12 +27,12 @@
                     <input type="text" placeholder="Bạn muốn tìm gì..." id="input-search">
                     <i class="fa-solid fa-magnifying-glass fa-xl"></i>
                 </div>
-                <a href="login.html" class="tai-khoan-don-hang chung"><span>Tài khoản và đơn hàng</span></a>
+                <a href="login.jsp" class="tai-khoan-don-hang chung"><span>Tài khoản và đơn hàng</span></a>
                 <div class="gio-hang ">
                     <i class="fa-solid fa-cart-shopping" style="color: #ffffff;"></i>
                     <span>Giỏ hàng</span>
                 </div>
-                <a href="sale.html" class="khuyen-mai chung">Khuyến mãi</a>
+                <a href="sale.jsp" class="khuyen-mai chung">Khuyến mãi</a>
             </div>
             <div id="header-bottom">
                 <a href="" class="headbot-items">Deal Sốc</a>
@@ -156,63 +162,5 @@
     </script>
 </div>
 <!--Kết thúc phẩn tỉnh thành-->
-<div class="slider">
-    <div class="container">
-        <div class="contact-in">
-            <div class="contact-form">
-                <h2>Liên hệ với chúng tôi</h2>
-                <input class="input-box" type="text" placeholder="Họ và tên">
-                <input class="input-box" type="email" placeholder="Email">
-                <input class="input-box" type="text" placeholder="Số điện thoại">
-                <textarea class="input-textarea" placeholder="Nội dung"></textarea>
-                <button class="btn-submit">Gửi phản hồi</button>
-                <div class="des">
-                    <div class="location-des">
-                        <i class="fa-solid fa-location-dot"></i>
-                        <p>Toà Thiên Lý Đại Học Nông Lâm TpHCM</p>
-                    </div>
-                    <div class="phone-des">
-                        <i class="fa-solid fa-phone"></i>
-                        <p>123456789</p>
-                    </div>
-                    <div class="email-des">
-                        <i class="fa-regular fa-envelope"></i>
-                        <p>coolteam@gmail.com</p>
-                    </div>
-                </div>
-            </div>
-            <div class="contact-map">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.214525515985!2d106.78918677547573!3d10.871281657436034!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175276398969f7b%3A0x9672b7efd0893fc4!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBOw7RuZyBMw6JtIFRQLiBI4buTIENow60gTWluaA!5e0!3m2!1svi!2s!4v1699285159932!5m2!1svi!2s" width="100%" height="auto" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-        </div>
-    </div>
-</div>
-<div id="footer">
-        <div class="container">
-            <div class="tong-dai">
-                <span class="tong-dai-ho-tro">Tổng đài hỗ trợ </span>
-                <span>(Miễn phí gọi)</span>
-                <p>Khiếu nại: <a href="">1800.1063</a><span> (8:00 - 21:30)</span></p>
-                <p>Bảo hành: <a href="">1800.1065</a><span> (8:00 - 21:00)</span></p>
-            </div>
-            <div class="lien-he">
-                <div class="social">
-                    <a href="" class="facebook"><i class="fa-brands fa-facebook" style="color: #005eff;"></i> <span> 3886.8k Fan</span></a>
-                    <a href="" class="youtube"><i class="fa-brands fa-youtube" style="color: #ff0000;"></i><span> 649k Đăng Ký</span></a>
-                </div>
-                <div class="tap-doan">
-                    <p>Website cùng tập đoàn</p>
-                    <a href=""><img src="../img/logo-tgdd.png" alt=""></a>
-                    <a href=""><img src="../img/logo-top-zone.png" alt=""></a>
-                    <a href=""><img src="../img/logo-bach-hoa-xanh.png" alt=""></a>
-                    <a href=""><img src="../img/logo-an-khang.png" alt=""></a>
-                    <a href=""><img src="../img/logo-kid.png" alt=""></a>
-                    <a href=""><img src="../img/logo-tan-tam.png" alt=""></a>
-                    <a href=""><img src="../img/logo-4k.png" alt=""></a>
-                    <a href=""><img src="../img/logo-viec-lam.png" alt=""></a>
-                </div>
-            </div>
-        </div>
-    </div>
 </body>
 </html>
