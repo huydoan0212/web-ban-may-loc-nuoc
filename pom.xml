@@ -41,6 +41,11 @@
 			<artifactId>slf4j-simple</artifactId>
 			<version>1.6.4</version>
 		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-security</artifactId>
+			<version>9.4.46.v20220331</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>Lab5</finalName>

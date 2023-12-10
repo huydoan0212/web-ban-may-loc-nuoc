@@ -1,4 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<% String name = (String) request.getParameter("name"); %>
+<% String username = (String) request.getParameter("username"); %>
+<% String phone = (String) request.getParameter("phone"); %>
+<% String email = (String) request.getParameter("email"); %>
+<% String password = (String) request.getParameter("password"); %>
+<% String error = (String) request.getAttribute("error");%>
+<%--<% String success = (String) request.getAttribute("success");%>--%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,36 +36,35 @@
       <img src="./img/logo-removebg-preview.png" alt="">
     </div>
     <div class="slider-form">
-      <form action="">
+      <form action="./userController" method="post">
         <h1>Đăng ký</h1>
         <div class="input-box">
-          <input type="text" placeholder="Họ và tên">
+          <input type="text" value="<%=(name!=null && name!="")? name:""%>" placeholder="Họ và tên" name="name">
         </div>
         <div class="input-box">
-          <input type="email" placeholder="Email">
+          <input type="text" value="<%=(email!=null && email!="")? name:""%>" placeholder="Email" name="email">
         </div>
         <div class="input-box">
-          <input type="text" placeholder="Số điện thoại">
+          <input type="text" value="<%=(phone!=null && phone!="")? name:""%>" placeholder="Số điện thoại" name="phone">
         </div>
         <div class="input-box">
-          <input type="password" placeholder="Tên đăng nhập">
+          <input type="text" value="<%=(username!=null && username!="")? username:""%>" placeholder="Tên đăng nhập" name="username">
         </div>
         <div class="input-box">
-          <input type="password" placeholder="Mật khẩu">
+          <input type="password" id="password" placeholder="Mật khẩu" name="password">
         </div>
         <div class="input-box">
-          <input type="password" placeholder="Lặp lại mật khẩu">
-        </div>
-        <div class="input-box">
-          <input type="text" placeholder="Địa chỉ">
+          <input type="password" id="repassword" placeholder="Lặp lại mật khẩu" name="repassword">
         </div>
         <div class="check">
           <input type="checkbox">
           <p>Tôi đồng  với các điều khoản bảo mật</p>
         </div>
+        <span style="color: red; font-size: 14px;padding-left: 20px;"><%=(error != null && error != "") ? error : ""%></span>
         <div class="signin-btn">
           <button type="submit" class="btn">Đăng Ký</button>
         </div>
+<%--        <span style="color: green; font-size: 18px;"><%=(success != null && success != "") ? success : ""%>--%>
       </form>
     </div>
   </div>
