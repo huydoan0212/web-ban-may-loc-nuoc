@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Chi tiết sản phẩm demo</title>
-    <link rel="stylesheet" href="../css/product.css">
+    <link rel="stylesheet" href="../src/main/webapp/css/product.css">
     <script src="https://kit.fontawesome.com/3e135170bd.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -11,9 +11,9 @@
     <div id="header">
         <div class="container">
             <div id="header-top">
-                <div class="logo">
-                    <img src="../img/logo-removebg-preview.png" alt="">
-                </div>
+                <a href="trangchu.html" class="logo">
+                    <img src="../src/main/webapp/img/logo-removebg-preview.png" alt="">
+                </a>
                 <a class="tinh js-tim-tinh">
                     Xem giá, tồn kho tại:
                     <span>Hồ Chí Minh</span></a>
@@ -21,24 +21,21 @@
                     <input type="text" placeholder="Bạn muốn tìm gì..." id="input-search">
                     <i class="fa-solid fa-magnifying-glass fa-xl"></i>
                 </div>
-                <a href="" class="tai-khoan-don-hang chung"><span>Tài khoản và đơn hàng</span></a>
-                <div class="gio-hang ">
-                    <i class="fa-solid fa-cart-shopping" style="color: #ffffff;"></i>
-                    <span>Giỏ hàng</span>
-                </div>
-                <a href="" class="khuyen-mai chung">Khuyến mãi</a>
+                <a href="ordered.html" class="tai-khoan-don-hang chung"><span>Tài khoản và đơn hàng</span></a>
+                <a href="giohang.html" class="gio-hang"><i class="fa-solid fa-cart-shopping" style="color: #ffffff;"></i>Giỏ hàng</a>
+                <a href="sale.html" class="khuyen-mai">Khuyến mãi</a>
+                <a href="../src/main/webapp/contact.jsp" class="lien-he ">Liên hệ</a>
             </div>
             <div id="header-bottom">
-                <a href="" class="headbot-items">Deal Sốc</a>
-                <a href="" class="headbot-items">Lọc nước RO</a>
-                <a href="" class="headbot-items">Có nóng lạnh</a>
-                <a href="" class="headbot-items">Âm tủ, để bàn</a>
-                <a href="" class="headbot-items">Lọc nước Nano, UF, MF</a>
-                <a href="" class="headbot-items">Lọc nước không điện</a>
+                <a href="deal_soc_page.html" class="headbot-items">Deal Sốc</a>
+                <a href="loc_nuoc_RO_page.html" class="headbot-items">Lọc nước RO</a>
+                <a href="loc_nuoc_nong_lanh_page.html" class="headbot-items">Có nóng lạnh</a>
+                <a href="loc_nuoc_amtu-deban_page.html" class="headbot-items">Âm tủ, để bàn</a>
+                <a href="loc_nuoc_nano_uf_mf_page.html" class="headbot-items">Lọc nước Nano, UF, MF</a>
+                <a href="loc_nuoc_khong_dien_page.html" class="headbot-items">Lọc nước không điện</a>
             </div>
         </div>
     </div>
-</div>
 <!-------------------------------Product--------------------------->
 <section class="product">
     <div class="container">
@@ -48,12 +45,12 @@
             </div>
             <div class="product-content-left">
                 <div class="product-content-left-big-img">
-                    <img src="../img/may-loc-nuoc-ro-karofi-kaq-x16-10-loi-130223-054043-600x600.jpg"/>
+                    <img src="../src/main/webapp/img/may-loc-nuoc-ro-karofi-kaq-x16-10-loi-130223-054043-600x600.jpg"/>
                 </div>
                 <div class="product-content-left-small-img">
-                    <img src="../img/small3.jpg" />
-                    <img src="../img/small2.jpg" />
-                    <img src="../img/small1.jpg" />
+                    <img src="../src/main/webapp/img/small3.jpg" />
+                    <img src="../src/main/webapp/img/small2.jpg" />
+                    <img src="../src/main/webapp/img/small1.jpg" />
                 </div>
                 <div class="product-content-right">
                 <div class="product-content-right-product-name">
@@ -67,7 +64,7 @@
                     </p>
                 </div>
                     <div class="banner-khuyenmai">
-                        <img src="../img/CANG-MUA-CANG-GIAM-V2-920x230.png"/>
+                        <img src="../src/main/webapp/img/CANG-MUA-CANG-GIAM-V2-920x230.png"/>
                     </div>
                     <div class="khuyenmai">
                         <div class="khuyenmai container">
@@ -123,15 +120,15 @@
                     </div>
                     <div class="thong-tin-them">
                         <div class="thong-tin-them-qr">
-                            <img src="../img/qr.jpg" width="60px" height="60px"/>
+                            <img src="../src/main/webapp/img/qr.jpg" width="60px" height="60px"/>
                             <p>Quét để tải App </p>
                         </div>
                         <div class="thong-tin-them-chplay">
-                            <a href="https://play.google.com/store/games?hl=vi"><img src="../img/chplay.webp" height="60px" width="60px"/></a>
+                            <a href="https://play.google.com/store/games?hl=vi"><img src="../src/main/webapp/img/chplay.webp" height="60px" width="60px"/></a>
                             <p>CH PLAY</p>
                         </div>
                         <div class="thong-tin-them-appstore">
-                            <a href="https://www.apple.com/app-store/"> <img src="../img/appstore.png" height="60px" width="60px"/></a>
+                            <a href="https://www.apple.com/app-store/"> <img src="../src/main/webapp/img/appstore.png" height="60px" width="60px"/></a>
                             <p>APP STORE</p>
                         </div>
                     </div>
@@ -160,33 +157,33 @@
                     <div class="product-content-thongtinsanpham">
                       <p> <b style="font-style: italic">Máy lọc nước RO nóng lạnh Karofi KAD-X39 10 lõi có 3 chế độ nước nóng - nguội - lạnh,<br> màng lọc RO 100 GPD cho công suất lọc lớn, tạo nước Hydrogen chống oxy hóa.<br></b>
 
-                          <img src="../img/ttsp1.jpg"/><br>
+                          <img src="../src/main/webapp/img/ttsp1.jpg"/><br>
                           <b style="font-size: 15px">Thiết kế - Loại nước lọc được</b>
                           <br> - Thiết kế dạng tủ đứng được phủ kính tràn viền hiện đại, màu đen thanh lịch, sang trọng, phù hợp cho<br> không gian phòng khách, phòng bếp, văn phòng,...<br>
 
                           - Máy lọc nước được nguồn nước máy, nước giếng đã xử lý thô.<br>
 
-                          <img src="../img/ttsp2.jpg"/><br><b style="font-size: 15px">Chứng nhận nước sạch của Bộ Y tế</b><br>
+                          <img src="../src/main/webapp/img/ttsp2.jpg"/><br><b style="font-size: 15px">Chứng nhận nước sạch của Bộ Y tế</b><br>
                           Nước sau khi lọc đạt tiêu chuẩn nước uống trực tiếp không cần đun sôi QCVN 6-1:2010/BYT.<br>
 
-                          <img src="../img/ttsp3.jpg"/><br><b style="font-size: 15px">Công suất - Dung tích bình chứa - Chế độ nước</b>
+                          <img src="../src/main/webapp/img/ttsp3.jpg"/><br><b style="font-size: 15px">Công suất - Dung tích bình chứa - Chế độ nước</b>
                           <br> - Công suất lọc lớn 20 lít/giờ, dung tích bình chứa 6.8 lít (nước nóng 1 lít, nước lạnh 0.8 lít, nước <br> thường 5 lít) đáp ứng nhu cầu sử dụng nước hằng ngày của gia đình.<br>
                           - 2 vòi, 3 chế độ nước nóng - nguội - lạnh:<br>
                           + Nhiệt độ nước nóng từ 85 - 95°C có thể pha trà, sữa, cà phê, nấu mì ăn liền,...<br>
                           + Nhiệt độ nước lạnh từ 12 - 15°C giúp bạn có những ly nước lạnh mát mẻ trong những ngày nóng<br> oi bức.
                           <i>*Nhiệt độ nước thực tế sẽ phụ thuộc vào nhiệt độ bên ngoài môi trường và thể tích nước lấy ra.</i><br>
 
-                          <img src="../img/ttsp4.jpg"/><br><b style="font-size: 15px">Thu hồi tỷ lệ nước sạch</b>
+                          <img src="../src/main/webapp/img/ttsp4.jpg"/><br><b style="font-size: 15px">Thu hồi tỷ lệ nước sạch</b>
                           <br>
                           - Máy lọc nước có tỷ lệ lọc - thải là 5/5.<br>
                           - 10 lít nước đưa vào máy sẽ lọc được 5 lít nước tinh khiết để uống và 5 lít được thải ra ngoài.
                           <br>   - Lượng nước thải ra, bạn có thể tái sử dụng cho hoạt động sinh hoạt, vệ sinh khác của gia đình.
-                          <img src="../img/ttsp5.jpg"/>
+                          <img src="../src/main/webapp/img/ttsp5.jpg"/>
                          <br> <b style="font-size: 15px">Công nghệ</b>
                           <br> - Hệ thống làm lạnh bằng chip điện tử: Giúp làm giảm nhiệt độ các chất bán dẫn, điều khiển nhiệt độ,<br> tiết kiệm điện năng.<br>
                           - Công nghệ kháng khuẩn Nano Silver: Giúp tiêu diệt vi khuẩn, chống tái nhiễm khuẩn sau khi nước<br>  đi quamàng RO.<br>
 
-                          <img src="../img/ttsp6.jpg"/><br><b style="font-size: 15px">Số lõi lọc, chức năng từng lõi</b><br>
+                          <img src="../src/main/webapp/img/ttsp6.jpg"/><br><b style="font-size: 15px">Số lõi lọc, chức năng từng lõi</b><br>
                           - <b>Smax Duo 1 (Vi lọc):</b> Loại bỏ các chất bẩn có kích thước trên 5 micron.<br>
                           - <b>Smax Duo 3 (Post Carbon):</b> Loại bỏ các chất hữu cơ, màu, mùi khó chịu trong nước.<br>
                           - <b>Smax Duo 3 (Đa điểm):</b> Loại bỏ các chất bẩn có kích thước trên 1 micron.<br>
@@ -197,22 +194,22 @@
                           - <b>Tourmaline:</b> Tạo ion âm có lợi cho cơ thể và hoạt hoá nước.
                           <br>- <b>Hydrogen Plus:</b> Loại bỏ các chất oxy hóa và các tác nhân gây lão hóa, trung hòa acid dư thừa, <br> tốt chohệ tiêu hóa, cung cấp khoáng chất canxi, magie, kali, natri làm cho nước ngon ngọt tự nhiên.
                           <br>- <b>Nano Silver:</b> Chống tái nhiễm khuẩn cho nguồn nước đầu ra.<br>
-                          <img src="../img/ttsp8.jpg"/><br><b style="font-size: 15px">Tiện ích</b>
+                          <img src="../src/main/webapp/img/ttsp8.jpg"/><br><b style="font-size: 15px">Tiện ích</b>
                           <br>- Tạo nước Hydrogen chống oxy hoá, có lợi cho sức khỏe.
                           <br> - Ngừng hoạt động khi nước đầy bình.
                           <br> - Ngừng hoạt động khi áp lực nước thấp.<br>
                           - Trung hòa độ pH ổn định độ ngọt cho nước.<br>
                           - Tự động xả nước thải.<br>
 
-                          <img src="../img/ttsp7.jpg"/><br><b style="font-size: 15px">Lý do nên sử dụng máy lọc nước trong gia đình:</b><br>
+                          <img src="../src/main/webapp/img/ttsp7.jpg"/><br><b style="font-size: 15px">Lý do nên sử dụng máy lọc nước trong gia đình:</b><br>
                           <br> <i><b>1. Bảo vệ người dùng khỏi những bệnh liên quan đến nguồn nước:</b></i>
                           <br>- Bệnh tả, kiết lỵ, viêm gan A, giun sán,... do các vi sinh vật trong nước gây ra.
                           <br>  - Bệnh bướu cổ, ung thư, viêm da, sẩy thai, nguy cơ dị tật ở thai nhi,... khi uống phải nguồn nước nhiễm <br> hóa chất, kim loại nặng, chất phóng xạ.
                           <br> <i><b>2. Tiện lợi và tiết kiệm chi phí sinh hoạt:</b></i> thay vì sử dụng nước đóng chai hay nước đun sôi lại,<br> nguồn nước sạch được lọc, làm nóng trực tiếp (nếu có) từ máy sẽ an toàn, nhanh chóng và tiện lợi hơn.<br> Nước sau lọc có thể uống trực tiếp tại vòi, không cần đun sôi.
                     </div>
                     <div class="product-content-thongsokythuat">
-                        <img src="../img/ttsp8.jpg" />
-                        <img src="../img/tskt.jpg"/>
+                        <img src="../src/main/webapp/img/ttsp8.jpg" />
+                        <img src="../src/main/webapp/img/tskt.jpg"/>
                         <div class="table-content-tskt">
                             <div class="table-content-tskt-tongquan">
                                 <table>
@@ -390,12 +387,12 @@
               <h3>3<i class="fa-solid fa-star" style="color: #f18f31;"></i><b style="color: #f18f31">-----</b>---------------------------------------10%</h3>
               <h3>2<i class="fa-solid fa-star" style="color: #f18f31;"></i><b style="color: #f18f31">--</b>------------------------------------------4%</h3>
               <h3>1<i class="fa-solid fa-star" style="color: #f18f31;"></i><b style="color: #f18f31">--</b>------------------------------------------5%</h3>
-              <img src="../img/dgsp4.jpg"/>
-              <img src="../img/dgsp3.jpg"/>
-              <img src="../img/dgsp2.jpg"/>
-              <img src="../img/dgsp1.jpg"/>
-              <img src="../img/dgsp5.jpg"/>
-              <img src="../img/dgsp6.jpg"/>
+              <img src="../src/main/webapp/img/dgsp4.jpg"/>
+              <img src="../src/main/webapp/img/dgsp3.jpg"/>
+              <img src="../src/main/webapp/img/dgsp2.jpg"/>
+              <img src="../src/main/webapp/img/dgsp1.jpg"/>
+              <img src="../src/main/webapp/img/dgsp5.jpg"/>
+              <img src="../src/main/webapp/img/dgsp6.jpg"/>
           </div>
             <div class="danhgia-sp-footer">
                 <div class="khachhang1">
@@ -413,11 +410,47 @@
                 <div class="vietdanhgia">
                     <button>Viết đánh giá</button>
                 </div>
+                <div class="form-danhgia">
+                    <div class="form-danhgia-khung">
+                        <div class="form-danhgia-close">
+                            <button>X Đóng</button>
+                        </div>
+                        <div class="form-danhgia-img">
+                            <img src="../src/main/webapp/img/may-loc-nuoc-ro-karofi-kaq-x16-10-loi-130223-054043-600x600.jpg"
+                            />
+                        </div>
+                        <div class="form-danhgia-tensp">
+                            <p>Máy lọc nước RO nóng nguội lạnh Karofi KAD-X39 10 lõi</p>
+                        </div>
+                        <div class="form-danhgia-text">
+                            <input type="text" placeholder="Mời bạn chia sẻ thêm cảm nhận...">
+                        </div>
+                        <div class="form-danhgia-khungcheck">
+                            <p>
+                                    <span>
+                                        <input type="checkbox" name="" id="">
+                                    </span>Tôi sẽ giới thiệu sản phẩm cho bạn bè, người thân</p>
+                        </div>
+                        <div class="form-danhgia-thongtin">
+                            <div class="form-danhgia-thongtin1">
+                                <input type="text" placeholder="Họ tên (bắt buộc)">
+                            </div>
+                            <div class="form-danhgia-thongtin2">
+                                <input type="text" placeholder="Số điện thoại (bắt buộc)">
+                            </div>
+                        </div>
+                        <div class="form-danhgia-camket">
+                            <p><i class="fa-solid fa-check"></i> Chúng tôi cam kết bảo mật số điện thoại của bạn</p>
+                        </div>
+                        <div class="form-danhgia-gui">
+                            <button>Gửi đánh giá</button>
+                        </div>
 
-            </div>
-        </div>
+                    </div>
+                </div>
     </div>
-</section>
+        </div>
+
 <!--------------------------San pham lien quan------>
 <section class="product-related container">
     <div class="product-related-title">
@@ -425,22 +458,22 @@
     </div>
     <div class="product-related-content">
         <div class="product-related-item">
-            <img src="../img/may-loc-nuoc-ro-nong-nguoi-lanh-sanaky-vh202hy-11-loi-210223-102110-600x600.jpg"/>
+            <img src="../src/main/webapp/img/may-loc-nuoc-ro-nong-nguoi-lanh-sanaky-vh202hy-11-loi-210223-102110-600x600.jpg"/>
             <h1>Máy lọc nước Sanaky VH2021Y6</h1>
             <p>5.990.000 <sup>đ</sup></p>
         </div>
         <div class="product-related-item">
-            <img src="../img/may-loc-nuoc-ro-hoa-phat-hws1b-1022-10-loi-230623-025945-600x600.jpg"/>
+            <img src="../src/main/webapp/img/may-loc-nuoc-ro-hoa-phat-hws1b-1022-10-loi-230623-025945-600x600.jpg"/>
             <h1>Máy lọc nước Hòa Phát VH2021Y7</h1>
             <p>9.990.000 <sup>đ</sup></p>
         </div>
         <div class="product-related-item">
-            <img src="../img/may-loc-nuoc-ro-kangaroo-kg10a4-vtu-10-loi-0-600x600-1.jpg"/>
+            <img src="../src/main/webapp/img/may-loc-nuoc-ro-kangaroo-kg10a4-vtu-10-loi-0-600x600-1.jpg"/>
             <h1>Máy lọc nước Kangaroo VH2021Y8</h1>
             <p>10.990.000 <sup>đ</sup></p>
         </div>
         <div class="product-related-item">
-            <img src="../img/may-loc-nuoc-ro-karofi-kaq-x16-10-loi-130223-054043-600x600.jpg"/>
+            <img src="../src/main/webapp/img/may-loc-nuoc-ro-karofi-kaq-x16-10-loi-130223-054043-600x600.jpg"/>
             <h1>Máy lọc nước Karofi VH2021Y9</h1>
             <p>8.990.000 <sup>đ</sup></p>
         </div>
@@ -462,14 +495,14 @@
             </div>
             <div class="tap-doan">
                 <p>Website cùng tập đoàn</p>
-                <a href=""><img src="../img/logo-tgdd.png" alt=""></a>
-                <a href=""><img src="../img/logo-top-zone.png" alt=""></a>
-                <a href=""><img src="../img/logo-bach-hoa-xanh.png" alt=""></a>
-                <a href=""><img src="../img/logo-an-khang.png" alt=""></a>
-                <a href=""><img src="../img/logo-kid.png" alt=""></a>
-                <a href=""><img src="../img/logo-tan-tam.png" alt=""></a>
-                <a href=""><img src="../img/logo-4k.png" alt=""></a>
-                <a href=""><img src="../img/logo-viec-lam.png" alt=""></a>
+                <a href=""><img src="../src/main/webapp/img/logo-tgdd.png" alt=""></a>
+                <a href=""><img src="../src/main/webapp/img/logo-top-zone.png" alt=""></a>
+                <a href=""><img src="../src/main/webapp/img/logo-bach-hoa-xanh.png" alt=""></a>
+                <a href=""><img src="../src/main/webapp/img/logo-an-khang.png" alt=""></a>
+                <a href=""><img src="../src/main/webapp/img/logo-kid.png" alt=""></a>
+                <a href=""><img src="../src/main/webapp/img/logo-tan-tam.png" alt=""></a>
+                <a href=""><img src="../src/main/webapp/img/logo-4k.png" alt=""></a>
+                <a href=""><img src="../src/main/webapp/img/logo-viec-lam.png" alt=""></a>
             </div>
         </div>
     </div>
@@ -558,9 +591,11 @@
                     </ul>
                 </div>
             </div>
-
         </div>
     </div>
+    </div>
+</section>
+
 </body>
 <script src="/js/mainjs.js"></script>
 </html>
