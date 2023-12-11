@@ -48,7 +48,7 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<finalName>Lab5</finalName>
+		<finalName>ProjectLTW</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
