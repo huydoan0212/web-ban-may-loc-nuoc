@@ -18,7 +18,7 @@
                 <h2>Đăng nhập</h2>
               </li>
               <li class="help">
-                <a href="../../../html/contact.html">Bạn cần giúp đỡ?</a>
+                <a href="contact.jsp">Bạn cần giúp đỡ?</a>
               </li>
             </ul>
         </div>
@@ -42,7 +42,7 @@
                             <button type="submit" class="btn">Đăng Nhập</button>
                         </div>
                         <div class="label-forget">
-                            <a href="../../../html/forget.html" class="forget">Quên mật khẩu</a>
+                            <a href="forget.jsp" class="forget">Quên mật khẩu</a>
 
                         </div>
                         <div class="label-or">
@@ -58,7 +58,7 @@
                         </div>
                         <div class="des">
                             <p>Bạn mới biết đến Healthywater? </p>
-                            <a href="../../../html/register.html">Đăng kí</a>
+                            <a href="register.jsp">Đăng kí</a>
                         </div>
                     </form>
             </div>
