@@ -8,6 +8,7 @@
     <script src="https://kit.fontawesome.com/3e135170bd.js" crossorigin="anonymous"></script>
 </head>
 <body>
+<%@include file="header.jsp" %>
 <div id="main">
     <div id="content">
         <div class="container">
@@ -85,5 +86,6 @@
         </div>
     </div>
 </div>
+<%@include file="footer.jsp" %>
 </body>
 </html>
