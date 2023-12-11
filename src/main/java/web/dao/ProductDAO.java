@@ -23,9 +23,9 @@ public class ProductDAO {
         return product.isEmpty()?null:product.get();
     }
 
-//    public static void main(String[] args) {
-//        ProductDAO productDAO = new ProductDAO();
-//        System.out.println(productDAO.getAll());
-//    }
+    public static void main(String[] args) {
+        ProductDAO productDAO = new ProductDAO();
+        System.out.println(productDAO.getAll());
+    }
 }
 
