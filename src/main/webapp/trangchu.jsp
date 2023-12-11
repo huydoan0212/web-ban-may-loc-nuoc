@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Trang chủ</title>
-    <link rel="stylesheet" href="css/trangchu.css">
+    <link rel="stylesheet" href="/css/trangchu.css">
     <script src="https://kit.fontawesome.com/3e135170bd.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -13,7 +13,7 @@
         <div class="container">
             <div id="header-top">
                 <a href="trangchu.jsp" class="logo">
-                    <img src="../img/logo-removebg-preview.png" alt="">
+                    <img src="/img/logo-removebg-preview.png" alt="">
                 </a>
                 <a class="tinh js-tim-tinh">
                     Xem giá, tồn kho tại:
@@ -39,7 +39,7 @@
     </div>
     <!--Kết thúc header-->
     <div id="poster">
-        <img src="../img/may-loc-nuoc-nong-lanh-karofi-kad-d50-nuoc-nong-lanh.jpg">
+        <img src="./img/may-loc-nuoc-nong-lanh-karofi-kad-d50-nuoc-nong-lanh.jpg">
     </div>
     <div id="nav">
         <!--        <div id="nav-bar">-->
