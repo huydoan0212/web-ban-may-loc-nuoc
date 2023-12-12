@@ -9,7 +9,7 @@ public class UserDAO {
     public static boolean isEmailExists(String email){
             int count = JDBIConnector.me().withHandle(handle ->
                     handle.createQuery("SELECT COUNT(*) FROM users WHERE email = ?")
-                            .bind(1, email)
+                            .bind(0, email)
                             .mapTo(Integer.class)
                             .one()
             );
@@ -18,7 +18,7 @@ public class UserDAO {
     public static boolean isUserExists(String userName){
         int count = JDBIConnector.me().withHandle(handle ->
                 handle.createQuery("SELECT COUNT(*) FROM users WHERE username = ?")
-                        .bind(1, userName)
+                        .bind(0, userName)
                         .mapTo(Integer.class)
                         .one()
         );

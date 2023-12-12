@@ -19,7 +19,7 @@ public class UserController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String fullName = req.getParameter("name").trim();
         String email = req.getParameter("email").trim();
-        String userName = req.getParameter("username").trim();
+        String userName = req.getParameter("username").trim().toLowerCase();
         String phone = req.getParameter("phone").trim();
         String password = req.getParameter("password");
         String rePassword = req.getParameter("repassword");
@@ -30,10 +30,15 @@ public class UserController extends HttpServlet {
         } else if (UserService.isValidEmail(email) == false) {
             req.setAttribute("error", "Email không hợp lệ");
             req.getRequestDispatcher("register.jsp").forward(req, resp);
-        } else if (UserService.isEmailExists(email) == true) {
+        } else if (UserService.isEmailExists(email) == true && UserService.isUserExists(userName) == true) {
+            req.setAttribute("error", "Email và Tên đăng nhập đã được sử dụng");
+            req.getRequestDispatcher("register.jsp").forward(req, resp);
+        }
+        else if (UserService.isEmailExists(email) == true) {
             req.setAttribute("error", "Email đã được sử dụng");
             req.getRequestDispatcher("register.jsp").forward(req, resp);
-        } else if (UserService.isUserExists(userName) == true) {
+        }
+        else if (UserService.isUserExists(userName) == true) {
             req.setAttribute("error", "Tên đăng nhập đã được sử dụng");
             req.getRequestDispatcher("register.jsp").forward(req, resp);
         } else if (UserService.isMatchPassword(password, rePassword) == false) {
