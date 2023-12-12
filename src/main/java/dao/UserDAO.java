@@ -25,8 +25,8 @@ public class UserDAO {
         return count > 0;
     }
     public static void addUser(String fullName, String email, String userName,  String password, String rePassword, String phone, int active){
-        String insertQuery = "INSERT INTO users (username, fullname, email, phone_number, sex, address, password, created_at, updated_at, status, active) " +
-                "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+        String insertQuery = "INSERT INTO users (username, fullname, email, phone_number, sex, address, password, created_at, status, active) " +
+                "VALUES (?,?,?,?,?,?,?,?,?,?)";
 
         try (Handle handle = JDBIConnector.me().open()) {
             handle.createUpdate(insertQuery)
@@ -38,9 +38,9 @@ public class UserDAO {
                     .bind(5, "")
                     .bind(6, password)
                     .bind(7, LocalDateTime.now().toString())
-                    .bind(8, LocalDateTime.now().toString())
-                    .bind(9, 1)
-                    .bind(10, active)
+//                    .bind(8, LocalDateTime.now().toString())
+                    .bind(8, 1)
+                    .bind(9, active)
                     .execute();
         }
     }
