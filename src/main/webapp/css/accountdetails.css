@@ -260,7 +260,7 @@ body {
 
 }
 #content .nhap-dia-chi .all {
-    width: 252.1px;
+    width: 400px;
     height: 41.6px;
     padding: 0 10px;
     border-radius: 4px;
@@ -278,7 +278,7 @@ body {
     margin-right: 37px;
 }
 #content .nhap-dia-chi #dia-chi {
-    width: 230.5px;
+    width: 400px;
     height: 40px;
 }
 #content .nhap-dia-chi .dia-chi-label {

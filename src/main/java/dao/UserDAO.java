@@ -38,11 +38,13 @@ public class UserDAO {
                     .bind(5, "")
                     .bind(6, password)
                     .bind(7, LocalDateTime.now().toString())
-//                    .bind(8, LocalDateTime.now().toString())
                     .bind(8, 1)
                     .bind(9, active)
                     .execute();
         }
+    }
+    public static void updateUser(){
+
     }
 
 

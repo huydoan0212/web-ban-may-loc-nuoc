@@ -31,5 +31,7 @@ public class UserService {
     public static void addUser(String fullName, String email, String userName,  String password, String rePassword, String phone, int active){
         UserDAO.addUser(fullName,email,userName,password,rePassword,phone,active);
     }
-
+    public static void updateUser(){
+        UserDAO.updateUser();
+    }
 }
