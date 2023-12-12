@@ -56,10 +56,6 @@
         <div class="input-box">
           <input type="password" id="repassword" placeholder="Lặp lại mật khẩu" name="repassword">
         </div>
-        <div class="check">
-          <input type="checkbox">
-          <p>Tôi đồng  với các điều khoản bảo mật</p>
-        </div>
         <span style="color: red; font-size: 14px;padding-left: 20px;"><%=(error != null && error != "") ? error : ""%></span>
         <div class="signin-btn">
           <button type="submit" class="btn">Đăng Ký</button>
