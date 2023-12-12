@@ -42,10 +42,10 @@
           <input type="text" value="<%=(name!=null && name!="")? name:""%>" placeholder="Họ và tên" name="name">
         </div>
         <div class="input-box">
-          <input type="text" value="<%=(email!=null && email!="")? name:""%>" placeholder="Email" name="email">
+          <input type="email" value="<%=(email!=null && email!="")? email:""%>" placeholder="Email" name="email">
         </div>
         <div class="input-box">
-          <input type="text" value="<%=(phone!=null && phone!="")? name:""%>" placeholder="Số điện thoại" name="phone">
+          <input type="text" value="<%=(phone!=null && phone!="")? phone:""%>" placeholder="Số điện thoại" name="phone">
         </div>
         <div class="input-box">
           <input type="text" value="<%=(username!=null && username!="")? username:""%>" placeholder="Tên đăng nhập" name="username">

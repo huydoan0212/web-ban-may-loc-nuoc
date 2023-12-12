@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Thông tin và địa chỉ</title>
-    <link rel="stylesheet" href="./css/accountdetails.css">
+    <link rel="stylesheet" href="css/accountdetails.css">
     <script src="https://kit.fontawesome.com/3e135170bd.js" crossorigin="anonymous"></script>
 </head>
 <body>

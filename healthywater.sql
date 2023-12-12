@@ -4,7 +4,7 @@ CREATE TABLE `role` (
 );
 
 CREATE TABLE `users` (
-                         `id` int PRIMARY KEY,
+                         `id` int PRIMARY KEY AUTO_INCREMENT,
                          `role_id` int,
                          `username` varchar(255),
                          `fullname` varchar(255),
@@ -13,11 +13,10 @@ CREATE TABLE `users` (
                          `sex` bit,
                          `address` varchar(255),
                          `password` varchar(255),
-                         `number_banking` varchar(255),
                          `created_at` datetime,
                          `updated_at` datetime,
-                         `status` varchar(255),
-                         `active` varchar(255)
+                         `status` int,
+                         `active` int
 );
 
 CREATE TABLE `categorys` (

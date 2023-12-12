@@ -11,7 +11,6 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 @WebServlet(name = "UserController", value = "/userController")
 public class UserController extends HttpServlet {
-    //    String name = "auth";
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doPost(req, resp);
@@ -28,13 +27,13 @@ public class UserController extends HttpServlet {
                 phone == null || phone.equals("") || password == null || password.equals("") || rePassword == null || rePassword.equals("")) {
             req.setAttribute("error", "Bạn cần nhập các đủ thông tin ");
             req.getRequestDispatcher("register.jsp").forward(req, resp);
-        } else if (UserService.isValidEmail(email)) {
+        } else if (UserService.isValidEmail(email) == false) {
             req.setAttribute("error", "Email không hợp lệ");
             req.getRequestDispatcher("register.jsp").forward(req, resp);
-        } else if (UserService.checkEmail(email) == true) {
+        } else if (UserService.isEmailExists(email) == true) {
             req.setAttribute("error", "Email đã được sử dụng");
             req.getRequestDispatcher("register.jsp").forward(req, resp);
-        } else if (UserService.checkUserName(userName) == true) {
+        } else if (UserService.isUserExists(userName) == true) {
             req.setAttribute("error", "Tên đăng nhập đã được sử dụng");
             req.getRequestDispatcher("register.jsp").forward(req, resp);
         } else if (UserService.isMatchPassword(password, rePassword) == false) {
@@ -42,7 +41,7 @@ public class UserController extends HttpServlet {
             req.getRequestDispatcher("register.jsp").forward(req, resp);
         } else {
 //            req.setAttribute("success", "Đăng ký thành công");
-            UserService.addUser(fullName, email, userName, password, rePassword, phone, "0");
+            UserService.addUser(fullName, email, userName, password, rePassword, phone, 1);
             resp.sendRedirect("login.jsp");
         }
     }
