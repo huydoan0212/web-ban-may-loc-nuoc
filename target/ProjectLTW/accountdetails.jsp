@@ -21,7 +21,7 @@
             <form action="./accountDetailsController" method="post">
                 <div class="display">
                     <div class="toolbar">
-                        <h4><span>Khách hàng</span><%=user.getFullName()!= null? user.getFullName():""%></h4>
+                        <h4><span>Khách hàng </span><%=user.getFullName()!= null? user.getFullName():""%></h4>
                         <div class="mini-menu-toolbar">
                             <div class="order-frame">
                                 <i class="fa-solid fa-rectangle-list" ></i>
@@ -32,7 +32,7 @@
                                 <a href="" class="thong-tin-va-dia-chi">Thông tin và địa chỉ</a>
                             </div>
                             <div class="log-off">
-                                <a href="" class="dang-xuat">Đăng xuất</a>
+                                <a href="logOutController" class="dang-xuat">Đăng xuất</a>
                             </div>
                         </div>
                     </div>
@@ -45,26 +45,25 @@
                                 <p>THÔNG TIN CÁ NHÂN</p>
                                 <span><%=user.getFullName()!= null? user.getFullName():""%></span>
                                 <span><%=user.getPhoneNumber()!= null? user.getPhoneNumber():""%></span>
+                                <span><%=user.getAddress()!= null? user.getAddress():""%></span>
                             </div>
                             <div class="select-infor">
                                 <div class="sex">
-                                    <input type="radio" name="group1" id="male" value="male">
+                                    <input type="radio" name="sex" id="male" value="1">
                                     <span>Anh</span>
-                                    <input type="radio" name="group1" id="female" value="female">
+                                    <input type="radio" name="sex" id="female" value="2">
                                     <span>Chị</span>
-                                    <input type="radio" name="group1" id="no" value="no">
+                                    <input type="radio" name="sex" id="no" value="0">
                                     <span>Khác</span>
                                 </div>
                                 <div class="name-phone">
                                     <div class="name">
                                         <span class="ho-va-ten-label">Họ & tên:</span>
-                                        <input type="text" id="ho-va-ten" name="fullName"
-                                               value="<%=user.getFullName()!= null? user.getFullName():""%>" disabled>
+                                        <input type="text" id="ho-va-ten" name="fullName">
                                     </div>
                                     <div class="phone">
                                         <span class="so-dien-thoai-label">Số điện thoại:</span>
-                                        <input type="text" id="so-dien-thoai" name="phoneNumber"
-                                               value="<%=user.getPhoneNumber()!= null? user.getPhoneNumber():""%>" disabled>
+                                        <input type="text" id="so-dien-thoai" name="phoneNumber">
                                     </div>
                                 </div>
                                 <div class="btn-cancel-save">
@@ -79,13 +78,14 @@
                             </div>
                             <div class="nhap-dia-chi">
                                 <span class="dia-chi-label">Địa chỉ:</span>
-                                <input type="text" placeholder="Nhập địa chỉ" id="dia-chi" class="all" name="address"
-                                       value="<%=user.getAddress()!= null? user.getAddress():""%>" disabled>
+                                <input type="text" placeholder="Nhập địa chỉ" id="dia-chi" class="all" name="address">
                             </div>
                             <div class="btn-frame">
                                 <a href="" class="cap-nhat">Cập nhật</a>
                             </div>
                         </div>
+                        <span style="color: red; font-size: 18px; text-align: center;"><%=(error != null && error != "") ? error : ""%></span>
+                        <span style="color: green; font-size: 18px; text-align: center;"><%=(success != null && success != "") ? success : ""%>
                     </div>
                 </div>
             </form>
