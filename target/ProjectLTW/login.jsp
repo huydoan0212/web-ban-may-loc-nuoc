@@ -32,7 +32,7 @@
                     <form action="">
                         <h1>Đăng Nhập</h1>
                         <div class="input-box">
-                            <input type="text" placeholder="Email/ Tên đăng nhập">
+                            <input type="text" placeholder="Tên đăng nhập">
                         </div>
                         <div class="input-box">
                             <input type="password" placeholder="Mật khẩu">

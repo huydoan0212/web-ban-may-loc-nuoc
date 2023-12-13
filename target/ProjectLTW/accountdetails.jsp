@@ -82,10 +82,6 @@
                                 <input type="text" placeholder="Nhập địa chỉ" id="dia-chi" class="all" name="address"
                                        value="<%=user.getAddress()!= null? user.getAddress():""%>" disabled>
                             </div>
-                            <div class="mac-dinh">
-                                <input type="checkbox">
-                                <span>Đặt làm địa chỉ mặc định</span>
-                            </div>
                             <div class="btn-frame">
                                 <a href="" class="cap-nhat">Cập nhật</a>
                             </div>
