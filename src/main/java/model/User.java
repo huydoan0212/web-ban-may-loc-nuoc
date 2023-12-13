@@ -43,7 +43,14 @@ public class User {
         this.sex = sex;
         this.address = address;
 
+    }public User(String fullName, String phoneNumber,int sex, String address) {
+        this.fullName = fullName;
+        this.phoneNumber = phoneNumber;
+        this.sex = sex;
+        this.address = address;
+
     }
+
     public int getUserId() {
         return userId;
     }

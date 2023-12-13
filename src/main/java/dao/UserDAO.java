@@ -26,7 +26,8 @@ public class UserDAO {
         );
         return count > 0;
     }
-    public static void addUser(String fullName, String email, String userName,  String password, String rePassword, String phone, int active){
+    public static boolean addUser(String fullName, String email, String userName,  String password, String rePassword, String phone, int active){
+        boolean result = false;
         String insertQuery = "INSERT INTO users (username, fullname, email, phone_number, sex, address, password, created_at, status, active) " +
                 "VALUES (?,?,?,?,?,?,?,?,?,?)";
 
@@ -43,7 +44,9 @@ public class UserDAO {
                     .bind(8, 1)
                     .bind(9, active)
                     .execute();
+            result = true;
         }
+        return result;
     }
     public static User getUserByUserName(String userName){
         Optional<User> user = JDBIConnector.me().withHandle(handle ->
@@ -51,9 +54,19 @@ public class UserDAO {
                         .bind(0, userName).mapToBean(User.class).stream().findFirst());
         return user.isEmpty() ? null : user.get();
     }
-    public static void updateUser(){
-
-
+    public static boolean updateUser(User user){
+        boolean result = false;
+        String updateQuery = "UPDATE users SET fullname = ?, phone_number = ?, sex = ?, address = ? WHERE username = ?";
+        try (Handle handle = JDBIConnector.me().open()) {
+            handle.createUpdate(updateQuery)
+                    .bind(0, user.getFullName())
+                    .bind(1, user.getPhoneNumber())
+                    .bind(2, user.getSex())
+                    .bind(3, user.getAddress())
+                    .execute();
+            result = true;
+        }
+        return result;
     }
 
 

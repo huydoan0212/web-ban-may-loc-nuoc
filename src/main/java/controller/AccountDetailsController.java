@@ -1,5 +1,6 @@
 package controller;
 
+import model.User;
 import service.UserService;
 
 import javax.servlet.ServletException;
@@ -19,11 +20,17 @@ public class AccountDetailsController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String userName = (String) req.getSession().getAttribute("userName");
         String fullName = req.getParameter("fullName");
-        String phoneNumber = req.getParameter("phoneNumber");
+        String phoneNumber = req.getParameter("phoneNumber").trim().toLowerCase();
         String address = req.getParameter("address");
-        req.setAttribute("userName", userName);
-        req.getRequestDispatcher("accountdetails.jsp").forward(req, resp);
-
+        int sex = Integer.parseInt(req.getParameter("sex"));
+        if (fullName.equals("") || phoneNumber.equals("") || address.equals("")){
+                req.setAttribute("error","người dùng cần nhập đầy đủ thông tin");
+                req.getRequestDispatcher("accountdetails.jsp").forward(req, resp);
+        }else{
+                UserService.updateUser(new User(fullName,phoneNumber,sex,address));
+                req.setAttribute("success", "Cập nhật thông tin thành công");
+                resp.sendRedirect("accountdetails.jsp");
+        }
 
     }
 }

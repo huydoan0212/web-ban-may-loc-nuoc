@@ -29,11 +29,11 @@ public class UserService {
     public static boolean isUserExists(String userName){
         return UserDAO.isUserExists(userName);
     }
-    public static void addUser(String fullName, String email, String userName,  String password, String rePassword, String phone, int active){
-        UserDAO.addUser(fullName,email,userName,password,rePassword,phone,active);
+    public static boolean addUser(String fullName, String email, String userName,  String password, String rePassword, String phone, int active){
+       return UserDAO.addUser(fullName,email,userName,password,rePassword,phone,active);
     }
-    public static void updateUser(){
-        UserDAO.updateUser();
+    public static boolean updateUser(User user){
+        return UserDAO.updateUser(user);
     }
     public static User getUserByUserName(String userName){
        return UserDAO.getUserByUserName(userName);
