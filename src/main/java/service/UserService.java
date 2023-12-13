@@ -22,14 +22,16 @@ public class UserService {
         }else
             return false;
     }
-    public static boolean checkEmail(String email){
-       return UserDAO.checkEmail(email);
+    public static boolean isEmailExists(String email){
+        return UserDAO.isEmailExists(email);
     }
-    public static boolean checkUserName(String UserName){
-        return UserDAO.checkUserName(UserName);
+    public static boolean isUserExists(String userName){
+        return UserDAO.isUserExists(userName);
     }
-    public static boolean addUser(String fullName, String email, String userName,  String password, String rePassword, String phone, String active){
-        return UserDAO.addUser(fullName,email,userName,password,rePassword,phone,active);
+    public static void addUser(String fullName, String email, String userName,  String password, String rePassword, String phone, int active){
+        UserDAO.addUser(fullName,email,userName,password,rePassword,phone,active);
     }
-
+    public static void updateUser(){
+        UserDAO.updateUser();
+    }
 }

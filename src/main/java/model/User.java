@@ -12,17 +12,16 @@ public class User {
     private int sex;
     private String address;
     private String password;
-    private String numberBanking;
     private Date createdAt;
     private Date updatedAt;
-    private String status;
-    private String active;
+    private int status;
+    private int active;
 
     public User() {
     }
 
     public User(int userId, int roleId, String userName, String fullName, String email, String phoneNumber,
-                int sex, String address, String password, String numberBanking, Date createdAt, Date updatedAt, String status, String active) {
+                int sex, String address, String password, Date createdAt, Date updatedAt, int status, int active) {
         this.userId = userId;
         this.roleId = roleId;
         this.userName = userName;
@@ -32,7 +31,6 @@ public class User {
         this.sex = sex;
         this.address = address;
         this.password = password;
-        this.numberBanking = numberBanking;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.status = status;
@@ -121,14 +119,6 @@ public class User {
         this.password = password;
     }
 
-    public String getNumberBanking() {
-        return numberBanking;
-    }
-
-    public void setNumberBanking(String numberBanking) {
-        this.numberBanking = numberBanking;
-    }
-
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -145,19 +135,19 @@ public class User {
         this.updatedAt = updatedAt;
     }
 
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
-    public String getActive() {
+    public int getActive() {
         return active;
     }
 
-    public void setActive(String active) {
+    public void setActive(int active) {
         this.active = active;
     }
 
@@ -173,7 +163,6 @@ public class User {
                 ", sex=" + sex +
                 ", address='" + address + '\'' +
                 ", password='" + password + '\'' +
-                ", numberBanking='" + numberBanking + '\'' +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
                 ", status='" + status + '\'' +

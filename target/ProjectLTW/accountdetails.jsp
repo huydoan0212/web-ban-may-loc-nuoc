@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Thông tin và địa chỉ</title>
-    <link rel="stylesheet" href="./css/accountdetails.css">
+    <link rel="stylesheet" href="css/accountdetails.css">
     <script src="https://kit.fontawesome.com/3e135170bd.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -40,10 +40,12 @@
                         </div>
                         <div class="select-infor">
                             <div class="sex">
-                                <input type="radio" id="male">
+                                <input type="radio" name="group1" id="male">
                                 <span>Anh</span>
-                                <input type="radio" id="female">
+                                <input type="radio" name="group1" id="female">
                                 <span>Chị</span>
+                                <input type="radio" name="group1" id="no">
+                                <span>Khác</span>
                             </div>
                             <div class="name-phone">
                                 <div class="name">
@@ -66,10 +68,6 @@
                             <p>ĐỊA CHỈ NHẬN HÀNG</p>
                         </div>
                         <div class="nhap-dia-chi">
-                            <span class="tinh-label">Tỉnh:</span>
-                            <select name="" class="all" id="tinh">
-                                <option value="">Hồ Chí Minh</option>
-                            </select>
                             <span class="dia-chi-label">Địa chỉ:</span>
                             <input type="text" placeholder="Nhập địa chỉ" id="dia-chi" class="all">
                         </div>
