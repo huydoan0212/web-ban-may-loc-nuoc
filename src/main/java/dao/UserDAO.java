@@ -1,9 +1,11 @@
 package dao;
 
 import db.JDBIConnector;
+import model.User;
 import org.jdbi.v3.core.Handle;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 public class UserDAO {
     public static boolean isEmailExists(String email){
@@ -43,9 +45,16 @@ public class UserDAO {
                     .execute();
         }
     }
+    public static User getUserByUserName(String userName){
+        Optional<User> user = JDBIConnector.me().withHandle(handle ->
+                handle.createQuery("select username, fullname, email, phone_number, sex, address from users where email = ?")
+                        .bind(0, userName).mapToBean(User.class).stream().findFirst());
+        return user.isEmpty() ? null : user.get();
+    }
     public static void updateUser(){
 
     }
+
 
 
 }

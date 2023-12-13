@@ -36,17 +36,14 @@ public class User {
         this.status = status;
         this.active = active;
     }
-//    public User(String userName, String fullName, String email, String phoneNumber,String password, Date createdAt, String active) {
-//        this.userName = userName;
-//        this.fullName = fullName;
-//        this.email = email;
-//        this.phoneNumber = phoneNumber;
-//        this.password = password;
-//        this.createdAt = createdAt;
-//        this.active = active;
-//    }
+    public User(String fullName,String email, String phoneNumber,int sex, String address) {
+        this.fullName = fullName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.sex = sex;
+        this.address = address;
 
-
+    }
     public int getUserId() {
         return userId;
     }

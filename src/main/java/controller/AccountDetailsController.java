@@ -1,5 +1,7 @@
 package controller;
 
+import service.UserService;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +17,13 @@ public class AccountDetailsController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+        String userName = (String) req.getSession().getAttribute("userName");
+        String fullName = req.getParameter("fullName");
+        String phoneNumber = req.getParameter("phoneNumber");
+        String address = req.getParameter("address");
+        req.setAttribute("userName", userName);
+        req.getRequestDispatcher("accountdetails.jsp").forward(req, resp);
+
+
     }
 }

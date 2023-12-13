@@ -1,5 +1,6 @@
 package service;
 import dao.UserDAO;
+import model.User;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -34,4 +35,8 @@ public class UserService {
     public static void updateUser(){
         UserDAO.updateUser();
     }
+    public static User getUserByUserName(String userName){
+       return UserDAO.getUserByUserName(userName);
+    }
+
 }
