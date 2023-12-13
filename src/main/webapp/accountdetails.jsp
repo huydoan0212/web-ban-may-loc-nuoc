@@ -32,7 +32,7 @@
                                 <a href="" class="thong-tin-va-dia-chi">Thông tin và địa chỉ</a>
                             </div>
                             <div class="log-off">
-                                <a href="" class="dang-xuat">Đăng xuất</a>
+                                <a href="logOutController" class="dang-xuat">Đăng xuất</a>
                             </div>
                         </div>
                     </div>
