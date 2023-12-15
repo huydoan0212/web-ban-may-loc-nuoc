@@ -39,7 +39,7 @@ public class Login extends HttpServlet {
                 String name = UserDAO.getUserName(username);
                 session.setAttribute("name", name);
                 if(user.getRole() == 2) {
-                    response.sendRedirect("Home");
+                    response.sendRedirect("trangchu.html");
                 } if (user.getRole() == 1 || user.getRole() == 0 ){
                     response.sendRedirect("pageAdmin_Index.html");
                 }
