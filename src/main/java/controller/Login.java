@@ -29,7 +29,7 @@ public class Login extends HttpServlet {
             if(UserDAO.getNotActiveAccount(username) == 0){
                 // đăng nhập thất bại
                 request.getSession().setAttribute("message2", "Tài khoản chưa được kích hoạt");
-                response.sendRedirect("login.jsp"); // chuyển hướng sang trang login.jsp
+                response.sendRedirect("binh_login.jsp"); // chuyển hướng sang trang login.jsp
             } else {
 
                 // đăng nhập thành công
@@ -47,7 +47,7 @@ public class Login extends HttpServlet {
         } else {
             // đăng nhập thất bại
             request.getSession().setAttribute("message2", "Đăng nhập thất bại. Vui lòng kiểm tra lại thông tin.");
-            response.sendRedirect("login.jsp"); // Chuyển hướng sang trang login.jsp
+            response.sendRedirect("binh_login.jsp"); // Chuyển hướng sang trang login.jsp
         }
 
     }

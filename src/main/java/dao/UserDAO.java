@@ -71,6 +71,130 @@ public class UserDAO {
             JBDIConnector.closeConnection(connection);
         }
     }
+    public static String getPasswd(int id) {
+        Connection connection = null;
+
+        try {
+            connection = JDBIConnector.getConnection();
+
+            PreparedStatement ps = connection.prepareStatement("SELECT password FROM users WHERE id=?");
+            ps.setInt(1, id);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return rs.getString("password");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } finally {
+            JDBIConnector.closeConnection(connection);
+        }
+
+        return null;
+    }
+
+    public static String getEmail(String username) {
+        Connection connection = null;
+
+        try {
+            connection = JDBIConnector.getConnection();
+
+            PreparedStatement ps = connection.prepareStatement("SELECT email FROM users WHERE username=?");
+            ps.setString(1, username);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return rs.getString("email");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } finally {
+            JDBIConnector.closeConnection(connection);
+        }
+
+        return null;
+    }
+
+    public static boolean updateActiveAccount(String username) {
+        Connection connection = null;
+
+        try {
+            connection = JDBIConnector.getConnection();
+
+            String sql = "UPDATE users SET active = 1 WHERE username=?";
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+
+                ps.setString(1, username);
+
+                int rowsAffected = ps.executeUpdate();
+                if (rowsAffected > 0) {
+                    return true;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JDBIConnector.closeConnection(connection);
+        }
+
+        return false;
+    }
+
+    public static int getNotActiveAccount(String username) {
+        Connection connection = null;
+
+        try {
+            connection = JDBIConnector.getConnection();
+
+            PreparedStatement ps = connection.prepareStatement("SELECT active FROM users WHERE username=?");
+            ps.setString(1, username);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt("active");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } finally {
+            JDBIConnector.closeConnection(connection);
+        }
+
+        return 3;
+    }
+
+
+    public static boolean changePassword(String password ,int id) {
+        Connection connection = null;
+
+        try {
+            connection = JDBIConnector.getConnection();
+            String sql = "UPDATE users SET password=? WHERE id=?";
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setString(1, password);
+                ps.setInt(2, id);
+
+                int rowsAffected = ps.executeUpdate();
+                if (rowsAffected > 0) {
+                    return true;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JDBIConnector.closeConnection(connection);
+        }
+        return false;
+    }
+
 
 
 
