@@ -2,6 +2,7 @@ package dao;
 
 import db.JDBIConnector;
 import org.jdbi.v3.core.Handle;
+import service.MD5Hash;
 
 import java.time.LocalDateTime;
 
@@ -46,6 +47,31 @@ public class UserDAO {
     public static void updateUser(){
 
     }
+    public static boolean loginUser(String username, String password) {
+        Connection connection = null;
+
+        try {
+            connection = DatabaseConnector.getConnection();
+
+            String hashedPassword = MD5Hash.hashPassword(password);
+
+            PreparedStatement ps = connection.prepareStatement("SELECT * FROM users WHERE username=? AND password=?");
+            ps.setString(1, username);
+            ps.setString(2, hashedPassword);
+
+            ResultSet rs = ps.executeQuery();
+
+            return rs.next();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+
+        } finally {
+            DatabaseConnector.closeConnection(connection);
+        }
+    }
+
 
 
 }
