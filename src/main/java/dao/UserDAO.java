@@ -51,7 +51,7 @@ public class UserDAO {
         Connection connection = null;
 
         try {
-            connection = DatabaseConnector.getConnection();
+            connection = JBDIConnector.getConnection();
 
             String hashedPassword = MD5Hash.hashPassword(password);
 
@@ -68,7 +68,7 @@ public class UserDAO {
             return false;
 
         } finally {
-            DatabaseConnector.closeConnection(connection);
+            JBDIConnector.closeConnection(connection);
         }
     }
 
