@@ -41,7 +41,7 @@ public class Login extends HttpServlet {
                 if(user.getRole() == 2) {
                     response.sendRedirect("Home");
                 } if (user.getRole() == 1 || user.getRole() == 0 ){
-                    response.sendRedirect("pageAdmin/pageAdmin_Index");
+                    response.sendRedirect("pageAdmin_Index.html");
                 }
             }
         } else {
