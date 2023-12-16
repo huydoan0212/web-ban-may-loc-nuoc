@@ -19,8 +19,5 @@ public class ProductService {
         return ProductDAO.getById(id);
     }
 
-    public static void main(String[] args) {
-        List<Product> all = ProductService.getInstance().getAll();
-        System.out.println(all);
-    }
+
 }

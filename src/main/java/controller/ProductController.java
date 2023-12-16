@@ -11,17 +11,17 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "ProductController", value = "/products")
+@WebServlet(name = "Trangchu", value = "/trangchu")
 public class ProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doPost(req, resp);
+       doPost(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Product> all = ProductService.getInstance().getAll();
-        req.setAttribute("data", all);
+        List<Product> products = ProductService.getInstance().getAll();
+        req.setAttribute("data", products);
         req.getRequestDispatcher("trangchu.jsp").forward(req, resp);
     }
 
@@ -29,7 +29,7 @@ public class ProductController extends HttpServlet {
 //        List<Product> all = ProductService.getInstance().getAll();
 //        for (Product p :
 //                all) {
-//            System.out.println(p.getTitle());
+//            System.out.println(p);
 //
 //        }
 //    }

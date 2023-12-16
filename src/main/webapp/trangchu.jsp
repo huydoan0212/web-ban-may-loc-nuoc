@@ -1,6 +1,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="model.Product" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="model.Product" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% List<Product> data = (List<Product>) request.getAttribute("data");
     if (data == null) data = new ArrayList<>();
@@ -70,7 +71,7 @@
                                 <span>Trả góp 0%</span>
                             </div>
                             <div class="item-img">
-                                <img src="img/may-loc-nuoc-ro-nong-nguoi-lanh-sanaky-vh202hy-11-loi-210223-102110-600x600.jpg"
+                                <img src=
                                      alt="">
                             </div>
                             <p class="label-gia-re">
@@ -88,10 +89,10 @@
                                 Online giá rẻ quá
                             </p>
                             <div class="gia-sale">
-                                <p class="price-old">11.790.000 </p>
+                                <p class="price-old"><%=p.getPrice()%></p>
                                 <span class="percent">-49%</span>
                             </div>
-                            <strong class="price-sale"><%=p.getDiscount_price()%>
+                            <strong class="price-sale"><%=p.getPrice()%>
                             </strong>
                             <div class="item-rating">
                                 <p>
