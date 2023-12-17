@@ -240,6 +240,7 @@ body {
 .deal-soc {
     display: flex;
     align-items: center;
+
 }
 
 #deal-soc-content {
@@ -254,6 +255,7 @@ body {
 }
 
 .deal-soc .deal-soc-items {
+    width: 18%;
     padding: 10px 12px 15px 12px;
     border: 5px solid #f13ba7;
     background-color: #ffffff;
@@ -273,7 +275,7 @@ body {
 }
 
 .deal-soc .item-img > img {
-    width: 200px;
+    width: 207px;
 }
 
 .deal-soc .label-gia-re {
