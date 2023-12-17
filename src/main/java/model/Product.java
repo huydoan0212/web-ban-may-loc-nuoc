@@ -15,13 +15,22 @@ public class Product {
     private int available;
     private Date created_at;
     private Date updated_at;
+    private String img;
 
     public Product() {
         this.title = "May loc nuoc test";
         this.price = 1010101010;
     }
 
-    public Product(int id, int category_id, int type_machine_id, int brand_id, int sale_product_id, String title, int price, int discount_price, String description, int available, Date created_at, Date updated_at) {
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public Product(int id, int category_id, int type_machine_id, int brand_id, int sale_product_id, String title, int price, int discount_price, String description, int available, Date created_at, Date updated_at, String img) {
         this.id = id;
         this.category_id = category_id;
         this.type_machine_id = type_machine_id;
@@ -34,6 +43,7 @@ public class Product {
         this.available = available;
         this.created_at = created_at;
         this.updated_at = updated_at;
+        this.img = img;
     }
 
     public int getId() {
@@ -132,6 +142,7 @@ public class Product {
         this.updated_at = updated_at;
     }
 
+
     @Override
     public String toString() {
         return "Product{" +
@@ -147,6 +158,7 @@ public class Product {
                 ", available=" + available +
                 ", created_at=" + created_at +
                 ", updated_at=" + updated_at +
+                ", img='" + img + '\'' +
                 '}';
     }
 }

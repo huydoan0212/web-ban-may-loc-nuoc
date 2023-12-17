@@ -25,12 +25,5 @@ public class ProductController extends HttpServlet {
         req.getRequestDispatcher("trangchu.jsp").forward(req, resp);
     }
 
-//    public static void main(String[] args) {
-//        List<Product> all = ProductService.getInstance().getAll();
-//        for (Product p :
-//                all) {
-//            System.out.println(p);
-//
-//        }
-//    }
+
 }

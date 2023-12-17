@@ -3,8 +3,8 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="model.Product" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<% List<Product> data = (List<Product>) request.getAttribute("data");
-    if (data == null) data = new ArrayList<>();
+<% List<Product> products = (List<Product>) request.getAttribute("data");
+    if (products == null) products = new ArrayList<>();
 //    List<Product> data2 = new ArrayList<>();
 //    Product pd = new Product();
 //    Product pd1 = new Product();
@@ -64,14 +64,14 @@
             <div id="deal-soc-content">
                 <a href="" class="poster-link"><img src="img/desk-10--1--1200x120.png" alt=""></a>
                 <div class="deal-soc">
-                    <% for (Product p : data) { %>
+                    <% for (Product p : products) { %>
                     <div class="deal-soc-items">
                         <a href="" class="deal-items">
                             <div class="item-label">
                                 <span>Trả góp 0%</span>
                             </div>
                             <div class="item-img">
-                                <img src=
+                                <img src=<%= p.getImg()%>
                                      alt="">
                             </div>
                             <p class="label-gia-re">
