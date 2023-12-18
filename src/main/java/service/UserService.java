@@ -35,8 +35,8 @@ public class UserService {
     public static boolean updateUser(User user){
         return UserDAO.updateUser(user);
     }
-    public static User getUserByUserName(String userName){
-       return UserDAO.getUserByUserName(userName);
-    }
+//    public static User getUserByUserName(String userName){
+//        return UserDAO.getUserByUserName(userName);
+//    }
 
 }
