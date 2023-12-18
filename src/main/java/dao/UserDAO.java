@@ -1,11 +1,10 @@
 package dao;
 
 import db.JDBIConnector;
-import model.User;
 import org.jdbi.v3.core.Handle;
+import service.MD5Hash;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 public class UserDAO {
     public static boolean isEmailExists(String email){
@@ -26,8 +25,7 @@ public class UserDAO {
         );
         return count > 0;
     }
-    public static boolean addUser(String fullName, String email, String userName,  String password, String rePassword, String phone, int active){
-        boolean result = false;
+    public static void addUser(String fullName, String email, String userName,  String password, String rePassword, String phone, int active){
         String insertQuery = "INSERT INTO users (username, fullname, email, phone_number, sex, address, password, created_at, status, active) " +
                 "VALUES (?,?,?,?,?,?,?,?,?,?)";
 
@@ -44,30 +42,159 @@ public class UserDAO {
                     .bind(8, 1)
                     .bind(9, active)
                     .execute();
-            result = true;
         }
-        return result;
     }
-    public static User getUserByUserName(String userName){
-        Optional<User> user = JDBIConnector.me().withHandle(handle ->
-                handle.createQuery("select username, fullname, email, phone_number, sex, address from users where email = ?")
-                        .bind(0, userName).mapToBean(User.class).stream().findFirst());
-        return user.isEmpty() ? null : user.get();
+    public static void updateUser(){
+
     }
-    public static boolean updateUser(User user){
-        boolean result = false;
-        String updateQuery = "UPDATE users SET fullname = ?, phone_number = ?, sex = ?, address = ? WHERE username = ?";
-        try (Handle handle = JDBIConnector.me().open()) {
-            handle.createUpdate(updateQuery)
-                    .bind(0, user.getFullName())
-                    .bind(1, user.getPhoneNumber())
-                    .bind(2, user.getSex())
-                    .bind(3, user.getAddress())
-                    .execute();
-            result = true;
+    public static boolean loginUser(String username, String password) {
+        Connection connection = null;
+
+        try {
+            connection = JBDIConnector.getConnection();
+
+            String hashedPassword = MD5Hash.hashPassword(password);
+
+            PreparedStatement ps = connection.prepareStatement("SELECT * FROM users WHERE username=? AND password=?");
+            ps.setString(1, username);
+            ps.setString(2, hashedPassword);
+
+            ResultSet rs = ps.executeQuery();
+
+            return rs.next();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+
+        } finally {
+            JBDIConnector.closeConnection(connection);
         }
-        return result;
     }
+    public static String getPasswd(int id) {
+        Connection connection = null;
+
+        try {
+            connection = JDBIConnector.getConnection();
+
+            PreparedStatement ps = connection.prepareStatement("SELECT password FROM users WHERE id=?");
+            ps.setInt(1, id);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return rs.getString("password");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } finally {
+            JDBIConnector.closeConnection(connection);
+        }
+
+        return null;
+    }
+
+    public static String getEmail(String username) {
+        Connection connection = null;
+
+        try {
+            connection = JDBIConnector.getConnection();
+
+            PreparedStatement ps = connection.prepareStatement("SELECT email FROM users WHERE username=?");
+            ps.setString(1, username);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return rs.getString("email");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } finally {
+            JDBIConnector.closeConnection(connection);
+        }
+
+        return null;
+    }
+
+    public static boolean updateActiveAccount(String username) {
+        Connection connection = null;
+
+        try {
+            connection = JDBIConnector.getConnection();
+
+            String sql = "UPDATE users SET active = 1 WHERE username=?";
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+
+                ps.setString(1, username);
+
+                int rowsAffected = ps.executeUpdate();
+                if (rowsAffected > 0) {
+                    return true;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JDBIConnector.closeConnection(connection);
+        }
+
+        return false;
+    }
+
+    public static int getNotActiveAccount(String username) {
+        Connection connection = null;
+
+        try {
+            connection = JDBIConnector.getConnection();
+
+            PreparedStatement ps = connection.prepareStatement("SELECT active FROM users WHERE username=?");
+            ps.setString(1, username);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt("active");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } finally {
+            JDBIConnector.closeConnection(connection);
+        }
+
+        return 3;
+    }
+
+
+    public static boolean changePassword(String password ,int id) {
+        Connection connection = null;
+
+        try {
+            connection = JDBIConnector.getConnection();
+            String sql = "UPDATE users SET password=? WHERE id=?";
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setString(1, password);
+                ps.setInt(2, id);
+
+                int rowsAffected = ps.executeUpdate();
+                if (rowsAffected > 0) {
+                    return true;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JDBIConnector.closeConnection(connection);
+        }
+        return false;
+    }
+
 
 
 

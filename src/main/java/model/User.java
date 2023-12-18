@@ -67,6 +67,21 @@ public class User {
         this.roleId = roleId;
     }
 
+    public String getNameRole() {
+        if(roleId == 0){
+            return "Admin";
+        }
+        if(roleId == 1) {
+            return "Mod";
+        }
+        if(roleId == 2) {
+            return "User";
+        }
+        return null;
+
+    }
+
+
     public String getUserName() {
         return userName;
     }
@@ -154,6 +169,20 @@ public class User {
     public void setActive(int active) {
         this.active = active;
     }
+
+
+    public String getNameActive() {
+        if(active == 0){
+            return "Chưa kích hoạt";
+        }
+        if(active == 1) {
+            return "Đã kích hoạt";
+        }
+
+        return null;
+
+    }
+
 
     @Override
     public String toString() {

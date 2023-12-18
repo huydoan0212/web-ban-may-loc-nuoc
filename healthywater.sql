@@ -32,6 +32,7 @@ CREATE TABLE `products` (
                             `sale_product_id` int,
                             `title` varchar(255),
                             `price` int,
+                            `img` varchar(255),
                             `discount_price` int,
                             `description` varchar(255),
                             `available` int,
