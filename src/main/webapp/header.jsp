@@ -11,9 +11,9 @@
     <div id="header">
         <div class="container">
             <div id="header-top">
-                <div class="logo">
+                <a href="/ProjectLTW_war_exploded/trangchu" class="logo">
                     <img src="./img/logo-removebg-preview.png" alt="">
-                </div>
+                </a>
                 <a class="tinh js-tim-tinh">
                     Xem giá, tồn kho tại:
                     <span>Hồ Chí Minh</span></a>
@@ -22,10 +22,10 @@
                     <i class="fa-solid fa-magnifying-glass fa-xl"></i>
                 </div>
                 <a href="login.jsp" class="tai-khoan-don-hang chung"><span>Tài khoản và đơn hàng</span></a>
-                <div class="gio-hang ">
+                <a href="/ProjectLTW_war_exploded/cart" class="gio-hang ">
                     <i class="fa-solid fa-cart-shopping" style="color: #ffffff;"></i>
                     <span>Giỏ hàng</span>
-                </div>
+                </a>
                 <a href="sale.jsp" class="khuyen-mai chung">Khuyến mãi</a>
             </div>
             <div id="header-bottom">
