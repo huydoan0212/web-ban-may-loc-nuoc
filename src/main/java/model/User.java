@@ -64,13 +64,13 @@ public class User {
     }
 
     public String getNameRole() {
-        if(role == 0){
+        if(roleId == 0){
             return "Admin";
         }
-        if(role == 1) {
+        if(roleId == 1) {
             return "Mod";
         }
-        if(role == 2) {
+        if(roleId == 2) {
             return "User";
         }
         return null;
