@@ -21,6 +21,7 @@
 <% Locale locale = new Locale("vi", "VN");
     NumberFormat numberFormat = NumberFormat.getInstance(locale);
 %>
+<%--<% int products = cart.getData().size(); %>--%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -31,10 +32,20 @@
 <body>
 <div id="main">
     <%@include file="header.jsp" %>
-    <div id="content">
+    <%if(cart.getData().size() < 1) {%>
+    <div id="content-none">
+        <div class="container content-mini-trong">
+            <img src="img/giohang.jsp-removebg-preview.png" alt="">
+            <span>Không có sản phẩm nào trong giỏ hàng</span>
+            <a href="">Về trang chủ</a>
+        </div>
+    </div>
+    <%}%>
+    <%if(cart.getData().size() > 0) {%>
+    <div id="content" class="appear">
         <div class="section">
             <div class="nav-section">
-                <a href="trangchu.html" class="mua-them">Mua thêm sản phẩm khác</a>
+                <a href="/ProjectLTW_war_exploded/trangchu" class="mua-them">Mua thêm sản phẩm khác</a>
                 <span>Giỏ hàng của bạn</span>
             </div>
             <div class="gio-hang">
@@ -76,43 +87,10 @@
                                                 (
                                                 )%>
                                 </a>
-                                <span class="data-sp-price"><%=numberFormat.format(cart
-                                        .
-                                        getData
-                                                (
-                                                )
-                                                .
-                                        get
-                                                (
-                                                        key
-                                                )
-                                                .
-                                        getProduct
-                                                (
-                                                )
-                                                .
-                                        getDiscount_price
-                                                (
-                                                ))%>₫ <strike
-                                        class="line-gach"><%=numberFormat.format(cart
-                                        .
-                                        getData
-                                                (
-                                                )
-                                                .
-                                        get
-                                                (
-                                                        key
-                                                )
-                                                .
-                                        getProduct
-                                                (
-                                                )
-                                                .
-                                        getPrice
-                                                (
-                                                ))%>₫</strike></span>
+
                             </div>
+                            <span class="data-sp-price"><%=numberFormat.format(cart.getData().get(key).getProduct().getDiscount_price())%>₫
+                                    <strike class="line-gach"><%=numberFormat.format(cart.getData().get(key).getProduct().getPrice())%>₫</strike></span>
                             <ul class="data-sp-discount">
                                 <li>- Miễn phí công lắp đặt</li>
                                 <li>- Giảm thêm 10% khi mua cùng sản phẩm có giá cao hơn (trừ Xe đạp, sản phẩm Apple,
@@ -151,11 +129,7 @@
                     <%}%>
                 </ul>
                 <div class="total-san-pham">
-                    <span class="quanlity-san-pham"><span class="total-label">Tạm tính</span>(<%=cart
-                            .
-                            getTotal
-                                    (
-                                    )%> sản phẩm):</span>
+                    <span class="quanlity-san-pham"><span class="total-label">Tạm tính</span>(<span id="quantity-products"><%=cart.getTotal()%></span> sản phẩm):</span>
                     <span class="total-money"><%=numberFormat.format(total)%>₫</span>
                 </div>
                 <div class="voucher">
@@ -168,7 +142,7 @@
                 <div class="total-money-big">
                     <div class="label-total-big">
                         <span class="text-total-big">Tổng tiền:</span>
-                        <span class="money-big">3.690.000đ</span>
+                        <span class="money-big"><%=numberFormat.format(total)%>₫</span>
                     </div>
                     <div class="policy">
                         <input type="checkbox" id="checkbox-policy">
@@ -182,6 +156,7 @@
             </div>
         </div>
     </div>
+    <%}%>
     <%@include file="footer.jsp" %>
 </div>
 <!--Phần tỉnh thành-->
@@ -189,7 +164,7 @@
     <div class="modal-container js-modal-container">
         <div class="header-modal">
             <div class="title-modal">
-                <p>Quý khách vui lòng cho biết <span>Địa Chỉ Nhận Hàng </span>để biết chính xác thời gian dao hàng</p>
+                <p>Quý khách vui lòng cho biết <span>Địa Chỉ Nhận Hàng </span>để biết chính xác thời gian giao hàng</p>
                 <a class="js-close"><i class="fa-solid fa-x fa-2xs" style="color: #ffffff;"></i></i>Đóng</a>
             </div>
             <form action="">
@@ -273,18 +248,20 @@
     </div>
     <script>
         window.onload;
+
         const timTinh = document.querySelectorAll('.js-tim-tinh');
         const modal = document.querySelector('.js-modal-tinh-thanh');
         const close = document.querySelectorAll('.js-close');
         const modalContainer = document.querySelector('.js-modal-container');
-        const product = <%=cart.getData().size()%>;
         const content = document.getElementById('content');
+        const products = Number(document.getElementById('quantity-products').value);
 
-        if (product > 0) {
-            content.style.display = "block";
+        if(products > 0) {
+            content.addClass('appear');
         } else {
-            content.style.display = "none";
+            content.removeClass('appear');
         }
+
 
         function showTinhThanh() {
             modal.classList.add('open');

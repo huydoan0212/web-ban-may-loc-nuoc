@@ -2,9 +2,14 @@
 <%@ page import="java.util.List" %>
 <%@ page import="model.Product" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Locale" %>
+<%@ page import="java.text.NumberFormat" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% List<Product> products = (List<Product>) request.getAttribute("data");
     if (products == null) products = new ArrayList<>();
+%>
+<% Locale locale = new Locale("vi", "VN");
+    NumberFormat numberFormat = NumberFormat.getInstance(locale);
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,7 +65,7 @@
                                 <span>Trả góp 0%</span>
                             </div>
                             <div class="item-img">
-                                <img src=<%=p.getImg()%>
+                                <img src="<%=p.getImg()%>"
                                      alt="">
                             </div>
                             <p class="label-gia-re">
@@ -77,10 +82,10 @@
                                 Online giá rẻ quá
                             </p>
                             <div class="gia-sale">
-                                <p class="price-old">11.790.000 </p>
+                                <p class="price-old"><%=numberFormat.format(p.getPrice())%>₫</p>
                                 <span class="percent">-49%</span>
                             </div>
-                            <strong class="price-sale"><%=p.getDiscount_price()%></strong>
+                            <strong class="price-sale"><%=numberFormat.format(p.getDiscount_price())%>₫</strong>
                             <div class="item-rating">
                                 <p>
                                     <i class="fa-solid fa-star" style="color: #ea744d;"></i>

@@ -187,6 +187,7 @@ h4 {
     background-color: #f0f0f0;
     padding-top: 127px;
     padding-bottom: 25px;
+    display: none;
 }
 
 #content .gio-hang {
@@ -222,6 +223,7 @@ h4 {
     z-index: 1;
     width: 100%;
     height: 165px;
+    margin-top: 20px;
 }
 
 #content .nav-section span {
@@ -255,7 +257,7 @@ h4 {
 
 #content .data-sp {
     display: inline-block;
-    width: 380px;
+    width: 433px;
     margin-left: 20px;
     position: absolute;
     left: 75px;
@@ -276,6 +278,10 @@ h4 {
     float: right;
     font-size: 14px;
     color: #f30c28;
+    display: flex;
+    flex-direction: column;
+    direction: rtl;
+    margin-top: 5px;
 }
 
 #content .data-sp .data-sp-price strike {
@@ -296,8 +302,9 @@ h4 {
 }
 
 #content .data-sp-quantity-color {
-    margin-top: 110px;
+    margin-top: 105px;
     width: 437px;
+    float: right;
 }
 
 #content .data-sp-quantity-color .data-sp-color {
@@ -638,6 +645,7 @@ h4 {
     align-items: center;
     justify-content: center;
     display: none;
+    z-index: 9999;
 
 }
 
@@ -777,4 +785,40 @@ h4 {
 .section {
     width: 600px;
     margin: auto;
+}
+
+#content.appear {
+    display: block;
+}
+
+#content-none {
+    padding: 200px;
+    margin-top: 86px;
+}
+#content-none .content-mini-trong {
+    text-align: center;
+}
+#content-none .content-mini-trong > img {
+    display: block;
+    text-align: center;
+    margin: auto;
+}
+#content-none .content-mini-trong > span {
+    display: block;
+    text-align: center;
+    font-size: 14px;
+    color: #ef2200;
+    margin-top: 5px;
+}
+#content-none .content-mini-trong > a {
+    display: block;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 10px 15px;
+    border: 1px solid #288ad6;
+    color: #288ad6;
+    border-radius: 4px;
+    margin: auto;
+    margin-top: 25px;
+    width: 300px;
 }

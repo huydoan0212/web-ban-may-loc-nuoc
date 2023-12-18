@@ -11,7 +11,7 @@
     <div id="header">
         <div class="container">
             <div id="header-top">
-                <a href="trangchu.jsp" class="logo">
+                <a href="/ProjectLTW_war_exploded/trangchu" class="logo">
                     <img src="./img/logo-removebg-preview.png" alt="">
                 </a>
                 <a class="tinh js-tim-tinh">
@@ -22,7 +22,7 @@
                     <i class="fa-solid fa-magnifying-glass fa-xl"></i>
                 </div>
                 <a href="login.jsp" class="tai-khoan-don-hang chung"><span>Tài khoản và đơn hàng</span></a>
-                <a href="giohang.jsp" class="gio-hang ">
+                <a href="/ProjectLTW_war_exploded/cart" class="gio-hang ">
                     <i class="fa-solid fa-cart-shopping" style="color: #ffffff;"></i>
                     <span>Giỏ hàng</span>
                 </a>
