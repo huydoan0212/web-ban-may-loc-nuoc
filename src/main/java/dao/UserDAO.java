@@ -18,7 +18,7 @@ public class UserDAO {
     }
     public static boolean isUserExists(String userName){
         int count = JDBIConnector.me().withHandle(handle ->
-                handle.createQuery("SELECT COUNT(*) FROM users WHERE username = ?")
+                handle.createQuery("SELECT COUNT(username) FROM users WHERE username = ?")
                         .bind(0, userName)
                         .mapTo(Integer.class)
                         .one()
