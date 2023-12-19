@@ -11,19 +11,17 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "Trangchu", value = "/trangchu")
-public class ProductController extends HttpServlet {
+@WebServlet(name = "LocNuocRO", value = "/locnuocro")
+public class LocNuocROController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       doPost(req, resp);
+        doPost(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Product> products = ProductService.getInstance().getAll();
+        List<Product> products = ProductService.getInstance().getLocNuocRO("Lọc nước RO");
         req.setAttribute("data", products);
-        req.getRequestDispatcher("trangchu.jsp").forward(req, resp);
+        req.getRequestDispatcher("loc_nuoc_RO_page.jsp").forward(req, resp);
     }
-
-
 }
