@@ -14,7 +14,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Lọc nước RO</title>
+    <title>Lọc nước</title>
     <link rel="stylesheet" href="css/loc_nuoc_RO_page.css">
     <script src="https://kit.fontawesome.com/3e135170bd.js" crossorigin="anonymous"></script>
 </head>
@@ -215,7 +215,7 @@
                                     <i class="fa-solid fa-star" style="color: #ededed;"></i>
                                 </p>
                                 <p class="item-rating-total">40</p>
-                                <a href="add-card?id=<%=p.getId()%>&page=2" class="item-ss"><i class="fa-solid fa-code-compare"
+                                <a href="add-card?id=<%=p.getId()%>&page=4" class="item-ss"><i class="fa-solid fa-code-compare"
                                                               style="color: #333333;"></i>
                                     Thêm vào giỏ hàng </a>
                             </div>

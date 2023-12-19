@@ -18,8 +18,9 @@ public class ProductDAO {
         return product.isEmpty() ? null : product.get();
     }
 
-    public static List<Product> getLocNuocRO(String category) {
-        List<Product> products = JDBIConnector.me().withHandle((handle -> handle.createQuery("select products.id, products.title, products.price, products.discount_price, products.img from products inner join categorys on products.category_id = categorys.id where categorys.name = :category").bind("category", category).mapToBean(Product.class).stream().collect(Collectors.toList())));
+    public static List<Product> getLocNuocTheoDanhMuc(String category) {
+        List<Product> products = JDBIConnector.me().withHandle((handle -> handle.createQuery("select products.id, products.category_id, products.title, products.price, products.discount_price, products.img from products inner join categorys on products.category_id = categorys.id where categorys.name = :category").bind("category", category).mapToBean(Product.class).stream().collect(Collectors.toList())));
         return products;
     }
+
 }

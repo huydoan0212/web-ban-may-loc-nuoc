@@ -25,9 +25,29 @@ public class AddCartController extends HttpServlet {
         Cart cart = (Cart) session.getAttribute("cart");
         if (cart == null) cart = new Cart();
         int id = Integer.parseInt(req.getParameter("id"));
+        int page = Integer.parseInt(req.getParameter("page"));
         cart.add(id);
         session.setAttribute("cart", cart);
-        resp.sendRedirect("trangchu");
+        switch (page){
+            case 1 :
+                resp.sendRedirect("trangchu");
+                break;
+            case 2:
+                resp.sendRedirect("locnuocro");
+                break;
+            case 3:
+                resp.sendRedirect("locnuocnonglanh");
+                break;
+            case 4:
+                resp.sendRedirect("locnuocamtudeban");
+                break;
+            case 5:
+                resp.sendRedirect("locnuocnanoufmf");
+                break;
+            case 6:
+                resp.sendRedirect("locnuockhongdien");
+                break;
+        }
 
     }
 

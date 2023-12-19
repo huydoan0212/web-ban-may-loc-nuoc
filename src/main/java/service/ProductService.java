@@ -22,14 +22,14 @@ public class ProductService {
         return ProductDAO.getById(id);
     }
 
-    public List<Product> getLocNuocRO(String category) {
-        return ProductDAO.getLocNuocRO(category);
+    public List<Product> getLocNuocTheoDanhMuc(String category) {
+        return ProductDAO.getLocNuocTheoDanhMuc(category);
     }
 
     ;
 
     public static void main(String[] args) {
-        System.out.println(ProductService.getInstance().getLocNuocRO("Lọc nước RO"));
+        System.out.println(ProductService.getInstance().getLocNuocTheoDanhMuc("Lọc nước RO"));
     }
 
 }
