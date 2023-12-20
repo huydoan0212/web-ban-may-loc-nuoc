@@ -3,6 +3,7 @@ package dao;
 import db.JDBIConnector;
 import org.jdbi.v3.core.Handle;
 import service.MD5Hash;
+import java.sql.Connection;
 
 import java.time.LocalDateTime;
 
@@ -42,6 +43,7 @@ public class UserDAO {
                     .bind(8, 1)
                     .bind(9, active)
                     .execute();
+
         }
     }
     public static void updateUser(){
