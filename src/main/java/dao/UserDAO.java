@@ -8,16 +8,17 @@ import java.sql.Connection;
 import java.time.LocalDateTime;
 
 public class UserDAO {
-    public static boolean isEmailExists(String email){
-            int count = JDBIConnector.me().withHandle(handle ->
-                    handle.createQuery("SELECT COUNT(*) FROM users WHERE email = ?")
-                            .bind(0, email)
-                            .mapTo(Integer.class)
-                            .one()
-            );
-            return count > 0;
+    public static boolean isEmailExists(String email) {
+        int count = JDBIConnector.me().withHandle(handle ->
+                handle.createQuery("SELECT COUNT(*) FROM users WHERE email = ?")
+                        .bind(0, email)
+                        .mapTo(Integer.class)
+                        .one()
+        );
+        return count > 0;
     }
-    public static boolean isUserExists(String userName){
+
+    public static boolean isUserExists(String userName) {
         int count = JDBIConnector.me().withHandle(handle ->
                 handle.createQuery("SELECT COUNT(*) FROM users WHERE username = ?")
                         .bind(0, userName)
@@ -26,7 +27,8 @@ public class UserDAO {
         );
         return count > 0;
     }
-    public static void addUser(String fullName, String email, String userName,  String password, String rePassword, String phone, int active){
+
+    public static void addUser(String fullName, String email, String userName, String password, String rePassword, String phone, int active) {
         String insertQuery = "INSERT INTO users (username, fullname, email, phone_number, sex, address, password, created_at, status, active) " +
                 "VALUES (?,?,?,?,?,?,?,?,?,?)";
 
@@ -46,9 +48,11 @@ public class UserDAO {
 
         }
     }
-    public static void updateUser(){
+
+    public static void updateUser() {
 
     }
+
     public static boolean loginUser(String username, String password) {
         Connection connection = null;
 
@@ -73,6 +77,7 @@ public class UserDAO {
             JBDIConnector.closeConnection(connection);
         }
     }
+
     public static String getPasswd(int id) {
         Connection connection = null;
 
@@ -174,7 +179,7 @@ public class UserDAO {
     }
 
 
-    public static boolean changePassword(String password ,int id) {
+    public static boolean changePassword(String password, int id) {
         Connection connection = null;
 
         try {
@@ -196,8 +201,4 @@ public class UserDAO {
         }
         return false;
     }
-
-
-
-
 }
