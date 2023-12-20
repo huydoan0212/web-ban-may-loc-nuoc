@@ -95,7 +95,7 @@
                                     <i class="fa-solid fa-star" style="color: #ededed;"></i>
                                 </p>
                                 <p class="item-rating-total">9</p>
-                                <a href="add-card?id=<%=p.getId()%>" class="item-ss"><i class="fa-solid fa-code-compare"
+                                <a href="add-card?id=<%=p.getId()%>&page=1" class="item-ss"><i class="fa-solid fa-code-compare"
                                                               style="color: #333333;"></i>
                                    Thêm vào giỏ hàng </a>
                             </div>
