@@ -192,6 +192,7 @@ public class UserDAO {
                 if (rowsAffected > 0) {
                     return true;
                 }
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
