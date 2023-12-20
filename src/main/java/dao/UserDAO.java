@@ -195,9 +195,8 @@ public class UserDAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            JDBIConnector.closeConnection(connection);
-        }
+        } finally
+
         return false;
     }
 }
