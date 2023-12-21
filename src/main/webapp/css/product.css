@@ -771,10 +771,10 @@ body {
 .product-content-right-product-price p{
     font-weight: bold;
 }
-.product-content-right-product-button button{
-    width: 150px;
+.product-content-right-product-button a{
+    width: 320px;
     height: 40px;
-    display: block;
+    display: flex;
     border-radius: 5px;
     outline: none;
     border: none;
@@ -784,6 +784,9 @@ body {
     cursor: pointer;
     margin-left: 40px;
     font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
 }
 .product-content-right-product-button{
     display: flex;
@@ -1197,6 +1200,7 @@ body {
         text-align: left;
         width: max-content;
         border:1px solid #efe9e9;
+        width: 502px;
 
     }
 
@@ -1232,6 +1236,7 @@ body {
         border:1px solid #efe9e9;
         width: 503px;
         text-align: left;
+
     }
 
     .khuyenmai-them-title h1 {
@@ -1249,4 +1254,8 @@ body {
     .banner-khuyenmai img {
         width: 505px;
         padding-bottom: 10px;
+    }
+
+    img {
+        z-index: 10;
     }

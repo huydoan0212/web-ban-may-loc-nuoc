@@ -180,7 +180,7 @@
                 <div class="content-may-loc">
                     <% for(Product p : products) { %>
                     <div class="content-may-loc-mini">
-                        <a href="" class="deal-items">
+                        <a href="trangsanpham?id=<%=p.getId()%>" class="deal-items">
                             <div class="item-label">
                                 <span>Trả góp 0%</span>
                             </div>

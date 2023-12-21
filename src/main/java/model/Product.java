@@ -18,8 +18,6 @@ public class Product {
     private String img;
 
     public Product() {
-        this.title = "May loc nuoc test";
-        this.price = 1010101010;
     }
 
     public String getImg() {

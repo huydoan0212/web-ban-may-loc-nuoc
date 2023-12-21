@@ -30,9 +30,9 @@
             <div id="deal-soc-content">
                 <a href="" class="poster-link"><img src="img/desk-10--1--1200x120.png" alt=""></a>
                 <div class="deal-soc">
-                    <%for (Product p : products){%>
-                    <div class="deal-soc-items">
-                        <a href="" class="deal-items">
+                    <%for (Product p : products) {%>
+                    <div  class="deal-soc-items">
+                        <a href="trangsanpham?id=<%=p.getId()%>" class="deal-items">
                             <div class="item-label">
                                 <span>Trả góp 0%</span>
                             </div>
@@ -44,7 +44,8 @@
                                 <img src="img/50x50-100x101-3.webp" alt="">
                                 <span>GIÁ RẺ QUÁ</span>
                             </p>
-                            <h3><%=p.getTitle()%></h3>
+                            <h3><%=p.getTitle()%>
+                            </h3>
                             <div class="item-compare">
                                 <span>Tủ đứng</span>
                                 <span>Lắp đặt miễn phí</span>
@@ -67,181 +68,182 @@
                                     <i class="fa-solid fa-star" style="color: #ededed;"></i>
                                 </p>
                                 <p class="item-rating-total">9</p>
-                                <a href="add-card?id=<%=p.getId()%>&page=1" class="item-ss"><i class="fa-solid fa-code-compare"
-                                                              style="color: #333333;"></i>
-                                   Thêm vào giỏ hàng </a>
+                                <a href="add-card?id=<%=p.getId()%>&page=1" class="item-ss"><i
+                                        class="fa-solid fa-code-compare"
+                                        style="color: #333333;"></i>
+                                    Thêm vào giỏ hàng </a>
                             </div>
                         </a>
                     </div>
                     <%}%>
-<%--                    <div class="deal-soc-items">--%>
-<%--                        <a href="" class="deal-items">--%>
-<%--                            <div class="item-label">--%>
-<%--                                <span>Trả góp 0%</span>--%>
-<%--                            </div>--%>
-<%--                            <div class="item-img">--%>
-<%--                                <img src="img/may-loc-nuoc-ro-hoa-phat-hws1b-1022-10-loi-230623-025945-600x600.jpg"--%>
-<%--                                     alt="">--%>
-<%--                            </div>--%>
-<%--                            <p class="label-gia-re">--%>
-<%--                                <img src="img/50x50-100x101-3.webp" alt="">--%>
-<%--                                <span>GIÁ RẺ QUÁ</span>--%>
-<%--                            </p>--%>
-<%--                            <h3>Máy lọc nước RO Hòa Phát HWS1B 1022</h3>--%>
-<%--                            <div class="item-compare">--%>
-<%--                                <span>Tủ đứng</span>--%>
-<%--                                <span>Lắp đặt miễn phí</span>--%>
-<%--                            </div>--%>
-<%--                            <p class="item-online-gia-re">--%>
-<%--                                <i class="fa-solid fa-coins" style="color: #db2663;"></i>--%>
-<%--                                Online giá rẻ quá--%>
-<%--                            </p>--%>
-<%--                            <div class="gia-sale">--%>
-<%--                                <p class="price-old">6.950.000 </p>--%>
-<%--                                <span class="percent">-48%</span>--%>
-<%--                            </div>--%>
-<%--                            <strong class="price-sale">3.590.000</strong>--%>
-<%--                            <div class="item-rating">--%>
-<%--                                <p>--%>
-<%--                                    <i class="fa-solid fa-star" style="color: #ea744d;"></i>--%>
-<%--                                    <i class="fa-solid fa-star" style="color: #ea744d;"></i>--%>
-<%--                                    <i class="fa-solid fa-star" style="color: #ea744d;"></i>--%>
-<%--                                    <i class="fa-solid fa-star" style="color: #ea744d;"></i>--%>
-<%--                                    <i class="fa-solid fa-star" style="color: #ededed;"></i>--%>
-<%--                                </p>--%>
-<%--                                <p class="item-rating-total">64</p>--%>
-<%--                                <a href="" class="item-ss"><i class="fa-solid fa-code-compare"--%>
-<%--                                                              style="color: #333333;"></i>--%>
-<%--                                    So sánh</a>--%>
-<%--                            </div>--%>
-<%--                        </a>--%>
-<%--                    </div>--%>
-<%--                    <div class="deal-soc-items">--%>
-<%--                        <a href="" class="deal-items">--%>
-<%--                            <div class="item-label">--%>
-<%--                                <span>Trả góp 0%</span>--%>
-<%--                            </div>--%>
-<%--                            <div class="item-img">--%>
-<%--                                <img src="img/may-loc-nuoc-ro-nong-nguoi-lanh-hoa-phat-hwbs3a-1021-10-loi-210623-023624-600x600.jpg"--%>
-<%--                                     alt="">--%>
-<%--                            </div>--%>
-<%--                            <p class="label-gia-re">--%>
-<%--                                <img src="img/50x50-100x101-3.webp" alt="">--%>
-<%--                                <span>GIÁ RẺ QUÁ</span>--%>
-<%--                            </p>--%>
-<%--                            <h3>Máy lọc nước RO nóng nguội lạnh Karofi KAD-X39</h3>--%>
-<%--                            <div class="item-compare">--%>
-<%--                                <span>Tủ đứng</span>--%>
-<%--                                <span>Lắp đặt miễn phí</span>--%>
-<%--                            </div>--%>
-<%--                            <p class="item-online-gia-re">--%>
-<%--                                <i class="fa-solid fa-coins" style="color: #db2663;"></i>--%>
-<%--                                Online giá rẻ quá--%>
-<%--                            </p>--%>
-<%--                            <div class="gia-sale">--%>
-<%--                                <p class="price-old">10.490.000 </p>--%>
-<%--                                <span class="percent">-37%</span>--%>
-<%--                            </div>--%>
-<%--                            <strong class="price-sale">6.590.000₫</strong>--%>
-<%--                            <div class="item-rating">--%>
-<%--                                <p>--%>
-<%--                                    <i class="fa-solid fa-star" style="color: #ea744d;"></i>--%>
-<%--                                    <i class="fa-solid fa-star" style="color: #ea744d;"></i>--%>
-<%--                                    <i class="fa-solid fa-star" style="color: #ea744d;"></i>--%>
-<%--                                    <i class="fa-solid fa-star" style="color: #ea744d;"></i>--%>
-<%--                                    <i class="fa-solid fa-star" style="color: #ededed;"></i>--%>
-<%--                                </p>--%>
-<%--                                <p class="item-rating-total">1618</p>--%>
-<%--                                <a href="" class="item-ss"><i class="fa-solid fa-code-compare"--%>
-<%--                                                              style="color: #333333;"></i>--%>
-<%--                                    So sánh</a>--%>
-<%--                            </div>--%>
-<%--                        </a>--%>
-<%--                    </div>--%>
-<%--                    <div class="deal-soc-items">--%>
-<%--                        <a href="" class="deal-items">--%>
-<%--                            <div class="item-label">--%>
-<%--                                <span>Trả góp 0%</span>--%>
-<%--                            </div>--%>
-<%--                            <div class="item-img">--%>
-<%--                                <img src="img/may-loc-nuoc-ro-sunhouse-sha8858k-8-loi-150223-101507-600x600.jpg"--%>
-<%--                                     alt="">--%>
-<%--                            </div>--%>
-<%--                            <p class="label-gia-re">--%>
-<%--                                <img src="img/50x50-100x101-3.webp" alt="">--%>
-<%--                                <span>GIÁ RẺ QUÁ</span>--%>
-<%--                            </p>--%>
-<%--                            <h3>Máy lọc nước RO Sunhouse SHA8858K</h3>--%>
-<%--                            <div class="item-compare">--%>
-<%--                                <span>Tủ đứng</span>--%>
-<%--                                <span>Lắp đặt miễn phí</span>--%>
-<%--                            </div>--%>
-<%--                            <p class="item-online-gia-re">--%>
-<%--                                <i class="fa-solid fa-coins" style="color: #db2663;"></i>--%>
-<%--                                Online giá rẻ quá--%>
-<%--                            </p>--%>
-<%--                            <div class="gia-sale">--%>
-<%--                                <p class="price-old">6.920.000 </p>--%>
-<%--                                <span class="percent">-48%</span>--%>
-<%--                            </div>--%>
-<%--                            <strong class="price-sale">3.990.000₫</strong>--%>
-<%--                            <div class="item-rating">--%>
-<%--                                <p>--%>
-<%--                                    <i class="fa-solid fa-star" style="color: #ea744d;"></i>--%>
-<%--                                    <i class="fa-solid fa-star" style="color: #ea744d;"></i>--%>
-<%--                                    <i class="fa-solid fa-star" style="color: #ea744d;"></i>--%>
-<%--                                    <i class="fa-solid fa-star" style="color: #ea744d;"></i>--%>
-<%--                                    <i class="fa-solid fa-star" style="color: #ededed;"></i>--%>
-<%--                                </p>--%>
-<%--                                <p class="item-rating-total">250</p>--%>
-<%--                                <a href="" class="item-ss"><i class="fa-solid fa-code-compare"--%>
-<%--                                                              style="color: #333333;"></i>--%>
-<%--                                    So sánh</a>--%>
-<%--                            </div>--%>
-<%--                        </a>--%>
-<%--                    </div>--%>
-<%--                    <div class="deal-soc-items">--%>
-<%--                        <a href="" class="deal-items">--%>
-<%--                            <div class="item-label">--%>
-<%--                                <span>Trả góp 0%</span>--%>
-<%--                            </div>--%>
-<%--                            <div class="item-img">--%>
-<%--                                <img src="img/may-loc-nuoc-ro-kangaroo-kg10a4-vtu-10-loi-0-600x600-1.jpg"--%>
-<%--                                     alt="">--%>
-<%--                            </div>--%>
-<%--                            <p class="label-gia-re">--%>
-<%--                                <img src="img/50x50-100x101-3.webp" alt="">--%>
-<%--                                <span>GIÁ RẺ QUÁ</span>--%>
-<%--                            </p>--%>
-<%--                            <h3>Máy lọc nước RO nóng nguội lạnh Karofi KAD-X60</h3>--%>
-<%--                            <div class="item-compare">--%>
-<%--                                <span>Tủ đứng</span>--%>
-<%--                                <span>Lắp đặt miễn phí</span>--%>
-<%--                            </div>--%>
-<%--                            <p class="item-online-gia-re">--%>
-<%--                                <i class="fa-solid fa-coins" style="color: #db2663;"></i>--%>
-<%--                                Online giá rẻ quá--%>
-<%--                            </p>--%>
-<%--                            <div class="gia-sale">--%>
-<%--                                <p class="price-old">12.270.000 </p>--%>
-<%--                                <span class="percent">-34%</span>--%>
-<%--                            </div>--%>
-<%--                            <strong class="price-sale">7.990.000</strong>--%>
-<%--                            <div class="item-rating">--%>
-<%--                                <p>--%>
-<%--                                    <i class="fa-solid fa-star" style="color: #ea744d;"></i>--%>
-<%--                                    <i class="fa-solid fa-star" style="color: #ea744d;"></i>--%>
-<%--                                    <i class="fa-solid fa-star" style="color: #ea744d;"></i>--%>
-<%--                                    <i class="fa-solid fa-star" style="color: #ea744d;"></i>--%>
-<%--                                    <i class="fa-solid fa-star" style="color: #ededed;"></i>--%>
-<%--                                </p>--%>
-<%--                                <p class="item-rating-total">293</p>--%>
-<%--                                <a href="" class="item-ss"><i class="fa-solid fa-code-compare"--%>
-<%--                                                              style="color: #333333;"></i>--%>
-<%--                                    So sánh</a>--%>
-<%--                            </div>--%>
-<%--                        </a>--%>
-<%--                    </div>--%>
+                    <%--                    <div class="deal-soc-items">--%>
+                    <%--                        <a href="" class="deal-items">--%>
+                    <%--                            <div class="item-label">--%>
+                    <%--                                <span>Trả góp 0%</span>--%>
+                    <%--                            </div>--%>
+                    <%--                            <div class="item-img">--%>
+                    <%--                                <img src="img/may-loc-nuoc-ro-hoa-phat-hws1b-1022-10-loi-230623-025945-600x600.jpg"--%>
+                    <%--                                     alt="">--%>
+                    <%--                            </div>--%>
+                    <%--                            <p class="label-gia-re">--%>
+                    <%--                                <img src="img/50x50-100x101-3.webp" alt="">--%>
+                    <%--                                <span>GIÁ RẺ QUÁ</span>--%>
+                    <%--                            </p>--%>
+                    <%--                            <h3>Máy lọc nước RO Hòa Phát HWS1B 1022</h3>--%>
+                    <%--                            <div class="item-compare">--%>
+                    <%--                                <span>Tủ đứng</span>--%>
+                    <%--                                <span>Lắp đặt miễn phí</span>--%>
+                    <%--                            </div>--%>
+                    <%--                            <p class="item-online-gia-re">--%>
+                    <%--                                <i class="fa-solid fa-coins" style="color: #db2663;"></i>--%>
+                    <%--                                Online giá rẻ quá--%>
+                    <%--                            </p>--%>
+                    <%--                            <div class="gia-sale">--%>
+                    <%--                                <p class="price-old">6.950.000 </p>--%>
+                    <%--                                <span class="percent">-48%</span>--%>
+                    <%--                            </div>--%>
+                    <%--                            <strong class="price-sale">3.590.000</strong>--%>
+                    <%--                            <div class="item-rating">--%>
+                    <%--                                <p>--%>
+                    <%--                                    <i class="fa-solid fa-star" style="color: #ea744d;"></i>--%>
+                    <%--                                    <i class="fa-solid fa-star" style="color: #ea744d;"></i>--%>
+                    <%--                                    <i class="fa-solid fa-star" style="color: #ea744d;"></i>--%>
+                    <%--                                    <i class="fa-solid fa-star" style="color: #ea744d;"></i>--%>
+                    <%--                                    <i class="fa-solid fa-star" style="color: #ededed;"></i>--%>
+                    <%--                                </p>--%>
+                    <%--                                <p class="item-rating-total">64</p>--%>
+                    <%--                                <a href="" class="item-ss"><i class="fa-solid fa-code-compare"--%>
+                    <%--                                                              style="color: #333333;"></i>--%>
+                    <%--                                    So sánh</a>--%>
+                    <%--                            </div>--%>
+                    <%--                        </a>--%>
+                    <%--                    </div>--%>
+                    <%--                    <div class="deal-soc-items">--%>
+                    <%--                        <a href="" class="deal-items">--%>
+                    <%--                            <div class="item-label">--%>
+                    <%--                                <span>Trả góp 0%</span>--%>
+                    <%--                            </div>--%>
+                    <%--                            <div class="item-img">--%>
+                    <%--                                <img src="img/may-loc-nuoc-ro-nong-nguoi-lanh-hoa-phat-hwbs3a-1021-10-loi-210623-023624-600x600.jpg"--%>
+                    <%--                                     alt="">--%>
+                    <%--                            </div>--%>
+                    <%--                            <p class="label-gia-re">--%>
+                    <%--                                <img src="img/50x50-100x101-3.webp" alt="">--%>
+                    <%--                                <span>GIÁ RẺ QUÁ</span>--%>
+                    <%--                            </p>--%>
+                    <%--                            <h3>Máy lọc nước RO nóng nguội lạnh Karofi KAD-X39</h3>--%>
+                    <%--                            <div class="item-compare">--%>
+                    <%--                                <span>Tủ đứng</span>--%>
+                    <%--                                <span>Lắp đặt miễn phí</span>--%>
+                    <%--                            </div>--%>
+                    <%--                            <p class="item-online-gia-re">--%>
+                    <%--                                <i class="fa-solid fa-coins" style="color: #db2663;"></i>--%>
+                    <%--                                Online giá rẻ quá--%>
+                    <%--                            </p>--%>
+                    <%--                            <div class="gia-sale">--%>
+                    <%--                                <p class="price-old">10.490.000 </p>--%>
+                    <%--                                <span class="percent">-37%</span>--%>
+                    <%--                            </div>--%>
+                    <%--                            <strong class="price-sale">6.590.000₫</strong>--%>
+                    <%--                            <div class="item-rating">--%>
+                    <%--                                <p>--%>
+                    <%--                                    <i class="fa-solid fa-star" style="color: #ea744d;"></i>--%>
+                    <%--                                    <i class="fa-solid fa-star" style="color: #ea744d;"></i>--%>
+                    <%--                                    <i class="fa-solid fa-star" style="color: #ea744d;"></i>--%>
+                    <%--                                    <i class="fa-solid fa-star" style="color: #ea744d;"></i>--%>
+                    <%--                                    <i class="fa-solid fa-star" style="color: #ededed;"></i>--%>
+                    <%--                                </p>--%>
+                    <%--                                <p class="item-rating-total">1618</p>--%>
+                    <%--                                <a href="" class="item-ss"><i class="fa-solid fa-code-compare"--%>
+                    <%--                                                              style="color: #333333;"></i>--%>
+                    <%--                                    So sánh</a>--%>
+                    <%--                            </div>--%>
+                    <%--                        </a>--%>
+                    <%--                    </div>--%>
+                    <%--                    <div class="deal-soc-items">--%>
+                    <%--                        <a href="" class="deal-items">--%>
+                    <%--                            <div class="item-label">--%>
+                    <%--                                <span>Trả góp 0%</span>--%>
+                    <%--                            </div>--%>
+                    <%--                            <div class="item-img">--%>
+                    <%--                                <img src="img/may-loc-nuoc-ro-sunhouse-sha8858k-8-loi-150223-101507-600x600.jpg"--%>
+                    <%--                                     alt="">--%>
+                    <%--                            </div>--%>
+                    <%--                            <p class="label-gia-re">--%>
+                    <%--                                <img src="img/50x50-100x101-3.webp" alt="">--%>
+                    <%--                                <span>GIÁ RẺ QUÁ</span>--%>
+                    <%--                            </p>--%>
+                    <%--                            <h3>Máy lọc nước RO Sunhouse SHA8858K</h3>--%>
+                    <%--                            <div class="item-compare">--%>
+                    <%--                                <span>Tủ đứng</span>--%>
+                    <%--                                <span>Lắp đặt miễn phí</span>--%>
+                    <%--                            </div>--%>
+                    <%--                            <p class="item-online-gia-re">--%>
+                    <%--                                <i class="fa-solid fa-coins" style="color: #db2663;"></i>--%>
+                    <%--                                Online giá rẻ quá--%>
+                    <%--                            </p>--%>
+                    <%--                            <div class="gia-sale">--%>
+                    <%--                                <p class="price-old">6.920.000 </p>--%>
+                    <%--                                <span class="percent">-48%</span>--%>
+                    <%--                            </div>--%>
+                    <%--                            <strong class="price-sale">3.990.000₫</strong>--%>
+                    <%--                            <div class="item-rating">--%>
+                    <%--                                <p>--%>
+                    <%--                                    <i class="fa-solid fa-star" style="color: #ea744d;"></i>--%>
+                    <%--                                    <i class="fa-solid fa-star" style="color: #ea744d;"></i>--%>
+                    <%--                                    <i class="fa-solid fa-star" style="color: #ea744d;"></i>--%>
+                    <%--                                    <i class="fa-solid fa-star" style="color: #ea744d;"></i>--%>
+                    <%--                                    <i class="fa-solid fa-star" style="color: #ededed;"></i>--%>
+                    <%--                                </p>--%>
+                    <%--                                <p class="item-rating-total">250</p>--%>
+                    <%--                                <a href="" class="item-ss"><i class="fa-solid fa-code-compare"--%>
+                    <%--                                                              style="color: #333333;"></i>--%>
+                    <%--                                    So sánh</a>--%>
+                    <%--                            </div>--%>
+                    <%--                        </a>--%>
+                    <%--                    </div>--%>
+                    <%--                    <div class="deal-soc-items">--%>
+                    <%--                        <a href="" class="deal-items">--%>
+                    <%--                            <div class="item-label">--%>
+                    <%--                                <span>Trả góp 0%</span>--%>
+                    <%--                            </div>--%>
+                    <%--                            <div class="item-img">--%>
+                    <%--                                <img src="img/may-loc-nuoc-ro-kangaroo-kg10a4-vtu-10-loi-0-600x600-1.jpg"--%>
+                    <%--                                     alt="">--%>
+                    <%--                            </div>--%>
+                    <%--                            <p class="label-gia-re">--%>
+                    <%--                                <img src="img/50x50-100x101-3.webp" alt="">--%>
+                    <%--                                <span>GIÁ RẺ QUÁ</span>--%>
+                    <%--                            </p>--%>
+                    <%--                            <h3>Máy lọc nước RO nóng nguội lạnh Karofi KAD-X60</h3>--%>
+                    <%--                            <div class="item-compare">--%>
+                    <%--                                <span>Tủ đứng</span>--%>
+                    <%--                                <span>Lắp đặt miễn phí</span>--%>
+                    <%--                            </div>--%>
+                    <%--                            <p class="item-online-gia-re">--%>
+                    <%--                                <i class="fa-solid fa-coins" style="color: #db2663;"></i>--%>
+                    <%--                                Online giá rẻ quá--%>
+                    <%--                            </p>--%>
+                    <%--                            <div class="gia-sale">--%>
+                    <%--                                <p class="price-old">12.270.000 </p>--%>
+                    <%--                                <span class="percent">-34%</span>--%>
+                    <%--                            </div>--%>
+                    <%--                            <strong class="price-sale">7.990.000</strong>--%>
+                    <%--                            <div class="item-rating">--%>
+                    <%--                                <p>--%>
+                    <%--                                    <i class="fa-solid fa-star" style="color: #ea744d;"></i>--%>
+                    <%--                                    <i class="fa-solid fa-star" style="color: #ea744d;"></i>--%>
+                    <%--                                    <i class="fa-solid fa-star" style="color: #ea744d;"></i>--%>
+                    <%--                                    <i class="fa-solid fa-star" style="color: #ea744d;"></i>--%>
+                    <%--                                    <i class="fa-solid fa-star" style="color: #ededed;"></i>--%>
+                    <%--                                </p>--%>
+                    <%--                                <p class="item-rating-total">293</p>--%>
+                    <%--                                <a href="" class="item-ss"><i class="fa-solid fa-code-compare"--%>
+                    <%--                                                              style="color: #333333;"></i>--%>
+                    <%--                                    So sánh</a>--%>
+                    <%--                            </div>--%>
+                    <%--                        </a>--%>
+                    <%--                    </div>--%>
                 </div>
             </div>
             <div id="poster-mini">

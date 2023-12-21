@@ -129,7 +129,7 @@
                     <%}%>
                 </ul>
                 <div class="total-san-pham">
-                    <span class="quanlity-san-pham"><span class="total-label">Tạm tính</span>(<span id="quantity-products"><%=cart.getTotal()%></span> sản phẩm):</span>
+                    <span class="quanlity-san-pham"><span class="total-label">Tạm tính </span>(<span id="quantity-products"><%=cart.getTotal()%></span> sản phẩm):</span>
                     <span class="total-money"><%=numberFormat.format(total)%>₫</span>
                 </div>
                 <div class="voucher">
