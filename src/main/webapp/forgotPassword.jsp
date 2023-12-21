@@ -33,7 +33,7 @@
       <form action="">
         <h1>Quên mật khẩu</h1>
         <div class="input-box">
-          <input type="email" placeholder="Nhập tên tài khoản để lấy lại mật khẩu">
+          <input type="text" placeholder="Nhập tên tài khoản để lấy lại mật khẩu" name="username">
         </div>
         <div class="signin-btn">
           <button type="submit" class="btn">Lấy lại mật khẩu</button>
