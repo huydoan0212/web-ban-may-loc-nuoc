@@ -22,7 +22,7 @@ public class ActiveAccount extends HttpServlet {
         if(otp.equals(enterOTP)) {
             UserDAO.updateActiveAccount(username);
             request.getSession().setAttribute("message", "Kích hoạt tài khoa thành công!");
-            response.sendRedirect("binh_login.jsp");
+            response.sendRedirect("login1.jsp");
         } else {
             request.getSession().setAttribute("message", "Sai mã OTP!");
             response.sendRedirect("enterOTP.jsp");

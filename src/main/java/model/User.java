@@ -63,19 +63,19 @@ public class User {
         this.roleId = roleId;
     }
 
-    public String getNameRole() {
-        if(roleId == 0){
-            return "Admin";
-        }
-        if(roleId == 1) {
-            return "Mod";
-        }
-        if(roleId == 2) {
-            return "User";
-        }
-        return null;
-
-    }
+//    public String getNameRole() {
+//        if(roleId == 0){
+//            return "Admin";
+//        }
+//        if(roleId == 1) {
+//            return "Mod";
+//        }
+//        if(roleId == 2) {
+//            return "User";
+//        }
+//        return null;
+//
+//    }
 
 
     public String getUserName() {
@@ -198,4 +198,17 @@ public class User {
                 ", active='" + active + '\'' +
                 '}';
     }
-}
+
+
+    public String getRole(String username) {
+
+      if ("admin".equals(username)) {
+        return "0"; // Vai trò admin
+      } else if ("user".equals(username)) {
+        return "2"; // Vai trò user
+      }
+        return username;
+    }}
+
+
+

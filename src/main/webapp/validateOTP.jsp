@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>Quên mật khẩu</title>
@@ -114,7 +115,7 @@
 <div class="login-page">
     <div class="form">
 
-        <form action="ValidateOTPForgotPassword" class="login-form" method="post">
+        <form action="ValidateOTP" class="login-form" method="post">
             <%
                 String otp = (String) request.getSession().getAttribute("otp");
                 String username = (String) request.getSession().getAttribute("username");
