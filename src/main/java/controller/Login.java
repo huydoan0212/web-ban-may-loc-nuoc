@@ -1,9 +1,10 @@
 package controller;
 
+
 import dao.UserDAO;
 import model.User;
+
 import java.io.IOException;
-import java.lang.String;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,44 +14,55 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet("/LoginServlet")
 public class Login extends HttpServlet {
-  private static final long serialVersionUID = 1L;
-
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-    response.setContentType("text/html");
-    response.setCharacterEncoding("UTF-8");
+    response.setContentType("text/html;charset=UTF-8");
+    request.setCharacterEncoding("UTF-8");
+
     String username = request.getParameter("username");
     String password = request.getParameter("password");
 
-    boolean loginSuccess = UserDAO.loginUser(username, password);
+    String hashedPassword = hashPassword(password);
+
+    boolean loginSuccess = UserDAO.loginUser(username, hashedPassword);
 
     if (loginSuccess) {
-      if (UserDAO.getNotActiveAccount(username) == 0) {
-        // đăng nhập thất bại
-        request.getSession().setAttribute("message2", "Tài khoản chưa được kích hoạt");
-        response.sendRedirect("login.jsp"); // chuyển hướng sang trang login.jsp
+      HttpSession session = request.getSession();
+      User user = UserDAO.getUserInfo(username);
+
+      if (user != null && user.getRoleId() == 2) {
+        //user
+        handleUserLoginSuccess(response, session, user, "trangchu.jsp");
+      } else if (user != null && user.getRoleId() == 0) {
+        //admin
+        handleUserLoginSuccess(response, session, user, "pageAdmin_Index.jsp");
       } else {
-        // đăng nhập thành công
-        HttpSession session = request.getSession();
-        User user = UserDAO.getUserInfo(username);
-        session.setAttribute("user", user);
-        String name = UserDAO.getUserName(username);
-        session.setAttribute("name", name);
-
-        // Kiểm tra quyền của người dùng
-        if (user != null) {
-          int roleId = user.getRoleId();
-
-          if (user.getRoleId() == 2) {
-            response.sendRedirect("trangchu.jsp");
-          } else if (user.getRoleId() == 0) {
-            response.sendRedirect("pageAdmin_Index.html");
-          } else {
-            response.sendRedirect("trangchu.jsp");
-          }
-        } else {
-          response.sendRedirect("login.jsp");
-        }
+        //  không có quyền hoặc thông tin không hợp lệ
+        response.sendRedirect("login.jsp");
       }
+    } else {
+      // Đăng nhập thất bại
+      handleLoginFailure(response, request, "Tài khoản chưa được kích hoạt");
+
     }
-  }}
+  }
+
+  private void handleUserLoginSuccess(HttpServletResponse response, HttpSession session, User user, String redirectPage)
+    throws IOException {
+    session.setAttribute("user", user);
+    String name = UserDAO.getUserName(user.getUserName());
+    session.setAttribute("name", name);
+    response.sendRedirect(redirectPage);
+  }
+
+  private void handleLoginFailure(HttpServletResponse response, HttpServletRequest request, String errorMessage) throws IOException {
+    HttpSession session = request.getSession();
+    session.setAttribute("message2", errorMessage);
+    response.sendRedirect("login.jsp");
+  }
+
+
+  private String hashPassword(String password) {
+    return password;
+  }
+}
