@@ -30,7 +30,7 @@
             </div>
             <div id="header-bottom">
                 <a href="" class="headbot-items">Deal Sốc</a>
-                <a href="" class="headbot-items">Lọc nước RO</a>
+                <a href="/ProjectLTW_war_exploded/locnuocro" class="headbot-items">Lọc nước RO</a>
                 <a href="" class="headbot-items">Có nóng lạnh</a>
                 <a href="" class="headbot-items">Âm tủ, để bàn</a>
                 <a href="" class="headbot-items">Lọc nước Nano, UF, MF</a>

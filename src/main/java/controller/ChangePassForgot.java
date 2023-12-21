@@ -21,13 +21,14 @@ public class ChangePassForgot extends HttpServlet {
         String re_newPassword = request.getParameter("re_newPassword");
         String username = request.getParameter("username");
         if (newpassword.equals(re_newPassword)){
-            UserDAO.changePassword(MD5Hash.hashPassword(newpassword),username);
+            UserDAO.changePassword(MD5Hash.hashPassword(newpassword), Integer.parseInt(username));
 
             request.getSession().setAttribute("message", "Đổi mật khẩu thành công!");
-            response.sendRedirect("binh_login.jsp");
+            response.sendRedirect("login1.jsp");
         } else {
             request.getSession().setAttribute("message", "Mật khẩu nhập lại không trùng khớp");
             response.sendRedirect("newPassword.jsp");
+
         }
     }
 }
