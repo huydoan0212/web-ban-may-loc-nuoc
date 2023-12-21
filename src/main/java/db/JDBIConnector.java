@@ -31,36 +31,4 @@ public class JDBIConnector {
     return jdbi;
   }
 
-  public static Connection getConnection() throws SQLException {
-    Connection connection = null;
-
-    try {
-      Class.forName("com.mysql.cj.jdbc.Driver");
-
-      String jdbcUrl = "jdbc:mysql://localhost:3306/web_ban_hang";
-      String user = "root";
-      String password = "none";
-
-      // Thiết lập kết nối đến cơ sở dữ liệu
-      connection = DriverManager.getConnection(jdbcUrl, user, password);
-    } catch (ClassNotFoundException | SQLException e) {
-      // Xử lý các ngoại lệ
-      e.printStackTrace();
-      throw new SQLException("Không thể kết nối đến cơ sở dữ liệu.");
-    }
-
-    return connection;
-  }
-
-  public static void closeConnection(Connection connection) {
-    try {
-      if (connection != null && !connection.isClosed()) {
-        connection.close();
-      }
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
-  }
-  }
-
-
+}
