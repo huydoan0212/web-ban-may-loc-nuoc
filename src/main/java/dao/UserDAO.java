@@ -174,7 +174,6 @@ public class UserDAO {
         } finally {
             JDBIConnector.closeConnection(connection);
         }
-
         return 3;
     }
 
