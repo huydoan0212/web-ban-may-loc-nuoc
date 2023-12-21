@@ -30,40 +30,37 @@ public class JDBIConnector {
     if (jdbi == null) connect();
     return jdbi;
   }
-  public static class DatabaseUtil {
 
-    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/web_ban_hang";
-    private static final String USER = "root";
-    private static final String PASSWORD = "";
+  public static Connection getConnection() throws SQLException {
+    Connection connection = null;
 
-    public static Connection getConnection() throws SQLException {
-      Connection connection = null;
+    try {
+      Class.forName("com.mysql.cj.jdbc.Driver");
 
-      try {
-        Class.forName("com.mysql.cj.jdbc.Driver");
+      String jdbcUrl = "jdbc:mysql://localhost:3306/web_ban_hang";
+      String user = "root";
+      String password = "none";
 
-        connection = DriverManager.getConnection(JDBC_URL, USER, PASSWORD);
-      } catch (ClassNotFoundException | SQLException e) {
-        e.printStackTrace();
-        throw new SQLException("Không thể kết nối đến cơ sở dữ liệu.");
-      }
-
-      return connection;
+      // Thiết lập kết nối đến cơ sở dữ liệu
+      connection = DriverManager.getConnection(jdbcUrl, user, password);
+    } catch (ClassNotFoundException | SQLException e) {
+      // Xử lý các ngoại lệ
+      e.printStackTrace();
+      throw new SQLException("Không thể kết nối đến cơ sở dữ liệu.");
     }
 
-    public static void main(String[] args) {
-      try {
-        Connection connection = getConnection();
-        if (connection != null) {
-          System.out.println("Kết nối thành công!");
-          // Đóng kết nối sau khi sử dụng
-          connection.close();
-        } else {
-          System.out.println("Kết nối thất bại.");
-        }
-      } catch (SQLException e) {
-        e.printStackTrace();
+    return connection;
+  }
+
+  public static void closeConnection(Connection connection) {
+    try {
+      if (connection != null && !connection.isClosed()) {
+        connection.close();
       }
+    } catch (SQLException e) {
+      e.printStackTrace();
     }
   }
-}
+  }
+
+
