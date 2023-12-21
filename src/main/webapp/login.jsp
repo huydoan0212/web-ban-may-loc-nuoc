@@ -46,17 +46,17 @@
                             <a href="forget.jsp" class="forget">Quên mật khẩu</a>
 
                         </div>
-                        <div class="label-or">
-                            <p for="">Hoặc</p>
-                        </div>
-                        <div class="btn-ggfb">
-                           <button class="btnfb">
-                               <i class="fa-brands fa-facebook"></i> Facebook
-                           </button>
-                            <button class="btngg">
-                                <i class="fa-brands fa-google"></i> Google
-                            </button>
-                        </div>
+<%--                        <div class="label-or">--%>
+<%--                            <p for="">Hoặc</p>--%>
+<%--                        </div>--%>
+<%--                        <div class="btn-ggfb">--%>
+<%--                           <button class="btnfb">--%>
+<%--                               <i class="fa-brands fa-facebook"></i> Facebook--%>
+<%--                           </button>--%>
+<%--                            <button class="btngg">--%>
+<%--                                <i class="fa-brands fa-google"></i> Google--%>
+<%--                            </button>--%>
+<%--                        </div>--%>
                         <div class="des">
                             <p>Bạn mới biết đến Healthywater? </p>
                             <a href="register.jsp">Đăng kí</a>
