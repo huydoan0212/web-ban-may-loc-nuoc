@@ -33,7 +33,7 @@
       <form action="">
         <h1>Quên mật khẩu</h1>
         <div class="input-box">
-          <input type="email" placeholder="Nhập email">
+          <input type="email" placeholder="Nhập email" name="email">
         </div>
         <div class="signin-btn">
           <button type="submit" class="btn">Gửi yêu cầu</button>

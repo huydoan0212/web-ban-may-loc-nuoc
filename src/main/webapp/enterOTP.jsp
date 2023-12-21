@@ -30,7 +30,7 @@
       <form action="">
         <h1>Nhập email</h1>
         <div class="input-box">
-          <input type="email" placeholder="Nhập email">
+          <input type="email" placeholder="Nhập email" name="email">
         </div>
         <div class="signin-btn">
           <button type="submit" class="btn">Gửi yêu cầu</button>
