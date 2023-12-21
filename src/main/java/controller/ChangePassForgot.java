@@ -2,7 +2,6 @@ package controller;
 
 import dao.UserDAO;
 import service.MD5Hash;
-
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -17,14 +16,14 @@ public class ChangePassForgot extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String newpassword = request.getParameter("newPassword");
+        String newPassword = request.getParameter("newPassword");
         String re_newPassword = request.getParameter("re_newPassword");
         String username = request.getParameter("username");
-        if (newpassword.equals(re_newPassword)){
-            UserDAO.changePassword(MD5Hash.hashPassword(newpassword), Integer.parseInt(username));
+        if (newPassword.equals(re_newPassword)){
+            UserDAO.changePassword(MD5Hash.hashPassword(newPassword),username);
 
             request.getSession().setAttribute("message", "Đổi mật khẩu thành công!");
-            response.sendRedirect("login1.jsp");
+            response.sendRedirect("login.jsp");
         } else {
             request.getSession().setAttribute("message", "Mật khẩu nhập lại không trùng khớp");
             response.sendRedirect("newPassword.jsp");

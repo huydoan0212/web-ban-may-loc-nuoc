@@ -1,10 +1,8 @@
 package controller;
 
 import dao.UserDAO;
-import model.User;
 import service.EmailSender;
 import service.OTPGenerator;
-
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;

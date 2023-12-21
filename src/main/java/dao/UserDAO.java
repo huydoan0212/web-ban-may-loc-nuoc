@@ -3,17 +3,15 @@ package dao;
 import db.JDBIConnector;
 import model.User;
 import org.jdbi.v3.core.Handle;
-import service.MD5Hash;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import org.jdbi.v3.core.Jdbi;
+import org.jdbi.v3.core.JdbiException;
 import java.time.LocalDateTime;
+
 
 public class UserDAO {
   public static boolean isEmailExists(String email) {
     int count = JDBIConnector.me().withHandle(handle ->
-      handle.createQuery("SELECT COUNT(email) FROM users WHERE email = ?")
+      handle.createQuery("SELECT COUNT(*) FROM users WHERE email = ?")
         .bind(0, email)
         .mapTo(Integer.class)
         .one()
@@ -23,7 +21,7 @@ public class UserDAO {
 
   public static boolean isUserExists(String userName) {
     int count = JDBIConnector.me().withHandle(handle ->
-      handle.createQuery("SELECT COUNT(username) FROM users WHERE username = ?")
+      handle.createQuery("SELECT COUNT(*) FROM users WHERE username = ?")
         .bind(0, userName)
         .mapTo(Integer.class)
         .one()
@@ -32,7 +30,6 @@ public class UserDAO {
   }
 
   public static boolean addUser(String fullName, String email, String userName, String password, String rePassword, String phone, int active) {
-    boolean result = false;
     String insertQuery = "INSERT INTO users (username, fullname, email, phone_number, sex, address, password, created_at, status, active) " +
       "VALUES (?,?,?,?,?,?,?,?,?,?)";
 
@@ -49,244 +46,151 @@ public class UserDAO {
         .bind(8, 1)
         .bind(9, active)
         .execute();
-      result = true;
+
     }
-    return result;
-  }
 
-  public static boolean updateUser(User user) {
-    boolean result = false;
-    String updateQuery = "UPDATE users SET fullname = ?, phone_number = ?, sex = ?, address = ? WHERE username = ?";
-    try (Handle handle = JDBIConnector.me().open()) {
-      handle.createUpdate(updateQuery)
-              .bind(0, user.getFullName())
-              .bind(1, user.getPhoneNumber())
-              .bind(2, user.getSex())
-              .bind(3, user.getAddress())
-              .execute();
-      result = true;
-    }
-    return result;
-
-  }
-  //    public static User getUserByUserName(String userName){
-//        Optional<User> user = JDBIConnector.me().withHandle(handle ->
-//                handle.createQuery("select username, fullname, email, phone_number, sex, address from users where email = ?")
-//                        .bind(0, userName).mapToBean(User.class).stream().findFirst());
-//        return user.isEmpty() ? null : user.get();
-//    }
-
-
-
-  public static boolean loginUser(String username, String password) {
-    Connection connection = null;
-
-    try {
-      connection = JDBIConnector.getConnection();
-
-      String hashedPassword = MD5Hash.hashPassword(password);
-
-      PreparedStatement ps = connection.prepareStatement("SELECT * FROM users WHERE username=? AND password=?");
-      ps.setString(1, username);
-      ps.setString(2, hashedPassword);
-
-      ResultSet rs = ps.executeQuery();
-
-      return rs.next();
-
-    } catch (SQLException e) {
-      e.printStackTrace();
       return false;
-
-    } finally {
-      JDBIConnector.closeConnection(connection);
-    }
   }
 
-  public static String getPasswd(int id) {
-    Connection connection = null;
+    public static boolean loginUser (String username, String password){
+      try {
 
-    try {
-      connection = JDBIConnector.getConnection();
+        int count = JDBIConnector.me().withHandle(handle ->
+          handle.createQuery("SELECT COUNT(*) FROM users WHERE username = ? AND password = ?")
+            .bind(0, username)
+            .bind(1, password)
+            .mapTo(Integer.class)
+            .one()
+        );
 
-      PreparedStatement ps = connection.prepareStatement("SELECT password FROM users WHERE id=?");
-      ps.setInt(1, id);
-
-      ResultSet rs = ps.executeQuery();
-
-      if (rs.next()) {
-        return rs.getString("password");
+        return count > 0;
+      } catch (JdbiException e) {
+        e.printStackTrace();
+        return false;
       }
-
-    } catch (SQLException e) {
-      e.printStackTrace();
-
-    } finally {
-      JDBIConnector.closeConnection(connection);
     }
 
-    return null;
-  }
 
-  public static String getEmail(String username) {
-    Connection connection = null;
+    public static void updateUser () {
 
-    try {
-      connection = JDBIConnector.getConnection();
+    }
 
-      PreparedStatement ps = connection.prepareStatement("SELECT email FROM users WHERE username=?");
-      ps.setString(1, username);
 
-      ResultSet rs = ps.executeQuery();
+    public static boolean isPasswordExists (String password){
+      try {
+        int count = JDBIConnector.me().withHandle(handle ->
+          handle.createQuery("SELECT COUNT(*) FROM users WHERE password = ?")
+            .bind(0, password)
+            .mapTo(Integer.class)
+            .one()
+        );
 
-      if (rs.next()) {
-        return rs.getString("email");
+        return count > 0;
+      } catch (JdbiException e) {
+        e.printStackTrace();
+        return false;
       }
-
-    } catch (SQLException e) {
-      e.printStackTrace();
-
-    } finally {
-      JDBIConnector.closeConnection(connection);
     }
 
-    return null;
-  }
+    public static String getEmail (String username){
+      try {
+        String email = JDBIConnector.me().withHandle(handle ->
+          handle.createQuery("SELECT email FROM users WHERE username = ?")
+            .bind(0, username)
+            .mapTo(String.class)
+            .one()
+        );
 
-  public static boolean updateActiveAccount(String username) {
-    Connection connection = null;
-
-    try {
-      connection = JDBIConnector.getConnection();
-
-      String sql = "UPDATE users SET active = 1 WHERE username=?";
-      try (PreparedStatement ps = connection.prepareStatement(sql)) {
-
-        ps.setString(1, username);
-
-        int rowsAffected = ps.executeUpdate();
-        if (rowsAffected > 0) {
-          return true;
-        }
+        return email;
+      } catch (JdbiException e) {
+        e.printStackTrace();
+        return null;
       }
-    } catch (SQLException e) {
-      e.printStackTrace();
-    } finally {
-      JDBIConnector.closeConnection(connection);
     }
 
-    return false;
-  }
+    public static boolean updateActiveAccount (String username){
+      try {
+        int updatedRows = JDBIConnector.me().withHandle(handle ->
+          handle.createUpdate("UPDATE users SET active = true WHERE username = ?")
+            .bind(0, username)
+            .execute()
+        );
 
-  public static int getNotActiveAccount(String username) {
-    Connection connection = null;
-
-    try {
-      connection = JDBIConnector.getConnection();
-
-      PreparedStatement ps = connection.prepareStatement("SELECT active FROM users WHERE username=?");
-      ps.setString(1, username);
-
-      ResultSet rs = ps.executeQuery();
-
-      if (rs.next()) {
-        return rs.getInt("active");
+        return updatedRows > 0;
+      } catch (JdbiException e) {
+        e.printStackTrace();
+        return false;
       }
-
-    } catch (SQLException e) {
-      e.printStackTrace();
-
-    } finally {
-      JDBIConnector.closeConnection(connection);
     }
 
-    return 3;
-  }
+    public static int getNotActiveAccount (String username){
+      try {
+        int count = JDBIConnector.me().withHandle(handle ->
+          handle.createQuery("SELECT COUNT(*) FROM users WHERE username = ? AND active = false")
+            .bind(0, username)
+            .mapTo(Integer.class)
+            .one()
+        );
 
-
-  public static boolean changePassword(String password, int id) {
-    Connection connection = null;
-
-    try {
-      connection = JDBIConnector.getConnection();
-      String sql = "UPDATE users SET password=? WHERE id=?";
-      try (PreparedStatement ps = connection.prepareStatement(sql)) {
-        ps.setString(1, password);
-        ps.setInt(2, id);
-
-        int rowsAffected = ps.executeUpdate();
-        if (rowsAffected > 0) {
-          return true;
-        }
+        return count;
+      } catch (JdbiException e) {
+        e.printStackTrace();
+        return -1; // Lỗi sẽ -1
       }
-    } catch (SQLException e) {
-      e.printStackTrace();
-    } finally {
-      JDBIConnector.closeConnection(connection);
     }
-    return false;
-  }
 
+    public static boolean changePassword (String username, String newPassword){
+      try {
+        int updatedRows = JDBIConnector.me().withHandle(handle ->
+          handle.createUpdate("UPDATE users SET password = ? WHERE username = ?")
+            .bind(0, newPassword)
+            .bind(1, username)
+            .execute()
+        );
 
-  public static User getUserInfo(String username) {
-    Connection connection = null;
-
-    try {
-      connection = JDBIConnector.getConnection();
-
-      String sql = "SELECT * from user where username=?";
-      try (PreparedStatement ps = connection.prepareStatement(sql)) {
-        ps.setString(1, username);
-
-        ResultSet rs = ps.executeQuery();
-
-        if (rs.next()) {
-          User user = new User();
-          user.setUserId(rs.getInt("id"));
-          user.setUserName(rs.getString("username"));
-          user.setPassword(rs.getString("password"));
-          user.setEmail(rs.getString("email"));
-          user.setFullName(rs.getString("name"));
-          user.setRoleId(rs.getInt("role"));
-          user.setActive(rs.getInt("active"));
-          return user;
-        }
+        return updatedRows > 0;
+      } catch (JdbiException e) {
+        e.printStackTrace();
+        return false;
       }
-    } catch (SQLException e) {
-      e.printStackTrace();
-
-    } finally {
-      JDBIConnector.closeConnection(connection);
-
     }
-    return null;
-  }
+
+    private static final String SELECT_USER_SQL = "SELECT * FROM users WHERE username = :username";
 
 
-  public static String getUserName(String username) {
-    Connection connection = null;
-
-    try {
-      connection = JDBIConnector.getConnection();
-
-      PreparedStatement ps = connection.prepareStatement("SELECT name FROM user WHERE username=?");
-      ps.setString(1, username);
-
-      ResultSet rs = ps.executeQuery();
-
-      if (rs.next()) {
-        return rs.getString("name");
+    public static User getUserInfo (String username){
+      try {
+        JDBIConnector.me().withHandle(handle ->
+          handle.createQuery(SELECT_USER_SQL)
+            .bind("username", username)
+            .mapToBean(User.class)
+            .findFirst()
+            .orElse(null)
+        );
+      } catch (JdbiException e) {
+        e.printStackTrace();
       }
-
-    } catch (SQLException e) {
-      e.printStackTrace();
-
-    } finally {
-      JDBIConnector.closeConnection(connection);
+      return null;
     }
 
-    return null;
-  }
+    private static final String SELECT_USERNAME_SQL = "SELECT username FROM users WHERE username = :username";
+
+    // Các phương thức khác của lớp DAO
+
+    public static String getUserName (String username){
+      try {
+        JDBIConnector.me().withHandle(handle ->
+          handle.createQuery(SELECT_USERNAME_SQL)
+            .bind("username", username)
+            .mapTo(String.class)
+            .findFirst()
+            .orElse(null)
+        );
+      } catch (JdbiException e) {
+        e.printStackTrace();
+      }
+      return null;
+    }
 
 }
 
