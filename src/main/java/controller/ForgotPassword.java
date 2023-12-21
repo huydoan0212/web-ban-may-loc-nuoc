@@ -28,7 +28,7 @@ public class ForgotPassword extends HttpServlet {
             response.sendRedirect("validateOTP.jsp");
         } catch (Exception e) {
             request.getSession().setAttribute("message", "Tài khoản không tồn tại!");
-            response.sendRedirect("forgotPassword.jsp");
+            response.sendRedirect("forget.jsp");
         }
     }
 }

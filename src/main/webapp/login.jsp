@@ -61,11 +61,27 @@
                             <p>Bạn mới biết đến Healthywater? </p>
                             <a href="register.jsp">Đăng kí</a>
                         </div>
+                      <%
+                        String message = (String) request.getSession().getAttribute("message");
+                        if (message != null && !message.isEmpty()) {
+                      %>
+                      <p style="color: red"> <%= message %> </p>
+                      <%
+                          // Đặt lại giá trị message sau khi đã hiển thị
+                          request.getSession().removeAttribute("message");
+                        }
+                      %>
                     </form>
             </div>
         </div>
     </div>
     <%@include file="footer.jsp"%>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $('.message a').click(function(){
+        $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+      });
+    </script>
 </body>
 </html>
