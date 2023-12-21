@@ -47,6 +47,9 @@ public class AddCartController extends HttpServlet {
             case 6:
                 resp.sendRedirect("locnuockhongdien");
                 break;
+            case 7:
+                resp.sendRedirect("cart");
+                break;
         }
 
     }
