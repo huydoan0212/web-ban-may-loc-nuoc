@@ -1,7 +1,7 @@
 package model;
 
-import java.util.Date;
-
+//import java.util.Date;
+import java.time.LocalDateTime;
 public class User {
   private int userId;
   private int roleId;
@@ -12,16 +12,15 @@ public class User {
   private int sex;
   private String address;
   private String password;
-  private Date createdAt;
-  private Date updatedAt;
+  private LocalDateTime createdAt;
+  private LocalDateTime updatedAt;
   private int status;
   private int active;
 
   public User() {
   }
-
   public User(int userId, int roleId, String userName, String fullName, String email, String phoneNumber,
-              int sex, String address, String password, Date createdAt, Date updatedAt, int status, int active) {
+              int sex, String address, String password, LocalDateTime createdAt, LocalDateTime updatedAt, int status, int active) {
     this.userId = userId;
     this.roleId = roleId;
     this.userName = userName;
@@ -36,16 +35,6 @@ public class User {
     this.status = status;
     this.active = active;
   }
-//    public User(String userName, String fullName, String email, String phoneNumber,String password, Date createdAt, String active) {
-//        this.userName = userName;
-//        this.fullName = fullName;
-//        this.email = email;
-//        this.phoneNumber = phoneNumber;
-//        this.password = password;
-//        this.createdAt = createdAt;
-//        this.active = active;
-//    }
-
 
   public int getUserId() {
     return userId;
@@ -131,19 +120,19 @@ public class User {
     this.password = password;
   }
 
-  public Date getCreatedAt() {
+  public LocalDateTime getCreatedAt() {
     return createdAt;
   }
 
-  public void setCreatedAt(Date createdAt) {
+  public void setCreatedAt(LocalDateTime createdAt) {
     this.createdAt = createdAt;
   }
 
-  public Date getUpdatedAt() {
+  public LocalDateTime getUpdatedAt() {
     return updatedAt;
   }
 
-  public void setUpdatedAt(Date updatedAt) {
+  public void setUpdatedAt(LocalDateTime updatedAt) {
     this.updatedAt = updatedAt;
   }
 
@@ -176,27 +165,24 @@ public class User {
 
   }
 
-
   @Override
   public String toString() {
     return "User{" +
-      "userId=" + userId +
-      ", roleId=" + roleId +
-      ", userName='" + userName + '\'' +
-      ", fullName='" + fullName + '\'' +
-      ", email='" + email + '\'' +
-      ", phoneNumber='" + phoneNumber + '\'' +
-      ", sex=" + sex +
-      ", address='" + address + '\'' +
-      ", password='" + password + '\'' +
-      ", createdAt=" + createdAt +
-      ", updatedAt=" + updatedAt +
-      ", status='" + status + '\'' +
-      ", active='" + active + '\'' +
-      '}';
+            "userId=" + userId +
+            ", roleId=" + roleId +
+            ", userName='" + userName + '\'' +
+            ", fullName='" + fullName + '\'' +
+            ", email='" + email + '\'' +
+            ", phoneNumber='" + phoneNumber + '\'' +
+            ", sex=" + sex +
+            ", address='" + address + '\'' +
+            ", password='" + password + '\'' +
+            ", createdAt=" + createdAt +
+            ", updatedAt=" + updatedAt +
+            ", status=" + status +
+            ", active=" + active +
+            '}';
   }
-
-
 }
 
 
