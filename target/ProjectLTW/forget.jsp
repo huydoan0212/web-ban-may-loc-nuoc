@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,16 +33,32 @@
       <form action="">
         <h1>Quên mật khẩu</h1>
         <div class="input-box">
-          <input type="email" placeholder="Nhập email">
+          <input type="email" placeholder="Nhập email" name="email">
         </div>
         <div class="signin-btn">
           <button type="submit" class="btn">Gửi yêu cầu</button>
         </div>
+        <%
+          String message = (String) request.getSession().getAttribute("message");
+          if (message != null && !message.isEmpty()) {
+        %>
+        <p style="color: red"> <%= message %> </p>
+        <%
+            // Đặt lại giá trị message sau khi đã hiển thị
+            request.getSession().removeAttribute("message");
+          }
+        %>
       </form>
     </div>
   </div>
 </div>
 <%@include file="footer.jsp"%>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $('.message a').click(function(){
+    $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+  });
+</script>
 </body>
 </html>

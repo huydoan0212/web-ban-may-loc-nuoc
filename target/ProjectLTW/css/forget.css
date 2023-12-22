@@ -77,8 +77,26 @@
     outline: none;
     padding-left: 15px;
 }
+.slider .input-box-2{
+  width: 100%;
+  height: 40px;
+  margin: 20px 0 ;
+  display: flex;
+  justify-content: center;
+
+}
+.input-box-2 input{
+  width: 85%;
+  height: 100%;
+  outline: none;
+  padding-left: 15px;
+
+}
 .input-box input:hover{
     cursor: pointer;
+}
+.input-box-2 input:hover{
+  cursor: pointer;
 }
 .signin-btn{
     display: flex;
