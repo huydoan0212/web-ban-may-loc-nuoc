@@ -149,7 +149,7 @@
                         <span class="text-policy">Tôi đồng ý với Chính sách xử lý dữ liệu cá nhân của Healthy Water</span>
                     </div>
                     <div class="btn-order-frame">
-                        <button class="btn-order">Đặt hàng</button>
+                        <a class="btn-order">Đặt hàng</a>
                     </div>
                     <div class="note"><span>Bạn có thể chọn hình thức thanh toán sau khi đặt hàng</span></div>
                 </div>
