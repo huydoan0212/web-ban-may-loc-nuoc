@@ -3,7 +3,8 @@
 <% String error = (String) request.getAttribute("error");%>
 <% String success = (String) request.getAttribute("success");%>
 <% String userName = (String) session.getAttribute("userName");
-    User user = UserService.getUserByUserName(userName);
+    User user = UserService.getUserByUserName(userName);%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +22,8 @@
             <form action="./accountDetailsController" method="post">
                 <div class="display">
                     <div class="toolbar">
-                        <h4><span>Khách hàng </span><%=user.getFullName()!= null? user.getFullName():""%></h4>
+<%--                        <h4><span>Khách hàng </span><%=user != null && user.getFullName() != null ? user.getFullName() : "" %></h4>--%>
+                        <span style="color: green; font-size: 18px;"><%=user != null && user.getFullName() != null ? user.getFullName() : ""%></span>
                         <div class="mini-menu-toolbar">
                             <div class="order-frame">
                                 <i class="fa-solid fa-rectangle-list" ></i>

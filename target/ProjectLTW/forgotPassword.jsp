@@ -30,7 +30,7 @@
       <img src="/img/logo-removebg-preview.png" alt="">
     </div>
     <div class="slider-form">
-      <form action="">
+      <form action="ForgotPassword" method="post">
         <h1>Quên mật khẩu</h1>
         <div class="input-box">
           <input type="text" placeholder="Nhập tên tài khoản để lấy lại mật khẩu" name="username">
