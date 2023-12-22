@@ -30,7 +30,17 @@
                 <img src="./img/logo-removebg-preview.png" alt="">
             </div>
             <div class="slider-form">
-                    <form action="">
+                    <form action="LoginServlet" method="post">
+                      <%
+                        String message = (String) request.getSession().getAttribute("message");
+                        if (message != null && !message.isEmpty()) {
+                      %>
+                      <p style="color: red"> <%= message %> </p>
+                      <%
+                          // Đặt lại giá trị message sau khi đã hiển thị
+                          request.getSession().removeAttribute("message");
+                        }
+                      %>
                         <h1>Đăng Nhập</h1>
                         <div class="input-box">
                             <input type="text" placeholder="Email/ Tên đăng nhập" name="username">
@@ -43,7 +53,7 @@
                             <button type="submit" class="btn">Đăng Nhập</button>
                         </div>
                         <div class="label-forget">
-                            <a href="forget.jsp" class="forget">Quên mật khẩu</a>
+                            <a href="forgotPassword.jsp" class="forget">Quên mật khẩu</a>
 
                         </div>
                         <div class="label-or">
@@ -62,15 +72,16 @@
                             <a href="register.jsp">Đăng kí</a>
                         </div>
                       <%
-                        String message = (String) request.getSession().getAttribute("message");
-                        if (message != null && !message.isEmpty()) {
+                        String message2 = (String) request.getSession().getAttribute("message2");
+                        if (message2 != null && !message2.isEmpty()) {
                       %>
-                      <p style="color: red"> <%= message %> </p>
+                      <p style="color: red"> <%= message2 %> </p>
                       <%
                           // Đặt lại giá trị message sau khi đã hiển thị
-                          request.getSession().removeAttribute("message");
+                          request.getSession().removeAttribute("message2");
                         }
                       %>
+
                     </form>
             </div>
         </div>
