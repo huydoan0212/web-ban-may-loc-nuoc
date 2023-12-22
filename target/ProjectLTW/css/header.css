@@ -3,6 +3,7 @@ body {
     padding: 0;
     font-family: Arial, Tahoma, sans-serif;
     font-size: 12px;
+
 }
 /*Class*/
 .container {
@@ -15,6 +16,7 @@ body {
     width: 100%;
     box-shadow: 0 4px 10px rgba(0, 0, 0, .1);
     top: 0;
+    z-index: 9999;
 }
 
 #header-top {

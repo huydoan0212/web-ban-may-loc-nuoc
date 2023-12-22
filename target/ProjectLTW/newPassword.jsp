@@ -33,10 +33,10 @@
       <form action="">
         <h1>Quên mật khẩu</h1>
         <div class="input-box">
-          <input type="email" placeholder="Nhập mật khẩu mới">
+          <input type="password" placeholder="Nhập mật khẩu mới" name="password">
         </div>
         <div class="input-box-2">
-          <input type="email" placeholder="Nhập lại mật khẩu">
+          <input type="password" placeholder="Nhập lại mật khẩu" name="password">
 
         </div>
 

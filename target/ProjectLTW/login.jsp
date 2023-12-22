@@ -30,13 +30,13 @@
                 <img src="./img/logo-removebg-preview.png" alt="">
             </div>
             <div class="slider-form">
-                    <form action="">
+                    <form action="LoginServlet">
                         <h1>Đăng Nhập</h1>
                         <div class="input-box">
-                            <input type="text" placeholder="Tên đăng nhập">
+                            <input type="text" placeholder="Email/ Tên đăng nhập" name="username">
                         </div>
                         <div class="input-box">
-                            <input type="password" placeholder="Mật khẩu">
+                            <input type="password" placeholder="Mật khẩu"  name="password">
                         </div>
 
                         <div class="signin-btn">
@@ -46,17 +46,17 @@
                             <a href="forget.jsp" class="forget">Quên mật khẩu</a>
 
                         </div>
-<%--                        <div class="label-or">--%>
-<%--                            <p for="">Hoặc</p>--%>
-<%--                        </div>--%>
-<%--                        <div class="btn-ggfb">--%>
-<%--                           <button class="btnfb">--%>
-<%--                               <i class="fa-brands fa-facebook"></i> Facebook--%>
-<%--                           </button>--%>
-<%--                            <button class="btngg">--%>
-<%--                                <i class="fa-brands fa-google"></i> Google--%>
-<%--                            </button>--%>
-<%--                        </div>--%>
+                        <div class="label-or">
+                            <p for="">Hoặc</p>
+                        </div>
+                        <div class="btn-ggfb">
+                           <button class="btnfb">
+                               <i class="fa-brands fa-facebook"></i> Facebook
+                           </button>
+                            <button class="btngg">
+                                <i class="fa-brands fa-google"></i> Google
+                            </button>
+                        </div>
                         <div class="des">
                             <p>Bạn mới biết đến Healthywater? </p>
                             <a href="register.jsp">Đăng kí</a>

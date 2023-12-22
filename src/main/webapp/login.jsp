@@ -30,7 +30,7 @@
                 <img src="./img/logo-removebg-preview.png" alt="">
             </div>
             <div class="slider-form">
-                    <form action="">
+                    <form action="LoginServlet">
                         <h1>Đăng Nhập</h1>
                         <div class="input-box">
                             <input type="text" placeholder="Email/ Tên đăng nhập" name="username">

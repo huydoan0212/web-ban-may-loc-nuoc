@@ -34,7 +34,7 @@
       <form action="">
         <h1>Quên mật khẩu</h1>
         <div class="input-box">
-          <input type="email" placeholder="Nhập mã OTP được gửi về email">
+          <input type="text" placeholder="Nhập mã OTP được gửi về email" name="otp">
         </div>
         <div class="signin-btn">
           <button type="submit" class="btn">Xác nhận</button>
