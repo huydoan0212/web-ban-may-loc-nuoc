@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,20 +30,30 @@
                 <img src="./img/logo-removebg-preview.png" alt="">
             </div>
             <div class="slider-form">
-                    <form action="">
+                    <form action="LoginServlet" method="post">
+                      <%
+                        String message = (String) request.getSession().getAttribute("message");
+                        if (message != null && !message.isEmpty()) {
+                      %>
+                      <p style="color: red"> <%= message %> </p>
+                      <%
+                          // Đặt lại giá trị message sau khi đã hiển thị
+                          request.getSession().removeAttribute("message");
+                        }
+                      %>
                         <h1>Đăng Nhập</h1>
                         <div class="input-box">
-                            <input type="text" placeholder="Email/ Tên đăng nhập">
+                            <input type="text" placeholder="Email/ Tên đăng nhập" name="username">
                         </div>
                         <div class="input-box">
-                            <input type="password" placeholder="Mật khẩu">
+                            <input type="password" placeholder="Mật khẩu"  name="password">
                         </div>
 
                         <div class="signin-btn">
                             <button type="submit" class="btn">Đăng Nhập</button>
                         </div>
                         <div class="label-forget">
-                            <a href="forget.jsp" class="forget">Quên mật khẩu</a>
+                            <a href="forgotPassword.jsp" class="forget">Quên mật khẩu</a>
 
                         </div>
                         <div class="label-or">
@@ -60,11 +71,28 @@
                             <p>Bạn mới biết đến Healthywater? </p>
                             <a href="register.jsp">Đăng kí</a>
                         </div>
+                      <%
+                        String message2 = (String) request.getSession().getAttribute("message2");
+                        if (message2 != null && !message2.isEmpty()) {
+                      %>
+                      <p style="color: red"> <%= message2 %> </p>
+                      <%
+                          // Đặt lại giá trị message sau khi đã hiển thị
+                          request.getSession().removeAttribute("message2");
+                        }
+                      %>
+
                     </form>
             </div>
         </div>
     </div>
     <%@include file="footer.jsp"%>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $('.message a').click(function(){
+        $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+      });
+    </script>
 </body>
 </html>
