@@ -37,7 +37,7 @@
         <div class="container content-mini-trong">
             <img src="img/giohang.jsp-removebg-preview.png" alt="">
             <span>Không có sản phẩm nào trong giỏ hàng</span>
-            <a href="">Về trang chủ</a>
+            <a href="trangchu">Về trang chủ</a>
         </div>
     </div>
     <%}%>

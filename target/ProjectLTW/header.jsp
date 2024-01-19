@@ -27,6 +27,8 @@
                     <span>Giỏ hàng</span>
                 </a>
                 <a href="sale.jsp" class="khuyen-mai chung">Khuyến mãi</a>
+                <a href="" class="khuyen-mai chung">Liên hệ</a>
+
             </div>
             <div id="header-bottom">
                 <a href="" class="headbot-items">Deal Sốc</a>
