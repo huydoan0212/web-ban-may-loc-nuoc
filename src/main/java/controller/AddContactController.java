@@ -13,6 +13,7 @@ import java.io.IOException;
 public class AddContactController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doPost(req, resp);
+
     }
 
     @Override
