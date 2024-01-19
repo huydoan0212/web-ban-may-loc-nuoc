@@ -352,59 +352,7 @@ body {
     margin-left: 7px;
 }
 
-/*Footer*/
-#footer {
-    margin-top: 50px;
-    border-top: 1px solid #e0e0e0;
-}
 
-#footer .container {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-#footer .container .tong-dai {
-    width: 50%;
-    text-align: center;
-    margin-top: 20px;
-}
-
-#footer .tong-dai .tong-dai-ho-tro {
-    font-weight: bold;
-    font-size: 13px;
-}
-
-#footer .tong-dai a {
-    text-decoration: none;
-    color: #2f80ed;
-}
-
-#footer .container .lien-he {
-    width: 50%;
-    text-align: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-#footer .social .facebook {
-    text-decoration: none;
-    color: #2f80ed;
-    margin-right: 15px;
-}
-
-#footer .social .youtube {
-    text-decoration: none;
-    color: #2f80ed;
-}
-
-#footer .tap-doan p {
-    font-weight: 500;
-}
-
-#footer .tap-doan a > img {
-    width: 120px;
-    height: 30px;
-}
 
 /*Phần tỉnh thành*/
 .modal-tinh-thanh {

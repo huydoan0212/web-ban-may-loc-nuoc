@@ -80,8 +80,10 @@ body {
     color: white;
     padding: 10px;
     font-size: 15px;
+    margin: auto;
     margin-bottom: 10px;
     cursor: pointer;
+    display: block;
 
 }
 .btn-submit:hover{
