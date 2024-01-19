@@ -5,7 +5,7 @@
 <% String email = (String) request.getParameter("email"); %>
 <% String password = (String) request.getParameter("password"); %>
 <% String error = (String) request.getAttribute("error");%>
-<% String success = (String) request.getAttribute("success");%>
+<%--<% String success = (String) request.getAttribute("success");%>--%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,7 +36,7 @@
       <img src="./img/logo-removebg-preview.png" alt="">
     </div>
     <div class="slider-form">
-      <form action="./registerController" method="post">
+      <form action="./userController" accept-charset="UTF-8" method="post">
         <h1>Đăng ký</h1>
         <div class="input-box">
           <input type="text" value="<%=(name!=null && name!="")? name:""%>" placeholder="Họ và tên" name="name">
@@ -60,7 +60,7 @@
         <div class="signin-btn">
           <button type="submit" class="btn">Đăng Ký</button>
         </div>
-    <span style="color: green; font-size: 18px;"><%=(success != null && success != "") ? success : ""%></span>
+<%--        <span style="color: green; font-size: 18px;"><%=(success != null && success != "") ? success : ""%>--%>
       </form>
     </div>
   </div>
