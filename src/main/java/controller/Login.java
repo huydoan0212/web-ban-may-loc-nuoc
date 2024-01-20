@@ -31,7 +31,7 @@ public class Login extends HttpServlet {
     if (loginSuccess) {
       HttpSession session = request.getSession();
       User user = UserDAO.getUserInfo(username);
-      EmailNotification.sendNotification("binhquoc23@gmail.com");
+
 
       if (user != null && user.getRoleId() == 2) {
         //user

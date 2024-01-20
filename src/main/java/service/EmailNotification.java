@@ -43,5 +43,6 @@ public class EmailNotification {
 
   public static void main(String[] args) {
     sendNotification("binhquoc23@gmail.com");
+
   }
 }
