@@ -8,7 +8,7 @@ import java.util.Properties;
 public class EmailSender {
 
     // thông tin cá nhân
-    private static final String EMAIL_USERNAME = "2130290@st.hcmuaf.edu.vn";
+    private static final String EMAIL_USERNAME = "21130290@st.hcmuaf.edu.vn";
     private static final String EMAIL_PASSWORD = "quocbinh23";
 
     public static void sendEmail(String toEmail, String subject, String body) {
@@ -42,9 +42,9 @@ public class EmailSender {
     }
 
     public static void main(String[] args) {
-        String toEmail = "21130290@st.hcmuaf.edu.vn";
-        String subject = "Test";
-        String body = "Đây là email test";
+        String toEmail = "";
+        String subject = "";
+        String body = "" ;
 
         // Gửi email đi
         EmailSender.sendEmail(toEmail, subject, body);

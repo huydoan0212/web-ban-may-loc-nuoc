@@ -1,5 +1,9 @@
-
+<%@ page import="model.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<% User user = (User) session.getAttribute("user");
+    String checkLogin = user != null ? "/ProjectLTW_war/account-page" : "login.jsp";
+
+%>
 <html>
 <head>
     <title>Title</title>
@@ -21,7 +25,8 @@
                     <input type="text" placeholder="Bạn muốn tìm gì..." id="input-search">
                     <i class="fa-solid fa-magnifying-glass fa-xl"></i>
                 </div>
-                <a href="login.jsp" class="tai-khoan-don-hang chung"><span>Tài khoản và đơn hàng</span></a>
+                <a href="<%=checkLogin%>"
+                class="tai-khoan-don-hang chung"><span>Tài khoản và đơn hàng</span></a>
                 <a href="/ProjectLTW_war/cart" class="gio-hang ">
                     <i class="fa-solid fa-cart-shopping" style="color: #ffffff;"></i>
                     <span>Giỏ hàng</span>
@@ -32,11 +37,11 @@
             </div>
             <div id="header-bottom">
                 <a href="" class="headbot-items">Deal Sốc</a>
-                <a href="/ProjectLTW_war_exploded/locnuocro" class="headbot-items">Lọc nước RO</a>
-                <a href="/ProjectLTW_war_exploded/locnuocnonglanh" class="headbot-items">Có nóng lạnh</a>
-                <a href="/ProjectLTW_war_exploded/locnuocamtudeban" class="headbot-items">Âm tủ, để bàn</a>
-                <a href="/ProjectLTW_war_exploded/locnuocnanoufmf" class="headbot-items">Lọc nước Nano, UF, MF</a>
-                <a href="/ProjectLTW_war_exploded/locnuockhongdien" class="headbot-items">Lọc nước không điện</a>
+                <a href="/ProjectLTW_war/locnuocro" class="headbot-items">Lọc nước RO</a>
+                <a href="/ProjectLTW_war/locnuocnonglanh" class="headbot-items">Có nóng lạnh</a>
+                <a href="/ProjectLTW_war/locnuocamtudeban" class="headbot-items">Âm tủ, để bàn</a>
+                <a href="/ProjectLTW_war/locnuocnanoufmf" class="headbot-items">Lọc nước Nano, UF, MF</a>
+                <a href="/ProjectLTW_war/locnuockhongdien" class="headbot-items">Lọc nước không điện</a>
             </div>
         </div>
     </div>
@@ -47,7 +52,7 @@
         <div class="header-modal">
             <div class="title-modal">
                 <p>Quý khách vui lòng cho biết <span>Địa Chỉ Nhận Hàng </span>để biết chính xác thời gian dao hàng</p>
-                <a  class="js-close"><i class="fa-solid fa-x fa-2xs" style="color: #ffffff;"></i></i>Đóng</a>
+                <a class="js-close"><i class="fa-solid fa-x fa-2xs" style="color: #ffffff;"></i></i>Đóng</a>
             </div>
             <form action="">
                 <input type="text" placeholder="Tìm nhanh tỉnh thành, quận huyện, phường xã" class="tim-khu-vuc">
@@ -152,7 +157,7 @@
         }
 
         modal.addEventListener('click', hideTinhThanh);
-        modalContainer.addEventListener('click', function(event) {
+        modalContainer.addEventListener('click', function (event) {
             event.stopPropagation();
         });
     </script>
