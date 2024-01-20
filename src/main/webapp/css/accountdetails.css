@@ -242,8 +242,13 @@ body {
     color: #333333;
 }
 #content .btn-cancel-save .save-btn {
-    color: #4A90E2;
-    font-weight: bold;
+    text-decoration: none;
+    font-size: 14px;
+    color: white;
+    padding: 10px 116px;
+    background-color: #4a90e2;
+    border-radius: 4px;
+    border: none;
 }
 #content .infor-address {
     background-color: white;
@@ -252,10 +257,11 @@ body {
 #content .dia-chi-nhan-hang p {
     font-weight: bold;
     font-size: 14px;
-    margin-bottom: 14px;
+    margin-bottom: 25px;
 }
 #content .nhap-dia-chi {
     margin-left: 15px;
+    margin-bottom: 35px;
 
 
 }
@@ -270,9 +276,7 @@ body {
 
 
 }
-#content .nhap-dia-chi {
-    margin-bottom: 20px;
-}
+
 #content .nhap-dia-chi span {
     font-size: 14px;
     margin-right: 37px;
@@ -303,11 +307,12 @@ body {
 }
 #content .btn-frame .cap-nhat {
     text-decoration: none;
-    font-size: 16px;
+    font-size: 14px;
     color: white;
     padding: 10px 100px;
     background-color: #4a90e2;
     border-radius: 4px;
+    border: none;
 }
 /*Class*/
 .container {
