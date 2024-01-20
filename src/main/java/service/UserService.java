@@ -29,8 +29,8 @@ public class UserService {
     public static boolean isUserExists(String userName){
         return UserDAO.isUserExists(userName);
     }
-    public static boolean addUser(String fullName, String email, String userName,  String password, String rePassword, String phone, int active){
-       return UserDAO.addUser(fullName,email,userName,password,rePassword,phone,active);
+    public static boolean addUser(String username, String fullname, String email, String phone_number, String password){
+       return UserDAO.addUser(username, fullname, email, phone_number, password);
     }
     public static boolean updateUser(User user){
         return UserDAO.updateUser(user);

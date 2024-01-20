@@ -16,6 +16,9 @@ public class RegisterController extends HttpServlet {
     }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html; charset=UTF-8");
+        resp.setCharacterEncoding("UTF-8");
         String fullName = req.getParameter("name").trim();
         String email = req.getParameter("email").trim();
         String userName = req.getParameter("username").trim().toLowerCase();
@@ -45,7 +48,7 @@ public class RegisterController extends HttpServlet {
             req.getRequestDispatcher("register.jsp").forward(req, resp);
         } else {
             req.setAttribute("success", "Đăng ký thành công");
-            UserService.addUser(fullName, email, userName, password, rePassword, phone, 1);
+            UserService.addUser(userName, fullName, email, phone, password);
             resp.sendRedirect("login.jsp");
         }
     }
