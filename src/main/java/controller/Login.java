@@ -3,10 +3,8 @@ package controller;
 
 import dao.UserDAO;
 import model.User;
-import service.MailService;
-
+import service.EmailNotification;
 import java.io.IOException;
-import javax.mail.MessagingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,11 +31,7 @@ public class Login extends HttpServlet {
     if (loginSuccess) {
       HttpSession session = request.getSession();
       User user = UserDAO.getUserInfo(username);
-      try {
-        MailService.send(username, "Thu xac nhan", "Tai khoan da duoc kich hoat!");
-      } catch (MessagingException e) {
-        throw new RuntimeException(e);
-      }
+      EmailNotification.sendNotification("binhquoc23@gmail.com");
 
       if (user != null && user.getRoleId() == 2) {
         //user
