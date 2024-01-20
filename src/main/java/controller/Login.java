@@ -3,8 +3,10 @@ package controller;
 
 import dao.UserDAO;
 import model.User;
+import service.MailService;
 
 import java.io.IOException;
+import javax.mail.MessagingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,21 +16,28 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet("/LoginServlet")
 public class Login extends HttpServlet {
+  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+  }
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
+      response.setContentType("text/html;charset=UTF-8");
     request.setCharacterEncoding("UTF-8");
 
     String username = request.getParameter("username");
     String password = request.getParameter("password");
 
-    String hashedPassword = hashPassword(password);
+      String hashedPassword = hashPassword(password);
 
     boolean loginSuccess = UserDAO.loginUser(username, hashedPassword);
-
     if (loginSuccess) {
       HttpSession session = request.getSession();
       User user = UserDAO.getUserInfo(username);
+      try {
+        MailService.send(username, "Thu xac nhan", "Tai khoan da duoc kich hoat!");
+      } catch (MessagingException e) {
+        throw new RuntimeException(e);
+      }
 
       if (user != null && user.getRoleId() == 2) {
         //user
@@ -46,6 +55,8 @@ public class Login extends HttpServlet {
 
     }
   }
+
+
 
   private void handleUserLoginSuccess(HttpServletResponse response, HttpSession session, User user, String redirectPage)
     throws IOException {

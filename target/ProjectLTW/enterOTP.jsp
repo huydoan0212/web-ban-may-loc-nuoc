@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <head>
-  <title>Kích hoạt tài khoaản</title>
+  <title>Kích hoạt tài khoản</title>
   <script src="https://kit.fontawesome.com/3e135170bd.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="css/forget.css">
 </head>
