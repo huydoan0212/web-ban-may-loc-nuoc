@@ -37,7 +37,7 @@
         <div class="container content-mini-trong">
             <img src="img/giohang.jsp-removebg-preview.png" alt="">
             <span>Không có sản phẩm nào trong giỏ hàng</span>
-            <a href="">Về trang chủ</a>
+            <a href="trangchu">Về trang chủ</a>
         </div>
     </div>
     <%}%>
@@ -149,7 +149,7 @@
                         <span class="text-policy">Tôi đồng ý với Chính sách xử lý dữ liệu cá nhân của Healthy Water</span>
                     </div>
                     <div class="btn-order-frame">
-                        <button class="btn-order">Đặt hàng</button>
+                        <a class="btn-order">Đặt hàng</a>
                     </div>
                     <div class="note"><span>Bạn có thể chọn hình thức thanh toán sau khi đặt hàng</span></div>
                 </div>
