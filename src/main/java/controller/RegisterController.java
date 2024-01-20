@@ -45,7 +45,7 @@ public class RegisterController extends HttpServlet {
             req.getRequestDispatcher("register.jsp").forward(req, resp);
         } else {
             req.setAttribute("success", "Đăng ký thành công");
-            UserService.addUser(fullName, email, userName, password, rePassword, phone, 1);
+            UserService.addUser(userName, fullName, email, phone, password);
             resp.sendRedirect("login.jsp");
         }
     }

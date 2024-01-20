@@ -29,32 +29,33 @@ public class UserDAO {
     );
     return count > 0;
   }
-
-  public static boolean addUser(String fullName, String email, String userName, String password, String rePassword, String phone, int active) {
+  public static boolean addUser(String username, String fullname, String email, String phone_number, String password) {
     boolean result = false;
-    String insertQuery = "INSERT INTO users (username, fullname, email, phone_number, sex, address, password, created_at, status, active) " +
-      "VALUES (?,?,?,?,?,?,?,?,?,?)";
+    String insertQuery = "INSERT INTO users (role_id,username, fullname, email, phone_number, sex, address, password, created_at, status, active) " +
+            "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 
     try (Handle handle = JDBIConnector.me().open()) {
       handle.createUpdate(insertQuery)
-        .bind(0, userName)
-        .bind(1, fullName)
-        .bind(2, email)
-        .bind(3, phone)
-        .bind(4, "")
-        .bind(5, "")
-        .bind(6, password)
-        .bind(7, LocalDateTime.now().toString())
-        .bind(8, 1)
-        .bind(9, active)
-        .execute();
-        result = true;
+              .bind(0, 2)
+              .bind(1, username)
+              .bind(2, fullname)
+              .bind(3, email)
+              .bind(4, phone_number)
+              .bind(5, "")
+              .bind(6, "")
+              .bind(7, password)
+              .bind(8, LocalDateTime.now().toString())
+              .bind(9, 1)
+              .bind(10, 1)
+              .execute();
+      result = true;
     }
 
-      return false;
+    return result;
   }
 
-    public static boolean loginUser (String username, String password){
+
+  public static boolean loginUser (String username, String password){
       try {
         int count = JDBIConnector.me().withHandle(handle ->
           handle.createQuery("SELECT COUNT(*) FROM users WHERE username = ? AND password = ?")
