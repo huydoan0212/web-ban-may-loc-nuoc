@@ -1,5 +1,6 @@
 package service;
 import dao.UserDAO;
+import model.User;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -28,10 +29,14 @@ public class UserService {
     public static boolean isUserExists(String userName){
         return UserDAO.isUserExists(userName);
     }
-    public static void addUser(String fullName, String email, String userName,  String password, String rePassword, String phone, int active){
-        UserDAO.addUser(fullName,email,userName,password,rePassword,phone,active);
+    public static boolean addUser(String username, String fullname, String email, String phone_number, String password){
+       return UserDAO.addUser(username, fullname, email, phone_number, password);
     }
-    public static void updateUser(){
-        UserDAO.updateUser();
+    public static boolean updateUser(User user){
+        return UserDAO.updateUser(user);
     }
+    public static User getUserByUserName(String userName){
+        return UserDAO.getUserByUserName(userName);
+    }
+
 }

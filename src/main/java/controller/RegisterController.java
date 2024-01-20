@@ -7,16 +7,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
-@WebServlet(name = "UserController", value = "/userController")
-public class UserController extends HttpServlet {
+@WebServlet(name = "RegisterController", value = "/registerController")
+public class RegisterController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doPost(req, resp);
     }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html; charset=UTF-8");
+        resp.setCharacterEncoding("UTF-8");
         String fullName = req.getParameter("name").trim();
         String email = req.getParameter("email").trim();
         String userName = req.getParameter("username").trim().toLowerCase();
@@ -45,8 +47,8 @@ public class UserController extends HttpServlet {
             req.setAttribute("error", "Mật khẩu bạn nhập không trùng nhau");
             req.getRequestDispatcher("register.jsp").forward(req, resp);
         } else {
-//            req.setAttribute("success", "Đăng ký thành công");
-            UserService.addUser(fullName, email, userName, password, rePassword, phone, 1);
+            req.setAttribute("success", "Đăng ký thành công");
+            UserService.addUser(userName, fullName, email, phone, password);
             resp.sendRedirect("login.jsp");
         }
     }

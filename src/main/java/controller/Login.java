@@ -71,8 +71,6 @@ public class Login extends HttpServlet {
     session.setAttribute("message2", errorMessage);
     response.sendRedirect("login.jsp");
   }
-
-
   private String hashPassword(String password) {
     return password;
   }

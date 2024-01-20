@@ -16,12 +16,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Trang chủ</title>
-    <link rel="stylesheet" href="css/trangchu.css">
+    <link rel="stylesheet" href="./css/trangchu.css">
     <script src="https://kit.fontawesome.com/3e135170bd.js" crossorigin="anonymous"></script>
 </head>
 <body>
+<%@include file="header.jsp" %>
 <div id="main">
-    <%@include file="header.jsp" %>
     <div id="poster">
         <img src="img/may-loc-nuoc-nong-lanh-karofi-kad-d50-nuoc-nong-lanh.jpg">
     </div>
@@ -2463,8 +2463,8 @@
 
         </div>
     </div>
-    <%@include file="footer.jsp" %>
 </div>
+<%@include file="footer.jsp" %>
 <!--Phần tỉnh thành-->
 <div class="modal-tinh-thanh js-modal-tinh-thanh">
     <div class="modal-container js-modal-container">
