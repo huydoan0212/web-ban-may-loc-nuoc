@@ -218,10 +218,11 @@ public class UserDAO {
 
     public static boolean updateUserInfomationById(String fullname, String phone_number, int id) {
         int rowsUpdated = JDBIConnector.me().withHandle(handle ->
-                handle.createUpdate("UPDATE users SET fullname = :fullname, phone_number = :phone_number WHERE id = :id")
-                        .bind("fullname", fullname)
-                        .bind("phone_number", phone_number)
-                        .bind("id", id)
+                handle.createUpdate("UPDATE users SET fullname = ?, phone_number = ?, updated_at = ? WHERE id = ?")
+                        .bind(0, fullname)
+                        .bind(1, phone_number)
+                        .bind(2, LocalDateTime.now().toString())
+                        .bind(3, id)
                         .execute()
         );
         return rowsUpdated > 0;

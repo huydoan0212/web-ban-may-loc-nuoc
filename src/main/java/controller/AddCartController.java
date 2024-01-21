@@ -2,7 +2,9 @@ package controller;
 
 import cart.Cart;
 import model.Product;
+import model.Voucher;
 import service.ProductService;
+import service.VoucherService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 
 @WebServlet(name = "AddCartController", value = "/add-card")
 public class AddCartController extends HttpServlet {
@@ -27,9 +30,11 @@ public class AddCartController extends HttpServlet {
         int id = Integer.parseInt(req.getParameter("id"));
         int page = Integer.parseInt(req.getParameter("page"));
         cart.add(id);
+        ArrayList<Voucher> vouchers = VoucherService.getInstance().getVoucher();
+        session.setAttribute("vouchers", vouchers );
         session.setAttribute("cart", cart);
-        switch (page){
-            case 1 :
+        switch (page) {
+            case 1:
                 resp.sendRedirect("trangchu");
                 break;
             case 2:

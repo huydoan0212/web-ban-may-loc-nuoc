@@ -2,6 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% User user = (User) session.getAttribute("user");
     String checkLogin = user != null ? "/ProjectLTW_war/account-page" : "login.jsp";
+    String checkLoginCart = user != null ? "/ProjectLTW_war/cart" : "login.jsp";
 
 %>
 <html>
@@ -26,8 +27,8 @@
                     <i class="fa-solid fa-magnifying-glass fa-xl"></i>
                 </div>
                 <a href="<%=checkLogin%>"
-                class="tai-khoan-don-hang chung"><span>Tài khoản và đơn hàng</span></a>
-                <a href="/ProjectLTW_war/cart" class="gio-hang ">
+                   class="tai-khoan-don-hang chung"><span>Tài khoản và đơn hàng</span></a>
+                <a href="<%=checkLoginCart%>" class="gio-hang ">
                     <i class="fa-solid fa-cart-shopping" style="color: #ffffff;"></i>
                     <span>Giỏ hàng</span>
                 </a>
