@@ -28,14 +28,17 @@ public class CommentController extends HttpServlet {
         Product product = (Product) session.getAttribute("product");
         String content = req.getParameter("content").trim();
         String rating = req.getParameter("rating");
-        if (content == null || content.equals("") || rating == null || rating.equals("") ){
+        if (user == null){
+            resp.sendRedirect("login.jsp");
+        }
+         else if (content == null || content.equals("") || rating == null || rating.equals("") ){
             req.setAttribute("error", "Bạn cần nhập các đủ thông tin ");
         }else if (CommentService.isValidText(content) == false){
             req.setAttribute("error", "Ki tu khong hop le ");
         }
         else{
             CommentService.insertComment(user.getId(), product.getId(), content, rating);
-            req.getRequestDispatcher("ProjectLTW_war/trangsanpham?id=" + product.getId()).forward(req, resp);
+            resp.sendRedirect("/ProjectLTW_war/product");
         }
 
 

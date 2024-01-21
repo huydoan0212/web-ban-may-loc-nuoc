@@ -19,5 +19,6 @@ public class CommentService {
     public static void insertComment( int userId, int productId, String contents, String star){
         CommentDao.insertComment(userId, productId, contents, star);
     }
+
     }
 
