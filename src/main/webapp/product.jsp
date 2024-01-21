@@ -474,26 +474,26 @@
                         <p><i class="fa-regular fa-thumbs-up"></i> Hữu ích | Đã dùng khoảng 2 tháng</p>
                     </div>
                     <div class="rating">
-                        <form action="" accept-charset="UTF-8" method="post" >
+                        <form action="./commentController" accept-charset="UTF-8" method="post" >
                             <div class="star-rating">
-                                <input type="radio" id="star5" name="rating" value="5">
-                                <label for="star5"><i class="fa-solid fa-star" style="color: #f18f31"></i></label>
-
-                                <input type="radio" id="star4" name="rating" value="4">
-                                <label for="star4"><i class="fa-solid fa-star" style="color: #f18f31"></i></label>
-
-                                <input type="radio" id="star3" name="rating" value="3">
-                                <label for="star3"><i class="fa-solid fa-star" style="color: #f18f31"></i></label>
-
-                                <input type="radio" id="star2" name="rating" value="2">
-                                <label for="star2"><i class="fa-solid fa-star" style="color: #f18f31"></i></label>
-
                                 <input type="radio" id="star1" name="rating" value="1" >
                                 <label for="star1"><i class="fa-solid fa-star" style="color: #f18f31"></i></label>
+                                <input type="radio" id="star2" name="rating" value="2">
+                                <label for="star2"><i class="fa-solid fa-star" style="color: #f18f31"></i></label>
+                                <input type="radio" id="star3" name="rating" value="3">
+                                <label for="star3"><i class="fa-solid fa-star" style="color: #f18f31"></i></label>
+                                <input type="radio" id="star4" name="rating" value="4">
+                                <label for="star4"><i class="fa-solid fa-star" style="color: #f18f31"></i></label>
+                                <input type="radio" id="star5" name="rating" value="5">
+                                <label for="star5"><i class="fa-solid fa-star" style="color: #f18f31"></i></label>
                             </div>
+                            <% String error = (String) request.getAttribute("error");%>
+                            <% String content = (String) request.getParameter("content"); %>
+                            <% String  rating = (String) request.getParameter("rating"); %>
                             <div class="input-box">
-                                <input type="text" placeholder="Viết đánh giá" name="note">
+                                <input type="text" placeholder="Viết đánh giá" name="content">
                             </div>
+                            <span style="color: red; font-size: 14px;padding-left: 20px;"><%=(error != null && error != "") ? error : ""%></span>
                             <div class="sent-btn">
                                 <button type="submit" class="btn">Gửi đánh giá</button>
                             </div>

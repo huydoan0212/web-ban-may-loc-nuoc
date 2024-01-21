@@ -5,11 +5,11 @@ public class Comment {
     private int userId;
     private int productId;
     private String contens;
-    private int star;
+    private String star;
     private int display;
     private String create_date;
 
-    public Comment(int id, int userId, int productId, String contens, int star, int display, String create_date) {
+    public Comment(int id, int userId, int productId, String contens, String star, int display, String create_date) {
         this.id = id;
         this.userId = userId;
         this.productId = productId;
@@ -51,11 +51,11 @@ public class Comment {
         this.contens = contens;
     }
 
-    public int getStar() {
+    public String getStar() {
         return star;
     }
 
-    public void setStar(int star) {
+    public void setStar(String star) {
         this.star = star;
     }
 

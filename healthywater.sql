@@ -80,7 +80,7 @@ CREATE TABLE `comments` (
                          `user_id` int,
                          `product_id` int,
                          `contents` varchar(300),
-                         `star` int,
+                         `star` varchar(50),
                          `display` int,
                          `create_date` datetime
 
