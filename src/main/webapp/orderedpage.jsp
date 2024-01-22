@@ -18,6 +18,7 @@
 <%@include file="header.jsp" %>
 <div id="main">
 
+
     <div id="content">
         <div class="container">
             <div class="display">
