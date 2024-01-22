@@ -26,21 +26,33 @@ public class CommentController extends HttpServlet {
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
         Product product = (Product) session.getAttribute("product");
-        String idProduct = (String) session.getAttribute("idProduct");
-        String content = req.getParameter("content").trim();
-        String rating = req.getParameter("rating");
-        if (user == null){
-            resp.sendRedirect("login.jsp");
+        int id = 0;
+        Object temp = req.getParameter("id");
+        if(temp != null){
+            if(temp instanceof Integer){
+                id = (int) temp;
+            }else if(temp instanceof String){
+                id = Integer.valueOf((String) temp);
+
+            }
         }
-         else if (content == null || content.equals("") || rating == null || rating.equals("") ){
-            req.setAttribute("error", "Bạn cần nhập các đủ thông tin ");
-        }else if (CommentService.isValidText(content) == false){
-            req.setAttribute("error", "Ki tu khong hop le ");
+        if (id != 0){
+            String content = req.getParameter("content").trim();
+            String rating = req.getParameter("rating");
+            if (user == null){
+                resp.sendRedirect("login.jsp");
+            }
+            else if (content == null || content.equals("") || rating == null || rating.equals("") ){
+                req.setAttribute("error", "Bạn cần nhập các đủ thông tin ");
+                req.getRequestDispatcher("trangsanpham").forward(req,resp);
+            }
+            else{
+                CommentService.insertComment(user.getId(), id, content, rating);
+                req.getRequestDispatcher("trangsanpham").forward(req,resp);
+            }
+
         }
-        else{
-            CommentService.insertComment(user.getId(), Integer.parseInt(idProduct), content, rating);
-            resp.sendRedirect("/ProjectLTW_war/product");
-        }
+
 
 
 

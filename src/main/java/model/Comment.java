@@ -1,5 +1,5 @@
 package model;
-
+import java.time.LocalDateTime;
 public class Comment {
     private int id;
     private int userId;
@@ -7,9 +7,9 @@ public class Comment {
     private String contens;
     private String star;
     private int display;
-    private String create_date;
+    private LocalDateTime create_date;
 
-    public Comment(int id, int userId, int productId, String contens, String star, int display, String create_date) {
+    public Comment(int id, int userId, int productId, String contens, String star, int display, LocalDateTime create_date) {
         this.id = id;
         this.userId = userId;
         this.productId = productId;
@@ -67,24 +67,11 @@ public class Comment {
         this.display = display;
     }
 
-    public String getCreate_date() {
+    public LocalDateTime getCreate_date() {
         return create_date;
     }
 
-    public void setCreate_date(String create_date) {
+    public void setCreate_date(LocalDateTime create_date) {
         this.create_date = create_date;
-    }
-
-    @Override
-    public String toString() {
-        return "Comment{" +
-                "id=" + id +
-                ", userId=" + userId +
-                ", productId=" + productId +
-                ", contens='" + contens + '\'' +
-                ", star=" + star +
-                ", display=" + display +
-                ", create_date='" + create_date + '\'' +
-                '}';
     }
 }

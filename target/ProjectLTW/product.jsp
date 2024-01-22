@@ -4,12 +4,24 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Locale" %>
 <%@ page import="java.text.NumberFormat" %>
+<%@ page import="model.Comment" %>
+<%@ page import="service.CommentService" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% Product product = (Product) request.getAttribute("product");
     if (product == null) product = new Product();
     List<Gallery> galleries = (List<Gallery>) request.getAttribute("galleries");
     if (galleries == null) galleries = new ArrayList<>();
+
+    List<Comment> comments = (List<Comment>) request.getAttribute("comments");
+    if (comments == null) comments = new ArrayList<>();
 %>
+
+<% String error = (String) request.getAttribute("error");%>
+<% String content = (String) request.getParameter("content"); %>
+<% String  rating = (String) request.getParameter("rating"); %>
+<%  int idProduct = product.getId(); %>
+
+
 <% Locale locale = new Locale("vi", "VN");
     NumberFormat numberFormat = NumberFormat.getInstance(locale);
 %>
@@ -187,66 +199,66 @@
                                     tế</b><br>
                                 Nước sau khi lọc đạt tiêu chuẩn nước uống trực tiếp không cần đun sôi QCVN 6-1:2010/BYT.<br>
 
-                                <img src="img/ttsp3.jpg"/><br><b style="font-size: 15px">Công suất - Dung tích bình chứa
-                                    - Chế độ nước</b>
-                                <br> - Công suất lọc lớn 20 lít/giờ, dung tích bình chứa 6.8 lít (nước nóng 1 lít, nước
-                                lạnh 0.8 lít, nước <br> thường 5 lít) đáp ứng nhu cầu sử dụng nước hằng ngày của gia
-                                đình.<br>
-                                - 2 vòi, 3 chế độ nước nóng - nguội - lạnh:<br>
-                                + Nhiệt độ nước nóng từ 85 - 95°C có thể pha trà, sữa, cà phê, nấu mì ăn liền,...<br>
-                                + Nhiệt độ nước lạnh từ 12 - 15°C giúp bạn có những ly nước lạnh mát mẻ trong những ngày
-                                nóng<br> oi bức.
-                                <i>*Nhiệt độ nước thực tế sẽ phụ thuộc vào nhiệt độ bên ngoài môi trường và thể tích
-                                    nước lấy ra.</i><br>
+<%--                                <img src="img/ttsp3.jpg"/><br><b style="font-size: 15px">Công suất - Dung tích bình chứa--%>
+<%--                                    - Chế độ nước</b>--%>
+<%--                                <br> - Công suất lọc lớn 20 lít/giờ, dung tích bình chứa 6.8 lít (nước nóng 1 lít, nước--%>
+<%--                                lạnh 0.8 lít, nước <br> thường 5 lít) đáp ứng nhu cầu sử dụng nước hằng ngày của gia--%>
+<%--                                đình.<br>--%>
+<%--                                - 2 vòi, 3 chế độ nước nóng - nguội - lạnh:<br>--%>
+<%--                                + Nhiệt độ nước nóng từ 85 - 95°C có thể pha trà, sữa, cà phê, nấu mì ăn liền,...<br>--%>
+<%--                                + Nhiệt độ nước lạnh từ 12 - 15°C giúp bạn có những ly nước lạnh mát mẻ trong những ngày--%>
+<%--                                nóng<br> oi bức.--%>
+<%--                                <i>*Nhiệt độ nước thực tế sẽ phụ thuộc vào nhiệt độ bên ngoài môi trường và thể tích--%>
+<%--                                    nước lấy ra.</i><br>--%>
 
-                                <img src="img/ttsp4.jpg"/><br><b style="font-size: 15px">Thu hồi tỷ lệ nước sạch</b>
-                                <br>
-                                - Máy lọc nước có tỷ lệ lọc - thải là 5/5.<br>
-                                - 10 lít nước đưa vào máy sẽ lọc được 5 lít nước tinh khiết để uống và 5 lít được thải
-                                ra ngoài.
-                                <br> - Lượng nước thải ra, bạn có thể tái sử dụng cho hoạt động sinh hoạt, vệ sinh khác
-                                của gia đình.
-                                <img src="img/ttsp5.jpg"/>
-                                <br> <b style="font-size: 15px">Công nghệ</b>
-                                <br> - Hệ thống làm lạnh bằng chip điện tử: Giúp làm giảm nhiệt độ các chất bán dẫn,
-                                điều khiển nhiệt độ,<br> tiết kiệm điện năng.<br>
-                                - Công nghệ kháng khuẩn Nano Silver: Giúp tiêu diệt vi khuẩn, chống tái nhiễm khuẩn sau
-                                khi nước<br> đi quamàng RO.<br>
+<%--                                <img src="img/ttsp4.jpg"/><br><b style="font-size: 15px">Thu hồi tỷ lệ nước sạch</b>--%>
+<%--                                <br>--%>
+<%--                                - Máy lọc nước có tỷ lệ lọc - thải là 5/5.<br>--%>
+<%--                                - 10 lít nước đưa vào máy sẽ lọc được 5 lít nước tinh khiết để uống và 5 lít được thải--%>
+<%--                                ra ngoài.--%>
+<%--                                <br> - Lượng nước thải ra, bạn có thể tái sử dụng cho hoạt động sinh hoạt, vệ sinh khác--%>
+<%--                                của gia đình.--%>
+<%--                                <img src="img/ttsp5.jpg"/>--%>
+<%--                                <br> <b style="font-size: 15px">Công nghệ</b>--%>
+<%--                                <br> - Hệ thống làm lạnh bằng chip điện tử: Giúp làm giảm nhiệt độ các chất bán dẫn,--%>
+<%--                                điều khiển nhiệt độ,<br> tiết kiệm điện năng.<br>--%>
+<%--                                - Công nghệ kháng khuẩn Nano Silver: Giúp tiêu diệt vi khuẩn, chống tái nhiễm khuẩn sau--%>
+<%--                                khi nước<br> đi quamàng RO.<br>--%>
 
-                                <img src="img/ttsp6.jpg"/><br><b style="font-size: 15px">Số lõi lọc, chức năng từng
-                                    lõi</b><br>
-                                - <b>Smax Duo 1 (Vi lọc):</b> Loại bỏ các chất bẩn có kích thước trên 5 micron.<br>
-                                - <b>Smax Duo 3 (Post Carbon):</b> Loại bỏ các chất hữu cơ, màu, mùi khó chịu trong
-                                nước.<br>
-                                - <b>Smax Duo 3 (Đa điểm):</b> Loại bỏ các chất bẩn có kích thước trên 1 micron.<br>
-                                - <b>Màng RO Purifim 100 GPD Mỹ:</b> Loại bỏ 99,99% vi khuẩn, virus, kim loại nặng,...
-                                làm cho nước trở<br> nên tinh khiết.<br>
-                                - <b>Mineral: </b>Bổ sung khoáng chất, nâng cao pH, trung hoà axit dư.<br>
-                                - <b>GAC - T33:</b> Ổn định vị ngọt tự nhiên cho nước.<br>
-                                - <b>ORP Alkaline:</b> Giảm ORP của nước, giúp tăng cường miễn dịch cho cơ thể.<br>
-                                - <b>Tourmaline:</b> Tạo ion âm có lợi cho cơ thể và hoạt hoá nước.
-                                <br>- <b>Hydrogen Plus:</b> Loại bỏ các chất oxy hóa và các tác nhân gây lão hóa, trung
-                                hòa acid dư thừa, <br> tốt chohệ tiêu hóa, cung cấp khoáng chất canxi, magie, kali,
-                                natri làm cho nước ngon ngọt tự nhiên.
-                                <br>- <b>Nano Silver:</b> Chống tái nhiễm khuẩn cho nguồn nước đầu ra.<br>
-                                <img src="img/ttsp8.jpg"/><br><b style="font-size: 15px">Tiện ích</b>
-                                <br>- Tạo nước Hydrogen chống oxy hoá, có lợi cho sức khỏe.
-                                <br> - Ngừng hoạt động khi nước đầy bình.
-                                <br> - Ngừng hoạt động khi áp lực nước thấp.<br>
-                                - Trung hòa độ pH ổn định độ ngọt cho nước.<br>
-                                - Tự động xả nước thải.<br>
+<%--                                <img src="img/ttsp6.jpg"/><br><b style="font-size: 15px">Số lõi lọc, chức năng từng--%>
+<%--                                    lõi</b><br>--%>
+<%--                                - <b>Smax Duo 1 (Vi lọc):</b> Loại bỏ các chất bẩn có kích thước trên 5 micron.<br>--%>
+<%--                                - <b>Smax Duo 3 (Post Carbon):</b> Loại bỏ các chất hữu cơ, màu, mùi khó chịu trong--%>
+<%--                                nước.<br>--%>
+<%--                                - <b>Smax Duo 3 (Đa điểm):</b> Loại bỏ các chất bẩn có kích thước trên 1 micron.<br>--%>
+<%--                                - <b>Màng RO Purifim 100 GPD Mỹ:</b> Loại bỏ 99,99% vi khuẩn, virus, kim loại nặng,...--%>
+<%--                                làm cho nước trở<br> nên tinh khiết.<br>--%>
+<%--                                - <b>Mineral: </b>Bổ sung khoáng chất, nâng cao pH, trung hoà axit dư.<br>--%>
+<%--                                - <b>GAC - T33:</b> Ổn định vị ngọt tự nhiên cho nước.<br>--%>
+<%--                                - <b>ORP Alkaline:</b> Giảm ORP của nước, giúp tăng cường miễn dịch cho cơ thể.<br>--%>
+<%--                                - <b>Tourmaline:</b> Tạo ion âm có lợi cho cơ thể và hoạt hoá nước.--%>
+<%--                                <br>- <b>Hydrogen Plus:</b> Loại bỏ các chất oxy hóa và các tác nhân gây lão hóa, trung--%>
+<%--                                hòa acid dư thừa, <br> tốt chohệ tiêu hóa, cung cấp khoáng chất canxi, magie, kali,--%>
+<%--                                natri làm cho nước ngon ngọt tự nhiên.--%>
+<%--                                <br>- <b>Nano Silver:</b> Chống tái nhiễm khuẩn cho nguồn nước đầu ra.<br>--%>
+<%--                                <img src="img/ttsp8.jpg"/><br><b style="font-size: 15px">Tiện ích</b>--%>
+<%--                                <br>- Tạo nước Hydrogen chống oxy hoá, có lợi cho sức khỏe.--%>
+<%--                                <br> - Ngừng hoạt động khi nước đầy bình.--%>
+<%--                                <br> - Ngừng hoạt động khi áp lực nước thấp.<br>--%>
+<%--                                - Trung hòa độ pH ổn định độ ngọt cho nước.<br>--%>
+<%--                                - Tự động xả nước thải.<br>--%>
 
-                                <img src="img/ttsp7.jpg"/><br><b style="font-size: 15px">Lý do nên sử dụng máy lọc nước
-                                    trong gia đình:</b><br>
-                                <br> <i><b>1. Bảo vệ người dùng khỏi những bệnh liên quan đến nguồn nước:</b></i>
-                                <br>- Bệnh tả, kiết lỵ, viêm gan A, giun sán,... do các vi sinh vật trong nước gây
-                                ra.
-                                <br> - Bệnh bướu cổ, ung thư, viêm da, sẩy thai, nguy cơ dị tật ở thai nhi,... khi uống
-                                phải nguồn nước nhiễm <br> hóa chất, kim loại nặng, chất phóng xạ.
-                                <br> <i><b>2. Tiện lợi và tiết kiệm chi phí sinh hoạt:</b></i> thay vì sử dụng nước đóng
-                                chai hay nước đun sôi lại,<br> nguồn nước sạch được lọc, làm nóng trực tiếp (nếu có) từ
-                                máy sẽ an toàn, nhanh chóng và tiện lợi hơn.<br> Nước sau lọc có thể uống trực tiếp tại
-                                vòi, không cần đun sôi.
+<%--                                <img src="img/ttsp7.jpg"/><br><b style="font-size: 15px">Lý do nên sử dụng máy lọc nước--%>
+<%--                                    trong gia đình:</b><br>--%>
+<%--                                <br> <i><b>1. Bảo vệ người dùng khỏi những bệnh liên quan đến nguồn nước:</b></i>--%>
+<%--                                <br>- Bệnh tả, kiết lỵ, viêm gan A, giun sán,... do các vi sinh vật trong nước gây--%>
+<%--                                ra.--%>
+<%--                                <br> - Bệnh bướu cổ, ung thư, viêm da, sẩy thai, nguy cơ dị tật ở thai nhi,... khi uống--%>
+<%--                                phải nguồn nước nhiễm <br> hóa chất, kim loại nặng, chất phóng xạ.--%>
+<%--                                <br> <i><b>2. Tiện lợi và tiết kiệm chi phí sinh hoạt:</b></i> thay vì sử dụng nước đóng--%>
+<%--                                chai hay nước đun sôi lại,<br> nguồn nước sạch được lọc, làm nóng trực tiếp (nếu có) từ--%>
+<%--                                máy sẽ an toàn, nhanh chóng và tiện lợi hơn.<br> Nước sau lọc có thể uống trực tiếp tại--%>
+<%--                                vòi, không cần đun sôi.--%>
                         </div>
                         <div class="product-content-thongsokythuat">
                             <img src="img/ttsp8.jpg"/>
@@ -428,53 +440,66 @@
                 </div>
             </div>
             <div class="danhgia-sp">
-                <div class="danhgia-sp-header">
-                    <h1>Đánh giá Máy lọc nước RO nóng nguội lạnh Karofi KAD-X39 10 lõi</h1>
-                    <h2>4.1 <i class="fa-solid fa-star" style="color: #f18f31"></i><i class="fa-solid fa-star"
-                                                                                      style="color: #f18f31"></i><i
-                            class="fa-solid fa-star" style="color: #f18f31"></i><i class="fa-solid fa-star"
-                                                                                   style="color: #f18f31"></i><i
-                            class="fa-solid fa-star" style="color: #cec7c7;"></i></h2>
-                    <h3>5<i class="fa-solid fa-star" style="color: #f18f31;"></i><b style="color: #f18f31">--------------------</b>------------------------45%
-                    </h3>
-                    <h3>4<i class="fa-solid fa-star" style="color: #f18f31;"></i><b style="color: #f18f31">---------------</b>-----------------------------36%
-                    </h3>
-                    <h3>3<i class="fa-solid fa-star" style="color: #f18f31;"></i><b style="color: #f18f31">-----</b>---------------------------------------10%
-                    </h3>
-                    <h3>2<i class="fa-solid fa-star" style="color: #f18f31;"></i><b style="color: #f18f31">--</b>------------------------------------------4%
-                    </h3>
-                    <h3>1<i class="fa-solid fa-star" style="color: #f18f31;"></i><b style="color: #f18f31">--</b>------------------------------------------5%
-                    </h3>
-                    <img src="img/dgsp4.jpg"/>
-                    <img src="img/dgsp3.jpg"/>
-                    <img src="img/dgsp2.jpg"/>
-                    <img src="img/dgsp1.jpg"/>
-                    <img src="img/dgsp5.jpg"/>
-                    <img src="img/dgsp6.jpg"/>
-                </div>
+<%--                <div class="danhgia-sp-header">--%>
+<%--                    <h1>Đánh giá Máy lọc nước RO nóng nguội lạnh Karofi KAD-X39 10 lõi</h1>--%>
+<%--                    <h2>4.1 <i class="fa-solid fa-star" style="color: #f18f31"></i><i class="fa-solid fa-star"--%>
+<%--                                                                                      style="color: #f18f31"></i><i--%>
+<%--                            class="fa-solid fa-star" style="color: #f18f31"></i><i class="fa-solid fa-star"--%>
+<%--                                                                                   style="color: #f18f31"></i><i--%>
+<%--                            class="fa-solid fa-star" style="color: #cec7c7;"></i></h2>--%>
+<%--                    <h3>5<i class="fa-solid fa-star" style="color: #f18f31;"></i><b style="color: #f18f31">--------------------</b>------------------------45%--%>
+<%--                    </h3>--%>
+<%--                    <h3>4<i class="fa-solid fa-star" style="color: #f18f31;"></i><b style="color: #f18f31">---------------</b>-----------------------------36%--%>
+<%--                    </h3>--%>
+<%--                    <h3>3<i class="fa-solid fa-star" style="color: #f18f31;"></i><b style="color: #f18f31">-----</b>---------------------------------------10%--%>
+<%--                    </h3>--%>
+<%--                    <h3>2<i class="fa-solid fa-star" style="color: #f18f31;"></i><b style="color: #f18f31">--</b>------------------------------------------4%--%>
+<%--                    </h3>--%>
+<%--                    <h3>1<i class="fa-solid fa-star" style="color: #f18f31;"></i><b style="color: #f18f31">--</b>------------------------------------------5%--%>
+<%--                    </h3>--%>
+<%--                    <img src="img/dgsp4.jpg"/>--%>
+<%--                    <img src="img/dgsp3.jpg"/>--%>
+<%--                    <img src="img/dgsp2.jpg"/>--%>
+<%--                    <img src="img/dgsp1.jpg"/>--%>
+<%--                    <img src="img/dgsp5.jpg"/>--%>
+<%--                    <img src="img/dgsp6.jpg"/>--%>
+<%--                </div>--%>
                 <div class="danhgia-sp-footer">
+                    <%for (Comment comment : comments) {%>
                     <div class="khachhang1">
-                        <h3>Thiên Bảo</h3>
-                        <h2><i class="fa-solid fa-star" style="color: #f18f31"></i><i class="fa-solid fa-star"
-                                                                                      style="color: #f18f31"></i><i
-                                class="fa-solid fa-star" style="color: #f18f31"></i><i class="fa-solid fa-star"
-                                                                                       style="color: #f18f31"></i><i
-                                class="fa-solid fa-star" style="color: #f18f31"></i></h2>
-                        <p>Sản phẩm rất tốt</p>
-                        <p><i class="fa-regular fa-thumbs-up"></i> Hữu ích | Đã dùng khoảng 1 tháng</p>
+                        <h3><%=comment.getUserId()%></h3>
+<%--                        <h2>--%>
+<%--                            <%--%>
+<%--                                int starRating = Integer.parseInt(comment.getStar());--%>
+<%--                                for (int i = 1; i <= 5; i++) {--%>
+<%--                                    if (i <= starRating) {--%>
+<%--                            %>--%>
+<%--                            <label for="star<%= i %>"><i class="fa-solid fa-star" style="color: #f18f31"></i></label>--%>
+<%--                            <%--%>
+<%--                            } else {--%>
+<%--                            %>--%>
+<%--                            <label for="star<%= i %>"><i class="fa-regular fa-star" style="color: #f18f31"></i></label>--%>
+<%--                            <%--%>
+<%--                                    }--%>
+<%--                                }--%>
+<%--                            %>--%>
+<%--                        </h2>--%>
+                        <p><%=comment.getContens()%></p>
+                        <p><i class="fa-regular fa-thumbs-up"></i> <%=comment.getCreate_date()%></p>
                     </div>
-                    <div class="khachhang2">
-                        <h3>Hải Anh</h3>
-                        <h2><i class="fa-solid fa-star" style="color: #f18f31"></i><i class="fa-solid fa-star"
-                                                                                      style="color: #f18f31"></i><i
-                                class="fa-solid fa-star" style="color: #f18f31"></i><i class="fa-solid fa-star"
-                                                                                       style="color: #f18f31"></i><i
-                                class="fa-solid fa-star" style="color: #f18f31"></i></h2>
-                        <p>Sản phẩm tốt</p>
-                        <p><i class="fa-regular fa-thumbs-up"></i> Hữu ích | Đã dùng khoảng 2 tháng</p>
-                    </div>
+                    <% } %>
+<%--                    <div class="khachhang2">--%>
+<%--                        <h3>Hải Anh</h3>--%>
+<%--                        <h2><i class="fa-solid fa-star" style="color: #f18f31"></i><i class="fa-solid fa-star"--%>
+<%--                                                                                      style="color: #f18f31"></i><i--%>
+<%--                                class="fa-solid fa-star" style="color: #f18f31"></i><i class="fa-solid fa-star"--%>
+<%--                                                                                       style="color: #f18f31"></i><i--%>
+<%--                                class="fa-solid fa-star" style="color: #f18f31"></i></h2>--%>
+<%--                        <p>Sản phẩm tốt</p>--%>
+<%--                        <p><i class="fa-regular fa-thumbs-up"></i> Hữu ích | Đã dùng khoảng 2 tháng</p>--%>
+<%--                    </div>--%>
                     <div class="rating">
-                        <form action="./commentController" accept-charset="UTF-8" method="post" >
+                                <form action="./commentController?id=<%=idProduct%>" accept-charset="UTF-8" method="post" >
                             <div class="star-rating">
                                 <input type="radio" id="star1" name="rating" value="1" >
                                 <label for="star1"><i class="fa-solid fa-star" style="color: #f18f31"></i></label>
@@ -488,10 +513,7 @@
                                 <label for="star5"><i class="fa-solid fa-star" style="color: #f18f31"></i></label>
                             </div>
 
-                            <% String error = (String) request.getAttribute("error");%>
-                            <% String content = (String) request.getParameter("content"); %>
-                            <% String  rating = (String) request.getParameter("rating"); %>
-                            <%  String idProduct = (String) request.getParameter(String.valueOf(product.getId())); %>
+
 
                             <div class="input-box">
                                 <input type="text" placeholder="Viết đánh giá" name="content">
