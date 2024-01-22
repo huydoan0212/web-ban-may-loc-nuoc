@@ -11,16 +11,17 @@ import java.util.stream.Collectors;
 public class OrderDAO {
     LocalDateTime time = null;
 
-    public static boolean insertOrder(int user_id, String address, String phone, String status, int total_money) {
+    public static boolean insertOrder(int user_id, String address, String phone, String status, int total_money, int voucher_id) {
         int rowAffected = JDBIConnector.me().withHandle(handle ->
-                handle.createUpdate("INSERT INTO orders( user_id, address, phone, order_date,status,total_money) " +
-                                "VALUES ( :user_id, :address, :phone, :order_date, :status, :total_money)")
+                handle.createUpdate("INSERT INTO orders( user_id, address, phone, order_date,status,total_money,voucher_id) " +
+                                "VALUES ( :user_id, :address, :phone, :order_date, :status, :total_money,:voucher_id)")
                         .bind("user_id", user_id)
                         .bind("address", address)
                         .bind("phone", phone)
                         .bind("order_date", LocalDateTime.now().toString())
                         .bind("status", status)
                         .bind("total_money", total_money)
+                        .bind("voucher_id",voucher_id)
                         .execute());
         if (rowAffected > 0) {
             return true;
@@ -53,6 +54,13 @@ public class OrderDAO {
                         .mapToBean(Order.class).stream().collect(Collectors.toList()));
         return orders.isEmpty() ? null : orders;
     }
+    public static Order getOrderById(int id){
+       Optional<Order> order = JDBIConnector.me().withHandle(handle ->
+                handle.createQuery("SELECT * FROM orders WHERE id = :id ")
+                        .bind("id", id)
+                        .mapToBean(Order.class).stream().findFirst());
+        return order.isEmpty() ? null : order.get();
+    }
 
     public static boolean cancelOrder(String status, int id) {
         int rowsUpdated = JDBIConnector.me().withHandle(handle ->
@@ -80,6 +88,7 @@ public class OrderDAO {
 //        System.out.println(OrderDAO.getOrder(1,"126 Phuoc Long","0586485990", "Đặt hàng",3490000));
 //        System.out.println(OrderDAO.cancelOrder("Thay doi dia chi", 5));
 //        System.out.println(OrderDAO.getOrderByIdUser(1));
+        System.out.println(getOrderById(104));
     }
 }
 

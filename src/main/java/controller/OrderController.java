@@ -25,6 +25,15 @@ public class OrderController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
+        Object object = req.getParameter("voucher_id");
+        int voucher_id = 0;
+        if (object != null) {
+            if (object instanceof Integer) {
+                voucher_id = (Integer) object;
+            } else if (object instanceof String) {
+                voucher_id = Integer.valueOf((String) object);
+            }
+        }
         Cart cart = (Cart) session.getAttribute("cart");
         User user = (User) session.getAttribute("user");
         Set set = cart.getData().keySet();
@@ -38,10 +47,10 @@ public class OrderController extends HttpServlet {
             }
         }
         if (cart.getTotal() > 0 && user != null) {
-            boolean checkCreatedOrder = OrderService.getInstance().insertOrder(user.getId(), user.getAddress(), user.getPhoneNumber(), "Đặt hàng", total_decrease);
+            boolean checkCreatedOrder = OrderService.getInstance().insertOrder(user.getId(), user.getAddress(), user.getPhoneNumber(), "Đang đặt hàng", total_decrease,voucher_id);
 
             if (checkCreatedOrder) {
-                Order order = OrderService.getInstance().getOrder(user.getId(), user.getAddress(), user.getPhoneNumber(), "Đặt hàng", total_decrease);
+                Order order = OrderService.getInstance().getOrder(user.getId(), user.getAddress(), user.getPhoneNumber(), "Đang đặt hàng", total_decrease);
                 if (order != null) session.setAttribute("order", order);
                 for (Object key : set) {
                     int order_id = order.getId();

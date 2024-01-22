@@ -33,7 +33,7 @@
                     <div class="mini-menu-toolbar">
                         <div class="order-frame">
                             <i class="fa-solid fa-rectangle-list"></i>
-                            <a href="" class="order">Đơn hàng đã mua</a>
+                            <a href="ordered-page" class="order">Đơn hàng đã mua</a>
                         </div>
                         <div class="infor-frame">
                             <i class="fa-solid fa-address-card"></i>
