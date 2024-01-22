@@ -30,8 +30,11 @@ public class UseVoucherController extends HttpServlet {
                 if (voucher != null) {
                     double percent_decrease = voucher.getPercent_decrease();
                     req.getSession().setAttribute("percent_decrease", percent_decrease);
+                    req.getSession().setAttribute("voucher", voucher);
                 }
-                resp.sendRedirect("cart");
+                req.getRequestDispatcher("cart").forward(req, resp);
+            }else {
+
             }
         } catch (NumberFormatException e) {
             // Xử lý ngoại lệ ở đây

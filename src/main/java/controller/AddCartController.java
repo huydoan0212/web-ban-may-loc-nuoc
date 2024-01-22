@@ -35,25 +35,31 @@ public class AddCartController extends HttpServlet {
         session.setAttribute("cart", cart);
         switch (page) {
             case 1:
-                resp.sendRedirect("trangchu");
+                req.getRequestDispatcher("trangchu").forward(req,resp);
                 break;
             case 2:
-                resp.sendRedirect("locnuocro");
+                req.getRequestDispatcher("locnuocro").forward(req,resp);
+//                resp.sendRedirect("locnuocro");
                 break;
             case 3:
-                resp.sendRedirect("locnuocnonglanh");
+                req.getRequestDispatcher("locnuocnonglanh").forward(req,resp);
+//                resp.sendRedirect("locnuocnonglanh");
                 break;
             case 4:
-                resp.sendRedirect("locnuocamtudeban");
+                req.getRequestDispatcher("locnuocamtudeban").forward(req,resp);
+//                resp.sendRedirect("locnuocamtudeban");
                 break;
             case 5:
-                resp.sendRedirect("locnuocnanoufmf");
+                req.getRequestDispatcher("locnuocnanoufmf").forward(req,resp);
+//                resp.sendRedirect("locnuocnanoufmf");
                 break;
             case 6:
-                resp.sendRedirect("locnuockhongdien");
+                req.getRequestDispatcher("locnuockhongdien").forward(req,resp);
+//                resp.sendRedirect("locnuockhongdien");
                 break;
             case 7:
-                resp.sendRedirect("cart");
+                req.getRequestDispatcher("cart").forward(req,resp);
+//                resp.sendRedirect("cart");
                 break;
         }
 

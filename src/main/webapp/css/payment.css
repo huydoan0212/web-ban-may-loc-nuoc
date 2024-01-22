@@ -306,9 +306,10 @@ body {
 }
 /*silder*/
 .slider{
-    margin-top: 100px;
-    height: 550px;
-    background-color: #f0f0f0;
+    margin-top: 130px;
+    margin-bottom: 30px;
+    height: auto;
+    background-color: #ffffff;
 }
 .payment{
     width: 600px;
@@ -317,6 +318,7 @@ body {
     margin: auto;
     background-color: white;
     padding: 10px;
+    border-radius: 8px;
 }
 .payment .payment-h1{
     color: #2f80ed;
@@ -344,6 +346,7 @@ body {
 }
 .payment-id{
     color: #2f80ed;
+    margin: 0 24px;
 }
 .payment-id button{
     font-size: 14px;
@@ -363,6 +366,7 @@ body {
     justify-content: space-between;
     border-bottom: solid 1px #d1d1d1;
     padding: 10px;
+    margin: 0 24px;
 }
 .product-1, .product-price,.total-price,.title-1, .title-2,.total-title,.tax-title, .tax-price{
     margin: 0;
@@ -384,8 +388,10 @@ body {
     display: inline-block;
     font-size: 14px;
     cursor: pointer;
+    margin-left: 0px;
 }
 .payment-type{
+    padding: 0 24px;
     padding-bottom: 10px;
 }
 .submit{
@@ -398,6 +404,7 @@ body {
     color: white;
     border-radius: 5px;
     border: 1px solid ;
+    margin-bottom: 10px;
 }
 .submit:hover{
     background-color: #4b90e2;
@@ -450,6 +457,8 @@ body {
     outline: none;
     cursor: pointer;
     padding-left: 10px;
+    padding-top: 10px;
+    margin-bottom: 25px;
 }
 .cancel-form-content button{
     margin-top: 20px;

@@ -147,18 +147,19 @@
                     <p class="label-voucher">Mã giảm giá/ Phiếu mua hàng</p>
                     <div class="nhap-voucher">
                         <%int id = 0;%>
-                        <select type="text" placeholder="Nhập mã giảm giá/ Phiếu mua hàng" id="ma-giam-gia">
-                            <option class="voucher-option" value="">Chọn voucher</option>
+                        <select id="ma-giam-gia">
+                            <option selected disabled>Chọn mã giảm giá</option>
                             <%for (Voucher v : vouchers) {%>
-                            <option class="voucher-option" value="<%=v.getId()%>"><%=v.getVoucher_name()%>
-                            </option>
+                            <option class="voucher-option" value="<%=v.getId()%>"><%=v.getVoucher_name()%></option>
                             <%}%>
                         </select>
+
                         <a href="#" id="ap-dung" class="ap-dung">Áp dụng</a>
                         <script>
-                            document.getElementById('ma-giam-gia').addEventListener('change', function() {
+                            document.getElementById('ma-giam-gia').addEventListener('change', function () {
                                 var id = this.value;
                                 document.getElementById('ap-dung').href = "use-voucher?voucher_id=" + id;
+                                document.getElementById('ma-giam-gia').selected();
                             });
                         </script>
                     </div>
@@ -173,7 +174,7 @@
                         <span class="text-policy">Tôi đồng ý với Chính sách xử lý dữ liệu cá nhân của Healthy Water</span>
                     </div>
                     <div class="btn-order-frame">
-                        <a class="btn-order">Đặt hàng</a>
+                        <a style="text-decoration: none" href="order-controller?total_decrease=<%=total_decrease%>" class="btn-order">Đặt hàng</a>
                     </div>
                     <div class="note"><span>Bạn có thể chọn hình thức thanh toán sau khi đặt hàng</span></div>
                 </div>
