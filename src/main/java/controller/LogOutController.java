@@ -1,5 +1,7 @@
 package controller;
 
+import model.User;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,7 +19,7 @@ public class LogOutController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        String userName = (String) req.getSession().getAttribute("userName");
+        session.removeAttribute("user");
         session.removeAttribute("userName");
         resp.sendRedirect("login.jsp");
 
