@@ -10,6 +10,7 @@
 <% Locale locale = new Locale("vi", "VN");
     NumberFormat numberFormat = NumberFormat.getInstance(locale);
 %>
+<% String error = (String) request.getAttribute("error");%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -175,6 +176,8 @@
                     </div>
                 </div>
             </div>
+            <span style="color: red; font-size: 20px;padding-left: 20px;"><%=(error != null && error != "") ? error : ""%></span>
+<%--            <span style="color: red; font-size: 20px;padding-left: 20px;">Rất tiếc không tìm thấy sản phẩm của bạn yêu cầu</span>--%>
             <!--            Kết thúc phần lọc sản phẩm-->
             <div class="product-content">
                 <div class="content-may-loc">

@@ -24,6 +24,10 @@ public class FindProductController extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         String title = request.getParameter("title");
         List<Product> products = ProductService.getInstance().getProductByName(title);
+        if (products == null){
+            request.getRequestDispatcher("findproduct.jsp").forward(request, response);
+            request.setAttribute("error", "Rất tiếc không tìm thấy sản phẩm của bạn yêu cầu");
+        }else
         request.setAttribute("findproduct", products);
         request.getRequestDispatcher("findproduct.jsp").forward(request, response);
     }
