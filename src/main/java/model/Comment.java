@@ -4,16 +4,19 @@ public class Comment {
     private int id;
     private int userId;
     private int productId;
-    private String contens;
+    private String contents;
     private String star;
     private int display;
     private LocalDateTime create_date;
 
-    public Comment(int id, int userId, int productId, String contens, String star, int display, LocalDateTime create_date) {
+    public Comment() {
+    }
+
+    public Comment(int id, int userId, int productId, String contents, String star, int display, LocalDateTime create_date) {
         this.id = id;
         this.userId = userId;
         this.productId = productId;
-        this.contens = contens;
+        this.contents = contents;
         this.star = star;
         this.display = display;
         this.create_date = create_date;
@@ -43,12 +46,12 @@ public class Comment {
         this.productId = productId;
     }
 
-    public String getContens() {
-        return contens;
+    public String getContents() {
+        return contents;
     }
 
-    public void setContens(String contens) {
-        this.contens = contens;
+    public void setContents(String contents) {
+        this.contents = contents;
     }
 
     public String getStar() {
@@ -73,5 +76,18 @@ public class Comment {
 
     public void setCreate_date(LocalDateTime create_date) {
         this.create_date = create_date;
+    }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", productId=" + productId +
+                ", contents='" + contents + '\'' +
+                ", star='" + star + '\'' +
+                ", display=" + display +
+                ", create_date=" + create_date +
+                '}';
     }
 }

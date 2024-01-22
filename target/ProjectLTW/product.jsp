@@ -6,6 +6,9 @@
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="model.Comment" %>
 <%@ page import="service.CommentService" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.sql.Date" %>
+<%@ page import="java.time.LocalDateTime" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% Product product = (Product) request.getAttribute("product");
     if (product == null) product = new Product();
@@ -465,39 +468,25 @@
 <%--                    <img src="img/dgsp6.jpg"/>--%>
 <%--                </div>--%>
                 <div class="danhgia-sp-footer">
-                    <%for (Comment comment : comments) {%>
+                    <% for (Comment comment : comments) { %>
                     <div class="khachhang1">
-                        <h3><%=comment.getUserId()%></h3>
-<%--                        <h2>--%>
-<%--                            <%--%>
-<%--                                int starRating = Integer.parseInt(comment.getStar());--%>
-<%--                                for (int i = 1; i <= 5; i++) {--%>
-<%--                                    if (i <= starRating) {--%>
-<%--                            %>--%>
-<%--                            <label for="star<%= i %>"><i class="fa-solid fa-star" style="color: #f18f31"></i></label>--%>
-<%--                            <%--%>
-<%--                            } else {--%>
-<%--                            %>--%>
-<%--                            <label for="star<%= i %>"><i class="fa-regular fa-star" style="color: #f18f31"></i></label>--%>
-<%--                            <%--%>
-<%--                                    }--%>
-<%--                                }--%>
-<%--                            %>--%>
-<%--                        </h2>--%>
-                        <p><%=comment.getContens()%></p>
-                        <p><i class="fa-regular fa-thumbs-up"></i> <%=comment.getCreate_date()%></p>
+                        <h3>Người dùng #<%= comment.getUserId() %></h3>
+                        <h2>Đánh giá <%= comment.getStar() %><i class="fa-solid fa-star" style="color: #f18f31"></i></h2>
+                        <p> Nội dung: <%= comment.getContents() %></p>
+                        <p>Thời gian: <%= comment.getCreate_date() %></p>
                     </div>
                     <% } %>
-                    <div class="khachhang2">
-                        <h3>Hải Anh</h3>
-                        <h2><i class="fa-solid fa-star" style="color: #f18f31"></i><i class="fa-solid fa-star"
-                                                                                      style="color: #f18f31"></i><i
-                                class="fa-solid fa-star" style="color: #f18f31"></i><i class="fa-solid fa-star"
-                                                                                       style="color: #f18f31"></i><i
-                                class="fa-solid fa-star" style="color: #f18f31"></i></h2>
-                        <p>Sản phẩm tốt</p>
-                        <p><i class="fa-regular fa-thumbs-up"></i> Hữu ích | Đã dùng khoảng 2 tháng</p>
-                    </div>
+
+<%--                    <div class="khachhang2">--%>
+<%--                        <h3>Hải Anh</h3>--%>
+<%--                        <h2><i class="fa-solid fa-star" style="color: #f18f31"></i><i class="fa-solid fa-star"--%>
+<%--                                                                                      style="color: #f18f31"></i><i--%>
+<%--                                class="fa-solid fa-star" style="color: #f18f31"></i><i class="fa-solid fa-star"--%>
+<%--                                                                                       style="color: #f18f31"></i><i--%>
+<%--                                class="fa-solid fa-star" style="color: #f18f31"></i></h2>--%>
+<%--                        <p>Sản phẩm tốt</p>--%>
+<%--                        <p><i class="fa-regular fa-thumbs-up"></i> Hữu ích | Đã dùng khoảng 2 tháng</p>--%>
+<%--                    </div>--%>
                     <div class="rating">
                                 <form action="./commentController?id=<%=idProduct%>" accept-charset="UTF-8" method="post" >
                             <div class="star-rating">

@@ -12,10 +12,10 @@ import java.util.stream.Collectors;
 public class CommentDao {
     public static List<Comment> getCommentById(int id) {
         List<Comment> comments = JDBIConnector.me().withHandle(handle ->
-                handle.createQuery("SELECT * FROM comments WHERE id = :id")
+                handle.createQuery("SELECT * FROM comments WHERE product_id = :id")
                         .bind("id", id)
                         .mapToBean(Comment.class)
-                        .list());
+                        .stream().collect(Collectors.toList()));
         return comments;
     }
     public static void insertComment( int userId, int productId, String contents, String star) {
@@ -29,5 +29,9 @@ public class CommentDao {
                         .bind("display", 1)
                         .bind("create_date", LocalDateTime.now().toString())
                         .execute());
+    }
+
+    public static void main(String[] args) {
+        System.out.println(getCommentById(1));
     }
 }
