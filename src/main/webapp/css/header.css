@@ -293,7 +293,7 @@ body {
     color: #333333;
     display: block;
 }
-#header-top #input-submit{
+#header-top .search-bar .submit{
     width: 100px;
     height: 39px;
     border-radius: 4px;
