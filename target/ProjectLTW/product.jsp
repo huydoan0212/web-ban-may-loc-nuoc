@@ -58,11 +58,7 @@
 
                     <div class="product-content-right">
                         <div class="product-content-right-product-name">
-                            <h1 style="font-size: 22px"><%=product.getTitle()%><i
-                                    class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                                    class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                                    class="fa-solid fa-star" style="color: #cec7c7;"></i></h1>
-                            <p style="font-size: 14px">Mã sản phẩm: VH202HY</p>
+                            <h1 style="font-size: 22px"><%=product.getTitle()%></h1>
                         </div>
                         <div class="product-content-right-product-price">
                             <p style="font-size: 22px; color: #f18f31"><%=numberFormat.format(product.getDiscount_price())%>
@@ -102,59 +98,59 @@
                             <p style="font-size: 13.5px">Gọi đặt mua <b style="color: #2f80ed">1800.1061</b> (7:30 -
                                 22:00)</p>
                         </div>
-                        <div class="khuyenmai-them">
-                            <div class="khuyenmai-them ">
-                                <form action="">
-                                    <div class="khuyenmai-them-title">
-                                        <h1 style="font-size: 14px"><b>3 ưu đãi</b> thêm Dự kiến áp dụng đến 23:59 |
-                                            31/10</h1>
-                                    </div>
-                                    <div class="khuyenmai-them-content">
-                                        <ul style="font-size: 13.5px">
-                                            <li>Mua Bếp điện từ đôi, Hút mùi giảm sốc đến 44% (không áp dụng khuyến mãi
-                                                khác).<a
-                                                        href="https://www.dienmayxanh.com/khuyen-mai/quat-dieu-hoa-giam-den-55-khi-mua-kem-dien-tu-1522146">Click
-                                                    để xem chi tiết</a></li>
-                                        </ul>
-                                        <ul style="font-size: 13.5px">
-                                            <li>Mua Quạt điều hòa giảm đến 56% (không áp dụng khuyến mãi khác).<a
-                                                    href="https://www.dienmayxanh.com/khuyen-mai/quat-dieu-hoa-giam-den-55-khi-mua-kem-dien-tu-1522146">Click
-                                                để xem chi tiết</a></li>
-                                        </ul>
-                                        <ul style="font-size: 13.5px">
-                                            <p style="font-size: 13.5px">Tặng cho khách lần đầu mua hàng online tại web
-                                                <a href="https://www.bachhoaxanh.com/?utm_source=dmx_ttc_tct_20%&utm_medium=link_tct&utm_campaign=dmx">BachhoaXANH</a>
-                                            </p>
-                                            <li>Mã giảm <b>100.000đ áp dụng đơn hàng từ 500.000đ</b></li>
-                                            <li>Đại siêu thị Online với <b>15.000 sản phẩm tiêu dùng, thịt, cá,
-                                                rau...</b></li>
-                                            <li><b>FREEship</b> đơn hàng từ 300.000đ hoặc thành viên VÀNG</li>
-                                            <li>Giao nhanh trong <b>2 giờ</b></li>
-                                            <p style="font-size: 13.5px">Áp dụng tại Tp.HCM, Đồng Nai, Bình Dương <a
-                                                    href="https://www.bachhoaxanh.com/kinh-nghiem-hay/tang-phieu-mua-hang-bachhoaxanhcom-khi-mua-sam-tai-thegioididongcom-va-dienmayxanhcom-1276540">Xem
-                                                chi tiết</a></p>
-                                        </ul>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="thong-tin-them">
-                            <div class="thong-tin-them-qr">
-                                <img src="img/qr.jpg" width="60px" height="60px"/>
-                                <p>Quét để tải App </p>
-                            </div>
-                            <div class="thong-tin-them-chplay">
-                                <a href="https://play.google.com/store/games?hl=vi"><img src="img/chplay.webp"
-                                                                                         height="60px"
-                                                                                         width="60px"/></a>
-                                <p>CH PLAY</p>
-                            </div>
-                            <div class="thong-tin-them-appstore">
-                                <a href="https://www.apple.com/app-store/"> <img src="img/appstore.png" height="60px"
-                                                                                 width="60px"/></a>
-                                <p>APP STORE</p>
-                            </div>
-                        </div>
+<%--                        <div class="khuyenmai-them">--%>
+<%--                            <div class="khuyenmai-them ">--%>
+<%--                                <form action="">--%>
+<%--                                    <div class="khuyenmai-them-title">--%>
+<%--                                        <h1 style="font-size: 14px"><b>3 ưu đãi</b> thêm Dự kiến áp dụng đến 23:59 |--%>
+<%--                                            31/10</h1>--%>
+<%--                                    </div>--%>
+<%--                                    <div class="khuyenmai-them-content">--%>
+<%--                                        <ul style="font-size: 13.5px">--%>
+<%--                                            <li>Mua Bếp điện từ đôi, Hút mùi giảm sốc đến 44% (không áp dụng khuyến mãi--%>
+<%--                                                khác).<a--%>
+<%--                                                        href="https://www.dienmayxanh.com/khuyen-mai/quat-dieu-hoa-giam-den-55-khi-mua-kem-dien-tu-1522146">Click--%>
+<%--                                                    để xem chi tiết</a></li>--%>
+<%--                                        </ul>--%>
+<%--                                        <ul style="font-size: 13.5px">--%>
+<%--                                            <li>Mua Quạt điều hòa giảm đến 56% (không áp dụng khuyến mãi khác).<a--%>
+<%--                                                    href="https://www.dienmayxanh.com/khuyen-mai/quat-dieu-hoa-giam-den-55-khi-mua-kem-dien-tu-1522146">Click--%>
+<%--                                                để xem chi tiết</a></li>--%>
+<%--                                        </ul>--%>
+<%--                                        <ul style="font-size: 13.5px">--%>
+<%--                                            <p style="font-size: 13.5px">Tặng cho khách lần đầu mua hàng online tại web--%>
+<%--                                                <a href="https://www.bachhoaxanh.com/?utm_source=dmx_ttc_tct_20%&utm_medium=link_tct&utm_campaign=dmx">BachhoaXANH</a>--%>
+<%--                                            </p>--%>
+<%--                                            <li>Mã giảm <b>100.000đ áp dụng đơn hàng từ 500.000đ</b></li>--%>
+<%--                                            <li>Đại siêu thị Online với <b>15.000 sản phẩm tiêu dùng, thịt, cá,--%>
+<%--                                                rau...</b></li>--%>
+<%--                                            <li><b>FREEship</b> đơn hàng từ 300.000đ hoặc thành viên VÀNG</li>--%>
+<%--                                            <li>Giao nhanh trong <b>2 giờ</b></li>--%>
+<%--                                            <p style="font-size: 13.5px">Áp dụng tại Tp.HCM, Đồng Nai, Bình Dương <a--%>
+<%--                                                    href="https://www.bachhoaxanh.com/kinh-nghiem-hay/tang-phieu-mua-hang-bachhoaxanhcom-khi-mua-sam-tai-thegioididongcom-va-dienmayxanhcom-1276540">Xem--%>
+<%--                                                chi tiết</a></p>--%>
+<%--                                        </ul>--%>
+<%--                                    </div>--%>
+<%--                                </form>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                        <div class="thong-tin-them">--%>
+<%--                            <div class="thong-tin-them-qr">--%>
+<%--                                <img src="img/qr.jpg" width="60px" height="60px"/>--%>
+<%--                                <p>Quét để tải App </p>--%>
+<%--                            </div>--%>
+<%--                            <div class="thong-tin-them-chplay">--%>
+<%--                                <a href="https://play.google.com/store/games?hl=vi"><img src="img/chplay.webp"--%>
+<%--                                                                                         height="60px"--%>
+<%--                                                                                         width="60px"/></a>--%>
+<%--                                <p>CH PLAY</p>--%>
+<%--                            </div>--%>
+<%--                            <div class="thong-tin-them-appstore">--%>
+<%--                                <a href="https://www.apple.com/app-store/"> <img src="img/appstore.png" height="60px"--%>
+<%--                                                                                 width="60px"/></a>--%>
+<%--                                <p>APP STORE</p>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
                     </div>
                 </div>
                 <div class="product-content-baohanh">
