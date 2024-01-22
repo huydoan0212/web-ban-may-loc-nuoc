@@ -3,7 +3,7 @@ package controller;
 
 import dao.UserDAO;
 import model.User;
-import service.EmailNotification;
+
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,13 +32,12 @@ public class Login extends HttpServlet {
       HttpSession session = request.getSession();
       User user = UserDAO.getUserInfo(username);
 
-
       if (user != null && user.getRoleId() == 2) {
         //user
         handleUserLoginSuccess(response, session, user, "index.jsp");
       } else if (user != null && user.getRoleId() == 0) {
         //admin
-        handleUserLoginSuccess(response, session, user, "pageAdmin_Index.jsp");
+        handleUserLoginSuccess(response, session, user, "index.jsp");
       } else {
         //  không có quyền hoặc thông tin không hợp lệ
         response.sendRedirect("login.jsp");

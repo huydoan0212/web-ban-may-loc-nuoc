@@ -14,17 +14,21 @@ public class ValidateOTPForgotPassword extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         String otp = request.getParameter("otp");
         String enterOTP = request.getParameter("enterOTP");
         String username = request.getParameter("username");
 
-        request.getSession().setAttribute("username", username);
-        if(otp.equals(enterOTP)) {
+        if (otp != null && enterOTP != null && username != null) {
+          request.getSession().setAttribute("username", username);
 
+          if (otp.equals(enterOTP)) {
             response.sendRedirect("newPassword.jsp");
-        }else{
+          } else {
             request.getSession().setAttribute("message", "Sai mã OTP");
             response.sendRedirect("validateOTP.jsp");
+          }
         }
+
     }
 }
