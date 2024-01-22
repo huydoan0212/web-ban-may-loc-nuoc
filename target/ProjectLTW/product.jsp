@@ -487,9 +487,12 @@
                                 <input type="radio" id="star5" name="rating" value="5">
                                 <label for="star5"><i class="fa-solid fa-star" style="color: #f18f31"></i></label>
                             </div>
+
                             <% String error = (String) request.getAttribute("error");%>
                             <% String content = (String) request.getParameter("content"); %>
                             <% String  rating = (String) request.getParameter("rating"); %>
+                            <%  String idProduct = (String) request.getParameter(String.valueOf(product.getId())); %>
+
                             <div class="input-box">
                                 <input type="text" placeholder="Viết đánh giá" name="content">
                             </div>

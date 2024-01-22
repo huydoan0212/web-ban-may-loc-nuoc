@@ -26,6 +26,7 @@ public class CommentController extends HttpServlet {
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
         Product product = (Product) session.getAttribute("product");
+        String idProduct = (String) session.getAttribute("idProduct");
         String content = req.getParameter("content").trim();
         String rating = req.getParameter("rating");
         if (user == null){
@@ -37,7 +38,7 @@ public class CommentController extends HttpServlet {
             req.setAttribute("error", "Ki tu khong hop le ");
         }
         else{
-            CommentService.insertComment(user.getId(), product.getId(), content, rating);
+            CommentService.insertComment(user.getId(), Integer.parseInt(idProduct), content, rating);
             resp.sendRedirect("/ProjectLTW_war/product");
         }
 
