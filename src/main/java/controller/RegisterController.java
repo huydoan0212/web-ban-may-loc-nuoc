@@ -51,7 +51,7 @@ public class RegisterController extends HttpServlet {
             req.setAttribute("success", "Đăng ký thành công");
             UserService.addUser(userName, fullName, email, phone, password);
             resp.sendRedirect("login.jsp");
-            EmailNotification.sendNotification("binhquoc23@gmail.com");
+//            EmailNotification.sendNotification("binhquoc23@gmail.com");
 
         }
     }

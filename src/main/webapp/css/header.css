@@ -293,3 +293,12 @@ body {
     color: #333333;
     display: block;
 }
+#header-top #input-submit{
+    width: 100px;
+    height: 39px;
+    border-radius: 4px;
+    margin-top: 16px;
+    border: none;
+    outline: none;
+    padding: 0 20px;
+}

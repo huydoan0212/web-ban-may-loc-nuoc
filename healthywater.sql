@@ -117,17 +117,6 @@ CREATE TABLE `timesale_products` (
                                      `date_end` datetime
 );
 
-CREATE TABLE `product_details` (
-                                   `id` int PRIMARY KEY AUTO_INCREMENT,
-                                   `type_set` varchar(255),
-                                   `technical` varchar(255),
-                                   `performance_filter` varchar(255),
-                                   `power` varchar(255),
-                                   `temperature` varchar(255),
-                                   `height` float,
-                                   `weight` float,
-                                   `warranty` varchar(255)
-);
 
 CREATE TABLE `product_vouchers` (
                                     `id` int PRIMARY KEY AUTO_INCREMENT,
@@ -165,8 +154,6 @@ ALTER TABLE `products` ADD FOREIGN KEY (`type_machine_id`) REFERENCES `type_mach
 
 ALTER TABLE `products` ADD FOREIGN KEY (`brand_id`) REFERENCES `brands` (`id`);
 
-ALTER TABLE `product_details` ADD FOREIGN KEY (`id`) REFERENCES `products` (`id`);
-
 ALTER TABLE `payments` ADD FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`);
 
 ALTER TABLE `product_vouchers` ADD FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
@@ -200,3 +187,4 @@ INSERT INTO `gallerys` (`id`, `product_id`, `img`) VALUES (1, 1, 'img/may-loc-nu
 INSERT INTO `gallerys` (`id`, `product_id`, `img`) VALUES (2, 1, 'img/small3.jpg');
 INSERT INTO `gallerys` (`id`, `product_id`, `img`) VALUES (3, 1, 'img/small2.jpg');
 INSERT INTO `gallerys` (`id`, `product_id`, `img`) VALUES (4, 1, 'img/small1.jpg');
+
