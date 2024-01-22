@@ -488,16 +488,16 @@
                         <p><i class="fa-regular fa-thumbs-up"></i> <%=comment.getCreate_date()%></p>
                     </div>
                     <% } %>
-<%--                    <div class="khachhang2">--%>
-<%--                        <h3>Hải Anh</h3>--%>
-<%--                        <h2><i class="fa-solid fa-star" style="color: #f18f31"></i><i class="fa-solid fa-star"--%>
-<%--                                                                                      style="color: #f18f31"></i><i--%>
-<%--                                class="fa-solid fa-star" style="color: #f18f31"></i><i class="fa-solid fa-star"--%>
-<%--                                                                                       style="color: #f18f31"></i><i--%>
-<%--                                class="fa-solid fa-star" style="color: #f18f31"></i></h2>--%>
-<%--                        <p>Sản phẩm tốt</p>--%>
-<%--                        <p><i class="fa-regular fa-thumbs-up"></i> Hữu ích | Đã dùng khoảng 2 tháng</p>--%>
-<%--                    </div>--%>
+                    <div class="khachhang2">
+                        <h3>Hải Anh</h3>
+                        <h2><i class="fa-solid fa-star" style="color: #f18f31"></i><i class="fa-solid fa-star"
+                                                                                      style="color: #f18f31"></i><i
+                                class="fa-solid fa-star" style="color: #f18f31"></i><i class="fa-solid fa-star"
+                                                                                       style="color: #f18f31"></i><i
+                                class="fa-solid fa-star" style="color: #f18f31"></i></h2>
+                        <p>Sản phẩm tốt</p>
+                        <p><i class="fa-regular fa-thumbs-up"></i> Hữu ích | Đã dùng khoảng 2 tháng</p>
+                    </div>
                     <div class="rating">
                                 <form action="./commentController?id=<%=idProduct%>" accept-charset="UTF-8" method="post" >
                             <div class="star-rating">
