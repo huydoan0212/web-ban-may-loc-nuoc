@@ -567,7 +567,7 @@ h4 {
     margin-left: 35px;
 }
 #content .nhap-voucher #ma-giam-gia {
-    width: 358px;
+    width: 382px;
     height: 36px;
     margin-left: 35px;
     border: 1px solid #d1d1d1;
@@ -579,7 +579,7 @@ h4 {
     text-decoration: none;
     font-size: 14px;
     padding: 10px 30px;
-    background-color: #999999;
+    background-color: #f7712e;
     border-radius: 4px;
     color: white;
     margin-left: 30px;
@@ -825,4 +825,9 @@ h4 {
     margin: auto;
     margin-top: 25px;
     width: 300px;
+    cursor: pointer;
+}
+
+.voucher-option {
+    height: 36px;
 }
