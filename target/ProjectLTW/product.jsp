@@ -450,7 +450,7 @@
                                 <label for="star3"><i class="fa-solid fa-star" style="color: #f18f31"></i></label>
                                 <input type="radio" id="star4" name="rating" value="4">
                                 <label for="star4"><i class="fa-solid fa-star" style="color: #f18f31"></i></label>
-                                <input type="radio" id="star5" name="rating" value="5">
+                                <input type="radio" id="star5" name="rating" value="5" checked>
                                 <label for="star5"><i class="fa-solid fa-star" style="color: #f18f31"></i></label>
                             </div>
                             <div class="input-box">
