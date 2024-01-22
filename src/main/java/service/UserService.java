@@ -32,6 +32,9 @@ public class UserService {
     public static boolean addUser(String username, String fullname, String email, String phone_number, String password){
        return UserDAO.addUser(username, fullname, email, phone_number, password);
     }
+    public static boolean loginUser(String username, String password) {
+        return UserDAO.loginUser(username,password);
+    }
     public static boolean updateUser(User user){
         return UserDAO.updateUser(user);
     }
