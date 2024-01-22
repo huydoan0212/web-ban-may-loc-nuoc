@@ -21,6 +21,7 @@ public class EmailSender {
     props.put("mail.smtp.port", "587");
 
 
+
     Session session = Session.getInstance(props, new Authenticator() {
       protected PasswordAuthentication getPasswordAuthentication() {
         return new PasswordAuthentication(EMAIL_USERNAME, EMAIL_PASSWORD);

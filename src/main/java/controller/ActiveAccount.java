@@ -8,7 +8,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 
 @WebServlet(name = "ActiveAccountServlet", value = "/ActiveAccountServlet")
-public class ActiveAccount_Password extends HttpServlet {
+public class ActiveAccount extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
