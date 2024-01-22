@@ -1259,3 +1259,45 @@ body {
     img {
         z-index: 10;
     }
+.rating {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Style the input box for the review */
+.input-box input {
+    width: 80%;
+    padding: 10px;
+    height: 120px;
+    margin-bottom: 10px;
+}
+
+/* Style the star rating container */
+.star-rating {
+    display: flex;
+    justify-content: center;
+}
+/* Style the submit button */
+.sent-btn button {
+    background-color: #f18f31;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.star-rating label {
+    display: inline-block;  /* Display labels in a line */
+    cursor: pointer;  /* Set cursor to pointer for better interaction */
+}
+
+/* Optional: Add some margin between the stars */
+.star-rating label {
+    margin-right: 5px;
+}
+.danhgia-sp-footer .khachhang1 p {
+    font-size: 13px;
+    padding-left: 10px;
+}
+
+

@@ -4,12 +4,23 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Locale" %>
 <%@ page import="java.text.NumberFormat" %>
+<%@ page import="model.Comment" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% Product product = (Product) request.getAttribute("product");
     if (product == null) product = new Product();
     List<Gallery> galleries = (List<Gallery>) request.getAttribute("galleries");
     if (galleries == null) galleries = new ArrayList<>();
+
+    List<Comment> comments = (List<Comment>) request.getAttribute("comments");
+    if (comments == null) comments = new ArrayList<>();
 %>
+
+<% String error = (String) request.getAttribute("error");%>
+<% String content = (String) request.getParameter("content"); %>
+<% String  rating = (String) request.getParameter("rating"); %>
+<%  int idProduct = product.getId(); %>
+
+
 <% Locale locale = new Locale("vi", "VN");
     NumberFormat numberFormat = NumberFormat.getInstance(locale);
 %>
@@ -47,11 +58,7 @@
 
                     <div class="product-content-right">
                         <div class="product-content-right-product-name">
-                            <h1 style="font-size: 22px"><%=product.getTitle()%><i
-                                    class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                                    class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                                    class="fa-solid fa-star" style="color: #cec7c7;"></i></h1>
-                            <p style="font-size: 14px">Mã sản phẩm: VH202HY</p>
+                            <h1 style="font-size: 22px"><%=product.getTitle()%></h1>
                         </div>
                         <div class="product-content-right-product-price">
                             <p style="font-size: 22px; color: #f18f31"><%=numberFormat.format(product.getDiscount_price())%>
@@ -91,59 +98,59 @@
                             <p style="font-size: 13.5px">Gọi đặt mua <b style="color: #2f80ed">1800.1061</b> (7:30 -
                                 22:00)</p>
                         </div>
-                        <div class="khuyenmai-them">
-                            <div class="khuyenmai-them ">
-                                <form action="">
-                                    <div class="khuyenmai-them-title">
-                                        <h1 style="font-size: 14px"><b>3 ưu đãi</b> thêm Dự kiến áp dụng đến 23:59 |
-                                            31/10</h1>
-                                    </div>
-                                    <div class="khuyenmai-them-content">
-                                        <ul style="font-size: 13.5px">
-                                            <li>Mua Bếp điện từ đôi, Hút mùi giảm sốc đến 44% (không áp dụng khuyến mãi
-                                                khác).<a
-                                                        href="https://www.dienmayxanh.com/khuyen-mai/quat-dieu-hoa-giam-den-55-khi-mua-kem-dien-tu-1522146">Click
-                                                    để xem chi tiết</a></li>
-                                        </ul>
-                                        <ul style="font-size: 13.5px">
-                                            <li>Mua Quạt điều hòa giảm đến 56% (không áp dụng khuyến mãi khác).<a
-                                                    href="https://www.dienmayxanh.com/khuyen-mai/quat-dieu-hoa-giam-den-55-khi-mua-kem-dien-tu-1522146">Click
-                                                để xem chi tiết</a></li>
-                                        </ul>
-                                        <ul style="font-size: 13.5px">
-                                            <p style="font-size: 13.5px">Tặng cho khách lần đầu mua hàng online tại web
-                                                <a href="https://www.bachhoaxanh.com/?utm_source=dmx_ttc_tct_20%&utm_medium=link_tct&utm_campaign=dmx">BachhoaXANH</a>
-                                            </p>
-                                            <li>Mã giảm <b>100.000đ áp dụng đơn hàng từ 500.000đ</b></li>
-                                            <li>Đại siêu thị Online với <b>15.000 sản phẩm tiêu dùng, thịt, cá,
-                                                rau...</b></li>
-                                            <li><b>FREEship</b> đơn hàng từ 300.000đ hoặc thành viên VÀNG</li>
-                                            <li>Giao nhanh trong <b>2 giờ</b></li>
-                                            <p style="font-size: 13.5px">Áp dụng tại Tp.HCM, Đồng Nai, Bình Dương <a
-                                                    href="https://www.bachhoaxanh.com/kinh-nghiem-hay/tang-phieu-mua-hang-bachhoaxanhcom-khi-mua-sam-tai-thegioididongcom-va-dienmayxanhcom-1276540">Xem
-                                                chi tiết</a></p>
-                                        </ul>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="thong-tin-them">
-                            <div class="thong-tin-them-qr">
-                                <img src="img/qr.jpg" width="60px" height="60px"/>
-                                <p>Quét để tải App </p>
-                            </div>
-                            <div class="thong-tin-them-chplay">
-                                <a href="https://play.google.com/store/games?hl=vi"><img src="img/chplay.webp"
-                                                                                         height="60px"
-                                                                                         width="60px"/></a>
-                                <p>CH PLAY</p>
-                            </div>
-                            <div class="thong-tin-them-appstore">
-                                <a href="https://www.apple.com/app-store/"> <img src="img/appstore.png" height="60px"
-                                                                                 width="60px"/></a>
-                                <p>APP STORE</p>
-                            </div>
-                        </div>
+<%--                        <div class="khuyenmai-them">--%>
+<%--                            <div class="khuyenmai-them ">--%>
+<%--                                <form action="">--%>
+<%--                                    <div class="khuyenmai-them-title">--%>
+<%--                                        <h1 style="font-size: 14px"><b>3 ưu đãi</b> thêm Dự kiến áp dụng đến 23:59 |--%>
+<%--                                            31/10</h1>--%>
+<%--                                    </div>--%>
+<%--                                    <div class="khuyenmai-them-content">--%>
+<%--                                        <ul style="font-size: 13.5px">--%>
+<%--                                            <li>Mua Bếp điện từ đôi, Hút mùi giảm sốc đến 44% (không áp dụng khuyến mãi--%>
+<%--                                                khác).<a--%>
+<%--                                                        href="https://www.dienmayxanh.com/khuyen-mai/quat-dieu-hoa-giam-den-55-khi-mua-kem-dien-tu-1522146">Click--%>
+<%--                                                    để xem chi tiết</a></li>--%>
+<%--                                        </ul>--%>
+<%--                                        <ul style="font-size: 13.5px">--%>
+<%--                                            <li>Mua Quạt điều hòa giảm đến 56% (không áp dụng khuyến mãi khác).<a--%>
+<%--                                                    href="https://www.dienmayxanh.com/khuyen-mai/quat-dieu-hoa-giam-den-55-khi-mua-kem-dien-tu-1522146">Click--%>
+<%--                                                để xem chi tiết</a></li>--%>
+<%--                                        </ul>--%>
+<%--                                        <ul style="font-size: 13.5px">--%>
+<%--                                            <p style="font-size: 13.5px">Tặng cho khách lần đầu mua hàng online tại web--%>
+<%--                                                <a href="https://www.bachhoaxanh.com/?utm_source=dmx_ttc_tct_20%&utm_medium=link_tct&utm_campaign=dmx">BachhoaXANH</a>--%>
+<%--                                            </p>--%>
+<%--                                            <li>Mã giảm <b>100.000đ áp dụng đơn hàng từ 500.000đ</b></li>--%>
+<%--                                            <li>Đại siêu thị Online với <b>15.000 sản phẩm tiêu dùng, thịt, cá,--%>
+<%--                                                rau...</b></li>--%>
+<%--                                            <li><b>FREEship</b> đơn hàng từ 300.000đ hoặc thành viên VÀNG</li>--%>
+<%--                                            <li>Giao nhanh trong <b>2 giờ</b></li>--%>
+<%--                                            <p style="font-size: 13.5px">Áp dụng tại Tp.HCM, Đồng Nai, Bình Dương <a--%>
+<%--                                                    href="https://www.bachhoaxanh.com/kinh-nghiem-hay/tang-phieu-mua-hang-bachhoaxanhcom-khi-mua-sam-tai-thegioididongcom-va-dienmayxanhcom-1276540">Xem--%>
+<%--                                                chi tiết</a></p>--%>
+<%--                                        </ul>--%>
+<%--                                    </div>--%>
+<%--                                </form>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                        <div class="thong-tin-them">--%>
+<%--                            <div class="thong-tin-them-qr">--%>
+<%--                                <img src="img/qr.jpg" width="60px" height="60px"/>--%>
+<%--                                <p>Quét để tải App </p>--%>
+<%--                            </div>--%>
+<%--                            <div class="thong-tin-them-chplay">--%>
+<%--                                <a href="https://play.google.com/store/games?hl=vi"><img src="img/chplay.webp"--%>
+<%--                                                                                         height="60px"--%>
+<%--                                                                                         width="60px"/></a>--%>
+<%--                                <p>CH PLAY</p>--%>
+<%--                            </div>--%>
+<%--                            <div class="thong-tin-them-appstore">--%>
+<%--                                <a href="https://www.apple.com/app-store/"> <img src="img/appstore.png" height="60px"--%>
+<%--                                                                                 width="60px"/></a>--%>
+<%--                                <p>APP STORE</p>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
                     </div>
                 </div>
                 <div class="product-content-baohanh">
@@ -166,9 +173,6 @@
                         <div class="product-content-title-item ttsp">
                             <p style="font-size: 15px">Thông tin sản phẩm</p>
                         </div>
-                        <div class="product-content-title-item tskt">
-                            <p style="font-size: 15px">Thông số kỹ thuật</p>
-                        </div>
                     </div>
                     <div class="product-content-thongtin">
                         <div class="product-content-thongtinsanpham">
@@ -187,332 +191,278 @@
                                     tế</b><br>
                                 Nước sau khi lọc đạt tiêu chuẩn nước uống trực tiếp không cần đun sôi QCVN 6-1:2010/BYT.<br>
 
-                                <img src="img/ttsp3.jpg"/><br><b style="font-size: 15px">Công suất - Dung tích bình chứa
-                                    - Chế độ nước</b>
-                                <br> - Công suất lọc lớn 20 lít/giờ, dung tích bình chứa 6.8 lít (nước nóng 1 lít, nước
-                                lạnh 0.8 lít, nước <br> thường 5 lít) đáp ứng nhu cầu sử dụng nước hằng ngày của gia
-                                đình.<br>
-                                - 2 vòi, 3 chế độ nước nóng - nguội - lạnh:<br>
-                                + Nhiệt độ nước nóng từ 85 - 95°C có thể pha trà, sữa, cà phê, nấu mì ăn liền,...<br>
-                                + Nhiệt độ nước lạnh từ 12 - 15°C giúp bạn có những ly nước lạnh mát mẻ trong những ngày
-                                nóng<br> oi bức.
-                                <i>*Nhiệt độ nước thực tế sẽ phụ thuộc vào nhiệt độ bên ngoài môi trường và thể tích
-                                    nước lấy ra.</i><br>
+<%--                                <img src="img/ttsp3.jpg"/><br><b style="font-size: 15px">Công suất - Dung tích bình chứa--%>
+<%--                                    - Chế độ nước</b>--%>
+<%--                                <br> - Công suất lọc lớn 20 lít/giờ, dung tích bình chứa 6.8 lít (nước nóng 1 lít, nước--%>
+<%--                                lạnh 0.8 lít, nước <br> thường 5 lít) đáp ứng nhu cầu sử dụng nước hằng ngày của gia--%>
+<%--                                đình.<br>--%>
+<%--                                - 2 vòi, 3 chế độ nước nóng - nguội - lạnh:<br>--%>
+<%--                                + Nhiệt độ nước nóng từ 85 - 95°C có thể pha trà, sữa, cà phê, nấu mì ăn liền,...<br>--%>
+<%--                                + Nhiệt độ nước lạnh từ 12 - 15°C giúp bạn có những ly nước lạnh mát mẻ trong những ngày--%>
+<%--                                nóng<br> oi bức.--%>
+<%--                                <i>*Nhiệt độ nước thực tế sẽ phụ thuộc vào nhiệt độ bên ngoài môi trường và thể tích--%>
+<%--                                    nước lấy ra.</i><br>--%>
 
-                                <img src="img/ttsp4.jpg"/><br><b style="font-size: 15px">Thu hồi tỷ lệ nước sạch</b>
-                                <br>
-                                - Máy lọc nước có tỷ lệ lọc - thải là 5/5.<br>
-                                - 10 lít nước đưa vào máy sẽ lọc được 5 lít nước tinh khiết để uống và 5 lít được thải
-                                ra ngoài.
-                                <br> - Lượng nước thải ra, bạn có thể tái sử dụng cho hoạt động sinh hoạt, vệ sinh khác
-                                của gia đình.
-                                <img src="img/ttsp5.jpg"/>
-                                <br> <b style="font-size: 15px">Công nghệ</b>
-                                <br> - Hệ thống làm lạnh bằng chip điện tử: Giúp làm giảm nhiệt độ các chất bán dẫn,
-                                điều khiển nhiệt độ,<br> tiết kiệm điện năng.<br>
-                                - Công nghệ kháng khuẩn Nano Silver: Giúp tiêu diệt vi khuẩn, chống tái nhiễm khuẩn sau
-                                khi nước<br> đi quamàng RO.<br>
+<%--                                <img src="img/ttsp4.jpg"/><br><b style="font-size: 15px">Thu hồi tỷ lệ nước sạch</b>--%>
+<%--                                <br>--%>
+<%--                                - Máy lọc nước có tỷ lệ lọc - thải là 5/5.<br>--%>
+<%--                                - 10 lít nước đưa vào máy sẽ lọc được 5 lít nước tinh khiết để uống và 5 lít được thải--%>
+<%--                                ra ngoài.--%>
+<%--                                <br> - Lượng nước thải ra, bạn có thể tái sử dụng cho hoạt động sinh hoạt, vệ sinh khác--%>
+<%--                                của gia đình.--%>
+<%--                                <img src="img/ttsp5.jpg"/>--%>
+<%--                                <br> <b style="font-size: 15px">Công nghệ</b>--%>
+<%--                                <br> - Hệ thống làm lạnh bằng chip điện tử: Giúp làm giảm nhiệt độ các chất bán dẫn,--%>
+<%--                                điều khiển nhiệt độ,<br> tiết kiệm điện năng.<br>--%>
+<%--                                - Công nghệ kháng khuẩn Nano Silver: Giúp tiêu diệt vi khuẩn, chống tái nhiễm khuẩn sau--%>
+<%--                                khi nước<br> đi quamàng RO.<br>--%>
 
-                                <img src="img/ttsp6.jpg"/><br><b style="font-size: 15px">Số lõi lọc, chức năng từng
-                                    lõi</b><br>
-                                - <b>Smax Duo 1 (Vi lọc):</b> Loại bỏ các chất bẩn có kích thước trên 5 micron.<br>
-                                - <b>Smax Duo 3 (Post Carbon):</b> Loại bỏ các chất hữu cơ, màu, mùi khó chịu trong
-                                nước.<br>
-                                - <b>Smax Duo 3 (Đa điểm):</b> Loại bỏ các chất bẩn có kích thước trên 1 micron.<br>
-                                - <b>Màng RO Purifim 100 GPD Mỹ:</b> Loại bỏ 99,99% vi khuẩn, virus, kim loại nặng,...
-                                làm cho nước trở<br> nên tinh khiết.<br>
-                                - <b>Mineral: </b>Bổ sung khoáng chất, nâng cao pH, trung hoà axit dư.<br>
-                                - <b>GAC - T33:</b> Ổn định vị ngọt tự nhiên cho nước.<br>
-                                - <b>ORP Alkaline:</b> Giảm ORP của nước, giúp tăng cường miễn dịch cho cơ thể.<br>
-                                - <b>Tourmaline:</b> Tạo ion âm có lợi cho cơ thể và hoạt hoá nước.
-                                <br>- <b>Hydrogen Plus:</b> Loại bỏ các chất oxy hóa và các tác nhân gây lão hóa, trung
-                                hòa acid dư thừa, <br> tốt chohệ tiêu hóa, cung cấp khoáng chất canxi, magie, kali,
-                                natri làm cho nước ngon ngọt tự nhiên.
-                                <br>- <b>Nano Silver:</b> Chống tái nhiễm khuẩn cho nguồn nước đầu ra.<br>
-                                <img src="img/ttsp8.jpg"/><br><b style="font-size: 15px">Tiện ích</b>
-                                <br>- Tạo nước Hydrogen chống oxy hoá, có lợi cho sức khỏe.
-                                <br> - Ngừng hoạt động khi nước đầy bình.
-                                <br> - Ngừng hoạt động khi áp lực nước thấp.<br>
-                                - Trung hòa độ pH ổn định độ ngọt cho nước.<br>
-                                - Tự động xả nước thải.<br>
+<%--                                <img src="img/ttsp6.jpg"/><br><b style="font-size: 15px">Số lõi lọc, chức năng từng--%>
+<%--                                    lõi</b><br>--%>
+<%--                                - <b>Smax Duo 1 (Vi lọc):</b> Loại bỏ các chất bẩn có kích thước trên 5 micron.<br>--%>
+<%--                                - <b>Smax Duo 3 (Post Carbon):</b> Loại bỏ các chất hữu cơ, màu, mùi khó chịu trong--%>
+<%--                                nước.<br>--%>
+<%--                                - <b>Smax Duo 3 (Đa điểm):</b> Loại bỏ các chất bẩn có kích thước trên 1 micron.<br>--%>
+<%--                                - <b>Màng RO Purifim 100 GPD Mỹ:</b> Loại bỏ 99,99% vi khuẩn, virus, kim loại nặng,...--%>
+<%--                                làm cho nước trở<br> nên tinh khiết.<br>--%>
+<%--                                - <b>Mineral: </b>Bổ sung khoáng chất, nâng cao pH, trung hoà axit dư.<br>--%>
+<%--                                - <b>GAC - T33:</b> Ổn định vị ngọt tự nhiên cho nước.<br>--%>
+<%--                                - <b>ORP Alkaline:</b> Giảm ORP của nước, giúp tăng cường miễn dịch cho cơ thể.<br>--%>
+<%--                                - <b>Tourmaline:</b> Tạo ion âm có lợi cho cơ thể và hoạt hoá nước.--%>
+<%--                                <br>- <b>Hydrogen Plus:</b> Loại bỏ các chất oxy hóa và các tác nhân gây lão hóa, trung--%>
+<%--                                hòa acid dư thừa, <br> tốt chohệ tiêu hóa, cung cấp khoáng chất canxi, magie, kali,--%>
+<%--                                natri làm cho nước ngon ngọt tự nhiên.--%>
+<%--                                <br>- <b>Nano Silver:</b> Chống tái nhiễm khuẩn cho nguồn nước đầu ra.<br>--%>
+<%--                                <img src="img/ttsp8.jpg"/><br><b style="font-size: 15px">Tiện ích</b>--%>
+<%--                                <br>- Tạo nước Hydrogen chống oxy hoá, có lợi cho sức khỏe.--%>
+<%--                                <br> - Ngừng hoạt động khi nước đầy bình.--%>
+<%--                                <br> - Ngừng hoạt động khi áp lực nước thấp.<br>--%>
+<%--                                - Trung hòa độ pH ổn định độ ngọt cho nước.<br>--%>
+<%--                                - Tự động xả nước thải.<br>--%>
 
-                                <img src="img/ttsp7.jpg"/><br><b style="font-size: 15px">Lý do nên sử dụng máy lọc nước
-                                    trong gia đình:</b><br>
-                                <br> <i><b>1. Bảo vệ người dùng khỏi những bệnh liên quan đến nguồn nước:</b></i>
-                                <br>- Bệnh tả, kiết lỵ, viêm gan A, giun sán,... do các vi sinh vật trong nước gây
-                                ra.
-                                <br> - Bệnh bướu cổ, ung thư, viêm da, sẩy thai, nguy cơ dị tật ở thai nhi,... khi uống
-                                phải nguồn nước nhiễm <br> hóa chất, kim loại nặng, chất phóng xạ.
-                                <br> <i><b>2. Tiện lợi và tiết kiệm chi phí sinh hoạt:</b></i> thay vì sử dụng nước đóng
-                                chai hay nước đun sôi lại,<br> nguồn nước sạch được lọc, làm nóng trực tiếp (nếu có) từ
-                                máy sẽ an toàn, nhanh chóng và tiện lợi hơn.<br> Nước sau lọc có thể uống trực tiếp tại
-                                vòi, không cần đun sôi.
+<%--                                <img src="img/ttsp7.jpg"/><br><b style="font-size: 15px">Lý do nên sử dụng máy lọc nước--%>
+<%--                                    trong gia đình:</b><br>--%>
+<%--                                <br> <i><b>1. Bảo vệ người dùng khỏi những bệnh liên quan đến nguồn nước:</b></i>--%>
+<%--                                <br>- Bệnh tả, kiết lỵ, viêm gan A, giun sán,... do các vi sinh vật trong nước gây--%>
+<%--                                ra.--%>
+<%--                                <br> - Bệnh bướu cổ, ung thư, viêm da, sẩy thai, nguy cơ dị tật ở thai nhi,... khi uống--%>
+<%--                                phải nguồn nước nhiễm <br> hóa chất, kim loại nặng, chất phóng xạ.--%>
+<%--                                <br> <i><b>2. Tiện lợi và tiết kiệm chi phí sinh hoạt:</b></i> thay vì sử dụng nước đóng--%>
+<%--                                chai hay nước đun sôi lại,<br> nguồn nước sạch được lọc, làm nóng trực tiếp (nếu có) từ--%>
+<%--                                máy sẽ an toàn, nhanh chóng và tiện lợi hơn.<br> Nước sau lọc có thể uống trực tiếp tại--%>
+<%--                                vòi, không cần đun sôi.--%>
                         </div>
-                        <div class="product-content-thongsokythuat">
-                            <img src="img/ttsp8.jpg"/>
-                            <img src="img/tskt.jpg"/>
-                            <div class="table-content-tskt">
-                                <div class="table-content-tskt-tongquan">
-                                    <table>
-                                        <th colspan="2">Tổng quan</th>
-                                        <tr>
-                                            <td><b>Kiểu lắp đặt</b></td>
-                                            <td>Tủ đứng</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Loại máy</b></td>
-                                            <td>Máy lọc nước RO nóng nguội lạnh</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Công nghệ lọc</b></td>
-                                            <td>Thẩm thấu ngược RO</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Kháng khuẩn</b></td>
-                                            <td>Nano Silver</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Dung tích bình chứa</b></td>
-                                            <td>Tổng 6.8 lít (Nước nóng 1 lít, nước lạnh 0.8 lít, nước thường 5 lít)
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Tỷ lệ lọc - thải</b></td>
-                                            <td>Lọc 5 - Thải 5 (Tỷ lệ này phụ thuộc vào chất lượng nước đầu vào)</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Công suất lọc</b></td>
-                                            <td> 20 lít/giờ</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Công suất tiêu thụ điện trung bình khoảng</b></td>
-                                            <td>0.495 kW/h</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Nhiệt độ nước hãng công bố</b></td>
-                                            <td>Nóng 85 - 95°C, Lạnh 12 - 15°C</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Nhiệt độ nước thực tế</b></td>
-                                            <td>Nóng 80 - 90°C, Lạnh 14 - 16°C, Nhiệt độ nước thực tế sẽ phụ thuộc<br>
-                                                vào nhiệt độ môi trường và thể tích nước lấy ra
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Áp lực nước yêu cầu</b></td>
-                                            <td>0.21 - 4.14 Bar</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Nơi sản xuất máy bơm</b></td>
-                                            <td>Việt Nam</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>ăm ra mắt</b>N</td>
-                                            <td>2022</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Thương hiệu</b></td>
-                                            <td>Việt Nam</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Nơi sản xuất</b></td>
-                                            <td>Việt Nam</td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                <div class="table-content-tskt-thongtinloiloc">
-                                    <table>
-                                        <th colspan="2">Thông tin lõi lọc</th>
-                                        <tr>
-                                            <td><b>Số lõi lọc</b></td>
-                                            <td>10 lõi</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Lõi 1</b></td>
-                                            <td> Smax Duo 1 (Sx Việt Nam)</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Lõi 2</b></td>
-                                            <td>Smax Duo 2 (Sx Việt Nam)</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Lõi 3</b></td>
-                                            <td>Smax Duo 3 (Sx Việt Nam)</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Lõi RO/Nano/UF</b></td>
-                                            <td>RO Purifim 100 GPD sản xuất Mỹ</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Lõi 7</b></td>
-                                            <td>ORP Alkaline (Sx Việt Nam)</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Lõi 8</b></td>
-                                            <td>Tourmaline (Sx Việt Nam)</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Lõi 9</b></td>
-                                            <td>Hydrogen Plus (Sx Việt Nam)</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Lõi 5</b></td>
-                                            <td>Mineral (Sx Việt Nam)</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Lõi 6</b></td>
-                                            <td>GAC - T33 (Sx Việt Nam)</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Lõi 10</b></td>
-                                            <td>Nano Silver Plus (Sx Việt Nam)</td>
-                                        </tr>
-                                    </table>
-                                    <div class="table-content-tskt-hethonghoatdong">
-                                        <table>
-                                            <th colspan="2">Hệ thống hoạt động</th>
-                                            <tr>
-                                                <td><b>Hệ thống bơm và van điều tiết</b></td>
-                                                <td>Bơm tăng áp</td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                    <div class="table-content-tskt-bangdieukhien">
-                                        <table>
-                                            <th colspan="2">Bảng điều khiển và tiện ích</th>
-                                            <tr>
-                                                <td><b>Ngôn ngữ</b></td>
-                                                <td>Không có</td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>Bảng điều khiển</b></td>
-                                                <td>Cần gạt</td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>Tiện ích</b></td>
-                                                <td>
-                                                    <li>Chế độ cút nối nhanh dễ dàng thay lõi</li>
-                                                    <li>Ngừng hoạt động khi áp lực nước thấp</li>
-                                                    <li>Tự động xả nước thải</li>
-                                                    <li> Trung hòa độ pH ổn định độ ngọt cho nước</li>
-                                                    <li>Ngừng hoạt động khi nước đầy bình</li>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                    <div class="table-content-tskt-thongtinlapdatvabaohanh">
-                                        <table>
-                                            <th colspan="2">Thông tin lắp đặt và bảo hành</th>
-                                            <tr>
-                                                <td><b>Kích thước, khối lượng</b></td>
-                                                <td>Ngang 32 cm - Cao 99 cm - Sâu 40 cm - Nặng 25 kg</td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>Thời gian bảo hành</b></td>
-                                                <td>Phần điện 36 tháng - Bình áp 12 tháng - Lõi RO 3 tháng - Hệ thống
-                                                    nóng <br> lạnh 36 tháng
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>Hãng</b></td>
-                                                <td>Karofi <a
-                                                        href="https://www.dienmayxanh.com/kinh-nghiem-hay/may-loc-nuoc-karofi-cua-nuoc-nao-1009795">Xem
-                                                    thông tin hãng</a></td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+<%--                        <div class="product-content-thongsokythuat">--%>
+<%--                            <img src="img/ttsp8.jpg"/>--%>
+<%--                            <img src="img/tskt.jpg"/>--%>
+<%--                            <div class="table-content-tskt">--%>
+<%--                                <div class="table-content-tskt-tongquan">--%>
+<%--                                    <table>--%>
+<%--                                        <th colspan="2">Tổng quan</th>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Kiểu lắp đặt</b></td>--%>
+<%--                                            <td>Tủ đứng</td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Loại máy</b></td>--%>
+<%--                                            <td>Máy lọc nước RO nóng nguội lạnh</td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Công nghệ lọc</b></td>--%>
+<%--                                            <td>Thẩm thấu ngược RO</td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Kháng khuẩn</b></td>--%>
+<%--                                            <td>Nano Silver</td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Dung tích bình chứa</b></td>--%>
+<%--                                            <td>Tổng 6.8 lít (Nước nóng 1 lít, nước lạnh 0.8 lít, nước thường 5 lít)--%>
+<%--                                            </td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Tỷ lệ lọc - thải</b></td>--%>
+<%--                                            <td>Lọc 5 - Thải 5 (Tỷ lệ này phụ thuộc vào chất lượng nước đầu vào)</td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Công suất lọc</b></td>--%>
+<%--                                            <td> 20 lít/giờ</td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Công suất tiêu thụ điện trung bình khoảng</b></td>--%>
+<%--                                            <td>0.495 kW/h</td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Nhiệt độ nước hãng công bố</b></td>--%>
+<%--                                            <td>Nóng 85 - 95°C, Lạnh 12 - 15°C</td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Nhiệt độ nước thực tế</b></td>--%>
+<%--                                            <td>Nóng 80 - 90°C, Lạnh 14 - 16°C, Nhiệt độ nước thực tế sẽ phụ thuộc<br>--%>
+<%--                                                vào nhiệt độ môi trường và thể tích nước lấy ra--%>
+<%--                                            </td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Áp lực nước yêu cầu</b></td>--%>
+<%--                                            <td>0.21 - 4.14 Bar</td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Nơi sản xuất máy bơm</b></td>--%>
+<%--                                            <td>Việt Nam</td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>ăm ra mắt</b>N</td>--%>
+<%--                                            <td>2022</td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Thương hiệu</b></td>--%>
+<%--                                            <td>Việt Nam</td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Nơi sản xuất</b></td>--%>
+<%--                                            <td>Việt Nam</td>--%>
+<%--                                        </tr>--%>
+<%--                                    </table>--%>
+<%--                                </div>--%>
+<%--                                <div class="table-content-tskt-thongtinloiloc">--%>
+<%--                                    <table>--%>
+<%--                                        <th colspan="2">Thông tin lõi lọc</th>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Số lõi lọc</b></td>--%>
+<%--                                            <td>10 lõi</td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Lõi 1</b></td>--%>
+<%--                                            <td> Smax Duo 1 (Sx Việt Nam)</td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Lõi 2</b></td>--%>
+<%--                                            <td>Smax Duo 2 (Sx Việt Nam)</td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Lõi 3</b></td>--%>
+<%--                                            <td>Smax Duo 3 (Sx Việt Nam)</td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Lõi RO/Nano/UF</b></td>--%>
+<%--                                            <td>RO Purifim 100 GPD sản xuất Mỹ</td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Lõi 7</b></td>--%>
+<%--                                            <td>ORP Alkaline (Sx Việt Nam)</td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Lõi 8</b></td>--%>
+<%--                                            <td>Tourmaline (Sx Việt Nam)</td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Lõi 9</b></td>--%>
+<%--                                            <td>Hydrogen Plus (Sx Việt Nam)</td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Lõi 5</b></td>--%>
+<%--                                            <td>Mineral (Sx Việt Nam)</td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Lõi 6</b></td>--%>
+<%--                                            <td>GAC - T33 (Sx Việt Nam)</td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Lõi 10</b></td>--%>
+<%--                                            <td>Nano Silver Plus (Sx Việt Nam)</td>--%>
+<%--                                        </tr>--%>
+<%--                                    </table>--%>
+<%--                                    <div class="table-content-tskt-hethonghoatdong">--%>
+<%--                                        <table>--%>
+<%--                                            <th colspan="2">Hệ thống hoạt động</th>--%>
+<%--                                            <tr>--%>
+<%--                                                <td><b>Hệ thống bơm và van điều tiết</b></td>--%>
+<%--                                                <td>Bơm tăng áp</td>--%>
+<%--                                            </tr>--%>
+<%--                                        </table>--%>
+<%--                                    </div>--%>
+<%--                                    <div class="table-content-tskt-bangdieukhien">--%>
+<%--                                        <table>--%>
+<%--                                            <th colspan="2">Bảng điều khiển và tiện ích</th>--%>
+<%--                                            <tr>--%>
+<%--                                                <td><b>Ngôn ngữ</b></td>--%>
+<%--                                                <td>Không có</td>--%>
+<%--                                            </tr>--%>
+<%--                                            <tr>--%>
+<%--                                                <td><b>Bảng điều khiển</b></td>--%>
+<%--                                                <td>Cần gạt</td>--%>
+<%--                                            </tr>--%>
+<%--                                            <tr>--%>
+<%--                                                <td><b>Tiện ích</b></td>--%>
+<%--                                                <td>--%>
+<%--                                                    <li>Chế độ cút nối nhanh dễ dàng thay lõi</li>--%>
+<%--                                                    <li>Ngừng hoạt động khi áp lực nước thấp</li>--%>
+<%--                                                    <li>Tự động xả nước thải</li>--%>
+<%--                                                    <li> Trung hòa độ pH ổn định độ ngọt cho nước</li>--%>
+<%--                                                    <li>Ngừng hoạt động khi nước đầy bình</li>--%>
+<%--                                                </td>--%>
+<%--                                            </tr>--%>
+<%--                                        </table>--%>
+<%--                                    </div>--%>
+<%--                                    <div class="table-content-tskt-thongtinlapdatvabaohanh">--%>
+<%--                                        <table>--%>
+<%--                                            <th colspan="2">Thông tin lắp đặt và bảo hành</th>--%>
+<%--                                            <tr>--%>
+<%--                                                <td><b>Kích thước, khối lượng</b></td>--%>
+<%--                                                <td>Ngang 32 cm - Cao 99 cm - Sâu 40 cm - Nặng 25 kg</td>--%>
+<%--                                            </tr>--%>
+<%--                                            <tr>--%>
+<%--                                                <td><b>Thời gian bảo hành</b></td>--%>
+<%--                                                <td>Phần điện 36 tháng - Bình áp 12 tháng - Lõi RO 3 tháng - Hệ thống--%>
+<%--                                                    nóng <br> lạnh 36 tháng--%>
+<%--                                                </td>--%>
+<%--                                            </tr>--%>
+<%--                                            <tr>--%>
+<%--                                                <td><b>Hãng</b></td>--%>
+<%--                                                <td>Karofi <a--%>
+<%--                                                        href="https://www.dienmayxanh.com/kinh-nghiem-hay/may-loc-nuoc-karofi-cua-nuoc-nao-1009795">Xem--%>
+<%--                                                    thông tin hãng</a></td>--%>
+<%--                                            </tr>--%>
+<%--                                        </table>--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
                     </div>
                 </div>
             </div>
             <div class="danhgia-sp">
-                <div class="danhgia-sp-header">
-                    <h1>Đánh giá Máy lọc nước RO nóng nguội lạnh Karofi KAD-X39 10 lõi</h1>
-                    <h2>4.1 <i class="fa-solid fa-star" style="color: #f18f31"></i><i class="fa-solid fa-star"
-                                                                                      style="color: #f18f31"></i><i
-                            class="fa-solid fa-star" style="color: #f18f31"></i><i class="fa-solid fa-star"
-                                                                                   style="color: #f18f31"></i><i
-                            class="fa-solid fa-star" style="color: #cec7c7;"></i></h2>
-                    <h3>5<i class="fa-solid fa-star" style="color: #f18f31;"></i><b style="color: #f18f31">--------------------</b>------------------------45%
-                    </h3>
-                    <h3>4<i class="fa-solid fa-star" style="color: #f18f31;"></i><b style="color: #f18f31">---------------</b>-----------------------------36%
-                    </h3>
-                    <h3>3<i class="fa-solid fa-star" style="color: #f18f31;"></i><b style="color: #f18f31">-----</b>---------------------------------------10%
-                    </h3>
-                    <h3>2<i class="fa-solid fa-star" style="color: #f18f31;"></i><b style="color: #f18f31">--</b>------------------------------------------4%
-                    </h3>
-                    <h3>1<i class="fa-solid fa-star" style="color: #f18f31;"></i><b style="color: #f18f31">--</b>------------------------------------------5%
-                    </h3>
-                    <img src="img/dgsp4.jpg"/>
-                    <img src="img/dgsp3.jpg"/>
-                    <img src="img/dgsp2.jpg"/>
-                    <img src="img/dgsp1.jpg"/>
-                    <img src="img/dgsp5.jpg"/>
-                    <img src="img/dgsp6.jpg"/>
-                </div>
                 <div class="danhgia-sp-footer">
+                    <% for (Comment comment : comments) { %>
                     <div class="khachhang1">
-                        <h3>Thiên Bảo</h3>
-                        <h2><i class="fa-solid fa-star" style="color: #f18f31"></i><i class="fa-solid fa-star"
-                                                                                      style="color: #f18f31"></i><i
-                                class="fa-solid fa-star" style="color: #f18f31"></i><i class="fa-solid fa-star"
-                                                                                       style="color: #f18f31"></i><i
-                                class="fa-solid fa-star" style="color: #f18f31"></i></h2>
-                        <p>Sản phẩm rất tốt</p>
-                        <p><i class="fa-regular fa-thumbs-up"></i> Hữu ích | Đã dùng khoảng 1 tháng</p>
+                        <h3>Người dùng #<%= comment.getUserId() %></h3>
+                        <h2>Đánh giá <%= comment.getStar() %><i class="fa-solid fa-star" style="color: #f18f31"></i></h2>
+                        <p> Nội dung: <%= comment.getContents() %></p>
+                        <p>Thời gian: <%= comment.getCreate_date() %></p>
                     </div>
-                    <div class="khachhang2">
-                        <h3>Hải Anh</h3>
-                        <h2><i class="fa-solid fa-star" style="color: #f18f31"></i><i class="fa-solid fa-star"
-                                                                                      style="color: #f18f31"></i><i
-                                class="fa-solid fa-star" style="color: #f18f31"></i><i class="fa-solid fa-star"
-                                                                                       style="color: #f18f31"></i><i
-                                class="fa-solid fa-star" style="color: #f18f31"></i></h2>
-                        <p>Sản phẩm tốt</p>
-                        <p><i class="fa-regular fa-thumbs-up"></i> Hữu ích | Đã dùng khoảng 2 tháng</p>
-                    </div>
-                    <div class="vietdanhgia">
-                        <button>Viết đánh giá</button>
-                    </div>
-                    <div class="form-danhgia">
-                        <div class="form-danhgia-khung">
-                            <div class="form-danhgia-close">
-                                <button>X Đóng</button>
+                    <% } %>
+                    <div class="rating">
+                                <form action="./commentController?id=<%=idProduct%>" accept-charset="UTF-8" method="post" >
+                            <div class="star-rating">
+                                <input type="radio" id="star1" name="rating" value="1" >
+                                <label for="star1"><i class="fa-solid fa-star" style="color: #f18f31"></i></label>
+                                <input type="radio" id="star2" name="rating" value="2">
+                                <label for="star2"><i class="fa-solid fa-star" style="color: #f18f31"></i></label>
+                                <input type="radio" id="star3" name="rating" value="3">
+                                <label for="star3"><i class="fa-solid fa-star" style="color: #f18f31"></i></label>
+                                <input type="radio" id="star4" name="rating" value="4">
+                                <label for="star4"><i class="fa-solid fa-star" style="color: #f18f31"></i></label>
+                                <input type="radio" id="star5" name="rating" value="5">
+                                <label for="star5"><i class="fa-solid fa-star" style="color: #f18f31"></i></label>
                             </div>
-                            <div class="form-danhgia-img">
-                                <img src="img/may-loc-nuoc-ro-karofi-kaq-x16-10-loi-130223-054043-600x600.jpg"
-                                />
+                            <div class="input-box">
+                                <input type="text" placeholder="Viết đánh giá" name="content">
                             </div>
-                            <div class="form-danhgia-tensp">
-                                <p>Máy lọc nước RO nóng nguội lạnh Karofi KAD-X39 10 lõi</p>
+                            <span style="color: red; font-size: 14px;padding-left: 20px;"><%=(error != null && error != "") ? error : ""%></span>
+                            <div class="sent-btn">
+                                <button type="submit" class="btn">Gửi đánh giá</button>
                             </div>
-                            <div class="form-danhgia-text">
-                                <input type="text" placeholder="Mời bạn chia sẻ thêm cảm nhận...">
-                            </div>
-                            <div class="form-danhgia-khungcheck">
-                                <p>
-                                    <span>
-                                        <input type="checkbox" name="" id="">
-                                    </span>Tôi sẽ giới thiệu sản phẩm cho bạn bè, người thân</p>
-                            </div>
-                            <div class="form-danhgia-thongtin">
-                                <div class="form-danhgia-thongtin1">
-                                    <input type="text" placeholder="Họ tên (bắt buộc)">
-                                </div>
-                                <div class="form-danhgia-thongtin2">
-                                    <input type="text" placeholder="Số điện thoại (bắt buộc)">
-                                </div>
-                            </div>
-                            <div class="form-danhgia-camket">
-                                <p><i class="fa-solid fa-check"></i> Chúng tôi cam kết bảo mật số điện thoại của bạn</p>
-                            </div>
-                            <div class="form-danhgia-gui">
-                                <button>Gửi đánh giá</button>
-                            </div>
-
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -547,94 +497,6 @@
 
             </section>
             <%@include file="footer.jsp" %>
-            <div class="modal-tinh-thanh js-modal-tinh-thanh">
-                <div class="modal-container js-modal-container">
-                    <div class="header-modal">
-                        <div class="title-modal">
-                            <p>Quý khách vui lòng cho biết <span>Địa Chỉ Nhận Hàng </span>để biết chính xác thời gian
-                                dao hàng</p>
-                            <a class="js-close"><i class="fa-solid fa-x fa-2xs" style="color: #ffffff;"></i></i>Đóng</a>
-                        </div>
-                        <form action="">
-                            <input type="text" placeholder="Tìm nhanh tỉnh thành, quận huyện, phường xã"
-                                   class="tim-khu-vuc">
-                            <div class="icon-mini">
-                                <i class="fa-solid fa-magnifying-glass fa-xl"></i>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="content-big">
-                        <div class="content-modal">
-                            <p class="title">Hoặc chọn tỉnh, thành phố</p>
-                            <ul class="list-tinh-thanh">
-                                <li><a href="">Hồ Chí Minh</a></li>
-                                <li><a href="">Hà Nội</a></li>
-                                <li><a href="">Đà Nẵng</a></li>
-                                <li><a href="">An Giang</a></li>
-                                <li><a href="">Bà Rịa - Vũng Tàu</a></li>
-                                <li><a href="">Bắc Giang</a></li>
-                                <li><a href="">Bắc Kạn</a></li>
-                                <li><a href="">Bạc Liêu</a></li>
-                                <li><a href="">Bắc Ninh</a></li>
-                                <li><a href="">Bến Tre</a></li>
-                                <li><a href="">Bình Định</a></li>
-                                <li><a href="">Bình Dương</a></li>
-                                <li><a href="">Bình Phước</a></li>
-                                <li><a href="">Bình Thuận</a></li>
-                                <li><a href="">Cà Mau</a></li>
-                                <li><a href="">Cần Thơ</a></li>
-                                <li><a href="">Cao Bằng</a></li>
-                                <li><a href="">Đắk Lắk</a></li>
-                                <li><a href="">Đắk Nông</a></li>
-                                <li><a href="">Điện Biên</a></li>
-                                <li><a href="">Đồng Nai</a></li>
-                                <li><a href="">Đồng Tháp</a></li>
-                                <li><a href="">Gia Lai</a></li>
-                                <li><a href="">Hà Giang</a></li>
-                                <li><a href="">Hà Nam</a></li>
-                                <li><a href="">Hà Tĩnh</a></li>
-                                <li><a href="">Hải Dương</a></li>
-                                <li><a href="">Hải Phòng</a></li>
-                                <li><a href="">Hậu Giang</a></li>
-                                <li><a href="">Hòa Bình</a></li>
-                                <li><a href="">Hưng Yên</a></li>
-                                <li><a href="">Khánh Hòa</a></li>
-                                <li><a href="">Kiên Giang</a></li>
-                                <li><a href="">Kon Tum</a></li>
-                                <li><a href="">Lai Châu</a></li>
-                                <li><a href="">Lâm Đồng</a></li>
-                                <li><a href="">Lạng Sơn</a></li>
-                                <li><a href="">Lào Cai</a></li>
-                                <li><a href="">Long An</a></li>
-                                <li><a href="">Nam Định</a></li>
-                                <li><a href="">Nghệ An</a></li>
-                                <li><a href="">Ninh Bình</a></li>
-                                <li><a href="">Ninh Thuận</a></li>
-                                <li><a href="">Phú Thọ</a></li>
-                                <li><a href="">Phú Yên</a></li>
-                                <li><a href="">Quảng Bình</a></li>
-                                <li><a href="">Quảng Nam</a></li>
-                                <li><a href="">Quảng Ngãi</a></li>
-                                <li><a href="">Quảng Ninh</a></li>
-                                <li><a href="">Quảng Trị</a></li>
-                                <li><a href="">Sóc Trăng</a></li>
-                                <li><a href="">Sơn La</a></li>
-                                <li><a href="">Tây Ninh</a></li>
-                                <li><a href="">Thái Bình</a></li>
-                                <li><a href="">Thái Nguyên</a></li>
-                                <li><a href="">Thanh Hóa</a></li>
-                                <li><a href="">Thừa Thiên Huế</a></li>
-                                <li><a href="">Tiền Giang</a></li>
-                                <li><a href="">Trà Vinh</a></li>
-                                <li><a href="">Tuyên Quang</a></li>
-                                <li><a href="">Vĩnh Long</a></li>
-                                <li><a href="">Vĩnh Phúc</a></li>
-                                <li><a href="">Yên Bái</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 </div>

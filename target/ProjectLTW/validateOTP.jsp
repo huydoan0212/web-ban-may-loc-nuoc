@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%String otp = request.getParameter("otp");%>
+<%String username = request.getParameter("username");%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,11 +34,11 @@
     </div>
     <div class="slider-form">
       <form action="ValidateOTPForgotPassword" method="post">
-        <%
-          String otp = (String) request.getSession().getAttribute("otp");
-          String username = (String) request.getSession().getAttribute("username");
+<%--        <%--%>
+<%--          String otp = (String) request.getSession().getAttribute("otp");--%>
+<%--          String username = (String) request.getSession().getAttribute("username");--%>
 
-        %>
+<%--        %>--%>
         <input type="hidden" name="otp" value="<%= otp %>"/>
         <input type="hidden" name="username" value="<%= username %>"/>
         <h1>Quên mật khẩu</h1>
@@ -46,16 +48,16 @@
         <div class="signin-btn">
           <button type="submit" class="btn">Xác nhận</button>
         </div>
-        <%
-          String message = (String) request.getSession().getAttribute("message");
-          if (message != null && !message.isEmpty()) {
-        %>
-        <p style="color: red"> <%= message %> </p>
-        <%
-            // Đặt lại giá trị message sau khi đã hiển thị
-            request.getSession().removeAttribute("message");
-          }
-        %>
+<%--        <%--%>
+<%--          String message = (String) request.getSession().getAttribute("message");--%>
+<%--          if (message != null && !message.isEmpty()) {--%>
+<%--        %>--%>
+<%--        <p style="color: red"> <%= message %> </p>--%>
+<%--        <%--%>
+<%--            // Đặt lại giá trị message sau khi đã hiển thị--%>
+<%--            request.getSession().removeAttribute("message");--%>
+<%--          }--%>
+<%--&lt;%&ndash;        %>&ndash;%&gt;--%>
       </form>
     </div>
   </div>
