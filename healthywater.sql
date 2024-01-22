@@ -46,16 +46,6 @@ CREATE TABLE `gallerys` (
                            `img` varchar(255)
 );
 
-CREATE TABLE `feedbacks` (
-                             `id` int PRIMARY KEY AUTO_INCREMENT,
-                             `product_id` int,
-                             `user_id` int,
-                             `title` varchar(255),
-                             `note` varchar(255),
-                             `date` date,
-                             `display` int
-);
-
 CREATE TABLE `orders` (
                           `id` int PRIMARY KEY AUTO_INCREMENT,
                           `user_id` int,
@@ -85,15 +75,15 @@ CREATE TABLE `vouchers` (
                             `note` varchar(255)
 );
 
-CREATE TABLE `rates` (
+CREATE TABLE `comments` (
                          `id` int PRIMARY KEY AUTO_INCREMENT,
                          `user_id` int,
                          `product_id` int,
-                         `name` varchar(255),
-                         `email` varchar(255),
-                         `phone_number` varchar(255),
-                         `note` text,
-                         `star` tinyint
+                         `contents` varchar(300),
+                         `star` varchar(50),
+                         `display` int,
+                         `create_date` datetime
+
 );
 
 CREATE TABLE `storehouses` (
@@ -171,8 +161,6 @@ ALTER TABLE `order_details` ADD FOREIGN KEY (`order_id`) REFERENCES `orders` (`i
 
 ALTER TABLE `orders` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
-ALTER TABLE `feedbacks` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
-
 ALTER TABLE `products` ADD FOREIGN KEY (`type_machine_id`) REFERENCES `type_machines` (`id`);
 
 ALTER TABLE `products` ADD FOREIGN KEY (`brand_id`) REFERENCES `brands` (`id`);
@@ -191,9 +179,9 @@ ALTER TABLE `product_storehouses` ADD FOREIGN KEY (`storehouse_id`) REFERENCES `
 
 ALTER TABLE `products` ADD FOREIGN KEY (`sale_product_id`) REFERENCES `timesale_products` (`id`);
 
-ALTER TABLE `rates` ADD FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
+ALTER TABLE `comments` ADD FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
 
-ALTER TABLE `rates` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+ALTER TABLE `comments` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 
 INSERT INTO `categorys` (`id`, `name`) VALUES (1, 'Lọc nước RO');
