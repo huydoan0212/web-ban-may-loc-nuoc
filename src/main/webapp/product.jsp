@@ -5,10 +5,6 @@
 <%@ page import="java.util.Locale" %>
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="model.Comment" %>
-<%@ page import="service.CommentService" %>
-<%@ page import="java.text.SimpleDateFormat" %>
-<%@ page import="java.sql.Date" %>
-<%@ page import="java.time.LocalDateTime" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% Product product = (Product) request.getAttribute("product");
     if (product == null) product = new Product();
@@ -181,9 +177,6 @@
                         <div class="product-content-title-item ttsp">
                             <p style="font-size: 15px">Thông tin sản phẩm</p>
                         </div>
-                        <div class="product-content-title-item tskt">
-                            <p style="font-size: 15px">Thông số kỹ thuật</p>
-                        </div>
                     </div>
                     <div class="product-content-thongtin">
                         <div class="product-content-thongtinsanpham">
@@ -263,210 +256,186 @@
 <%--                                máy sẽ an toàn, nhanh chóng và tiện lợi hơn.<br> Nước sau lọc có thể uống trực tiếp tại--%>
 <%--                                vòi, không cần đun sôi.--%>
                         </div>
-                        <div class="product-content-thongsokythuat">
-                            <img src="img/ttsp8.jpg"/>
-                            <img src="img/tskt.jpg"/>
-                            <div class="table-content-tskt">
-                                <div class="table-content-tskt-tongquan">
-                                    <table>
-                                        <th colspan="2">Tổng quan</th>
-                                        <tr>
-                                            <td><b>Kiểu lắp đặt</b></td>
-                                            <td>Tủ đứng</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Loại máy</b></td>
-                                            <td>Máy lọc nước RO nóng nguội lạnh</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Công nghệ lọc</b></td>
-                                            <td>Thẩm thấu ngược RO</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Kháng khuẩn</b></td>
-                                            <td>Nano Silver</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Dung tích bình chứa</b></td>
-                                            <td>Tổng 6.8 lít (Nước nóng 1 lít, nước lạnh 0.8 lít, nước thường 5 lít)
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Tỷ lệ lọc - thải</b></td>
-                                            <td>Lọc 5 - Thải 5 (Tỷ lệ này phụ thuộc vào chất lượng nước đầu vào)</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Công suất lọc</b></td>
-                                            <td> 20 lít/giờ</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Công suất tiêu thụ điện trung bình khoảng</b></td>
-                                            <td>0.495 kW/h</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Nhiệt độ nước hãng công bố</b></td>
-                                            <td>Nóng 85 - 95°C, Lạnh 12 - 15°C</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Nhiệt độ nước thực tế</b></td>
-                                            <td>Nóng 80 - 90°C, Lạnh 14 - 16°C, Nhiệt độ nước thực tế sẽ phụ thuộc<br>
-                                                vào nhiệt độ môi trường và thể tích nước lấy ra
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Áp lực nước yêu cầu</b></td>
-                                            <td>0.21 - 4.14 Bar</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Nơi sản xuất máy bơm</b></td>
-                                            <td>Việt Nam</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>ăm ra mắt</b>N</td>
-                                            <td>2022</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Thương hiệu</b></td>
-                                            <td>Việt Nam</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Nơi sản xuất</b></td>
-                                            <td>Việt Nam</td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                <div class="table-content-tskt-thongtinloiloc">
-                                    <table>
-                                        <th colspan="2">Thông tin lõi lọc</th>
-                                        <tr>
-                                            <td><b>Số lõi lọc</b></td>
-                                            <td>10 lõi</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Lõi 1</b></td>
-                                            <td> Smax Duo 1 (Sx Việt Nam)</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Lõi 2</b></td>
-                                            <td>Smax Duo 2 (Sx Việt Nam)</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Lõi 3</b></td>
-                                            <td>Smax Duo 3 (Sx Việt Nam)</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Lõi RO/Nano/UF</b></td>
-                                            <td>RO Purifim 100 GPD sản xuất Mỹ</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Lõi 7</b></td>
-                                            <td>ORP Alkaline (Sx Việt Nam)</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Lõi 8</b></td>
-                                            <td>Tourmaline (Sx Việt Nam)</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Lõi 9</b></td>
-                                            <td>Hydrogen Plus (Sx Việt Nam)</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Lõi 5</b></td>
-                                            <td>Mineral (Sx Việt Nam)</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Lõi 6</b></td>
-                                            <td>GAC - T33 (Sx Việt Nam)</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Lõi 10</b></td>
-                                            <td>Nano Silver Plus (Sx Việt Nam)</td>
-                                        </tr>
-                                    </table>
-                                    <div class="table-content-tskt-hethonghoatdong">
-                                        <table>
-                                            <th colspan="2">Hệ thống hoạt động</th>
-                                            <tr>
-                                                <td><b>Hệ thống bơm và van điều tiết</b></td>
-                                                <td>Bơm tăng áp</td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                    <div class="table-content-tskt-bangdieukhien">
-                                        <table>
-                                            <th colspan="2">Bảng điều khiển và tiện ích</th>
-                                            <tr>
-                                                <td><b>Ngôn ngữ</b></td>
-                                                <td>Không có</td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>Bảng điều khiển</b></td>
-                                                <td>Cần gạt</td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>Tiện ích</b></td>
-                                                <td>
-                                                    <li>Chế độ cút nối nhanh dễ dàng thay lõi</li>
-                                                    <li>Ngừng hoạt động khi áp lực nước thấp</li>
-                                                    <li>Tự động xả nước thải</li>
-                                                    <li> Trung hòa độ pH ổn định độ ngọt cho nước</li>
-                                                    <li>Ngừng hoạt động khi nước đầy bình</li>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                    <div class="table-content-tskt-thongtinlapdatvabaohanh">
-                                        <table>
-                                            <th colspan="2">Thông tin lắp đặt và bảo hành</th>
-                                            <tr>
-                                                <td><b>Kích thước, khối lượng</b></td>
-                                                <td>Ngang 32 cm - Cao 99 cm - Sâu 40 cm - Nặng 25 kg</td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>Thời gian bảo hành</b></td>
-                                                <td>Phần điện 36 tháng - Bình áp 12 tháng - Lõi RO 3 tháng - Hệ thống
-                                                    nóng <br> lạnh 36 tháng
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>Hãng</b></td>
-                                                <td>Karofi <a
-                                                        href="https://www.dienmayxanh.com/kinh-nghiem-hay/may-loc-nuoc-karofi-cua-nuoc-nao-1009795">Xem
-                                                    thông tin hãng</a></td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+<%--                        <div class="product-content-thongsokythuat">--%>
+<%--                            <img src="img/ttsp8.jpg"/>--%>
+<%--                            <img src="img/tskt.jpg"/>--%>
+<%--                            <div class="table-content-tskt">--%>
+<%--                                <div class="table-content-tskt-tongquan">--%>
+<%--                                    <table>--%>
+<%--                                        <th colspan="2">Tổng quan</th>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Kiểu lắp đặt</b></td>--%>
+<%--                                            <td>Tủ đứng</td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Loại máy</b></td>--%>
+<%--                                            <td>Máy lọc nước RO nóng nguội lạnh</td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Công nghệ lọc</b></td>--%>
+<%--                                            <td>Thẩm thấu ngược RO</td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Kháng khuẩn</b></td>--%>
+<%--                                            <td>Nano Silver</td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Dung tích bình chứa</b></td>--%>
+<%--                                            <td>Tổng 6.8 lít (Nước nóng 1 lít, nước lạnh 0.8 lít, nước thường 5 lít)--%>
+<%--                                            </td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Tỷ lệ lọc - thải</b></td>--%>
+<%--                                            <td>Lọc 5 - Thải 5 (Tỷ lệ này phụ thuộc vào chất lượng nước đầu vào)</td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Công suất lọc</b></td>--%>
+<%--                                            <td> 20 lít/giờ</td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Công suất tiêu thụ điện trung bình khoảng</b></td>--%>
+<%--                                            <td>0.495 kW/h</td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Nhiệt độ nước hãng công bố</b></td>--%>
+<%--                                            <td>Nóng 85 - 95°C, Lạnh 12 - 15°C</td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Nhiệt độ nước thực tế</b></td>--%>
+<%--                                            <td>Nóng 80 - 90°C, Lạnh 14 - 16°C, Nhiệt độ nước thực tế sẽ phụ thuộc<br>--%>
+<%--                                                vào nhiệt độ môi trường và thể tích nước lấy ra--%>
+<%--                                            </td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Áp lực nước yêu cầu</b></td>--%>
+<%--                                            <td>0.21 - 4.14 Bar</td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Nơi sản xuất máy bơm</b></td>--%>
+<%--                                            <td>Việt Nam</td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>ăm ra mắt</b>N</td>--%>
+<%--                                            <td>2022</td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Thương hiệu</b></td>--%>
+<%--                                            <td>Việt Nam</td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Nơi sản xuất</b></td>--%>
+<%--                                            <td>Việt Nam</td>--%>
+<%--                                        </tr>--%>
+<%--                                    </table>--%>
+<%--                                </div>--%>
+<%--                                <div class="table-content-tskt-thongtinloiloc">--%>
+<%--                                    <table>--%>
+<%--                                        <th colspan="2">Thông tin lõi lọc</th>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Số lõi lọc</b></td>--%>
+<%--                                            <td>10 lõi</td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Lõi 1</b></td>--%>
+<%--                                            <td> Smax Duo 1 (Sx Việt Nam)</td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Lõi 2</b></td>--%>
+<%--                                            <td>Smax Duo 2 (Sx Việt Nam)</td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Lõi 3</b></td>--%>
+<%--                                            <td>Smax Duo 3 (Sx Việt Nam)</td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Lõi RO/Nano/UF</b></td>--%>
+<%--                                            <td>RO Purifim 100 GPD sản xuất Mỹ</td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Lõi 7</b></td>--%>
+<%--                                            <td>ORP Alkaline (Sx Việt Nam)</td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Lõi 8</b></td>--%>
+<%--                                            <td>Tourmaline (Sx Việt Nam)</td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Lõi 9</b></td>--%>
+<%--                                            <td>Hydrogen Plus (Sx Việt Nam)</td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Lõi 5</b></td>--%>
+<%--                                            <td>Mineral (Sx Việt Nam)</td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Lõi 6</b></td>--%>
+<%--                                            <td>GAC - T33 (Sx Việt Nam)</td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td><b>Lõi 10</b></td>--%>
+<%--                                            <td>Nano Silver Plus (Sx Việt Nam)</td>--%>
+<%--                                        </tr>--%>
+<%--                                    </table>--%>
+<%--                                    <div class="table-content-tskt-hethonghoatdong">--%>
+<%--                                        <table>--%>
+<%--                                            <th colspan="2">Hệ thống hoạt động</th>--%>
+<%--                                            <tr>--%>
+<%--                                                <td><b>Hệ thống bơm và van điều tiết</b></td>--%>
+<%--                                                <td>Bơm tăng áp</td>--%>
+<%--                                            </tr>--%>
+<%--                                        </table>--%>
+<%--                                    </div>--%>
+<%--                                    <div class="table-content-tskt-bangdieukhien">--%>
+<%--                                        <table>--%>
+<%--                                            <th colspan="2">Bảng điều khiển và tiện ích</th>--%>
+<%--                                            <tr>--%>
+<%--                                                <td><b>Ngôn ngữ</b></td>--%>
+<%--                                                <td>Không có</td>--%>
+<%--                                            </tr>--%>
+<%--                                            <tr>--%>
+<%--                                                <td><b>Bảng điều khiển</b></td>--%>
+<%--                                                <td>Cần gạt</td>--%>
+<%--                                            </tr>--%>
+<%--                                            <tr>--%>
+<%--                                                <td><b>Tiện ích</b></td>--%>
+<%--                                                <td>--%>
+<%--                                                    <li>Chế độ cút nối nhanh dễ dàng thay lõi</li>--%>
+<%--                                                    <li>Ngừng hoạt động khi áp lực nước thấp</li>--%>
+<%--                                                    <li>Tự động xả nước thải</li>--%>
+<%--                                                    <li> Trung hòa độ pH ổn định độ ngọt cho nước</li>--%>
+<%--                                                    <li>Ngừng hoạt động khi nước đầy bình</li>--%>
+<%--                                                </td>--%>
+<%--                                            </tr>--%>
+<%--                                        </table>--%>
+<%--                                    </div>--%>
+<%--                                    <div class="table-content-tskt-thongtinlapdatvabaohanh">--%>
+<%--                                        <table>--%>
+<%--                                            <th colspan="2">Thông tin lắp đặt và bảo hành</th>--%>
+<%--                                            <tr>--%>
+<%--                                                <td><b>Kích thước, khối lượng</b></td>--%>
+<%--                                                <td>Ngang 32 cm - Cao 99 cm - Sâu 40 cm - Nặng 25 kg</td>--%>
+<%--                                            </tr>--%>
+<%--                                            <tr>--%>
+<%--                                                <td><b>Thời gian bảo hành</b></td>--%>
+<%--                                                <td>Phần điện 36 tháng - Bình áp 12 tháng - Lõi RO 3 tháng - Hệ thống--%>
+<%--                                                    nóng <br> lạnh 36 tháng--%>
+<%--                                                </td>--%>
+<%--                                            </tr>--%>
+<%--                                            <tr>--%>
+<%--                                                <td><b>Hãng</b></td>--%>
+<%--                                                <td>Karofi <a--%>
+<%--                                                        href="https://www.dienmayxanh.com/kinh-nghiem-hay/may-loc-nuoc-karofi-cua-nuoc-nao-1009795">Xem--%>
+<%--                                                    thông tin hãng</a></td>--%>
+<%--                                            </tr>--%>
+<%--                                        </table>--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
                     </div>
                 </div>
             </div>
             <div class="danhgia-sp">
-<%--                <div class="danhgia-sp-header">--%>
-<%--                    <h1>Đánh giá Máy lọc nước RO nóng nguội lạnh Karofi KAD-X39 10 lõi</h1>--%>
-<%--                    <h2>4.1 <i class="fa-solid fa-star" style="color: #f18f31"></i><i class="fa-solid fa-star"--%>
-<%--                                                                                      style="color: #f18f31"></i><i--%>
-<%--                            class="fa-solid fa-star" style="color: #f18f31"></i><i class="fa-solid fa-star"--%>
-<%--                                                                                   style="color: #f18f31"></i><i--%>
-<%--                            class="fa-solid fa-star" style="color: #cec7c7;"></i></h2>--%>
-<%--                    <h3>5<i class="fa-solid fa-star" style="color: #f18f31;"></i><b style="color: #f18f31">--------------------</b>------------------------45%--%>
-<%--                    </h3>--%>
-<%--                    <h3>4<i class="fa-solid fa-star" style="color: #f18f31;"></i><b style="color: #f18f31">---------------</b>-----------------------------36%--%>
-<%--                    </h3>--%>
-<%--                    <h3>3<i class="fa-solid fa-star" style="color: #f18f31;"></i><b style="color: #f18f31">-----</b>---------------------------------------10%--%>
-<%--                    </h3>--%>
-<%--                    <h3>2<i class="fa-solid fa-star" style="color: #f18f31;"></i><b style="color: #f18f31">--</b>------------------------------------------4%--%>
-<%--                    </h3>--%>
-<%--                    <h3>1<i class="fa-solid fa-star" style="color: #f18f31;"></i><b style="color: #f18f31">--</b>------------------------------------------5%--%>
-<%--                    </h3>--%>
-<%--                    <img src="img/dgsp4.jpg"/>--%>
-<%--                    <img src="img/dgsp3.jpg"/>--%>
-<%--                    <img src="img/dgsp2.jpg"/>--%>
-<%--                    <img src="img/dgsp1.jpg"/>--%>
-<%--                    <img src="img/dgsp5.jpg"/>--%>
-<%--                    <img src="img/dgsp6.jpg"/>--%>
-<%--                </div>--%>
                 <div class="danhgia-sp-footer">
                     <% for (Comment comment : comments) { %>
                     <div class="khachhang1">
