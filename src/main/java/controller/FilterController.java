@@ -53,14 +53,22 @@ public class FilterController extends HttpServlet {
         switch (page_id){
             case 1:
                 req.getRequestDispatcher("loc_nuoc_RO_page.jsp").forward(req,resp);
+                break;
             case 2:
                 req.getRequestDispatcher("loc_nuoc_nong_lanh_page.jsp").forward(req,resp);
+                break;
             case 3:
-                req.getRequestDispatcher("loc_nuoc_nano_uf_um_page.jsp").forward(req,resp);
+                req.getRequestDispatcher("loc_nuoc_nano_uf_mf_page.jsp").forward(req,resp);
+                break;
             case 4:
                 req.getRequestDispatcher("loc_nuoc_khong_dien_page.jsp").forward(req,resp);
+                break;
             case 5:
                 req.getRequestDispatcher("loc_nuoc_amtu_deban_page.jsp").forward(req,resp);
+                break;
+            case 6:
+                req.getRequestDispatcher("findproduct.jsp").forward(req,resp);
+                break;
         }
 
     }

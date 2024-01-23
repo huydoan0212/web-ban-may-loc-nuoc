@@ -33,10 +33,12 @@ public class ChangePasswordController extends HttpServlet {
         if (!isCheckOldPass) {
             String error = "Mật khẩu cũ của bạn không đúng";
             session.setAttribute("error", error);
+            resp.sendRedirect("account-page");
         } else {
             if (!inputNewPass.equals(inputRePass)) {
                 String error = "Mật khẩu bạn nhập không đúng với mật khẩu mới";
                 session.setAttribute("error", error);
+                resp.sendRedirect("account-page");
             } else if (isChangePass = UserService.getInstance().changePassworById(user.getId(), inputNewPass)){
                     resp.sendRedirect("account-page");
             }
