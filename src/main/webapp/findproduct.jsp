@@ -15,7 +15,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Lọc nước RO</title>
+    <title>Trang tìm kiếm</title>
     <link rel="stylesheet" href="css/loc_nuoc_RO_page.css">
     <script src="https://kit.fontawesome.com/3e135170bd.js" crossorigin="anonymous"></script>
 </head>

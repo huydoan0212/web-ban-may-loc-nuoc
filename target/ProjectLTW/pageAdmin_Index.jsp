@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
   <title>Quản lý</title>
-  <link rel="stylesheet" href="../src/main/webapp/css/bootstrap.min.css">
-  <link rel="stylesheet" href="../src/main/webapp/css/all.min.css">
-  <link rel="stylesheet" href="../src/main/webapp/css/style.css">
-  <link rel="stylesheet" href="../src/main/webapp/css/home.css">
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
+  <link rel="stylesheet" href="./css/all.min.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/home.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 </head>
@@ -16,31 +16,31 @@
   </div>
   <ul class="nav-links">
     <li>
-      <a href="pageAdmin_Index.html" class="active">
+      <a href="index.jsp" class="active">
         <i class="fa-solid fa-border-all"></i>
         <span class="links_name">Trang chủ</span>
       </a>
     </li>
     <li>
-      <a href="pageAdmin_Storage.html" class="active">
+      <a href="pageAdmin_Storage.jsp" class="active">
         <i class="fa-solid fa-box-open"></i>
         <span class="links_name">Quản lý kho</span>
       </a>
     </li>
     <li>
-      <a href="pageAdmin_Product.html">
+      <a href="pageAdmin_Product.jsp">
         <i class="fa-solid fa-box-archive"></i>
         <span class="links_name">Quản Lý Sản Phẩm</span>
       </a>
     </li>
     <li>
-      <a href="pageAdmin_Checkout.html">
+      <a href="pageAdmin_Checkout.jsp">
         <i class="fa-solid fa-note-sticky"></i>
         <span class="links_name">Quản Lý Đơn Hàng</span>
       </a>
     </li>
     <li>
-      <a href="pageAdmin_User.html">
+      <a href="pageAdmin_User.jsp">
         <i class="fa-solid fa-user"></i>
         <span class="links_name">Quản Lý Tài Khoản</span>
       </a>
@@ -138,7 +138,7 @@
           </table>
         </div>
         <div class="button">
-          <a href="pageAdmin_Checkout.html">Xem tất cả</a>
+          <a href="pageAdmin_Checkout.jsp">Xem tất cả</a>
         </div>
       </div>
       <div class="top-sales box">
