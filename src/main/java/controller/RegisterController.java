@@ -1,5 +1,8 @@
 package controller;
 
+//import service.EmailNotification;
+
+import mail.MailService;
 import service.UserService;
 
 import javax.servlet.ServletException;
@@ -8,12 +11,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Random;
+
 @WebServlet(name = "RegisterController", value = "/registerController")
 public class RegisterController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doPost(req, resp);
     }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
@@ -35,22 +41,32 @@ public class RegisterController extends HttpServlet {
         } else if (UserService.isEmailExists(email) == true && UserService.isUserExists(userName) == true) {
             req.setAttribute("error", "Email và Tên đăng nhập đã được sử dụng");
             req.getRequestDispatcher("register.jsp").forward(req, resp);
-        }
-        else if (UserService.isEmailExists(email) == true) {
+        } else if (UserService.isEmailExists(email) == true) {
             req.setAttribute("error", "Email đã được sử dụng");
             req.getRequestDispatcher("register.jsp").forward(req, resp);
-        }
-        else if (UserService.isUserExists(userName) == true) {
+        } else if (UserService.isUserExists(userName) == true) {
             req.setAttribute("error", "Tên đăng nhập đã được sử dụng");
             req.getRequestDispatcher("register.jsp").forward(req, resp);
         } else if (UserService.isMatchPassword(password, rePassword) == false) {
             req.setAttribute("error", "Mật khẩu bạn nhập không trùng nhau");
             req.getRequestDispatcher("register.jsp").forward(req, resp);
         } else {
-            req.setAttribute("success", "Đăng ký thành công");
-            UserService.addUser(userName, fullName, email, phone, password);
-            resp.sendRedirect("login.jsp");
+//            req.setAttribute("success", "Đăng ký thành công");
+            // Tạo một đối tượng Random
+            Random rand = new Random();
 
+            // Tạo một số ngẫu nhiên từ 0 đến 999999
+            int otp = rand.nextInt(1000000);
+
+            // Đảm bảo rằng số OTP có đủ 6 chữ số bằng cách thêm các số 0 vào đầu nếu cần
+            String otpString = String.format("%06d", otp);
+            MailService.send(email, "Mã xác nhận", "Mã xác nhận của bạn là: " + otpString);
+            UserService.addUser(userName, fullName, email, phone, password);
+            req.getSession().setAttribute("otp",otpString);
+            req.getSession().setAttribute("userName",userName);
+
+            resp.sendRedirect("enterOTP.jsp");
+//            EmailNotification.sendNotification("binhquoc23@gmail.com");
 
         }
     }

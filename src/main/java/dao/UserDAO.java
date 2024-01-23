@@ -30,37 +30,35 @@ public class UserDAO {
         return count > 0;
     }
 
-  public static boolean addUser(String username, String fullname, String email, String phone_number, String password) {
-    boolean result = false;
-    String insertQuery = "INSERT INTO users (role_id, username, fullname, email, phone_number, sex, address, password, created_at, status, active) " +
-      "VALUES (?, ?, ?, ?, ?, '', '', ?, ?, ?, ?)";
+    public static boolean addUser(String username, String fullname, String email, String phone_number, String password) {
+        boolean result = false;
+        String insertQuery = "INSERT INTO users (role_id, username, fullname, email, phone_number, sex, address, password, created_at) " +
+                "VALUES (?, ?, ?, ?, ?, '', '', ?, ?)";
 
-    try (Handle handle = JDBIConnector.me().open()) {
-      int rowsInserted = handle.createUpdate(insertQuery)
-        .bind(0, 2)
-        .bind(1, username)
-        .bind(2, fullname)
-        .bind(3, email)
-        .bind(4, phone_number)
-        .bind(5, password)
-        .bind(6, LocalDateTime.now().toString())
-        .bind(7, 1)
-        .bind(8, 1)
-        .execute();
+        try (Handle handle = JDBIConnector.me().open()) {
+            int rowsInserted = handle.createUpdate(insertQuery)
+                    .bind(0, 2)
+                    .bind(1, username)
+                    .bind(2, fullname)
+                    .bind(3, email)
+                    .bind(4, phone_number)
+                    .bind(5, password)
+                    .bind(6, LocalDateTime.now().toString())
+                    .execute();
 
-      result = rowsInserted > 0;
-    } catch (Exception e) {
-      e.printStackTrace(); // In ra lỗi để theo dõi và xử lý nếu cần
+            result = rowsInserted > 0;
+        } catch (Exception e) {
+            e.printStackTrace(); // In ra lỗi để theo dõi và xử lý nếu cần
+        }
+
+        return result;
     }
 
-    return result;
-  }
 
-
-  public static boolean loginUser(String username, String password) {
+    public static boolean loginUser(String username, String password) {
         try {
             int count = JDBIConnector.me().withHandle(handle ->
-                    handle.createQuery("SELECT COUNT(*) FROM users WHERE username = ? AND password = ?")
+                    handle.createQuery("SELECT COUNT(*) FROM users WHERE username = ? AND password = ? AND active = 1")
                             .bind(0, username)
                             .bind(1, password)
                             .mapTo(Integer.class)
@@ -120,24 +118,22 @@ public class UserDAO {
         }
     }
 
-  public static String getEmail(String username) {
-    try {
-      Optional<User> user = JDBIConnector.me().withHandle(handle ->
-        handle.createQuery("select email from users where username = :username")
-          .bind("username", username).mapToBean(User.class).stream().findFirst());
-      return user.map(User::getEmail).orElse("");
-    } catch (JdbiException e) {
-      return "";
+    public static String getEmail(String username) {
+        try {
+            Optional<User> user = JDBIConnector.me().withHandle(handle ->
+                    handle.createQuery("select email from users where username = :username")
+                            .bind("username", username).mapToBean(User.class).stream().findFirst());
+            return user.map(User::getEmail).orElse("");
+        } catch (JdbiException e) {
+            return "";
+        }
     }
-  }
 
 
-
-
-  public static boolean updateActiveAccount(String username) {
+    public static boolean updateActiveAccount(String username) {
         try {
             int updatedRows = JDBIConnector.me().withHandle(handle ->
-                    handle.createUpdate("UPDATE users SET active = true WHERE username = ?")
+                    handle.createUpdate("UPDATE users SET active = 1 WHERE username = ?")
                             .bind(0, username)
                             .execute()
             );
@@ -216,18 +212,18 @@ public class UserDAO {
         return null;
     }
 
-    public static boolean updateUserInfomationById(String fullname, String phone_number, int id) {
+    public static boolean updateUserInfomationById(String fullname, String phone_number, int id, String sex) {
         int rowsUpdated = JDBIConnector.me().withHandle(handle ->
-                handle.createUpdate("UPDATE users SET fullname = :fullname, phone_number = :phone_number WHERE id = :id")
-                        .bind("fullname", fullname)
-                        .bind("phone_number", phone_number)
-                        .bind("id", id)
+                handle.createUpdate("UPDATE users SET fullname = ?, phone_number = ?, updated_at = ?, sex = ? WHERE id = ?")
+                        .bind(0, fullname)
+                        .bind(1, phone_number)
+                        .bind(2, LocalDateTime.now().toString())
+                        .bind(3,sex)
+                        .bind(4, id)
                         .execute()
         );
         return rowsUpdated > 0;
     }
-
-
 
 
     public static User getUserById(int id) {
@@ -247,13 +243,35 @@ public class UserDAO {
         return rowsUpdated > 0;
     }
 
+    public static boolean checkPassByUserId(int id, String password) {
+        Optional<User> user = JDBIConnector.me().withHandle(handle ->
+                handle.createQuery("select password from users where id = :id")
+                        .bind("id", id).mapToBean(User.class).stream().findFirst());
+        if (user.isPresent()) {
+            return user.get().getPassword().equals(password);
+        }
+        return false;
+    }
 
-  public static void main(String[] args) {
-    System.out.println(UserDAO.getEmail("tranquynhanh23"));
+    public static boolean changePassworById(int id, String password){
+        int rowsUpdated = JDBIConnector.me().withHandle(handle ->
+                handle.createUpdate("UPDATE users SET password = :password WHERE id = :id")
+                        .bind("password", password)
+                        .bind("id", id)
+                        .execute()
+        );
+        return rowsUpdated > 0;
+    }
+
+
+
+
+    public static void main(String[] args) {
+//        System.out.println(UserDAO.getEmail("tranquynhanh23"));
 //    System.out.println(UserDAO.getUserByUserName("tranquynhanh23"));
-  }
-
-
+//        System.out.println(checkPassByUserId(1,"1"));
+        System.out.println(changePassworById(1,"2"));
+    }
 
 
 }

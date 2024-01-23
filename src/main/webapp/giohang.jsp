@@ -1,12 +1,10 @@
-<%@ page import="java.util.Map" %>
 <%@ page import="cart.CartProduct" %>
-<%@ page import="java.util.HashMap" %>
 <%@ page import="cart.Cart" %>
-<%@ page import="java.util.Set" %>
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="java.text.FieldPosition" %>
 <%@ page import="java.text.ParsePosition" %>
-<%@ page import="java.util.Locale" %>
+<%@ page import="java.util.*" %>
+<%@ page import="model.Voucher" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <% Cart cart = (Cart) session.getAttribute("cart");
@@ -16,6 +14,27 @@
     for (Object key : set
     ) {
         total += cart.getData().get(key).getProduct().getDiscount_price() * cart.getData().get(key).getQuantity();
+    }
+    ArrayList<Voucher> vouchers = (ArrayList<Voucher>) session.getAttribute("vouchers");
+    Object tempObj = session.getAttribute("percent_decrease");
+    double percent_decrease = 0;
+    if (tempObj != null) {
+        if (tempObj instanceof Double) {
+            percent_decrease = (Double) tempObj;
+        } else if (tempObj instanceof String) {
+            percent_decrease = Double.valueOf((String) tempObj);
+        }
+    }
+
+    int total_decrease = (int) (total - (total * percent_decrease));
+    Object object = request.getParameter("voucher_id");
+    int voucher_id = 0;
+    if (object != null) {
+        if (object instanceof Integer) {
+            voucher_id = (Integer) object;
+        } else if (object instanceof String) {
+            voucher_id = Integer.valueOf((String) object);
+        }
     }
 %>
 <% Locale locale = new Locale("vi", "VN");
@@ -32,7 +51,7 @@
 <body>
 <div id="main">
     <%@include file="header.jsp" %>
-    <%if(cart.getData().size() < 1) {%>
+    <%if (cart.getData().size() < 1) {%>
     <div id="content-none">
         <div class="container content-mini-trong">
             <img src="img/giohang.jsp-removebg-preview.png" alt="">
@@ -41,7 +60,7 @@
         </div>
     </div>
     <%}%>
-    <%if(cart.getData().size() > 0) {%>
+    <%if (cart.getData().size() > 0) {%>
     <div id="content" class="appear">
         <div class="section">
             <div class="nav-section">
@@ -129,28 +148,67 @@
                     <%}%>
                 </ul>
                 <div class="total-san-pham">
-                    <span class="quanlity-san-pham"><span class="total-label">Tạm tính </span>(<span id="quantity-products"><%=cart.getTotal()%></span> sản phẩm):</span>
+                    <span class="quanlity-san-pham"><span class="total-label">Tạm tính </span>(<span
+                            id="quantity-products"><%=cart.getTotal()%></span> sản phẩm):</span>
                     <span class="total-money"><%=numberFormat.format(total)%>₫</span>
                 </div>
                 <div class="voucher">
                     <p class="label-voucher">Mã giảm giá/ Phiếu mua hàng</p>
                     <div class="nhap-voucher">
-                        <input type="text" placeholder="Nhập mã giảm giá/ Phiếu mua hàng" id="ma-giam-gia">
-                        <a href="" class="ap-dung">Áp dụng</a>
+                        <%int id = 0;%>
+                        <select id="ma-giam-gia">
+                            <option selected disabled>Chọn mã giảm giá</option>
+                            <%for (Voucher v : vouchers) {%>
+                            <option class="voucher-option" value="<%=v.getId()%>"><%=v.getVoucher_name()%></option>
+                            <%}%>
+                        </select>
+
+                        <a href="#" id="ap-dung" class="ap-dung">Áp dụng</a>
+                        <script>
+                            document.getElementById('ma-giam-gia').addEventListener('change', function () {
+                                var id = this.value;
+                                document.getElementById('ap-dung').href = "use-voucher?voucher_id=" + id;
+                                document.getElementById('ma-giam-gia').selected();
+                            });
+                        </script>
                     </div>
                 </div>
                 <div class="total-money-big">
                     <div class="label-total-big">
                         <span class="text-total-big">Tổng tiền:</span>
-                        <span class="money-big"><%=numberFormat.format(total)%>₫</span>
+                        <span class="money-big"><%=numberFormat.format(total_decrease)%>₫</span>
                     </div>
                     <div class="policy">
                         <input type="checkbox" id="checkbox-policy">
                         <span class="text-policy">Tôi đồng ý với Chính sách xử lý dữ liệu cá nhân của Healthy Water</span>
                     </div>
                     <div class="btn-order-frame">
-                        <a class="btn-order">Đặt hàng</a>
+                        <form action="order-controller" method="GET">
+                            <input type="hidden" name="total_decrease" value="<%=total_decrease%>">
+                            <input type="hidden" name="voucher_id" value="<%=voucher_id%>">
+                            <button type="button" id="btn-order" class="btn-order">Đặt hàng</button>
+                        </form>
                     </div>
+                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                    <script>
+                        $(document).ready(function() {
+                            $("#btn-order").click(function() {
+                                var checked = $("#checkbox-policy").prop("checked");
+                                if (checked) {
+                                    // Chuyển hướng đến order-controller với các tham số
+                                    var url = "order-controller?total_decrease=" + $("input[name='total_decrease']").val() + "&voucher_id=" + $("input[name='voucher_id']").val();
+                                    window.location.href = url;
+                                } else {
+                                    // Hiển thị thông báo yêu cầu chọn checkbox-policy
+                                    alert("Bạn phải đồng ý với Chính sách xử lý dữ liệu cá nhân của Healthy Water trước khi đặt hàng.");
+                                }
+                            });
+                        });
+                    </script>
+
+
+
+
                     <div class="note"><span>Bạn có thể chọn hình thức thanh toán sau khi đặt hàng</span></div>
                 </div>
             </div>
@@ -256,7 +314,7 @@
         const content = document.getElementById('content');
         const products = Number(document.getElementById('quantity-products').value);
 
-        if(products > 0) {
+        if (products > 0) {
             content.addClass('appear');
         } else {
             content.removeClass('appear');

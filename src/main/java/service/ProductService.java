@@ -14,6 +14,10 @@ public class ProductService {
         return instance;
     }
 
+    public static List<Product> filterByTypeAndBrand(int brand, int type) {
+        return ProductDAO.filterByTypeAndBrand(brand,type);
+    }
+
     public List<Product> getAll() {
         return ProductDAO.getAll();
     }
@@ -26,10 +30,12 @@ public class ProductService {
         return ProductDAO.getLocNuocTheoDanhMuc(category);
     }
 
-    ;
+    public List<Product> getProductByName(String title){
+        return ProductDAO.getProductByName(title);
+    }
 
     public static void main(String[] args) {
-        System.out.println(ProductService.getInstance().getLocNuocTheoDanhMuc("Lọc nước RO"));
+        System.out.println(ProductService.getInstance().getProductByName("Máy lọc nước RO"));
     }
 
 }

@@ -12,6 +12,12 @@
     String inputPhone = request.getParameter("inputPhone");
     String inputAddress = request.getParameter("inputAddress");
     String error = (String) request.getAttribute("error");
+
+    String inputOldPass = request.getParameter("inputOldPass");
+    String inputNewPass = request.getParameter("inputNewPass");
+    String inputRePass = request.getParameter("inputRePass");
+
+    String error1 = (String) session.getAttribute("error");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +39,7 @@
                     <div class="mini-menu-toolbar">
                         <div class="order-frame">
                             <i class="fa-solid fa-rectangle-list"></i>
-                            <a href="ordered.html" class="order">Đơn hàng đã mua</a>
+                            <a href="ordered-page" class="order">Đơn hàng đã mua</a>
                         </div>
                         <div class="infor-frame">
                             <i class="fa-solid fa-address-card"></i>
@@ -56,9 +62,9 @@
                             </div>
                             <div class="select-infor">
                                 <div class="sex">
-                                    <input type="radio" id="male">
+                                    <input type="radio" id="male" name="gender" value="Anh" <%if(user.getSex().equals("Nam")){%>checked="checked"<%}%>>
                                     <span>Anh</span>
-                                    <input type="radio" id="female">
+                                    <input type="radio" id="female" name="gender" value="Chị" <%if(user.getSex().equals("Nữ")){%>checked="checked"<%}%>>
                                     <span>Chị</span>
                                 </div>
                                 <div class="name-phone">
@@ -80,6 +86,7 @@
                                 </div>
                             </div>
                         </form>
+
                     </div>
                     <form action="update-address?id=<%=user.getId()%>">
                         <div class="infor-address">
@@ -95,6 +102,36 @@
                                 <button type="submit" class="cap-nhat">Cập nhật</button>
                             </div>
                         </div>
+                    </form>
+                    <form action="change-pass">
+                    <div class="infor-address">
+                        <div class="dia-chi-nhan-hang">
+                            <p>ĐỔI MẬT KHẨU</p>
+                        </div>
+                        <div class="nhap-dia-chi">
+                            <span class="tinh-label">Mật khẩu cũ:</span>
+                            <input type="password" placeholder="Nhập mật khẩu cũ"  class="all"
+                                   value="" name="oldPass">
+
+                            <span class="tinh-label">Mật khẩu mới:</span>
+                            <input type="password" placeholder="Nhập mật khẩu mới"  class="all"
+                                   value="" name="newPass">
+
+                            <span class="tinh-label">Nhập lại mật khẩu mới:</span>
+                            <input type="password" placeholder="Nhập lại mật khẩu mới"  class="all"
+                                   value="" name="re-enter-pass">
+                        </div>
+                        <%if(error1!=null){%>
+                        <div style="    text-align: center;
+    margin-bottom: 25px;
+    font-size: 14px;">
+                        <span style="color: red"><%=error1%></span>
+                        </div>
+                        <%}%>
+                        <div class="btn-frame">
+                            <button type="submit" class="cap-nhat">Cập nhật</button>
+                        </div>
+                    </div>
                     </form>
                 </div>
             </div>

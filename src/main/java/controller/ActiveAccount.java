@@ -16,8 +16,8 @@ public class ActiveAccount extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String otp = request.getParameter("otp");
-        String username = request.getParameter("username");
+        String otp = (String) request.getSession().getAttribute("otp");
+        String username = (String) request.getSession().getAttribute("userName");
         String enterOTP = request.getParameter("enterOTP");
         if(otp.equals(enterOTP)) {
             UserDAO.updateActiveAccount(username);

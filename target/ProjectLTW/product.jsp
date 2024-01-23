@@ -176,20 +176,18 @@
                     </div>
                     <div class="product-content-thongtin">
                         <div class="product-content-thongtinsanpham">
-                            <p><b style="font-style: italic">Máy lọc nước RO nóng lạnh Karofi KAD-X39 10 lõi có 3 chế độ
-                                nước nóng - nguội - lạnh,<br> màng lọc RO 100 GPD cho công suất lọc lớn, tạo nước
-                                Hydrogen chống oxy hóa.<br></b>
+                            <p><b style="font-style: italic" style="font-size: 15px"><%=product.getTitle()%></b>
+<%--                                <img src="img/ttsp1.jpg"/><br>--%>
+<%--                                <b style="font-size: 15px">Thiết kế - Loại nước lọc được</b>--%>
+<%--                                <br> - Thiết kế dạng tủ đứng được phủ kính tràn viền hiện đại, màu đen thanh lịch, sang--%>
+<%--                                trọng, phù hợp cho<br> không gian phòng khách, phòng bếp, văn phòng,...<br>--%>
 
-                                <img src="img/ttsp1.jpg"/><br>
-                                <b style="font-size: 15px">Thiết kế - Loại nước lọc được</b>
-                                <br> - Thiết kế dạng tủ đứng được phủ kính tràn viền hiện đại, màu đen thanh lịch, sang
-                                trọng, phù hợp cho<br> không gian phòng khách, phòng bếp, văn phòng,...<br>
-
-                                - Máy lọc nước được nguồn nước máy, nước giếng đã xử lý thô.<br>
-
-                                <img src="img/ttsp2.jpg"/><br><b style="font-size: 15px">Chứng nhận nước sạch của Bộ Y
-                                    tế</b><br>
-                                Nước sau khi lọc đạt tiêu chuẩn nước uống trực tiếp không cần đun sôi QCVN 6-1:2010/BYT.<br>
+<%--                                - Máy lọc nước được nguồn nước máy, nước giếng đã xử lý thô.<br>--%>
+                            <p><b><%=product.getDescription()%></b>
+                          <img src="<%=galleries.get(3).getImg()%>"/>
+<%--                                       <br><b style="font-size: 15px">Chứng nhận nước sạch của Bộ Y&ndash;%&gt;--%>
+<%--                                    tế</b><br>--%>
+<%--                                Nước sau khi lọc đạt tiêu chuẩn nước uống trực tiếp không cần đun sôi QCVN 6-1:2010/BYT.<br>--%>
 
 <%--                                <img src="img/ttsp3.jpg"/><br><b style="font-size: 15px">Công suất - Dung tích bình chứa--%>
 <%--                                    - Chế độ nước</b>--%>
@@ -452,7 +450,7 @@
                                 <label for="star3"><i class="fa-solid fa-star" style="color: #f18f31"></i></label>
                                 <input type="radio" id="star4" name="rating" value="4">
                                 <label for="star4"><i class="fa-solid fa-star" style="color: #f18f31"></i></label>
-                                <input type="radio" id="star5" name="rating" value="5">
+                                <input type="radio" id="star5" name="rating" value="5" checked>
                                 <label for="star5"><i class="fa-solid fa-star" style="color: #f18f31"></i></label>
                             </div>
                             <div class="input-box">
