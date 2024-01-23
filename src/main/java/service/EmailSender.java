@@ -1,15 +1,14 @@
 package service;
-
-
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-
 import java.util.Properties;
+
+
 
 public class EmailSender {
 
-  // thông tin cá nhân
+//   thông tin cá nhân
   private static final String EMAIL_USERNAME = "binhquoc23@gmail.com";
   private static final String EMAIL_PASSWORD = "bibo uriu dcid eazy\n";
 
@@ -19,6 +18,7 @@ public class EmailSender {
     props.put("mail.smtp.starttls.enable", "true");
     props.put("mail.smtp.host", "smtp.gmail.com");
     props.put("mail.smtp.port", "587");
+
 
 
 
@@ -41,6 +41,8 @@ public class EmailSender {
       System.out.println("Email đã gửi thành công đến: " + toEmail);
     } catch (MessagingException e) {
       System.err.println("Lỗi không thể gửi được email đến: " + toEmail);
+      e.printStackTrace();
+
     }
   }
 
