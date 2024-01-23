@@ -94,7 +94,7 @@
       </a>
     </li>
     <li>
-      <a href="pageAdmin_User.jsp">
+      <a href="./pageAdminUserController">
         <i class="fa-solid fa-user"></i>
         <span class="links_name">Quản Lý Tài Khoản</span>
       </a>

@@ -3,6 +3,7 @@ package service;
 import dao.UserDAO;
 import model.User;
 
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -42,19 +43,14 @@ public class UserService {
         return UserDAO.addUser(username, fullname, email, phone_number, password);
     }
 
-    public static boolean updateUser(User user) {
-        return UserDAO.updateUser(user);
-    }
-
-    public static User getUserByUserName(String userName) {
-        return UserDAO.getUserByUserName(userName);
-    }
-
     public boolean checkPassByUserId(int id, String password) {
         return UserDAO.checkPassByUserId(id, password);
     }
 
     public boolean changePassworById(int id, String password){
         return UserDAO.changePassworById(id,password);
+    }
+    public List<User> getAll(){
+        return UserDAO.getAll();
     }
 }

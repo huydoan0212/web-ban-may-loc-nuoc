@@ -47,7 +47,7 @@ public class ProductDAO {
     }
 
     public static void main(String[] args) {
-        System.out.println(getProductByName("Máy lọc nước RO"));
+        System.out.println(getProductByName("Máy lọc nước RO nóng nguội lạnh Karofi KAD-X39 10 lõi"));
     }
 
 

@@ -1,12 +1,15 @@
 package dao;
 
 import db.JDBIConnector;
+import model.Product;
 import model.User;
 import org.jdbi.v3.core.Handle;
 import org.jdbi.v3.core.JdbiException;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 public class UserDAO {
@@ -263,15 +266,16 @@ public class UserDAO {
         );
         return rowsUpdated > 0;
     }
-
-
-
-
+    public static List<User> getAll() {
+        List<User> users = JDBIConnector.me().withHandle((handle -> handle.createQuery("select * from users")
+                .mapToBean(User.class).stream().collect(Collectors.toList())));
+        return users;
+    }
     public static void main(String[] args) {
 //        System.out.println(UserDAO.getEmail("tranquynhanh23"));
 //    System.out.println(UserDAO.getUserByUserName("tranquynhanh23"));
 //        System.out.println(checkPassByUserId(1,"1"));
-        System.out.println(changePassworById(1,"2"));
+//        System.out.println(getAll());
     }
 
 
