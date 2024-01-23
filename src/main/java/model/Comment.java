@@ -12,6 +12,7 @@ public class Comment {
     public Comment() {
     }
 
+
     public Comment(int id, int userId, int productId, String contents, String star, int display, LocalDateTime create_date) {
         this.id = id;
         this.userId = userId;
