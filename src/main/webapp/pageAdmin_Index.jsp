@@ -46,8 +46,8 @@
     }
   }
 
-  List<Order> orders = (List<Order>) session.getAttribute("listOderRecent");
-  List<Product> products = (List<Product>) session.getAttribute("listProductBestSeller");
+  List<Order> orders = (List<Order>) request.getAttribute("listOderRecent");
+  List<Product> products = (List<Product>) request.getAttribute("listProductBestSeller");
 
 %>
 <% Locale locale = new Locale("vi", "VN");
@@ -114,9 +114,10 @@
         <div class="title">Thống kê</div>
         <div>
           <select>
-            <option value="0">Hôm nay</option>
-            <option value="1">Tuần</option>
-            <option value="2">Tháng</option>
+            <option value="0">Tất cả</option>
+            <option value="1">Hôm nay</option>
+            <option value="2">Tuần</option>
+            <option value="3">Tháng</option>
           </select>
         </div>
       </div>
@@ -180,24 +181,9 @@
               <td><%=order.getAddress()%></td>
               <td><%=order.getOrder_date()%></td>
               <td><%=order.getPhone()%></td>
-              <td><%numberFormat.format(order.getTotal_money());%></td>
+              <td><%=numberFormat.format(order.getTotal_money())%> vnđ</td>
             </tr>
             <%}%>
-            <tr>
-              <th scope="row">000002</th>
-              <td>Nguyễn Thanh Hoài</td>
-              <td>27/10/2023</td>
-              <td>0486191721</td>
-              <td>10.000.000<sup>đ</sup></td>
-            </tr>
-            <tr>
-              <th scope="row">000003</th>
-              <td>Đoàn Quốc Huy</td>
-              <td>27/10/2023</td>
-              <td>0786193721</td>
-              <td>11.000.000<sup>đ</sup></td>
-            </tr>
-
             </tbody>
           </table>
         </div>
@@ -208,54 +194,14 @@
       <div class="top-sales box">
         <div class="title">Sản Phẩm Bán Chạy</div>
         <ul class="top-sales-details">
+          <%for (Product product : products) {%>
           <li>
-            <a href="#">
-
-              <span title="Máy lọc nước nóng lạnh Sanaky" class="product">Máy lọc nước nóng lạnh Sanaky</span>
+            <a href="trangsanpham?id=<%=product.getId()%>">
+              <span class="product"><%=product.getTitle()%></span>
             </a>
-            <span class="price">3.000.000<sup>đ</sup></span>
+            <span class="price"><%=numberFormat.format(product.getPrice())%> vnđ</span>
           </li>
-          <li>
-            <a href="#">
-
-              <span title="Máy lọc nước RO Karofi" class="product">Máy lọc nước RO Karofi</span>
-            </a>
-            <span class="price">5.335.000<sup>đ</sup></span>
-          </li>
-          <li>
-            <a href="#">
-
-              <span title="Máy lọc nước RO Kangaroo" class="product">Máy lọc nước RO Kangaroo</span>
-            </a>
-            <span class="price">6.300.000<sup>đ</sup></span>
-          </li>
-          <li>
-            <a href="#">
-
-              <span title="Máy lọc nước không vỏ RO Karofi" class="product">Máy lọc nước không vỏ RO Karofi</span>
-            </a>
-            <span class="price">4.590.000<sup>đ</sup></span>
-          </li>
-          <li>
-            <a href="#">
-
-              <span title="Máy lọc nước không vỏ RO Kangaroo" class="product">Máy lọc nước không vỏ RO Kangaroo</span>
-            </a>
-            <span class="price">6.325.000<sup>đ</sup></span>
-          </li>
-          <li>
-            <a href="#">
-
-              <span title="Máy lọc nước không vỏ RO Sanaky" class="product">Máy lọc nước không vỏ RO Sanaky</span>
-            </a>
-            <span class="price">5.280.000<sup>đ</sup></span>
-          <li>
-            <a href="#">
-
-              <span title="Máy lọc Nano Sanaky" class="product">Máy lọc Nano Sanaky</span>
-            </a>
-            <span class="price">9.150.000<sup>đ</sup></span>
-          </li>
+          <%}%>
         </ul>
       </div>
     </div>

@@ -37,9 +37,18 @@ public class ProductDAO {
                         .stream().collect(Collectors.toList()));
         return products;
     }
+    public static List<Product> filterByTypeAndBrand(int brand, int type_machine_id) {
+        List<Product> products = JDBIConnector.me().withHandle((handle -> handle
+                .createQuery("select * from products where type_machine_id=:type_machine_id and brand_id=:brand_id")
+                .bind("type_machine_id", type_machine_id)
+                .bind("brand_id", brand)
+                .mapToBean(Product.class).stream().collect(Collectors.toList())));
+        return products;
+    }
 
     public static void main(String[] args) {
         System.out.println(getProductByName("Máy lọc nước RO"));
     }
+
 
 }

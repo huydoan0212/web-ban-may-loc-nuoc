@@ -30,8 +30,8 @@ public class PageAdminController extends HttpServlet {
         request.getSession().setAttribute("countProductOutStock", countProductOutStock);
         request.getSession().setAttribute("totalMoney", totalMoney);
         request.getSession().setAttribute("countOrderCancel", countOrderCancel);
-        request.getSession().setAttribute("listOderRecent ", listOderRecent );
-        request.getSession().setAttribute("listProductBestSeller", listProductBestSeller);
+        request.setAttribute("listOderRecent", listOderRecent );
+        request.setAttribute("listProductBestSeller", listProductBestSeller);
         request.getRequestDispatcher("pageAdmin_Index.jsp").forward(request, response);
     }
 }
