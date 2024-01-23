@@ -433,6 +433,7 @@ body {
 #content .detail-pd .product-san-pham {
     display: flex;
     border-bottom: 1px solid #f1f1f1;
+    margin-bottom: 20px;
 }
 
 #content .product-san-pham .label-pd {

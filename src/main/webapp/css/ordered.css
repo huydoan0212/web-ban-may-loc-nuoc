@@ -289,6 +289,7 @@ body {
 #content .content-small .product {
     display: flex;
     margin-top: 10px;
+    margin-bottom: 40px;
 }
 #content .information-product {
     width: 800px;
@@ -301,7 +302,9 @@ body {
     margin-left: 15px;
 }
 #content .product-value .total {
-    margin-left: 330px;
+    display: block;
+    width: 100px;
+    float: right;
 }
 #content .product-value .money {
     font-size: 18px;
@@ -315,6 +318,7 @@ body {
 }
 #content .btn-bot {
     height: 50px;
+    margin-top: 80px;
 }
 #content .btn-bot a {
     float: right;

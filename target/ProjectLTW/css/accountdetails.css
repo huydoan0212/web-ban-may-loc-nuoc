@@ -73,6 +73,7 @@ body {
     text-align: center;
     border: 1px solid #4A90E2;
     border-radius: 4px;
+    cursor: pointer;
 }
 #content .mini-menu-toolbar .log-off:hover {
     background-color: #4A90E2;
@@ -190,7 +191,7 @@ body {
     font-size: 14px;
 }
 #content .select-infor {
-    background-color: #f5f5f5;
+    /*background-color: #f5f5f5;*/
     padding: 15px;
     margin: 10px 0;
     border-radius: 4px;
@@ -249,10 +250,12 @@ body {
     background-color: #4a90e2;
     border-radius: 4px;
     border: none;
+    cursor: pointer;
 }
 #content .infor-address {
     background-color: white;
     padding: 20px;
+    border-top: 1px #999999;
 }
 #content .dia-chi-nhan-hang p {
     font-weight: bold;
@@ -266,7 +269,7 @@ body {
 
 }
 #content .nhap-dia-chi .all {
-    width: 600px;
+    width: 740px;
     height: 41.6px;
     padding: 0 10px;
     border-radius: 4px;
@@ -279,10 +282,11 @@ body {
 
 #content .nhap-dia-chi span {
     font-size: 14px;
-    margin-right: 37px;
+    display: block;
+    margin: 10px 0;
 }
 #content .nhap-dia-chi #dia-chi {
-    width: 400px;
+    width: 740px;
     height: 40px;
 }
 #content .nhap-dia-chi .dia-chi-label {
@@ -313,6 +317,7 @@ body {
     background-color: #4a90e2;
     border-radius: 4px;
     border: none;
+    cursor: pointer;
 }
 /*Class*/
 .container {

@@ -23,12 +23,16 @@ public class FindProductController extends HttpServlet {
         response.setContentType("text/html; charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
         String title = request.getParameter("title");
-        List<Product> products = ProductService.getInstance().getProductByName(title);
-        if (products == null){
+        List<Product> findproduct = ProductService.getInstance().getProductByName(title);
+        if (findproduct == null){
             request.getRequestDispatcher("findproduct.jsp").forward(request, response);
             request.setAttribute("error", "Rất tiếc không tìm thấy sản phẩm của bạn yêu cầu");
         }else
-        request.setAttribute("findproduct", products);
+        request.setAttribute("findproduct", findproduct);
         request.getRequestDispatcher("findproduct.jsp").forward(request, response);
     }
+
+//    public static void main(String[] args) {
+//        System.out.println( ProductService.getInstance().getProductByName("Máy lọc nước RO nóng nguội lạnh Karofi KAD-X39 10 lõi"));
+//    }
 }
