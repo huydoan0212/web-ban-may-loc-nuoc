@@ -15,7 +15,7 @@ public class OrderDetailService {
     }
 
     public boolean insertOrder(int order_id, int product_id, int price, int quantity, int total_money) {
-        return OrderDetailDAO.insertOrder(order_id, product_id, price, quantity, total_money);
+        return OrderDetailDAO.insertOrderDetail(order_id, product_id, price, quantity, total_money);
     }
     public List<OrderDetail> getOrderDetailByIdOrder(int order_id){
         return OrderDetailDAO.getOrderDetailByIdOrder(order_id);

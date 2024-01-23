@@ -18,9 +18,7 @@
                 <a href="/ProjectLTW_war/trangchu" class="logo">
                     <img src="./img/logo-removebg-preview.png" alt="">
                 </a>
-                <a class="tinh js-tim-tinh">
-                    Xem giá, tồn kho tại:
-                    <span>Hồ Chí Minh</span></a>
+
                 <form action="./findProductController" accept-charset="UTF-8" method="post">
                 <div class="search-bar ">
                         <input type="text" placeholder="Bạn muốn tìm gì..." id="input-search" name="title">

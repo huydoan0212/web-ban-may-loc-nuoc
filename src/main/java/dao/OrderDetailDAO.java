@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 public class OrderDetailDAO {
 
-    public static boolean insertOrder(int order_id, int product_id, int price, int quantity, int total_money) {
+    public static boolean insertOrderDetail(int order_id, int product_id, int price, int quantity, int total_money) {
         int rowAffected = JDBIConnector.me().withHandle(handle ->
                 handle.createUpdate("INSERT INTO order_details( order_id, product_id, price, quantity,total_money) " +
                                 "VALUES ( :order_id, :product_id, :price, :quantity, :total_money)")
