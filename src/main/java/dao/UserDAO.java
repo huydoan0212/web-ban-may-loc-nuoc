@@ -37,7 +37,6 @@ public class UserDAO {
         boolean result = false;
         String insertQuery = "INSERT INTO users (role_id, username, fullname, email, phone_number, sex, address, password, created_at, status, active) " +
                 "VALUES (?, ?, ?, ?, ?, '', '', ?, ?, ?, ?)";
-
         try (Handle handle = JDBIConnector.me().open()) {
             int rowsInserted = handle.createUpdate(insertQuery)
                     .bind(0, 2)
@@ -50,12 +49,10 @@ public class UserDAO {
                     .bind(7, 1)
                     .bind(8, 1)
                     .execute();
-
-            result = rowsInserted > 0;
+            result = true;
         } catch (Exception e) {
-            e.printStackTrace(); // In ra lỗi để theo dõi và xử lý nếu cần
+            e.printStackTrace();
         }
-
         return result;
     }
 
@@ -277,6 +274,8 @@ public class UserDAO {
 //    System.out.println(UserDAO.getUserByUserName("tranquynhanh23"));
 //        System.out.println(checkPassByUserId(1,"1"));
 //        System.out.println(getAll());
+        System.out.println(UserDAO.addUser("Thanhhoai","Nguyen thanh hoai","Nguyenthanhhoai@gmail.com","123","1"));
+
     }
 
 

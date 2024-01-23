@@ -50,7 +50,6 @@ public class Login extends HttpServlet {
   }
 
 
-
   private void handleUserLoginSuccess(HttpServletResponse response, HttpSession session, User user, String redirectPage)
     throws IOException {
     session.setAttribute("user", user);

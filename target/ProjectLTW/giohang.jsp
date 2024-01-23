@@ -183,8 +183,32 @@
                         <span class="text-policy">Tôi đồng ý với Chính sách xử lý dữ liệu cá nhân của Healthy Water</span>
                     </div>
                     <div class="btn-order-frame">
-                        <a style="text-decoration: none" href="order-controller?total_decrease=<%=total_decrease%>&voucher_id=<%=voucher_id%>" class="btn-order">Đặt hàng</a>
+                        <form action="order-controller" method="GET">
+                            <input type="hidden" name="total_decrease" value="<%=total_decrease%>">
+                            <input type="hidden" name="voucher_id" value="<%=voucher_id%>">
+                            <button type="button" id="btn-order" class="btn-order">Đặt hàng</button>
+                        </form>
                     </div>
+                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                    <script>
+                        $(document).ready(function() {
+                            $("#btn-order").click(function() {
+                                var checked = $("#checkbox-policy").prop("checked");
+                                if (checked) {
+                                    // Chuyển hướng đến order-controller với các tham số
+                                    var url = "order-controller?total_decrease=" + $("input[name='total_decrease']").val() + "&voucher_id=" + $("input[name='voucher_id']").val();
+                                    window.location.href = url;
+                                } else {
+                                    // Hiển thị thông báo yêu cầu chọn checkbox-policy
+                                    alert("Bạn phải đồng ý với Chính sách xử lý dữ liệu cá nhân của Healthy Water trước khi đặt hàng.");
+                                }
+                            });
+                        });
+                    </script>
+
+
+
+
                     <div class="note"><span>Bạn có thể chọn hình thức thanh toán sau khi đặt hàng</span></div>
                 </div>
             </div>
