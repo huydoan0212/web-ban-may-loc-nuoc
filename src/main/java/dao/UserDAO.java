@@ -272,10 +272,7 @@ public class UserDAO {
         return users;
     }
     public static void main(String[] args) {
-//        System.out.println(UserDAO.getEmail("tranquynhanh23"));
-//    System.out.println(UserDAO.getUserByUserName("tranquynhanh23"));
-//        System.out.println(checkPassByUserId(1,"1"));
-//        System.out.println(getAll());
+
     }
 
 
