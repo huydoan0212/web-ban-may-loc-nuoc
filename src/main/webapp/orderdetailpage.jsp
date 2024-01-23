@@ -1,99 +1,141 @@
-<%--
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
+<%@ page import="service.OrderService" %>
+<%@ page import="service.ProductService" %>
+<%@ page import="java.util.Locale" %>
+<%@ page import="java.text.NumberFormat" %>
+<%@ page import="service.OrderDetailService" %>
+<%@ page import="model.*" %>
+<%@ page import="service.VoucherService" %><%--
   Created by IntelliJ IDEA.
   User: admin
-  Date: 20/01/2024
-  Time: 10:50 AM
+  Date: 22/01/2024
+  Time: 7:08 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<% Object object = request.getParameter("order_id");
+    int order_id = 0;
+    if (object != null) {
+        if (object instanceof Double) {
+            order_id = (Integer) object;
+        } else if (object instanceof String) {
+            order_id = Integer.valueOf((String) object);
+        }
+    }
+    Order order = OrderService.getInstance().getOrderById(order_id);
+    Voucher voucher = VoucherService.getInstance().getVoucherById(order.getVoucher_id());
+    if (order == null) order = new Order();
+    List<OrderDetail> orderDetails = OrderDetailService.getInstance().getOrderDetailByIdOrder(order_id);
+    if (orderDetails == null) orderDetails = new ArrayList<>();
+
+%>
+<% Locale locale = new Locale("vi", "VN");
+    NumberFormat numberFormat = NumberFormat.getInstance(locale);
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Thông tin và địa chỉ</title>
-    <link rel="stylesheet" href="./css/accountdetails.css">
+    <title>Chi tiết đơn hàng</title>
+    <link rel="stylesheet" href="./css/chi_tiet_don_hang.css">
     <script src="https://kit.fontawesome.com/3e135170bd.js" crossorigin="anonymous"></script>
 </head>
 <body>
+<%@include file="header.jsp" %>
 <div id="main">
-    <%@include file="header.jsp" %>
     <div id="content">
         <div class="container">
             <div class="display">
                 <div class="toolbar">
-                    <h4><span>Anh </span>ĐOÀN QUỐC HUY</h4>
+                    <h4><span><%=user.getSex()%> </span><%=user.getFullName()%>
+                    </h4>
                     <div class="mini-menu-toolbar">
                         <div class="order-frame">
-                            <i class="fa-solid fa-rectangle-list" ></i>
-                            <a href="ordered.html" class="order">Đơn hàng đã mua</a>
+                            <i class="fa-solid fa-rectangle-list" style="color: #4cdda0;"></i>
+                            <a href="ordered-page" class="order">Đơn hàng đã mua</a>
                         </div>
                         <div class="infor-frame">
                             <i class="fa-solid fa-address-card"></i>
-                            <a href="" class="thong-tin-va-dia-chi">Thông tin và địa chỉ</a>
+                            <a href="account-page" class="thong-tin-va-dia-chi">Thông tin và địa chỉ</a>
                         </div>
                         <div class="log-off">
-                            <a href="" class="dang-xuat">Đăng xuất</a>
+                            <a href="logOutController" class="dang-xuat">Đăng xuất</a>
                         </div>
                     </div>
                 </div>
                 <div class="content-mini">
                     <div class="title">
-                        <span class="title-ordered">Thông tin tài khoản</span>
+                        <span class="title-ordered">Chi tiết đơn hàng <span
+                                class="">#<%=order.getId()%></span> - <span><%=order.getStatus()%></span></span>
+                        <%--                        <p class="ly-do-huy">Lý do: <span class="ly-do">Tìm thấy chỗ khác tốt hơn</span></p>--%>
                     </div>
-                    <div class="infor-user">
-                        <div class="thong-tin-ca-nhan">
-                            <p>THÔNG TIN CÁ NHÂN</p>
-                            <span>Anh ĐOÀN QUỐC HUY -  0586485990</span>
+                    <div class="information-receive">
+                        <div class="thong-tin-nhan-hang">
+                            <div class="title-infor">
+                                <p><i class="fa-solid fa-map-location-dot"></i>THÔNG TIN NHẬN
+                                    HÀNG</p>
+                            </div>
+                            <div class="content-receive">
+                                <p>Người nhận: </p>
+                                <span><%=user.getSex()%> <span
+                                        class="name-receive"><%=user.getFullName()%></span></span>
+                                <p>Địa chỉ: </p>
+                                <span class="dia-chi"><%=user.getAddress()%></span>
+                                <p>Số điện thoại: </p>
+                                <span class="time"><%=user.getPhoneNumber()%></span>
+                            </div>
                         </div>
-                        <div class="select-infor">
-                            <div class="sex">
-                                <input type="radio" id="male">
-                                <span>Anh</span>
-                                <input type="radio" id="female">
-                                <span>Chị</span>
+                        <div class="payment">
+                            <div class="title-infor">
+                                <p><i class="fa-regular fa-credit-card"></i>HÌNH THỨC THANH TOÁN
+                                </p>
                             </div>
-                            <div class="name-phone">
-                                <div class="name">
-                                    <span class="ho-va-ten-label">Họ & tên:</span>
-                                    <input type="text" id="ho-va-ten">
-                                </div>
-                                <div class="phone">
-                                    <span class="so-dien-thoai-label">Số điện thoại:</span>
-                                    <input type="text" id="so-dien-thoai">
-                                </div>
-                            </div>
-                            <div class="btn-cancel-save">
-                                <a href="" class="cancel-btn">Hủy</a>
-                                <a href="" class="save-btn">Lưu</a>
+                            <div class="content-payment">
+                                <p><%=order.getStatus()%>
+                                </p>
+                                <span class="describe">Đơn hàng sẽ được giao đến anh bằng hình thức Thanh toán tiền mặt khi nhận hàng</span>
                             </div>
                         </div>
                     </div>
-                    <div class="infor-address">
-                        <div class="dia-chi-nhan-hang">
-                            <p>ĐỊA CHỈ NHẬN HÀNG</p>
+                    <div class="product-detail">
+                        <div class="title-infor">
+                            <p><i class="fa-solid fa-bag-shopping"></i>THÔNG TIN SẢN PHẨM</p>
                         </div>
-                        <div class="nhap-dia-chi">
-                            <span class="tinh-label">Tỉnh:</span>
-                            <select name="" class="all" id="tinh">
-                                <option value="">Hồ Chí Minh</option>
-                            </select>
-                            <span class="dia-chi-label">Địa chỉ:</span>
-                            <input type="text" placeholder="Nhập địa chỉ" id="dia-chi" class="all">
+                        <%for (OrderDetail orderDetail : orderDetails) {%>
+                        <% Product product = ProductService.getInstance().getById(orderDetail.getProduct_id());%>
+                        <div class="detail-pd">
+                            <div class="product-san-pham">
+                                <img src="<%=product.getImg()%>" alt="">
+                                <div class="label-pd">
+                                    <p class="label-name"><%=product.getTitle()%> <span
+                                            class="cost"><%=numberFormat.format(product.getDiscount_price())%>₫</span>
+                                    </p>
+                                    <p class="discount-label">Khuyến mãi: <%=voucher.getVoucher_name()%></p>
+                                    <p class="amount-label">Số lượng: <span
+                                            class="amount"><%=orderDetail.getQuantity()%></span></p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="mac-dinh">
-                            <input type="checkbox">
-                            <span>Đặt làm địa chỉ mặc định</span>
+                        <%}%>
+                        <div class="total-pd">
+                            <div class="frame-flex">
+                                <span class="tam-tinh">Tạm tính: </span><span
+                                    class="money"><%=numberFormat.format(order.getTotal_money())%>₫</span>
+                                <span class="can-thanh-toan">Cần thanh toán </span><span
+                                    class="strong-money"><%=numberFormat.format(order.getTotal_money())%>₫</span>
+                            </div>
                         </div>
-                        <div class="btn-frame">
-                            <a href="" class="cap-nhat">Cập nhật</a>
+                        <div class="btn-return">
+                            <a href="ordered-page" class="return-btn">VỀ TRANG DANH SÁCH ĐƠN HÀNG</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <%@include file="footer.jsp" %>
 </div>
+<%@include file="footer.jsp" %>
 <!--Phần tỉnh thành-->
 <div class="modal-tinh-thanh js-modal-tinh-thanh">
     <div class="modal-container js-modal-container">

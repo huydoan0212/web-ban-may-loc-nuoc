@@ -1,8 +1,12 @@
 package dao;
 
 import db.JDBIConnector;
+import model.Order;
+import model.OrderDetail;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class OrderDetailDAO {
 
@@ -22,4 +26,13 @@ public class OrderDetailDAO {
             return false;
         }
     }
+    public static List<OrderDetail> getOrderDetailByIdOrder(int order_id){
+            List<OrderDetail> orders = JDBIConnector.me().withHandle(handle ->
+                    handle.createQuery("SELECT * FROM order_details WHERE order_id = :order_id ")
+                            .bind("order_id", order_id)
+                            .mapToBean(OrderDetail.class).stream().collect(Collectors.toList()));
+            return orders.isEmpty() ? null : orders;
+
+    }
+
 }

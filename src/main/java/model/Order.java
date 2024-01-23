@@ -11,8 +11,9 @@ public class Order {
     private String status;
     private LocalDateTime received_date;
     private int total_money;
+    private int voucher_id;
 
-    public Order(int id, int user_id, String address, String phone, LocalDateTime order_date, String status, LocalDateTime received_date, int total_money) {
+    public Order(int id, int user_id, String address, String phone, LocalDateTime order_date, String status, LocalDateTime received_date, int total_money, int voucher_id) {
         this.id = id;
         this.user_id = user_id;
         this.address = address;
@@ -21,9 +22,25 @@ public class Order {
         this.status = status;
         this.received_date = received_date;
         this.total_money = total_money;
+        this.voucher_id = voucher_id;
     }
 
     public Order() {
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", user_id=" + user_id +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                ", order_date=" + order_date +
+                ", status='" + status + '\'' +
+                ", received_date=" + received_date +
+                ", total_money=" + total_money +
+                ", voucher_id=" + voucher_id +
+                '}';
     }
 
     public int getId() {
@@ -90,17 +107,11 @@ public class Order {
         this.total_money = total_money;
     }
 
-    @Override
-    public String toString() {
-        return "Order{" +
-                "id=" + id +
-                ", user_id=" + user_id +
-                ", address='" + address + '\'' +
-                ", phone='" + phone + '\'' +
-                ", order_date=" + order_date +
-                ", status='" + status + '\'' +
-                ", received_date=" + received_date +
-                ", total_money=" + total_money +
-                '}';
+    public int getVoucher_id() {
+        return voucher_id;
+    }
+
+    public void setVoucher_id(int voucher_id) {
+        this.voucher_id = voucher_id;
     }
 }

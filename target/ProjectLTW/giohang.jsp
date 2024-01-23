@@ -27,6 +27,15 @@
     }
 
     int total_decrease = (int) (total - (total * percent_decrease));
+    Object object = request.getParameter("voucher_id");
+    int voucher_id = 0;
+    if (object != null) {
+        if (object instanceof Integer) {
+            voucher_id = (Integer) object;
+        } else if (object instanceof String) {
+            voucher_id = Integer.valueOf((String) object);
+        }
+    }
 %>
 <% Locale locale = new Locale("vi", "VN");
     NumberFormat numberFormat = NumberFormat.getInstance(locale);
@@ -174,7 +183,7 @@
                         <span class="text-policy">Tôi đồng ý với Chính sách xử lý dữ liệu cá nhân của Healthy Water</span>
                     </div>
                     <div class="btn-order-frame">
-                        <a style="text-decoration: none" href="order-controller?total_decrease=<%=total_decrease%>" class="btn-order">Đặt hàng</a>
+                        <a style="text-decoration: none" href="order-controller?total_decrease=<%=total_decrease%>&voucher_id=<%=voucher_id%>" class="btn-order">Đặt hàng</a>
                     </div>
                     <div class="note"><span>Bạn có thể chọn hình thức thanh toán sau khi đặt hàng</span></div>
                 </div>
