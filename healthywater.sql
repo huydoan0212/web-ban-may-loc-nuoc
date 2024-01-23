@@ -67,12 +67,14 @@ CREATE TABLE `order_details` (
 );
 
 CREATE TABLE `vouchers` (
-                            `id` int PRIMARY KEY AUTO_INCREMENT,
-                            `voucher_name` varchar(255),
-                            `voucher_code` varchar(255),
-                            `start_date` datetime,
-                            `end_date` datetime,
-                            `note` varchar(255)
+                            `id` INT(11) NOT NULL AUTO_INCREMENT,
+                            `voucher_name` VARCHAR(255) NULL DEFAULT NULL,
+                            `voucher_code` VARCHAR(255) NULL DEFAULT NULL,
+                            `start_date` DATETIME NULL DEFAULT NULL,
+                            `end_date` DATETIME NULL DEFAULT NULL,
+                            `note` VARCHAR(255) NULL DEFAULT NULL,
+                            `percent_decrease` FLOAT NULL DEFAULT NULL,
+                            PRIMARY KEY (`id`)
 );
 
 CREATE TABLE `comments` (
