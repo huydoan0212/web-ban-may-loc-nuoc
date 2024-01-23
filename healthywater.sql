@@ -244,6 +244,19 @@ INSERT INTO `vouchers` (`id`, `voucher_name`, `voucher_code`, `start_date`, `end
                                                                                                                         (2, 'Giảm giá 20%', '123456', '2024-01-21 10:24:02', '2024-01-30 10:24:06', NULL, 0.2),
                                                                                                                         (3, 'Giảm giá 50%', '1222', '2024-01-21 10:56:17', '2024-01-28 10:56:19', NULL, 0.5);
 
+CREATE TABLE IF NOT EXISTS `comments` (
+                                          `id` int(11) NOT NULL AUTO_INCREMENT,
+                                          `user_id` int(11) DEFAULT 0,
+                                          `product_id` int(11) DEFAULT 0,
+                                          `contents` varchar(50) DEFAULT NULL,
+                                          `star` varchar(50) DEFAULT NULL,
+                                          `display` int(11) DEFAULT NULL,
+                                          `create_date` datetime DEFAULT NULL,
+                                          PRIMARY KEY (`id`),
+                                          CONSTRAINT `FK__products` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+                                          CONSTRAINT `FK__users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ;
+
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
