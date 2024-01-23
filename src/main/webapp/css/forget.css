@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     font-family: Arial, Tahoma, sans-serif;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 #header{
@@ -62,7 +62,7 @@
 }
 .slider .slider-form h1{
     font-size: 20px;
-    padding: 43px 0px 10px 35px;
+    padding: 43px 0px 10px 30px;
 }
 .slider .input-box{
     width: 100%;
@@ -107,7 +107,7 @@
     color: white;
 }
 .signin-btn button{
-    width: 90%;
+    width: 85%;
     height: 45px;
     background: #0097e6;
     border: 5px;

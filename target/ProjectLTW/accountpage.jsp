@@ -62,9 +62,9 @@
                             </div>
                             <div class="select-infor">
                                 <div class="sex">
-                                    <input type="radio" id="male" name="gender" value="Nam" <%if(user.getSex().equals("Nam")){%>checked="checked"<%}%>>
+                                    <input type="radio" id="male" name="gender" value="Anh" <%if(user.getSex().equals("Nam")){%>checked="checked"<%}%>>
                                     <span>Anh</span>
-                                    <input type="radio" id="female" name="gender" value="Nữ" <%if(user.getSex().equals("Nữ")){%>checked="checked"<%}%>>
+                                    <input type="radio" id="female" name="gender" value="Chị" <%if(user.getSex().equals("Nữ")){%>checked="checked"<%}%>>
                                     <span>Chị</span>
                                 </div>
                                 <div class="name-phone">

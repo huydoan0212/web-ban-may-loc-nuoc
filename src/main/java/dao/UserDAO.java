@@ -32,8 +32,8 @@ public class UserDAO {
 
     public static boolean addUser(String username, String fullname, String email, String phone_number, String password) {
         boolean result = false;
-        String insertQuery = "INSERT INTO users (role_id, username, fullname, email, phone_number, sex, address, password, created_at, status, active) " +
-                "VALUES (?, ?, ?, ?, ?, '', '', ?, ?, ?, ?)";
+        String insertQuery = "INSERT INTO users (role_id, username, fullname, email, phone_number, sex, address, password, created_at) " +
+                "VALUES (?, ?, ?, ?, ?, '', '', ?, ?)";
 
         try (Handle handle = JDBIConnector.me().open()) {
             int rowsInserted = handle.createUpdate(insertQuery)
@@ -44,8 +44,6 @@ public class UserDAO {
                     .bind(4, phone_number)
                     .bind(5, password)
                     .bind(6, LocalDateTime.now().toString())
-                    .bind(7, 1)
-                    .bind(8, 1)
                     .execute();
 
             result = rowsInserted > 0;
@@ -60,7 +58,7 @@ public class UserDAO {
     public static boolean loginUser(String username, String password) {
         try {
             int count = JDBIConnector.me().withHandle(handle ->
-                    handle.createQuery("SELECT COUNT(*) FROM users WHERE username = ? AND password = ?")
+                    handle.createQuery("SELECT COUNT(*) FROM users WHERE username = ? AND password = ? AND active = 1")
                             .bind(0, username)
                             .bind(1, password)
                             .mapTo(Integer.class)
@@ -135,7 +133,7 @@ public class UserDAO {
     public static boolean updateActiveAccount(String username) {
         try {
             int updatedRows = JDBIConnector.me().withHandle(handle ->
-                    handle.createUpdate("UPDATE users SET active = true WHERE username = ?")
+                    handle.createUpdate("UPDATE users SET active = 1 WHERE username = ?")
                             .bind(0, username)
                             .execute()
             );
