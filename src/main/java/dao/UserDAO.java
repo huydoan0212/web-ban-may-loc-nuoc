@@ -37,6 +37,7 @@ public class UserDAO {
         boolean result = false;
         String insertQuery = "INSERT INTO users (role_id, username, fullname, email, phone_number, sex, address, password, created_at, status, active) " +
                 "VALUES (?, ?, ?, ?, ?, '', '', ?, ?, ?, ?)";
+
         try (Handle handle = JDBIConnector.me().open()) {
             int rowsInserted = handle.createUpdate(insertQuery)
                     .bind(0, 2)
@@ -49,10 +50,12 @@ public class UserDAO {
                     .bind(7, 1)
                     .bind(8, 1)
                     .execute();
-            result = true;
+
+            result = rowsInserted > 0;
         } catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace(); // In ra lỗi để theo dõi và xử lý nếu cần
         }
+
         return result;
     }
 
@@ -214,14 +217,13 @@ public class UserDAO {
         return null;
     }
 
-    public static boolean updateUserInfomationById(String fullname, String phone_number, int id, String sex) {
+    public static boolean updateUserInfomationById(String fullname, String phone_number, int id) {
         int rowsUpdated = JDBIConnector.me().withHandle(handle ->
-                handle.createUpdate("UPDATE users SET fullname = ?, phone_number = ?, updated_at = ?, sex = ? WHERE id = ?")
+                handle.createUpdate("UPDATE users SET fullname = ?, phone_number = ?, updated_at = ? WHERE id = ?")
                         .bind(0, fullname)
                         .bind(1, phone_number)
                         .bind(2, LocalDateTime.now().toString())
-                        .bind(3,sex)
-                        .bind(4, id)
+                        .bind(3, id)
                         .execute()
         );
         return rowsUpdated > 0;
@@ -270,11 +272,6 @@ public class UserDAO {
         return users;
     }
     public static void main(String[] args) {
-//        System.out.println(UserDAO.getEmail("tranquynhanh23"));
-//    System.out.println(UserDAO.getUserByUserName("tranquynhanh23"));
-//        System.out.println(checkPassByUserId(1,"1"));
-//        System.out.println(getAll());
-        System.out.println(UserDAO.addUser("Thanhhoai","Nguyen thanh hoai","Nguyenthanhhoai@gmail.com","123","1"));
 
     }
 
