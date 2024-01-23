@@ -35,6 +35,7 @@
     }
   }
 
+
   Object tempObj4 = session.getAttribute("countOrderCancel");
   int countOrderCancel = 0;
   if (tempObj4 != null) {
