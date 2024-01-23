@@ -42,7 +42,9 @@
           String message = (String) request.getSession().getAttribute("message");
           if (message != null && !message.isEmpty()) {
         %>
-        <p style="color: red"> <%= message %> </p>
+        <p style="    color: red;
+    text-align: center;
+    margin-top: 20px;"> <%= message %> </p>
         <%
             // Đặt lại giá trị message sau khi đã hiển thị
             request.getSession().removeAttribute("message");

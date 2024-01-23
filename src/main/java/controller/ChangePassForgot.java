@@ -20,7 +20,7 @@ public class ChangePassForgot extends HttpServlet {
         String re_newPassword = request.getParameter("re_newPassword");
         String username = request.getParameter("username");
         if (newPassword.equals(re_newPassword)){
-            UserDAO.changePassword(MD5Hash.hashPassword(newPassword),username);
+            UserDAO.changePassword(username,newPassword);
 
             request.getSession().setAttribute("message", "Đổi mật khẩu thành công!");
             response.sendRedirect("login.jsp");

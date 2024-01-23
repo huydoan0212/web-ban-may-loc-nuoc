@@ -2,8 +2,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% User user = (User) session.getAttribute("user");
     String checkLogin = user != null ? "/ProjectLTW_war/account-page" : "login.jsp";
+    String isCheckLogin = user != null ? "/ProjectLTW_war/cart" : "login.jsp";
 %>
-<% String title = (String) request.getParameter("title"); %>
+<%--<% String title = (String) request.getParameter("search"); %>--%>
 <html>
 <head>
     <title>Title</title>
@@ -19,15 +20,29 @@
                     <img src="./img/logo-removebg-preview.png" alt="">
                 </a>
 
-                <form action="./findProductController" accept-charset="UTF-8" method="post">
+
                 <div class="search-bar ">
-                        <input type="text" placeholder="Bạn muốn tìm gì..." id="input-search" name="title">
-                        <input type="submit" value="Tìm kiếm" id="input-submit">
+<%--                        <input type="text" placeholder="Bạn muốn tìm gì..." id="input-search" name="title">--%>
+<%--                        <input type="submit" value="Tìm kiếm" id="input-submit">--%>
+                    <input style=" position: relative;" type="text" placeholder="Bạn muốn tìm gì..." id="input-search" name="search">
+    <a style="width: 50px; height: 50px;
+    display: block;
+    position: absolute;
+    left: 300px;
+    bottom: 27px;" href="findProductController?search=<%=request.getParameter("search")%>"
+                        id="input-submit"><i class="fa-solid fa-magnifying-glass" style="color: #000000;"></i></a>
                 </div>
-                </form>
+                <script>
+                    document.getElementById('input-search').addEventListener('input', function(e) {
+                        document.getElementById('input-submit').href = "findProductController?search=" + encodeURIComponent(e.target.value);
+                    });
+                </script>
+
+
+
                 <a href="<%=checkLogin%>"
                 class="tai-khoan-don-hang chung"><span>Tài khoản và đơn hàng</span></a>
-                <a href="/ProjectLTW_war/cart" class="gio-hang ">
+                <a href="<%=isCheckLogin%>" class="gio-hang ">
                     <i class="fa-solid fa-cart-shopping" style="color: #ffffff;"></i>
                     <span>Giỏ hàng</span>
                 </a>

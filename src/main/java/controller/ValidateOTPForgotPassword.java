@@ -17,7 +17,7 @@ public class ValidateOTPForgotPassword extends HttpServlet {
       request.setCharacterEncoding("UTF-8");
       response.setContentType("text/html; charset=UTF-8");
       response.setCharacterEncoding("UTF-8");
-        String otp = request.getParameter("otp");
+        String otp = (String) request.getSession().getAttribute("otp");
         String enterOTP = request.getParameter("enterOTP");
         String username = request.getParameter("username");
 
