@@ -214,13 +214,14 @@ public class UserDAO {
         return null;
     }
 
-    public static boolean updateUserInfomationById(String fullname, String phone_number, int id) {
+    public static boolean updateUserInfomationById(String fullname, String phone_number, int id, String sex) {
         int rowsUpdated = JDBIConnector.me().withHandle(handle ->
-                handle.createUpdate("UPDATE users SET fullname = ?, phone_number = ?, updated_at = ? WHERE id = ?")
+                handle.createUpdate("UPDATE users SET fullname = ?, phone_number = ?, updated_at = ?, sex = ? WHERE id = ?")
                         .bind(0, fullname)
                         .bind(1, phone_number)
                         .bind(2, LocalDateTime.now().toString())
-                        .bind(3, id)
+                        .bind(3,sex)
+                        .bind(4, id)
                         .execute()
         );
         return rowsUpdated > 0;

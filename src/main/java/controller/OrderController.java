@@ -47,7 +47,7 @@ public class OrderController extends HttpServlet {
             }
         }
         if (cart.getTotal() > 0 && user != null) {
-            boolean checkCreatedOrder = OrderService.getInstance().insertOrder(user.getId(), user.getAddress(), user.getPhoneNumber(), "Đang đặt hàng", total_decrease,voucher_id);
+            boolean checkCreatedOrder = OrderService.getInstance().insertOrder(user.getId(), user.getAddress(), user.getPhoneNumber(), "Đang đặt hàng", total_decrease, voucher_id);
 
             if (checkCreatedOrder) {
                 Order order = OrderService.getInstance().getOrder(user.getId(), user.getAddress(), user.getPhoneNumber(), "Đang đặt hàng", total_decrease);
@@ -58,7 +58,7 @@ public class OrderController extends HttpServlet {
                     int price = cart.getData().get(key).getProduct().getDiscount_price();
                     int quantity = cart.getData().get(key).getQuantity();
                     int total_money = price * quantity;
-                    OrderDetailService.getInstance().insertOrder(order_id,product_id,price,quantity,total_money);
+                    OrderDetailService.getInstance().insertOrder(order_id, product_id, price, quantity, total_money);
                 }
                 req.getRequestDispatcher("payment").forward(req, resp);
             }

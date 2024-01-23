@@ -88,7 +88,8 @@ public class OrderDAO {
 //        System.out.println(OrderDAO.getOrder(1,"126 Phuoc Long","0586485990", "Đặt hàng",3490000));
 //        System.out.println(OrderDAO.cancelOrder("Thay doi dia chi", 5));
 //        System.out.println(OrderDAO.getOrderByIdUser(1));
-        System.out.println(getOrderById(104));
+//        System.out.println(getOrderById(104));
+        System.out.println(insertOrder(1,"sdafsdf","safas","saffs",555555,2));
     }
 }
 
