@@ -79,7 +79,6 @@
                             </div>
                         </div>
                         <%}%>
-
                         <span style="    float: right;    font-size: 16px;" class="total">Tổng tiền: <span
                                 class="money"><%=numberFormat.format(order.getTotal_money())%>₫</span></span>
                         <div class="btn-bot">

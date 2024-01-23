@@ -84,7 +84,7 @@
                         <div class="btn-bot">
                             <a href="view-detail?order_id=<%=order.getId()%>" class="xem-chi-tiet">Xem chi tiết</a>
                             <%if (order.getStatus().equalsIgnoreCase("Đang đặt hàng")) {%>
-                            <a href="" class="mua-lai">Thanh toán</a>
+                            <a href="payment" class="mua-lai">Thanh toán</a>
                             <%}%>
                         </div>
                     </div>
