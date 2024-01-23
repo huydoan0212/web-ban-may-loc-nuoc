@@ -44,8 +44,10 @@
       countOrderCancel = Integer.valueOf((String) tempObj4);
     }
   }
+
   List<Order> orders = (List<Order>) session.getAttribute("listOderRecent");
   List<Product> products = (List<Product>) session.getAttribute("listProductBestSeller");
+
 %>
 <% Locale locale = new Locale("vi", "VN");
   NumberFormat numberFormat = NumberFormat.getInstance(locale);
