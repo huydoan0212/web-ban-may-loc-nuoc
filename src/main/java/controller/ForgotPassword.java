@@ -7,6 +7,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import  java.lang.ClassCastException;
 
 @WebServlet(name = "ForgotPassword", value = "/ForgotPassword")
 public class ForgotPassword extends HttpServlet {
@@ -28,10 +29,9 @@ public class ForgotPassword extends HttpServlet {
       String email = UserDAO.getEmail(username);
       if (email != null) {
         String otp = OTPGenerator.generateOTP();
-//        EmailSender.sendEmail(email, "Lấy lại mật khẩu", "Mã OTP: " + otp);
-//
-//        request.getSession().setAttribute("otp", otp);
-//        request.getSession().setAttribute("username", username);
+//        EmailSender.sendEmail(email,"", "..." + otp);
+       request.getSession().setAttribute("otp", otp);
+        request.getSession().setAttribute("username", username);
         request.getRequestDispatcher("validateOTP.jsp").forward(request, response);
       } else {
         request.getRequestDispatcher("validateOTP.jsp").forward(request, response);

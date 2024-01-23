@@ -70,7 +70,6 @@
         </dependency>
     <!-- https://mvnrepository.com/artifact/com.sun.mail/jakarta.mail -->
 
-
     <dependency>
       <groupId>com.sun.mail</groupId>
       <artifactId>jakarta.mail</artifactId>

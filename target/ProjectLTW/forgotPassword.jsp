@@ -1,6 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%String message = request.getParameter("username");%>
+<%
+  String message = request.getParameter("username");
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,17 +33,7 @@
       <img src="/img/logo-removebg-preview.png" alt="">
     </div>
     <div class="slider-form">
-<%--      <%--%>
-<%--        String message = request.getParameter("username");--%>
-<%--        if (message != null && !message.isEmpty()) {--%>
-<%--      %>--%>
-<%--      <p style="color: red"> <%= message %> </p>--%>
-<%--      <%--%>
-<%--          // Đặt lại giá trị message sau khi đã hiển thị--%>
-<%--          request.getSession().removeAttribute("message");--%>
-<%--        }--%>
-<%--      %>--%>
-      <form action="ForgotPassword" class= "slider-form" method="post">
+      <form action="ForgotPassword" class="slider-form" method="post">
         <h1>Quên mật khẩu</h1>
         <div class="input-box">
           <input type="text" value="" placeholder="Nhập tên tài khoản để lấy lại mật khẩu" name="username">
