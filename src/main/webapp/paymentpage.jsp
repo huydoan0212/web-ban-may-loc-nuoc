@@ -235,11 +235,11 @@
                     <h3 style="padding: 0 24px">Chọn hình thức thanh toán</h3>
                     <div class="payment-type">
                         <div class="payment-type-1">
-                            <input type="radio" name="payment" class="checkbox-2">
+                            <input type="radio" value="Thanh toán bằng tiền mặt" name="paymentOption" class="checkbox-2">
                             <p>Thanh toán bằng tiền mặt</p>
                         </div>
                         <div class="payment-type-1">
-                            <input type="radio" name="payment" class="checkbox-2">
+                            <input type="radio" value="Thanh toán bằng thẻ ngân hàng" name="paymentOption" class="checkbox-2">
                             <p>Thanh toán bằng thẻ ngân hàng</p>
                         </div>
                     </div>
@@ -250,12 +250,16 @@
                 </form>
 
                 <script>
-                    document.getElementById('paymentForm').addEventListener('submit', function(e) {
-                        var radios = document.getElementsByName('payment');
+                    document.getElementById('paymentForm').addEventListener('submit', function (e) {
+                        var radios = document.getElementsByName('paymentOption');
                         var isChecked = false;
+                        var selectedValue;
+                        var form = document.getElementById('paymentForm');
                         for (var i = 0; i < radios.length; i++) {
                             if (radios[i].checked) {
                                 isChecked = true;
+                                selectedValue = radios[i].value; // Lấy giá trị của radio button được chọn
+                                form.action += "?payment_type=" + selectedValue; // Sử dụng URL ban đầu khi cập nhật action của form
                                 break;
                             }
                         }
@@ -265,6 +269,7 @@
                         }
                     });
                 </script>
+
 
             </div>
         </div>

@@ -38,7 +38,6 @@
 
             </div>
             <div id="header-bottom">
-                <a href="" class="headbot-items">Deal Sốc</a>
                 <a href="/ProjectLTW_war/locnuocro" class="headbot-items">Lọc nước RO</a>
                 <a href="/ProjectLTW_war/locnuocnonglanh" class="headbot-items">Có nóng lạnh</a>
                 <a href="/ProjectLTW_war/locnuocamtudeban" class="headbot-items">Âm tủ, để bàn</a>

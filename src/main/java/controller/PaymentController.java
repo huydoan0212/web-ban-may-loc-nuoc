@@ -1,5 +1,6 @@
 package controller;
 
+import cart.Cart;
 import model.Product;
 import service.ProductService;
 
@@ -20,6 +21,8 @@ public class PaymentController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Cart cart = (Cart) req.getSession().getAttribute("cart");
+        if (cart == null) cart = new Cart();
         req.getRequestDispatcher("paymentpage.jsp").forward(req, resp);
     }
 }

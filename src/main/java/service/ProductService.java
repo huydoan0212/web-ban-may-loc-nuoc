@@ -14,6 +14,10 @@ public class ProductService {
         return instance;
     }
 
+    public static List<Product> filterByTypeAndBrand(int brand, int type) {
+        return ProductDAO.filterByTypeAndBrand(brand,type);
+    }
+
     public List<Product> getAll() {
         return ProductDAO.getAll();
     }
