@@ -30,10 +30,12 @@ public class ProductService {
         return ProductDAO.getLocNuocTheoDanhMuc(category);
     }
 
-    ;
+    public List<Product> getProductByName(String title){
+        return ProductDAO.getProductByName(title);
+    }
 
     public static void main(String[] args) {
-        System.out.println(ProductService.getInstance().getLocNuocTheoDanhMuc("Lọc nước RO"));
+        System.out.println(ProductService.getInstance().getProductByName("Máy lọc nước RO"));
     }
 
 }

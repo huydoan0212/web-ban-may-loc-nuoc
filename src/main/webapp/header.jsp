@@ -2,9 +2,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% User user = (User) session.getAttribute("user");
     String checkLogin = user != null ? "/ProjectLTW_war/account-page" : "login.jsp";
-    String checkLoginCart = user != null ? "/ProjectLTW_war/cart" : "login.jsp";
-
 %>
+<% String title = (String) request.getParameter("title"); %>
 <html>
 <head>
     <title>Title</title>
@@ -22,13 +21,15 @@
                 <a class="tinh js-tim-tinh">
                     Xem giá, tồn kho tại:
                     <span>Hồ Chí Minh</span></a>
+                <form action="./findProductController" accept-charset="UTF-8" method="post">
                 <div class="search-bar ">
-                    <input type="text" placeholder="Bạn muốn tìm gì..." id="input-search">
-                    <i class="fa-solid fa-magnifying-glass fa-xl"></i>
+                        <input type="text" placeholder="Bạn muốn tìm gì..." id="input-search" name="title">
+                        <input type="submit" value="Tìm kiếm" id="input-submit">
                 </div>
+                </form>
                 <a href="<%=checkLogin%>"
-                   class="tai-khoan-don-hang chung"><span>Tài khoản và đơn hàng</span></a>
-                <a href="<%=checkLoginCart%>" class="gio-hang ">
+                class="tai-khoan-don-hang chung"><span>Tài khoản và đơn hàng</span></a>
+                <a href="/ProjectLTW_war/cart" class="gio-hang ">
                     <i class="fa-solid fa-cart-shopping" style="color: #ffffff;"></i>
                     <span>Giỏ hàng</span>
                 </a>

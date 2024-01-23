@@ -1,5 +1,6 @@
 package controller;
 
+//import service.EmailNotification;
 import service.UserService;
 
 import javax.servlet.ServletException;
@@ -50,7 +51,7 @@ public class RegisterController extends HttpServlet {
             req.setAttribute("success", "Đăng ký thành công");
             UserService.addUser(userName, fullName, email, phone, password);
             resp.sendRedirect("login.jsp");
-
+//            EmailNotification.sendNotification("binhquoc23@gmail.com");
 
         }
     }

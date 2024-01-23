@@ -36,8 +36,6 @@ public class ProductController extends HttpServlet {
 
             }
         }
-//        HttpSession session = req.getSession();
-//        session.setAttribute("idProductNow", id);
         Product product = ProductService.getInstance().getById(id);
         List<Gallery> galleries = GalleryService.getInstance().getGalleryByProductId(id);
 
