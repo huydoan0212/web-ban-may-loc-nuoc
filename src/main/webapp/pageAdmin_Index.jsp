@@ -3,7 +3,7 @@
 <%@ page import="model.Order" %>
 <%@ page import="java.util.List" %>
 <%@ page import="model.Product" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>p
 <%
   Object tempObj = session.getAttribute("countOrder");
   int countOrder = 0;

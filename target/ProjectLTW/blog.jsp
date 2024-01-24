@@ -20,10 +20,9 @@
   <link rel="stylesheet" href="css/slicknav_min.css" type="text/css">
   <link rel="stylesheet" href="css/style_blog.css" type="text/css">
   <link rel="stylesheet" href="css/blog.css" type="text/css">
-  <link rel="stylesheet" href="css/header.css" type="text/css">
-  <link rel="stylesheet" href="css/footer.css" type="text/css">
-  <link rel="stylesheet" href="css/style.css" type="text/css">
-
+  <link rel="stylesheet" href="./css/header.css">
+  <link rel="stylesheet" href="./css/footer.css">
+  <link rel="stylesheet" href="./css/style.css">
 
 
 
@@ -53,19 +52,11 @@
 </head>
 
 <body>
-
+<div class="main">
 <%@include file="header.jsp"%>
 <!-- Hero Section Begin -->
 <section class="hero hero-normal">
   <div class="container">
-    <div class="row">
-      <div class="col-lg-3">
-<%--        <%@include file="include/menu.jsp"%>--%>
-      </div>
-      <div class="col-lg-9">
-<%--        <%@include file="include/search.jsp"%>--%>
-      </div>
-    </div>
   </div>
 </section>
 <!-- Hero Section End -->
@@ -74,9 +65,9 @@
   <li><span>  Tin tức</span></li>
 </ul>
 
-
 <!-- Blog Section Begin -->
-<section class="blog spad" style="padding-bottom: 45px">
+<section class="blog spad" style=" padding-top: 74px;
+">
   <div class="container">
     <div class="row">
 
@@ -170,11 +161,13 @@
           </div>
         </div>
       </div>
-
     </div>
-  </div>
+    </div>
 </section>
+
 <%@include file="footer.jsp"%>
+</div>
+<script src="https://kit.fontawesome.com/3e135170bd.js" crossorigin="anonymous"></script>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery.nice-select.min.js"></script>
@@ -183,8 +176,5 @@
 <script src="js/mixitup.min.js"></script>
 <script src="js/owl.carousel.min.js"></script>
 <script src="js/main_blog.js"></script>
-
-
 </body>
-
 </html>
