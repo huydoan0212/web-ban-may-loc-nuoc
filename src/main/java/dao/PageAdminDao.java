@@ -24,14 +24,15 @@ public class PageAdminDao {
         );
         return count;
     }
-    public static int totalMoney(){
-            int count = JDBIConnector.me().withHandle(handle ->
-                    handle.createQuery("SELECT SUM(total_money) FROM orders")
-                            .mapTo(Integer.class)
-                            .one()
-            );
-            return count;
+    public static int totalMoney() {
+        Integer count = JDBIConnector.me().withHandle(handle ->
+                handle.createQuery("SELECT SUM(total_money) FROM orders")
+                        .mapTo(Integer.class)
+                        .one()
+        );
+        return (count != null) ? count : 0;
     }
+
     public static int countOrderCancel() {
         int count = JDBIConnector.me().withHandle(handle ->
                 handle.createQuery("SELECT COUNT(id) FROM orders WHERE status LIKE ?")
@@ -43,7 +44,7 @@ public class PageAdminDao {
     }
     public static List<Order> getOderRecent() {
         List<Order> orders= JDBIConnector.me().withHandle((handle ->
-                handle.createQuery("select * from orders order by order_date desc ")
+                handle.createQuery("select * from orders order by order_date desc limit 2")
                         .mapToBean(Order.class).stream().collect(Collectors.toList())));
         return orders;
     }
@@ -57,12 +58,13 @@ public class PageAdminDao {
         return products;
     }
     public static void main(String[] args) {
-        System.out.println(countOrder());
+//        System.out.println(countOrder());
 //        System.out.println(countProductOutStock());
 //        System.out.println(totalMoney());
-        System.out.println(countOrderCancel());
+//        System.out.println(countOrderCancel());
 //        System.out.println(getOderRecent());
 //        System.out.println(getProductBestSeller());
+        System.out.println(getOderRecent());
     }
 }
 

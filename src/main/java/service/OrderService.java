@@ -33,6 +33,41 @@ public class OrderService {
     public boolean paymentOrder(String status , int id){
         return OrderDAO.paymentOrder(status,id);
     }
+    public List<Order> getListOrderWaitConfirm(){
+        return OrderDAO.getListOrderWaitConfirm();
+    }
     public static void main(String[] args) {
+    }
+
+    public List<Order> getListOrderConfirm() {
+        return OrderDAO.getListOrderConfirm();
+    }
+
+    public List<Order> getListOrderTransport() {
+        return OrderDAO.getListOrderTransport();
+    }
+
+    public List<Order> getListOrderTransported() {
+        return OrderDAO.getListOrderTransported();
+    }
+
+    public List<Order> getListOrderCancel() {
+        return OrderDAO.getListOrderCancel();
+    }
+
+    public boolean changeStatusToConfirmed(int id) {
+        return OrderDAO.changeStatusToConfirmed(id);
+    }
+
+    public boolean changeStatusToTransport(int orderId) {
+        return OrderDAO.changeStatusToTransport(orderId);
+    }
+
+    public boolean changeStatusToTransported(int orderId) {
+        return OrderDAO.changeStatusToTransported(orderId);
+    }
+
+    public boolean changeStatusToCancel(int orderId) {
+        return OrderDAO.changeStatusToCancel(orderId);
     }
 }

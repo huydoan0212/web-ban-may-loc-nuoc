@@ -37,9 +37,13 @@ public class CancelOrderController extends HttpServlet {
                 order_id = Integer.valueOf((String) ob);
             }
         }
+
         if (order_id != 0) {
             boolean isCancel = OrderService.getInstance().cancelOrder("Đã hủy", order_id);
-            resp.sendRedirect("ordered-page");
+            if (isCancel) {
+                resp.sendRedirect("ordered-page");
+                return;
+            }
         } else {
             HttpSession session = req.getSession();
             boolean isCancel = OrderService.getInstance().cancelOrder("Đã hủy, " + reason + ", ", order.getId());
@@ -47,6 +51,8 @@ public class CancelOrderController extends HttpServlet {
                 session.removeAttribute("cart");
                 resp.sendRedirect("trangchu");
             }
+            return;
+
         }
     }
 }

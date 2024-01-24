@@ -1,4 +1,26 @@
+<%@ page import="java.util.List" %>
+<%@ page import="model.Order" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="model.User" %>
+<%@ page import="dao.UserDAO" %>
+<%@ page import="java.util.Locale" %>
+<%@ page import="java.text.NumberFormat" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    List<Order> listOrderWaitConfirm = (List<Order>) session.getAttribute("listOrderWaitConfirm");
+    if (listOrderWaitConfirm == null) listOrderWaitConfirm = new ArrayList<Order>();
+    List<Order> listOrderConfirm = (List<Order>) session.getAttribute("listOrderConfirm");
+    if (listOrderConfirm == null) listOrderConfirm = new ArrayList<Order>();
+    List<Order> listOrderTransport = (List<Order>) session.getAttribute("listOrderTransport");
+    if (listOrderTransport == null) listOrderTransport = new ArrayList<Order>();
+    List<Order> listOrderTransported = (List<Order>) session.getAttribute("listOrderTransported");
+    if (listOrderTransported == null) listOrderTransported = new ArrayList<Order>();
+    List<Order> listOrderCancel = (List<Order>) session.getAttribute("listOrderCancel");
+    if (listOrderCancel == null) listOrderCancel = new ArrayList<Order>();
+%>
+<% Locale locale = new Locale("vi", "VN");
+    NumberFormat numberFormat = NumberFormat.getInstance(locale);
+%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -27,7 +49,9 @@
 <body>
 <div class="sidebar">
     <div class="logo-details">
-        <a href="../../../html/pageAdmin_Index.html"><img src="https://th.bing.com/th/id/OIP.ZpscpAS7kf2k2s_W_YdeuQHaHa?pid=ImgDet&rs=1" width="240px" height="150px"></a>
+        <a href="../../../html/pageAdmin_Index.html"><img
+                src="https://th.bing.com/th/id/OIP.ZpscpAS7kf2k2s_W_YdeuQHaHa?pid=ImgDet&rs=1" width="240px"
+                height="150px"></a>
     </div>
     <ul class="nav-links">
         <li>
@@ -71,7 +95,6 @@
 </div>
 
 
-
 <section class="home-section">
     <div class="home-content">
         <div class="manager-checkout">
@@ -100,57 +123,37 @@
                             </tr>
                             </thead>
                             <tbody>
+                            <%
+                                for (Order o : listOrderWaitConfirm) {
+                                    User user = UserDAO.getUserByUserId(o.getUser_id());
+                            %>
                             <tr>
-                                <th scope="row">000001</th>
-                                <td>Nguyễn Quốc Bình</td>
-                                <td>27/11/2023</td>
-                                <td>Đại học Nông Lâm TP.HCM</td>
+                                <th scope="row"><%=o.getId()%></th>
+                                <td><%=user.getFullName()%></td>
+                                <td><%=o.getOrder_date()%></td>
+                                <td><%=o.getAddress()%></td>
 
-                                <td>3.000.000<sup>đ</sup></td>
+                                <td><%=numberFormat.format(o.getTotal_money())%><sup>đ</sup></td>
                                 <td>
-                                    <a title="xem chi tiết đơn hàng" href="checkout_detail.jsp" class="icon-link">
+                                    <a title="xem chi tiết đơn hàng" href="page-admin-check-detail?order_id=<%=o.getId()%>" class="icon-link">
                                         <i class="icon-wrapper">
                                             <i class="fas fa-search"></i> <!-- Biểu tượng kính lúp -->
                                         </i>
                                     </a>
-                                    <a title="Xác nhận đơn hàng" href="#" class="icon-link">
+                                    <a title="Xác nhận đơn hàng" href="confirmOrder?order_id=<%=o.getId()%>" class="icon-link">
                                         <i class="icon-wrapper">
-                                            <i class="fas fa-check"></i> <!-- Biểu tượng thùng rác -->
+                                            <i class="fas fa-check"></i>
                                         </i>
                                     </a>
-                                    <a title="hủy đơn hàng" href="#" class="icon-link">
+                                    <a title="hủy đơn hàng" href="adminCancelOrder?order_id=<%=o.getId()%>&page_id=1" class="icon-link">
                                         <i class="icon-wrapper">
                                             <i class="fas fa-trash-alt"></i> <!-- Biểu tượng thùng rác -->
                                         </i>
                                     </a>
                                 </td>
                             </tr>
-                            <tr>
-                                <th scope="row">000002</th>
-                                <td>Nguyễn Thanh Hoài</td>
-                                <td>27/10/2023</td>
-                                <td>Đại học Nông Lâm TPHCM</td>
-                                <td>800.000<sup>đ</sup></td>
+                            <%}%>
 
-                                <td>
-                                    <a title="xem chi tiết đơn hàng" href="checkout_detail.jsp" class="icon-link">
-                                        <i class="icon-wrapper">
-                                            <i class="fas fa-search"></i> <!-- Biểu tượng kính lúp -->
-                                        </i>
-                                    </a>
-                                    <a title="Xác nhận đơn hàng" href="#" class="icon-link">
-                                        <i class="icon-wrapper">
-                                            <i class="fas fa-check"></i> <!-- Biểu tượng thùng rác -->
-                                        </i>
-                                    </a>
-
-                                    <a title="hủy đơn hàng" href="#" class="icon-link">
-                                        <i class="icon-wrapper">
-                                            <i class="fas fa-trash-alt"></i> <!-- Biểu tượng thùng rác -->
-                                        </i>
-                                    </a>
-                                </td>
-                            </tr>
                             </tbody>
                         </table>
                     </div>
@@ -170,81 +173,36 @@
                             </tr>
                             </thead>
                             <tbody>
+                            <%
+                                for (Order o : listOrderConfirm) {
+                                    User user = UserDAO.getUserByUserId(o.getUser_id());
+                            %>
                             <tr>
-                                <th scope="row">000001</th>
-                                <td>Nguyễn Quốc Bình</td>
-                                <td>27/11/2023</td>
-                                <td>Đại học Nông Lâm TP.HCM</td>
+                                <th scope="row"><%=o.getId()%></th>
+                                <td><%=user.getFullName()%></td>
+                                <td><%=o.getOrder_date()%></td>
+                                <td><%=o.getAddress()%></td>
 
-                                <td>3.000.000<sup>đ</sup></td>
+                                <td><%=numberFormat.format(o.getTotal_money())%><sup>đ</sup></td>
                                 <td>
-                                    <a title="xem chi tiết đơn hàng" href="checkout_detail.jsp" class="icon-link">
+                                    <a title="xem chi tiết đơn hàng" href="page-admin-check-detail?order_id=<%=o.getId()%>" class="icon-link">
                                         <i class="icon-wrapper">
                                             <i class="fas fa-search"></i> <!-- Biểu tượng kính lúp -->
                                         </i>
                                     </a>
-                                    <a title="giao hàng" href="#" class="icon-link">
+                                    <a title="giao hàng" href="transportOrder?order_id=<%=o.getId()%>" class="icon-link">
                                         <i class="icon-wrapper">
                                             <i class="fas fa-check"></i> <!-- Biểu tượng thùng rác -->
                                         </i>
                                     </a>
-                                    <a title="hủy đơn hàng" href="#" class="icon-link">
+                                    <a title="hủy đơn hàng" href="adminCancelOrder?order_id=<%=o.getId()%>&page_id=1" class="icon-link">
                                         <i class="icon-wrapper">
                                             <i class="fas fa-trash-alt"></i> <!-- Biểu tượng thùng rác -->
                                         </i>
                                     </a>
                                 </td>
                             </tr>
-                            <tr>
-                                <th scope="row">000002</th>
-                                <td>Nguyễn Thanh Hoài</td>
-                                <td>27/10/2023</td>
-                                <td>Đại học Nông Lâm TPHCM</td>
-                                <td>800.000<sup>đ</sup></td>
-
-                                <td>
-                                    <a title="xem chi tiết đơn hàng" href="checkout_detail.jsp" class="icon-link">
-                                        <i class="icon-wrapper">
-                                            <i class="fas fa-search"></i> <!-- Biểu tượng kính lúp -->
-                                        </i>
-                                    </a>
-                                    <a title="giao hàng" href="#" class="icon-link">
-                                        <i class="icon-wrapper">
-                                            <i class="fas fa-check"></i> <!-- Biểu tượng thùng rác -->
-                                        </i>
-                                    </a>
-                                    <a title="hủy đơn hàng" href="#" class="icon-link">
-                                        <i class="icon-wrapper">
-                                            <i class="fas fa-trash-alt"></i> <!-- Biểu tượng thùng rác -->
-                                        </i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">000003</th>
-                                <td>Đoàn Quốc Huy</td>
-                                <td>27/10/2023</td>
-                                <td>Nhà văn hóa sinh viên Thủ Đức</td>
-
-                                <td>2.000.000<sup>đ</sup></td>
-                                <td>
-                                    <a title="xem chi tiết đơn hàng" href="checkout_detail.jsp" class="icon-link">
-                                        <i class="icon-wrapper">
-                                            <i class="fas fa-search"></i> <!-- Biểu tượng kính lúp -->
-                                        </i>
-                                    </a>
-                                    <a title="giao hàng" href="#" class="icon-link">
-                                        <i class="icon-wrapper">
-                                            <i class="fas fa-check"></i> <!-- Biểu tượng thùng rác -->
-                                        </i>
-                                    </a>
-                                    <a title="hủy đơn hàng" href="#" class="icon-link">
-                                        <i class="icon-wrapper">
-                                            <i class="fas fa-trash-alt"></i> <!-- Biểu tượng thùng rác -->
-                                        </i>
-                                    </a>
-                                </td>
-                            </tr>
+                            <%}%>
                             </tbody>
                         </table>
                     </div>
@@ -262,26 +220,27 @@
                             </tr>
                             </thead>
                             <tbody>
+                            <%
+                                for (Order o : listOrderCancel) {
+                                    User user = UserDAO.getUserByUserId(o.getUser_id());
+                            %>
                             <tr>
-                                <th scope="row">000001</th>
-                                <td>Nguyễn Quốc Bình</td>
-                                <td>27/10/2023</td>
-                                <td>Đại học Nông Lâm TP.HCM</td>
+                                <th scope="row"><%=o.getId()%></th>
+                                <td><%=user.getFullName()%></td>
+                                <td><%=o.getOrder_date()%></td>
+                                <td><%=o.getAddress()%></td>
 
-                                <td>3.000.000<sup>đ</sup></td>
+                                <td><%=numberFormat.format(o.getTotal_money())%><sup>đ</sup></td>
                                 <td>
-                                    <a title="xem chi tiết đơn hàng" href="bill_detail_user.jsp" class="icon-link">
+                                    <a title="xem chi tiết đơn hàng" href="page-admin-check-detail?order_id=<%=o.getId()%>" class="icon-link">
                                         <i class="icon-wrapper">
                                             <i class="fas fa-search"></i> <!-- Biểu tượng kính lúp -->
                                         </i>
                                     </a>
-                                    <a title="hủy đơn hàng" href="#" class="icon-link">
-                                        <i class="icon-wrapper">
-                                            <i class="fas fa-trash-alt"></i> <!-- Biểu tượng thùng rác -->
-                                        </i>
-                                    </a>
+
                                 </td>
                             </tr>
+                            <%}%>
                             </tbody>
                         </table>
                     </div>
@@ -300,56 +259,37 @@
                             </tr>
                             </thead>
                             <tbody>
+                            <%
+                                for (Order o : listOrderTransport) {
+                                    User user = UserDAO.getUserByUserId(o.getUser_id());
+                            %>
                             <tr>
-                                <th scope="row">000001</th>
-                                <td>Đoàn Quốc Huy</td>
-                                <td>27/10/2023</td>
-                                <td>Đại học Nông Lâm TP.HCM</td>
+                                <th scope="row"><%=o.getId()%></th>
+                                <td><%=user.getFullName()%></td>
+                                <td><%=o.getOrder_date()%></td>
+                                <td><%=o.getAddress()%></td>
 
-                                <td>3.000.000<sup>đ</sup></td>
+                                <td><%=numberFormat.format(o.getTotal_money())%><sup>đ</sup></td>
                                 <td>
-                                    <a title="xem chi tiết đơn hàng" href="checkout_detail.jsp" class="icon-link">
+                                    <a title="xem chi tiết đơn hàng" href="page-admin-check-detail?order_id=<%=o.getId()%>" class="icon-link">
                                         <i class="icon-wrapper">
                                             <i class="fas fa-search"></i> <!-- Biểu tượng kính lúp -->
                                         </i>
                                     </a>
-                                    <a title="giao thành công" href="#" class="icon-link">
+                                    <a title="giao hàng" href="transportedOrder?order_id=<%=o.getId()%>" class="icon-link">
                                         <i class="icon-wrapper">
                                             <i class="fas fa-check"></i> <!-- Biểu tượng thùng rác -->
                                         </i>
                                     </a>
-                                    <a title="hủy đơn hàng" href="#" class="icon-link">
+                                    <a title="hủy đơn hàng" href="adminCancelOrder?order_id=<%=o.getId()%>&page_id=1" class="icon-link">
                                         <i class="icon-wrapper">
                                             <i class="fas fa-trash-alt"></i> <!-- Biểu tượng thùng rác -->
                                         </i>
                                     </a>
                                 </td>
                             </tr>
-                            <tr>
-                                <th scope="row">000002</th>
-                                <td>Nguyễn Thanh Hoài</td>
-                                <td>27/10/2023</td>
-                                <td>Đại học Nông Lâm TPHCM</td>
-                                <td>8.000.000<sup>đ</sup></td>
+                            <%}%>
 
-                                <td>
-                                    <a title="xem chi tiết đơn hàng" href="checkout_detail.jsp" class="icon-link">
-                                        <i class="icon-wrapper">
-                                            <i class="fas fa-search"></i> <!-- Biểu tượng kính lúp -->
-                                        </i>
-                                    </a>
-                                    <a title="giao thành công" href="#" class="icon-link">
-                                        <i class="icon-wrapper">
-                                            <i class="fas fa-check"></i> <!-- Biểu tượng thùng rác -->
-                                        </i>
-                                    </a>
-                                    <a title="hủy đơn hàng" href="#" class="icon-link">
-                                        <i class="icon-wrapper">
-                                            <i class="fas fa-trash-alt"></i> <!-- Biểu tượng thùng rác -->
-                                        </i>
-                                    </a>
-                                </td>
-                            </tr>
                             </tbody>
                         </table>
                     </div>
@@ -368,46 +308,27 @@
                             </tr>
                             </thead>
                             <tbody>
+                            <%
+                                for (Order o : listOrderTransported) {
+                                    User user = UserDAO.getUserByUserId(o.getUser_id());
+                            %>
                             <tr>
-                                <th scope="row">000001</th>
-                                <td>Nguyễn Quốc Bình</td>
-                                <td>27/10/2023</td>
-                                <td>Đại học Nông Lâm TP.HCM</td>
+                                <th scope="row"><%=o.getId()%></th>
+                                <td><%=user.getFullName()%></td>
+                                <td><%=o.getOrder_date()%></td>
+                                <td><%=o.getAddress()%></td>
 
-                                <td>3.000.000<sup>đ</sup></td>
+                                <td><%=numberFormat.format(o.getTotal_money())%><sup>đ</sup></td>
                                 <td>
-                                    <a title="xem chi tiết đơn hàng" href="bill_detail_user.jsp" class="icon-link">
+                                    <a title="xem chi tiết đơn hàng" href="page-admin-check-detail?order_id=<%=o.getId()%>" class="icon-link">
                                         <i class="icon-wrapper">
                                             <i class="fas fa-search"></i> <!-- Biểu tượng kính lúp -->
                                         </i>
                                     </a>
-                                    <a title="hủy đơn hàng" href="#" class="icon-link">
-                                        <i class="icon-wrapper">
-                                            <i class="fas fa-trash-alt"></i> <!-- Biểu tượng thùng rác -->
-                                        </i>
-                                    </a>
                                 </td>
                             </tr>
-                            <tr>
-                                <th scope="row">000002</th>
-                                <td>Nguyễn Thanh Hoài</td>
-                                <td>27/10/2023</td>
-                                <td>Đại học Nông Lâm TPHCM</td>
-                                <td>800.000<sup>đ</sup></td>
+                            <%}%>
 
-                                <td>
-                                    <a title="xem chi tiết đơn hàng" href="" class="icon-link">
-                                        <i class="icon-wrapper">
-                                            <i class="fas fa-search"></i> <!-- Biểu tượng kính lúp -->
-                                        </i>
-                                    </a>
-                                    <a title="hủy đơn hàng" href="#" class="icon-link">
-                                        <i class="icon-wrapper">
-                                            <i class="fas fa-trash-alt"></i> <!-- Biểu tượng thùng rác -->
-                                        </i>
-                                    </a>
-                                </td>
-                            </tr>
                             </tbody>
                         </table>
                     </div>
