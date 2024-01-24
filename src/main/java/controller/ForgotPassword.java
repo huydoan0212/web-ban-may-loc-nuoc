@@ -23,6 +23,7 @@ public class ForgotPassword extends HttpServlet {
       response.setContentType("text/html; charset=UTF-8");
       response.setCharacterEncoding("UTF-8");
       String username = request.getParameter("username");
+      request.getSession().setAttribute("username",username);
       if (username == null || username.isEmpty()) {
         request.getRequestDispatcher("validateOTP.jsp").forward(request, response);
         return;
