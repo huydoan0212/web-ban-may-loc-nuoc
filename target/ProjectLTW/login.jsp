@@ -35,13 +35,17 @@
                         String message = (String) request.getSession().getAttribute("message");
                         if (message != null && !message.isEmpty()) {
                       %>
-                      <p style="color: red"> <%= message %> </p>
+                      <p style="color: red;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 10px;"> <%= message %> </p>
                       <%
                           // Đặt lại giá trị message sau khi đã hiển thị
                           request.getSession().removeAttribute("message");
                         }
                       %>
-                        <h1>Đăng Nhập</h1>
+                        <h1 style="text-align: center;">Đăng Nhập</h1>
                         <div class="input-box">
                             <input type="text" placeholder="Email/ Tên đăng nhập" name="username">
                         </div>

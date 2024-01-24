@@ -33,7 +33,6 @@ public class ProductController extends HttpServlet {
                 id = (int) temp;
             }else if(temp instanceof String){
                 id = Integer.valueOf((String) temp);
-
             }
         }
         Product product = ProductService.getInstance().getById(id);

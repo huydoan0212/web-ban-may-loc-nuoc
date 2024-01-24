@@ -269,14 +269,67 @@ public class UserDAO {
                 .mapToBean(User.class).stream().collect(Collectors.toList())));
         return users;
     }
-    public static void removeUserById(int id) {
-        JDBIConnector.me().withHandle(handle ->
-                handle.createUpdate("delete from users where id = :id")
-                        .bind("id", id).execute());
+    public static boolean setStatusById(int id) {
+        int rowsUpdated = JDBIConnector.me().withHandle(handle ->
+                handle.createUpdate("UPDATE users SET status = ?, updated_at = ? WHERE id = ?")
+                        .bind(0, 1)
+                        .bind(1, LocalDateTime.now().toString())
+                        .bind(2, id)
+                        .execute()
+        );
+        return rowsUpdated > 0;
     }
-//    public static void main(String[] args) {
-//        removeUserById(3);
-//    }
+    public static boolean setStatuslockById(int id) {
+        int rowsUpdated = JDBIConnector.me().withHandle(handle ->
+                handle.createUpdate("UPDATE users SET status = ?, updated_at = ? WHERE id = ?")
+                        .bind(0, 2)
+                        .bind(1, LocalDateTime.now().toString())
+                        .bind(2, id)
+                        .execute()
+        );
+        return rowsUpdated > 0;
+    }
+    public static int getSatusById(int id){
+        int status = JDBIConnector.me().withHandle(handle ->
+                handle.createQuery("SELECT status FROM users WHERE id = ?")
+                        .bind(0, id)
+                        .mapTo(Integer.class)
+                        .one()
+        );
+        return status;
+    }
+    public static boolean setRoleIdAdmin(int id) {
+        int rowsUpdated = JDBIConnector.me().withHandle(handle ->
+                handle.createUpdate("UPDATE users SET role_id = ?, updated_at = ? WHERE id = ?")
+                        .bind(0, 1)
+                        .bind(1, LocalDateTime.now().toString())
+                        .bind(2, id)
+                        .execute()
+        );
+        return rowsUpdated > 0;
+    }
+    public static boolean setRoleIdUser(int id) {
+        int rowsUpdated = JDBIConnector.me().withHandle(handle ->
+                handle.createUpdate("UPDATE users SET role_id = ?, updated_at = ? WHERE id = ?")
+                        .bind(0, 2)
+                        .bind(1, LocalDateTime.now().toString())
+                        .bind(2, id)
+                        .execute()
+        );
+        return rowsUpdated > 0;
+    }
+    public static int getRoleById(int id){
+        int roleId = JDBIConnector.me().withHandle(handle ->
+                handle.createQuery("SELECT role_id FROM users WHERE id = ?")
+                        .bind(0, id)
+                        .mapTo(Integer.class)
+                        .one()
+        );
+        return roleId;
+    }
+    public static void main(String[] args) {
+        System.out.println(getSatusById(4));
+    }
 
 
 }

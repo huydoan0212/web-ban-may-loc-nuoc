@@ -36,7 +36,7 @@
       <img src="./img/logo-removebg-preview.png" alt="">
     </div>
     <div class="slider-form">
-      <form action="./registerController" accept-charset="UTF-8" method="post">
+      <form action="registerController" accept-charset="UTF-8" method="post">
         <h1>Đăng ký</h1>
         <div class="input-box">
           <input type="text" value="<%=(name!=null && name!="")? name:""%>" placeholder="Họ và tên" name="name">

@@ -53,8 +53,20 @@ public class UserService {
     public List<User> getAll(){
         return UserDAO.getAll();
     }
-    public static void removeUserById(int id){
-        UserDAO.removeUserById(id);
+    public void editRole(int id){
+        if (UserDAO.getRoleById(id) == 1){
+            UserDAO.setRoleIdUser(id);
+        }else if (UserDAO.getRoleById(id) == 2){
+            UserDAO.setRoleIdAdmin(id);
+        }
     }
+    public void editStatus(int id){
+        if (UserDAO.getSatusById(id) == 1){
+            UserDAO.setStatuslockById(id);
+        }else if (UserDAO.getSatusById(id) == 2){
+            UserDAO.setStatusById(id);
+        }
+    }
+
 
 }

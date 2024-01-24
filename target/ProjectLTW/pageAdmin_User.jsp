@@ -92,9 +92,8 @@
                         <tr>
                             <th scope="col">Mã tài khoản</th>
                             <th scope="col">Tên người dùng</th>
-                            <th scope="col">Email</th>
-
                             <th scope="col">Quyền</th>
+                            <th scope="col">Trạng thái</th>
                             <th scope="col">Chức năng</th>
                         </tr>
                         </thead>
@@ -103,17 +102,49 @@
                         <tr>
                                 <div>
                                     <th scope="row"><%=user.getId()%></th>
-                                    <td><%=user.getFullName()%></td>
-                                    <td><%=user.getEmail()%></td>
-                                    <td><%=user.getRoleId()%></td
+                                    <td><%=user.getUserName()%></td>
+                                    <td><%  int role = user.getRoleId();
+                                        if (role == 1) {
+                                        %>
+                                        Admin
+                                        <%
+                                        } else {
+                                        %>
+                                        User
+                                        <%
+                                            }
+                                        %>
+                                    </td>
+                                    <td>
+                                        <%
+                                            int status = user.getStatus();
+                                            if (status == 1) {
+                                        %>
+                                        Hoạt động
+                                        <%
+                                        } else {
+                                        %>
+                                        Đã khóa
+                                        <%
+                                            }
+                                        %>
+                                    </td
                                 </div>
                             <td>
-                                <a title="Xóa tài khoản" href="removeUserController?id=<%=user.getId()%>" class="icon-link">
+                                <a title="Khóa tài khoản" href="editStatus?id=<%=user.getId()%>" class="icon-link">
+                                    <i>Chỉnh sửa trạng thái</i>
                                     <i class="icon-wrapper">
-                                        <i class="fas fa-trash-alt"></i> <!-- Biểu tượng thùng rác -->
+                                        <i class="fa-solid fa-x"></i>
+                                    </i>
+                                </a>
+                                <a title="Phân quyền" href="editRoleUser?id=<%=user.getId()%>" class="icon-link">
+                                    <i>Phân quyền</i>
+                                        <i class="icon-wrapper">
+                                        <i class="fa-solid fa-up-down"></i>
                                     </i>
                                 </a>
                                 <a title="Chỉnh sửa" href="#" class="icon-link">
+                                    <i>Chỉnh sửa</i>
                                     <i class="icon-wrapper">
                                         <i class="fas fa-pen"></i> <!-- Biểu tượng thùng rác -->
                                     </i>
