@@ -31,12 +31,12 @@
     </div>
     <div class="slider-form">
       <form action="ChangePassForgot" method="post">
-        <%
+<%--        <%--%>
 
-          String username = (String) request.getSession().getAttribute("username");
+<%--          String username = (String) request.getSession().getAttribute("username");--%>
 
-        %>
-        <input type="hidden" name="username" value="<%= username %>"/>
+<%--        %>--%>
+<%--        <input type="hidden" name="username" value="<%= username %>"/>--%>
 
         <h1>Quên mật khẩu</h1>
         <div class="input-box">
