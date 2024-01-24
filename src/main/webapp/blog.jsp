@@ -1,4 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="model.Post" %>
+<%@ page import="dao.BlogDAO" %>
+<%@ page import="controller.BlogController" %>
+<% Integer id = Integer.valueOf(request.getParameter("id"));%>
+<% String title = request.getParameter("title");%>
+<% String content =request.getParameter("content");%>
+<% String author =request.getParameter("author");%>
+
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -20,10 +28,9 @@
   <link rel="stylesheet" href="css/slicknav_min.css" type="text/css">
   <link rel="stylesheet" href="css/style_blog.css" type="text/css">
   <link rel="stylesheet" href="css/blog.css" type="text/css">
-  <link rel="stylesheet" href="css/header.css" type="text/css">
-  <link rel="stylesheet" href="css/footer.css" type="text/css">
-  <link rel="stylesheet" href="css/style.css" type="text/css">
-
+  <link rel="stylesheet" href="./css/header.css">
+  <link rel="stylesheet" href="./css/footer.css">
+  <link rel="stylesheet" href="./css/style.css">
 
 
 
@@ -53,19 +60,11 @@
 </head>
 
 <body>
-
+<div class="main">
 <%@include file="header.jsp"%>
 <!-- Hero Section Begin -->
 <section class="hero hero-normal">
   <div class="container">
-    <div class="row">
-      <div class="col-lg-3">
-<%--        <%@include file="include/menu.jsp"%>--%>
-      </div>
-      <div class="col-lg-9">
-<%--        <%@include file="include/search.jsp"%>--%>
-      </div>
-    </div>
   </div>
 </section>
 <!-- Hero Section End -->
@@ -74,11 +73,21 @@
   <li><span>  Tin tức</span></li>
 </ul>
 
-
 <!-- Blog Section Begin -->
-<section class="blog spad" style="padding-bottom: 45px">
+<section class="blog spad" style=" padding-top: 74px;
+">
   <div class="container">
     <div class="row">
+      <form action="BlogServlet" method="post">
+        <%
+          String message = (String) request.getSession().getAttribute("message");
+          if (message != null && !message.isEmpty()) {
+        %>
+        <%
+            request.getSession().removeAttribute("message");
+          }
+        %>
+      </form>
 
       <div class="row">
         <div class="col-lg-4 col-md-6 col-sm-6">
@@ -94,6 +103,7 @@
               <h5><a class="long-title" href="blog_detail.jsp">Máy lọc nước Pureit của nước nào ?</a></h5>
               <p class="long-content">Bạn đang quan tâm máy lọc nước Pureit, nhưng lại chưa có đủ thông tin về nguồn gốc, xuất xứ và chất lượng của hãng...? Cùng Điện máy XANH tìm hiểu máy lọc nước Pureit của nước nào và có thực sự tốt hay không nhé! </p>
               <a href="blog_detail.jsp" class="blog__btn">ĐỌC THÊM <span class="arrow_right"></span></a>
+
             </div>
           </div>
         </div>
@@ -170,11 +180,13 @@
           </div>
         </div>
       </div>
-
     </div>
-  </div>
+    </div>
 </section>
+
 <%@include file="footer.jsp"%>
+</div>
+<script src="https://kit.fontawesome.com/3e135170bd.js" crossorigin="anonymous"></script>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery.nice-select.min.js"></script>
@@ -183,8 +195,5 @@
 <script src="js/mixitup.min.js"></script>
 <script src="js/owl.carousel.min.js"></script>
 <script src="js/main_blog.js"></script>
-
-
 </body>
-
 </html>

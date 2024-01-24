@@ -136,6 +136,17 @@ CREATE TABLE IF NOT EXISTS `comments` (
 
 
 ) ;
+CREATE  TABLE IF NOT EXISTS `posts` (
+                                  `id` INT PRIMARY KEY AUTO_INCREMENT,
+                                  `title` VARCHAR(200) NOT NULL,
+                                  `content` TEXT,
+                                   'author' VARCHAR(50)  NOT NULL,
+                                   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  );
+
+
+
+
 
 ALTER TABLE `users` ADD FOREIGN KEY (`role_id`) REFERENCES `role` (`id`);
 
@@ -243,4 +254,8 @@ INSERT INTO `users` (`id`, `role_id`, `username`, `fullname`, `email`, `phone_nu
 INSERT INTO `vouchers` (`id`, `voucher_name`, `voucher_code`, `start_date`, `end_date`, `note`, `percent_decrease`) VALUES
                                                                                                                         (1, 'Không giảm giá', '0', '2024-01-22 00:36:31', '2024-03-19 00:36:35', NULL, 0),
                                                                                                                         (2, 'Giảm giá 20%', '123456', '2024-01-21 10:24:02', '2024-01-30 10:24:06', NULL, 0.2),
-                                                                                                                        (3, 'Giảm giá 50%', '1222', '2024-01-21 10:56:17', '2024-01-28 10:56:19', NULL, 0.5);																																																								 																																												                                                        
+                                                                                                                        (3, 'Giảm giá 50%', '1222', '2024-01-21 10:56:17', '2024-01-28 10:56:19', NULL, 0.5);
+INSERT INTO `posts`(`id`, `title`, `content`,`author`) VALUES (1,
+                                                               'Máy lọc nước Pureit của nước nào ?',
+                                                               'Pureit là thương hiệu thuộc tập đoàn Unilever, hoạt động tại Việt Nam từ năm 1995, đã đồng hành và phát triển cùng người dân Việt Nam hơn 20 năm qua. Unilever là thương hiệu đi đầu trong lĩnh vực cung cấp các mặt hàng tiêu dùng, với các nhãn hiệu quen thuộc như OMO, Sunlight, Vim, Surf, Knorr, Walls, Lifebuoy, Clear, Sunsilk, Ponds, P/S, Close up và nhiều nhãn hiệu khác. Pureit là giải pháp của Unilever cho nhu cầu lọc nước nói chung và tại Việt Nam nói riêng. Trên toàn cầu, kể từ khi ra mắt, Pureit đã trở thành nhãn hiệu lọc nước bán chạy nhất thế giới với sự có mặt tại 13 quốc gia cùng các sản phẩm dựa trên công nghệ lọc nước mới nhất (UV, RO, bioxit).',
+                                                               'Trần Quỳnh Anh');
