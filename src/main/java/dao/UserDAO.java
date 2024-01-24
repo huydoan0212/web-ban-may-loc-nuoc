@@ -218,7 +218,7 @@ public class UserDAO {
                         .bind(0, fullname)
                         .bind(1, phone_number)
                         .bind(2, LocalDateTime.now().toString())
-                        .bind(3,sex)
+                        .bind(3, sex)
                         .bind(4, id)
                         .execute()
         );
@@ -253,7 +253,7 @@ public class UserDAO {
         return false;
     }
 
-    public static boolean changePassworById(int id, String password){
+    public static boolean changePassworById(int id, String password) {
         int rowsUpdated = JDBIConnector.me().withHandle(handle ->
                 handle.createUpdate("UPDATE users SET password = :password WHERE id = :id")
                         .bind("password", password)
@@ -264,13 +264,18 @@ public class UserDAO {
     }
 
 
-
+    public static User getUserByUserId(int id) {
+        Optional<User> user = JDBIConnector.me().withHandle(handle ->
+                handle.createQuery("select * from users where id = :id")
+                        .bind("id", id).mapToBean(User.class).stream().findFirst());
+        return user.isEmpty() ? null : user.get();
+    }
 
     public static void main(String[] args) {
 //        System.out.println(UserDAO.getEmail("tranquynhanh23"));
 //    System.out.println(UserDAO.getUserByUserName("tranquynhanh23"));
 //        System.out.println(checkPassByUserId(1,"1"));
-        System.out.println(changePassworById(1,"2"));
+        System.out.println(changePassworById(1, "2"));
     }
 
 

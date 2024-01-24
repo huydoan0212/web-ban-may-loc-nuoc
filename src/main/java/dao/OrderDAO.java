@@ -82,6 +82,12 @@ public class OrderDAO {
         );
         return rowsUpdated > 0;
     }
+    public static List<Order> getListOrderWaitConfirm(){
+        List<Order> orders = JDBIConnector.me().withHandle(handle ->
+                handle.createQuery("SELECT * FROM orders WHERE status = 'Đã thanh toán' or status = 'Đang đặt hàng' limit 100")
+                        .mapToBean(Order.class).stream().collect(Collectors.toList()));
+        return orders;
+    }
 
 
     public static void main(String[] args) {
@@ -90,6 +96,74 @@ public class OrderDAO {
 //        System.out.println(OrderDAO.getOrderByIdUser(1));
 //        System.out.println(getOrderById(104));
         System.out.println(insertOrder(1,"sdafsdf","safas","saffs",555555,2));
+    }
+
+    public static List<Order> getListOrderConfirm() {
+        List<Order> orders = JDBIConnector.me().withHandle(handle ->
+                handle.createQuery("SELECT * FROM orders WHERE status = 'Đã xác nhận đơn hàng' limit 100")
+                        .mapToBean(Order.class).stream().collect(Collectors.toList()));
+        return orders;
+    }
+
+    public static List<Order> getListOrderTransport() {
+        List<Order> orders = JDBIConnector.me().withHandle(handle ->
+                handle.createQuery("SELECT * FROM orders WHERE status = 'Đơn hàng đang vận chuyển' limit 100")
+                        .mapToBean(Order.class).stream().collect(Collectors.toList()));
+        return orders;
+    }
+
+    public static List<Order> getListOrderTransported() {
+        List<Order> orders = JDBIConnector.me().withHandle(handle ->
+                handle.createQuery("SELECT * FROM orders WHERE status = 'Đơn hàng đã giao' limit 100")
+                        .mapToBean(Order.class).stream().collect(Collectors.toList()));
+        return orders;
+    }
+
+    public static List<Order> getListOrderCancel() {
+        List<Order> orders = JDBIConnector.me().withHandle(handle ->
+                handle.createQuery("SELECT * FROM orders WHERE status = 'Đã hủy' limit 100")
+                        .mapToBean(Order.class).stream().collect(Collectors.toList()));
+        return orders;
+    }
+
+    public static boolean changeStatusToConfirmed(int id) {
+        int rowsUpdated = JDBIConnector.me().withHandle(handle ->
+                handle.createUpdate("UPDATE orders SET status = 'Đã xác nhận đơn hàng' WHERE id = :id")
+                        .bind("id", id)
+                        .execute()
+        );
+        return rowsUpdated > 0;
+
+    }
+
+    public static boolean changeStatusToTransport(int orderId) {
+        int rowsUpdated = JDBIConnector.me().withHandle(handle ->
+                handle.createUpdate("UPDATE orders SET status = 'Đơn hàng đang vận chuyển' WHERE id = :id")
+                        .bind("id", orderId)
+                        .execute()
+        );
+        return rowsUpdated > 0;
+
+    }
+
+    public static boolean changeStatusToTransported(int orderId) {
+        int rowsUpdated = JDBIConnector.me().withHandle(handle ->
+                handle.createUpdate("UPDATE orders SET status = 'Đơn hàng đã giao' WHERE id = :id")
+                        .bind("id", orderId)
+                        .execute()
+        );
+        return rowsUpdated > 0;
+
+    }
+
+    public static boolean changeStatusToCancel(int orderId) {
+        int rowsUpdated = JDBIConnector.me().withHandle(handle ->
+                handle.createUpdate("UPDATE orders SET status = 'Đã hủy' WHERE id = :id")
+                        .bind("id", orderId)
+                        .execute()
+        );
+        return rowsUpdated > 0;
+
     }
 }
 

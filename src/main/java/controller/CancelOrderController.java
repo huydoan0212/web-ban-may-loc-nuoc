@@ -28,11 +28,31 @@ public class CancelOrderController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String reason = req.getParameter("reason");
         Order order = (Order) req.getSession().getAttribute("order");
-        HttpSession session = req.getSession();
-        boolean isCancel = OrderService.getInstance().cancelOrder("Đã hủy, "+reason+", ", order.getId());
-        if (isCancel) {
-            session.removeAttribute("cart");
-            resp.sendRedirect("trangchu");
+        Object ob = req.getParameter("order_id");
+        int order_id = 0;
+        if (ob != null) {
+            if (ob instanceof Integer) {
+                order_id = (Integer) ob;
+            } else if (ob instanceof String) {
+                order_id = Integer.valueOf((String) ob);
+            }
+        }
+
+        if (order_id != 0) {
+            boolean isCancel = OrderService.getInstance().cancelOrder("Đã hủy", order_id);
+            if (isCancel) {
+                resp.sendRedirect("ordered-page");
+                return;
+            }
+        } else {
+            HttpSession session = req.getSession();
+            boolean isCancel = OrderService.getInstance().cancelOrder("Đã hủy, " + reason + ", ", order.getId());
+            if (isCancel) {
+                session.removeAttribute("cart");
+                resp.sendRedirect("trangchu");
+            }
+            return;
+
         }
     }
 }

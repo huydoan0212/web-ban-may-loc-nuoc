@@ -19,8 +19,8 @@ public class ValidateOTPForgotPassword extends HttpServlet {
       response.setCharacterEncoding("UTF-8");
         String otp = (String) request.getSession().getAttribute("otp");
         String enterOTP = request.getParameter("enterOTP");
-        String username = request.getParameter("username");
-
+        String username = (String) request.getSession().getAttribute("username");
+        System.out.println(username);
         if (otp != null && enterOTP != null && username != null) {
           request.getSession().setAttribute("username", username);
 
@@ -28,7 +28,7 @@ public class ValidateOTPForgotPassword extends HttpServlet {
             response.sendRedirect("newPassword.jsp");
           } else {
             request.getSession().setAttribute("message", "Sai mã OTP");
-            response.sendRedirect("validateOTP.jsp");
+              request.getRequestDispatcher("validateOTP.jsp").forward(request,response);
           }
         }
 

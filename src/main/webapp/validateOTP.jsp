@@ -32,13 +32,13 @@
     </div>
     <div class="slider-form">
       <form action="ValidateOTPForgotPassword" method="post">
-        <%
-          String otp = (String) request.getSession().getAttribute("otp");
-          String username = (String) request.getSession().getAttribute("username");
+<%--        <%--%>
+<%--          String otp = (String) request.getSession().getAttribute("otp");--%>
+<%--          String username = (String) request.getSession().getAttribute("username");--%>
 
-        %>
-        <input type="hidden" name="otp" value="<%= otp %>"/>
-        <input type="hidden" name="username" value="<%= username %>"/>
+<%--        %>--%>
+<%--        <input type="hidden" name="otp" value="<%= otp %>"/>--%>
+<%--        <input type="hidden" name="username" value="<%= username %>"/>--%>
         <h1>Quên mật khẩu</h1>
         <div class="input-box">
           <input type="text" placeholder="Nhập mã OTP được gửi về email" name="enterOTP">
