@@ -108,7 +108,7 @@
                                     <td><%=user.getRoleId()%></td
                                 </div>
                             <td>
-                                <a title="Xóa tài khoản" href="#" class="icon-link">
+                                <a title="Xóa tài khoản" href="removeUserController?id=<%=user.getId()%>" class="icon-link">
                                     <i class="icon-wrapper">
                                         <i class="fas fa-trash-alt"></i> <!-- Biểu tượng thùng rác -->
                                     </i>

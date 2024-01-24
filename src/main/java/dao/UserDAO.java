@@ -271,9 +271,14 @@ public class UserDAO {
                 .mapToBean(User.class).stream().collect(Collectors.toList())));
         return users;
     }
-    public static void main(String[] args) {
-
+    public static void removeUserById(int id) {
+        JDBIConnector.me().withHandle(handle ->
+                handle.createUpdate("delete from users where id = :id")
+                        .bind("id", id).execute());
     }
+//    public static void main(String[] args) {
+//        removeUserById(3);
+//    }
 
 
 }

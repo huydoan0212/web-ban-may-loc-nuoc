@@ -157,7 +157,7 @@ CREATE TABLE IF NOT EXISTS `products` (
                                           PRIMARY KEY (`id`),
                                           CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categorys` (`id`),
                                           CONSTRAINT `products_ibfk_2` FOREIGN KEY (`type_machine_id`) REFERENCES `type_machines` (`id`),
-                                          CONSTRAINT `products_ibfk_3` FOREIGN KEY (`brand_id`) REFERENCES `brands` (`id`),
+                                          CONSTRAINT `products_ibfk_3` FOREIGN KEY (`brand_id`) REFERENCES `brands` (`id`)
 
 );
 

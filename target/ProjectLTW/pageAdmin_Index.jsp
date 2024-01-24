@@ -144,7 +144,7 @@
           <div class="right-side">
             <div class="box-topic">Doanh Thu</div>
             <div class="number">
-              <h3><%=numberFormat.format(totalMoney)%> vnđ</h3>
+              <h4><%=numberFormat.format(totalMoney)%>vnđ</h4>
             </div>
           </div>
           <i class="fa-solid fa-dollar-sign cart three"></i>

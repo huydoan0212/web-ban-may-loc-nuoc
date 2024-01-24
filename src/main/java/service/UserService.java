@@ -53,4 +53,8 @@ public class UserService {
     public List<User> getAll(){
         return UserDAO.getAll();
     }
+    public static void removeUserById(int id){
+        UserDAO.removeUserById(id);
+    }
+
 }
