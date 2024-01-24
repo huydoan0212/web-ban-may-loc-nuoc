@@ -81,7 +81,7 @@
                 <div class="col-md-12">
                     <div class="row element-button">
                         <div class="col-sm-2">
-                            <a class="btn btn-add btn-sm" href="../../../html/pageAdmin_addUser.html" title="Thêm">
+                            <a class="btn btn-add btn-sm" href="./pageAdmin_addUser.jsp" title="Thêm">
                                 <i class="fas fa-plus"></i>
                                 Thêm tài khoản</a>
                         </div>
@@ -200,7 +200,7 @@
 <script src="./js/jquery.min.js"></script>
 <script src="./js/jquery.dataTables.js"></script>
 <script type="text/javascript" charset="utf8" src="./js/bootstrap.bundle.min.js"></script>
-<script>$("#table-id").DataTable();
+<%--<script>$("#table-id").DataTable();--%>
 </script>
 </body>
 </html>
