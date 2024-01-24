@@ -24,16 +24,16 @@
 <div class="slider">
   <div class="container">
     <div class="slider-logo">
-      <img src="/img/logo-removebg-preview.png" alt="">
+      <img src="./img/logo-removebg-preview.png" alt="">
     </div>
     <div class="slider-form">
       <form action="ActiveAccountServlet" method="post">
-        <%
-          String otp = (String) request.getSession().getAttribute("otp");
-          String username = (String) request.getSession().getAttribute("username");
-        %>
-        <input type="hidden" name="otp" value="<%= otp %>"/>
-        <input type="hidden" name="username" value="<%= username %>"/>
+<%--        <%--%>
+<%--          String otp = (String) request.getSession().getAttribute("otp");--%>
+<%--          String username = (String) request.getSession().getAttribute("username");--%>
+<%--        %>--%>
+<%--        <input type="hidden" name="otp" value="<%= otp %>"/>--%>
+<%--        <input type="hidden" name="username" value="<%= username %>"/>--%>
         <h1>Nhập email</h1>
         <div class="input-box">
           <input type="text" placeholder="Nhập mã OTP được gửi về email" name="enterOTP">
