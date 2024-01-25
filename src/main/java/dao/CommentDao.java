@@ -32,7 +32,7 @@ public class CommentDao {
     }
     public static List<Comment> getAllComment() {
         List<Comment> comments = JDBIConnector.me().withHandle((handle ->
-                handle.createQuery("select * from comments")
+                handle.createQuery("select * from comments where display = 1")
                         .mapToBean(Comment.class).stream().collect(Collectors.toList())));
         return comments;
     }
@@ -64,6 +64,6 @@ public class CommentDao {
         return rowsDisplay > 0;
     }
     public static void main(String[] args) {
-        System.out.println(setDisplayShow(1));
+        System.out.println(getAllComment());
     }
 }
