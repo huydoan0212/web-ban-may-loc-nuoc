@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 public class CommentDao {
     public static List<Comment> getCommentById(int id) {
         List<Comment> comments = JDBIConnector.me().withHandle(handle ->
-                handle.createQuery("SELECT * FROM comments WHERE product_id = :id")
+                handle.createQuery("SELECT * FROM comments WHERE product_id = :id and display = 1")
                         .bind("id", id)
                         .mapToBean(Comment.class)
                         .stream().collect(Collectors.toList()));
@@ -32,7 +32,7 @@ public class CommentDao {
     }
     public static List<Comment> getAllComment() {
         List<Comment> comments = JDBIConnector.me().withHandle((handle ->
-                handle.createQuery("select * from comments where display = 1")
+                handle.createQuery("select * from comments ")
                         .mapToBean(Comment.class).stream().collect(Collectors.toList())));
         return comments;
     }
@@ -64,6 +64,6 @@ public class CommentDao {
         return rowsDisplay > 0;
     }
     public static void main(String[] args) {
-        System.out.println(getAllComment());
+        System.out.println(getCommentById(1));
     }
 }
