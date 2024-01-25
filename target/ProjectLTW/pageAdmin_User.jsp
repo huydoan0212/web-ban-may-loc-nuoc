@@ -81,7 +81,7 @@
                 <div class="col-md-12">
                     <div class="row element-button">
                         <div class="col-sm-2">
-                            <a class="btn btn-add btn-sm" href="../../../html/pageAdmin_addUser.html" title="Thêm">
+                            <a class="btn btn-add btn-sm" href="./pageAdmin_addUser.jsp" title="Thêm">
                                 <i class="fas fa-plus"></i>
                                 Thêm tài khoản</a>
                         </div>
