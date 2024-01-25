@@ -83,6 +83,12 @@
       </a>
     </li>
     <li>
+      <a href="pageAdminContact" class="active">
+        <i class="fa-solid fa-box-open"></i>
+        <span class="links_name">Quản lý phản hồi</span>
+      </a>
+    </li>
+    <li>
       <a href="pageAdmin_Product.jsp">
         <i class="fa-solid fa-box-archive"></i>
         <span class="links_name">Quản Lý Sản Phẩm</span>
