@@ -1,12 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<% String name2 = (String) request.getParameter("name"); %>
-<% String username2 = (String) request.getParameter("username"); %>
-<% String phone2 = (String) request.getParameter("phone"); %>
-<% String email2 = (String) request.getParameter("email"); %>
-<% String password2 = (String) request.getParameter("password"); %>
-<% String error2 = (String) request.getAttribute("error");%>
-<% String role2 = (String) request.getParameter("role"); %>
-<!DOCTYPE html>
+<% String name = (String) request.getParameter("name"); %>
+<% String username = (String) request.getParameter("username"); %>
+<% String phone = (String) request.getParameter("phone"); %>
+<% String email = (String) request.getParameter("email"); %>
+<% String password = (String) request.getParameter("password"); %>
+<% String error = (String) request.getAttribute("error");%>
+<% String role = (String) request.getParameter("role"); %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -67,7 +66,7 @@
     <div class="home-content">
         <div class="manager-product">
             <div class="title">Thêm Tài Khoản</div>
-            <form class="row" action="pageAdminAddUser" accept-charset="UTF-8" method="post">
+            <form class="row" action="" accept-charset="UTF-8" method="post">
                 <div class="form-group col-md-4">
                     <label class="control-label">Họ và tên</label>
                     <input class="form-control" type="text" name="name">
@@ -96,7 +95,6 @@
                 <button type="submit" class="btn">Đăng Ký</button>
             </form>
 <%--            <a class="btn btn-cancel" href="pageAdminAddUser">Thêm tài khoản</a>--%>
-            <span style="color: red; font-size: 14px;padding-left: 20px;"><%=(error != null && error != "") ? error : ""%></span>
         </div>
     </div>
 </section>
