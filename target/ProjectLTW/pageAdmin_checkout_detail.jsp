@@ -1,4 +1,26 @@
+<%@ page import="model.Order" %>
+<%@ page import="dao.UserDAO" %>
+<%@ page import="model.User" %>
+<%@ page import="java.util.List" %>
+<%@ page import="model.OrderDetail" %>
+<%@ page import="service.OrderDetailService" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="model.Product" %>
+<%@ page import="service.ProductService" %>
+<%@ page import="java.util.Locale" %>
+<%@ page import="java.text.NumberFormat" %>
+<%@ page import="service.VoucherService" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    Order order = (Order) session.getAttribute("order");
+    if (order == null) order = new Order();
+    User user = UserDAO.getUserByUserId(order.getUser_id());
+    List<OrderDetail> orderDetails = OrderDetailService.getInstance().getOrderDetailByIdOrder(order.getId());
+    if (orderDetails == null) orderDetails = new ArrayList<OrderDetail>();
+%>
+<% Locale locale = new Locale("vi", "VN");
+    NumberFormat numberFormat = NumberFormat.getInstance(locale);
+%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -27,11 +49,12 @@
 <body>
 <div class="sidebar">
     <div class="logo-details">
-        <a href="../../../html/pageAdmin_Index.html"><img src="https://th.bing.com/th/id/OIP.ZpscpAS7kf2k2s_W_YdeuQHaHa?pid=ImgDet&rs=1" width="240px" height="150px"></a>
+        <a href=""><img src="https://th.bing.com/th/id/OIP.ZpscpAS7kf2k2s_W_YdeuQHaHa?pid=ImgDet&rs=1" width="240px"
+                        height="150px"></a>
     </div>
     <ul class="nav-links">
         <li>
-            <a href="../../../html/pageAdmin_Index.html" class="active">
+            <a href="" class="active">
                 <i class="fa-solid fa-border-all"></i>
                 <span class="links_name">Trang chủ</span>
             </a>
@@ -62,14 +85,13 @@
         </li>
 
         <li class="log_out">
-            <a href="../../../html/pageAdmin_login.html">
+            <a href="">
                 <i class="fa-solid fa-right-from-bracket"></i>
                 <span class="links_name">Đăng xuất</span>
             </a>
         </li>
     </ul>
 </div>
-
 
 
 <section class="home-section">
@@ -79,16 +101,18 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="tab row element-button">
-                        <button class="tablinks col-sm-2" id="defaultOpen" onclick="openCity(event, 'tab1')">Chi tiết đơn hàng
+                        <button class="tablinks col-sm-2" id="defaultOpen" onclick="openCity(event, 'tab1')">Chi tiết
+                            đơn hàng
                         </button>
 
                     </div>
                     <div id="tab1" class="tabcontent">
-                        <p><span style="font-weight: bold">Tên người nhận: </span> Nguyễn Quốc Bình</p>
-                        <p><span style="font-weight: bold">Số điện thoại: </span> 078 6191 721</p>
-                        <p><span style="font-weight: bold">Ngày đặt hàng: </span> 27/10/2023</p>
-                        <p><span style="font-weight: bold">Địa chỉ: </span> Đại học Nông Lâm TP.HCM</p>
-                        <p><span style="font-weight: bold">Ghi chú: </span> Giao ở khoa CNTT</p>
+                        <p><span style="font-weight: bold">Tên người nhận: </span> <%=user.getFullName()%></p>
+                        <p><span style="font-weight: bold">Số điện thoại: </span> <%=user.getPhoneNumber()%></p>
+                        <p><span style="font-weight: bold">Ngày đặt hàng: </span> <%=order.getOrder_date()%></p>
+                        <p><span style="font-weight: bold">Địa chỉ: </span> <%=order.getAddress()%>
+                        </p>
+                        <%--                        <p><span style="font-weight: bold">Ghi chú: </span> Giao ở khoa CNTT</p>--%>
                         <div class="card">
                             <div class="card-body">
                                 <table class="table">
@@ -103,36 +127,30 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    <%
+                                        for (OrderDetail o : orderDetails) {
+                                            Product product = ProductService.getInstance().getById(o.getProduct_id());
+                                    %>
                                     <tr>
-                                        <th style="font-weight: normal"  scope="row">Máy lọc nước nóng lạnh Sanaky</th>
-                                        <td><a>3.000.000<sup>đ</sup></a></td>
-                                        <td><a>1</a></td>
-                                        <td>3.000.000<sup>đ</sup></td>
+                                        <th style="font-weight: normal" scope="row"><%=product.getTitle()%></th>
+                                        <td><a><%=numberFormat.format(product.getDiscount_price())%><sup>đ</sup></a></td>
+                                        <td><a><%=o.getQuantity()%>
+                                        </a></td>
+                                        <td><%=numberFormat.format(o.getTotal_money())%><sup>đ</sup></td>
 
 
                                     </tr>
-                                    <tr>
-                                        <th style="font-weight: normal" scope="row">Máy lọc nước nóng lạnh Sanaky</th>
-                                        <td><a>3.000.000<sup>đ</sup></a></td>
-                                        <td><a>1</a></td>
-                                        <td>3.000.000<sup>đ</sup></td>
-
-
-                                    </tr>
-                                    <tr>
-                                        <th style="font-weight: normal" scope="row">Máy lọc nước nóng lạnh Sanaky</th>
-                                        <td><a>3.000.000<sup>đ</sup></a></td>
-                                        <td><a>1</a></td>
-                                        <td>3.000.000<sup>đ</sup></td>
-
-
-                                    </tr>
+                                    <%}%>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-                        <p style="margin-left: 835px; color: red"><span style="font-weight: bold">Phí giao hàng: </span> 0<sup>đ</sup> </p>
-                        <p style="margin-left: 835px; color: red"><span style="font-weight: bold">Tổng tiền: </span> 9.000.000<sup>đ</sup> </p>
+                        <p style="margin-left: 835px; color: red"><span style="font-weight: bold">Phí giao hàng: </span>
+                            0<sup>đ</sup></p>
+                        <p style="margin-left: 835px; color: red"><span style="font-weight: bold">Khuyến mãi: </span>
+                            <%=VoucherService.getInstance().getVoucherById(order.getVoucher_id()).getVoucher_name()%></p>
+                        <p style="margin-left: 835px; color: red"><span style="font-weight: bold">Tổng tiền: </span>
+                           <%=numberFormat.format(order.getTotal_money())%><sup>đ</sup></p>
                     </div>
 
 

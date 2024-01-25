@@ -46,7 +46,7 @@
                     <i class="fa-solid fa-cart-shopping" style="color: #ffffff;"></i>
                     <span>Giỏ hàng</span>
                 </a>
-                <a href="sale.jsp" class="khuyen-mai chung">Khuyến mãi</a>
+                <a href="blog.jsp" class="khuyen-mai chung">Blog</a>
                 <a href="/ProjectLTW_war/contact" class="khuyen-mai chung">Liên hệ</a>
 
             </div>
