@@ -105,7 +105,7 @@
                             <td><%=contact.getPhone_number()%></td>
                             <td><%=contact.getContent()%></td>
                             <form action="pageContactSend?id=<%=contact.getId()%>" accept-charset="UTF-8" method="post" >
-                            <td><input type="text" name="contact_input" placeholder="Nhập nội dung phản hồi"></td>
+                            <td><input type="text" name="contact_input" placeholder="Nhập nội dung phản hồi" ></td>
                             <td>
                                     <button class="btn btn-save" type="submit" style="margin-left: 60px">Phản hồi</button>
                                 </a>
