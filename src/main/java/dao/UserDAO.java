@@ -350,7 +350,34 @@ public class UserDAO {
         );
         return rowsUpdated > 0;
     }
+    public static boolean insertUserAdmin(int role, String username, String fullname, String phone_number, String email, String password) {
+        int rowsInserted = JDBIConnector.me().withHandle(handle ->
+                handle.createUpdate("INSERT INTO users (role_id, username, fullname, phone_number, email, password, status, active, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")
+                        .bind(0, role)
+                        .bind(1, username)
+                        .bind(2, fullname)
+                        .bind(3, phone_number)
+                        .bind(4, email)
+                        .bind(5, password)
+                        .bind(6, 1) // status = 1
+                        .bind(7, 1) // active = 1
+                        .bind(8, LocalDateTime.now().toString())
+                        .execute()
+        );
+        return rowsInserted > 0;
+    }
     public static void main(String[] args) {
+//        // Tạo dữ liệu mẫu
+//        int role = 1;
+//        String username = "testUse1r";
+//        String fullname = "Test User";
+//        String phone_number = "1234567890";
+//        String email = "testuser@example.com";
+//        String password = "password";
+//
+//        // Gọi hàm và in kết quả
+//        boolean isInserted = insertUserAdmin(role, username, fullname, phone_number, email, password);
+//        System.out.println("Kết quả của hàm insertUserAdmin: " + isInserted);
     }
 
 
