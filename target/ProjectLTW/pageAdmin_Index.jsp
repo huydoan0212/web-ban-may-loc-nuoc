@@ -77,9 +77,9 @@
       </a>
     </li>
     <li>
-      <a href="./pageAdminCommentController" class="active">
+      <a href="pageAdminCommentController" class="active">
         <i class="fa-solid fa-box-open"></i>
-        <span class="links_name">Quản lý kho</span>
+        <span class="links_name">Quản lý bình luận</span>
       </a>
     </li>
     <li>
@@ -95,13 +95,13 @@
       </a>
     </li>
     <li>
-      <a href="./pageAdminUserController">
+      <a href="pageAdminUserController">
         <i class="fa-solid fa-user"></i>
         <span class="links_name">Quản Lý Tài Khoản</span>
       </a>
     </li>
     <li class="log_out">
-      <a href="pageAdmin_login.html">
+      <a href="logOutController">
         <i class="fa-solid fa-right-from-bracket"></i>
         <span class="links_name">Đăng xuất</span>
       </a>
