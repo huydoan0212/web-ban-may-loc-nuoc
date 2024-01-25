@@ -440,8 +440,43 @@
                     <div class="khachhang1">
                         <h3>Người dùng: <%= UserService.getInstance().getFullNameById(comment.getUserId()) %>
                         </h3>
-                        <h2>Đánh giá <%= comment.getStar() %><i class="fa-solid fa-star" style="color: #f18f31"></i>
+                        <h2>Đánh giá
+                            <%
+                                String star = comment.getStar();
+                                if (star.equals("5")) {
+                                    for (int i = 0; i < 5; i++) {
+                            %>
+                            <i class="fa-solid fa-star" style="color: #f18f31"></i>
+                            <%
+                                }
+                            } else if (star.equals("4")) {
+                                for (int i = 0; i < 4; i++) {
+                            %>
+                            <i class="fa-solid fa-star" style="color: #f18f31"></i>
+                            <%
+                                }
+                            } else if (star.equals("3")) {
+                                for (int i = 0; i < 3; i++) {
+                            %>
+                            <i class="fa-solid fa-star" style="color: #f18f31"></i>
+                            <%
+                                }
+                            } else if (star.equals("2")) {
+                                for (int i = 0; i < 2; i++) {
+                            %>
+                            <i class="fa-solid fa-star" style="color: #f18f31"></i>
+                            <%
+                                }
+                            } else if (star.equals("1")) {
+                                for (int i = 0; i < 1; i++) {
+                            %>
+                            <i class="fa-solid fa-star" style="color: #f18f31"></i>
+                            <%
+                                    }
+                                }
+                            %>
                         </h2>
+
                         <p> Nội dung: <%= comment.getContents() %>
                         </p>
                         <p>Thời gian: <%= comment.getCreate_date() %>
