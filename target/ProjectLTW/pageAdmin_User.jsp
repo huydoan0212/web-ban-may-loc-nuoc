@@ -143,53 +143,15 @@
                                         <i class="fa-solid fa-up-down"></i>
                                     </i>
                                 </a>
-                                <a title="Chỉnh sửa" href="#" class="icon-link">
-                                    <i>Chỉnh sửa</i>
+                                <a title="Chỉnh sửa" href="pageAdminUpdateUser?id=<%=user.getId()%>" class="icon-link">
+                                    <i>Cập nhật </i>
                                     <i class="icon-wrapper">
-                                        <i class="fas fa-pen"></i> <!-- Biểu tượng thùng rác -->
+                                        <i class="fas fa-pen"></i>
                                     </i>
                                 </a>
                             </td>
                         </tr>
                         <%}%>
-<%--                        <tr>--%>
-<%--                            <th scope="row">21130290</th>--%>
-<%--                            <td>Nguyễn Quốc Bình</td>--%>
-<%--                            <td>21130290@st.hcmuaf.edu.vn</td>--%>
-
-<%--                            <td>User</td>--%>
-<%--                            <td>--%>
-<%--                                <a title="Xóa tài khoản" href="#" class="icon-link">--%>
-<%--                                    <i class="icon-wrapper">--%>
-<%--                                        <i class="fas fa-trash-alt"></i> <!-- Biểu tượng thùng rác -->--%>
-<%--                                    </i>--%>
-<%--                                </a>--%>
-<%--                                <a title="Chỉnh sửa" href="#" class="icon-link">--%>
-<%--                                    <i class="icon-wrapper">--%>
-<%--                                        <i class="fas fa-pen"></i> <!-- Biểu tượng thùng rác -->--%>
-<%--                                    </i>--%>
-<%--                                </a>--%>
-<%--                            </td>--%>
-<%--                        </tr>--%>
-<%--                        <tr>--%>
-<%--                            <th scope="row">21130374</th>--%>
-<%--                            <td>Đoàn Quốc Huy</td>--%>
-<%--                            <td>21130374@st.hcmuaf.edu.vn</td>--%>
-
-<%--                            <td>User</td>--%>
-<%--                            <td>--%>
-<%--                                <a title="Xóa tài khoản" href="#" class="icon-link">--%>
-<%--                                    <i class="icon-wrapper">--%>
-<%--                                        <i class="fas fa-trash-alt"></i> <!-- Biểu tượng thùng rác -->--%>
-<%--                                    </i>--%>
-<%--                                </a>--%>
-<%--                                <a title="Chỉnh sửa" href="#" class="icon-link">--%>
-<%--                                    <i class="icon-wrapper">--%>
-<%--                                        <i class="fas fa-pen"></i> <!-- Biểu tượng thùng rác -->--%>
-<%--                                    </i>--%>
-<%--                                </a>--%>
-<%--                            </td>--%>
-<%--                        </tr>--%>
                         </tbody>
                     </table>
                 </div>

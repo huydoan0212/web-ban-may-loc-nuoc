@@ -336,8 +336,21 @@ public class UserDAO {
         );
         return fullName;
     }
+    public static boolean updateUserAdminById(int id, String username ,String fullname, String phone_number, String email, String password) {
+        int rowsUpdated = JDBIConnector.me().withHandle(handle ->
+                handle.createUpdate("UPDATE users SET username = ?, fullname = ?, phone_number = ?, email = ?, password = ?, updated_at = ? WHERE id = ?")
+                        .bind(0, username)
+                        .bind(1, fullname)
+                        .bind(2, phone_number)
+                        .bind(3, email)
+                        .bind(4, password)
+                        .bind(5, LocalDateTime.now().toString())
+                        .bind(6, id)
+                        .execute()
+        );
+        return rowsUpdated > 0;
+    }
     public static void main(String[] args) {
-        System.out.println(getFullNameById(4));
     }
 
 

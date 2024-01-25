@@ -70,6 +70,12 @@ public class UserService {
     public String getFullNameById(int id){
         return UserDAO.getFullNameById(id);
     }
+    public User getUserById(int id){
+        return UserDAO.getUserById(id);
+    }
+    public  boolean updateUserAdminById(int id, String username ,String fullname, String phone_number, String email, String password){
+        return UserDAO.updateUserAdminById(id, username, fullname, phone_number, email, password);
+    }
 
 
 
