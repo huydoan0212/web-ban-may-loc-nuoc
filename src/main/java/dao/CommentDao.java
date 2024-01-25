@@ -30,8 +30,40 @@ public class CommentDao {
                         .bind("create_date", LocalDateTime.now().toString())
                         .execute());
     }
-
+    public static List<Comment> getAllComment() {
+        List<Comment> comments = JDBIConnector.me().withHandle((handle ->
+                handle.createQuery("select * from comments")
+                        .mapToBean(Comment.class).stream().collect(Collectors.toList())));
+        return comments;
+    }
+    public static int getDisplayById(int id){
+        int display = JDBIConnector.me().withHandle(handle ->
+                handle.createQuery("SELECT display FROM comments WHERE id = ?")
+                        .bind(0, id)
+                        .mapTo(Integer.class)
+                        .one()
+        );
+        return display;
+    }
+    public static boolean setDisplayHidden(int id) {
+        int rowsDisplay = JDBIConnector.me().withHandle(handle ->
+                handle.createUpdate("UPDATE comments SET display = ? WHERE id = ?")
+                        .bind(0, 2)
+                        .bind(1, id)
+                        .execute()
+        );
+        return rowsDisplay > 0;
+    }
+    public static boolean setDisplayShow(int id) {
+        int rowsDisplay = JDBIConnector.me().withHandle(handle ->
+                handle.createUpdate("UPDATE comments SET display = ? WHERE id = ?")
+                        .bind(0, 1)
+                        .bind(1, id)
+                        .execute()
+        );
+        return rowsDisplay > 0;
+    }
     public static void main(String[] args) {
-        System.out.println(getCommentById(1));
+        System.out.println(setDisplayShow(1));
     }
 }

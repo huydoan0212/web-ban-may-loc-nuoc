@@ -327,8 +327,17 @@ public class UserDAO {
         );
         return roleId;
     }
+    public static String getFullNameById(int id){
+        String fullName = JDBIConnector.me().withHandle(handle ->
+                handle.createQuery("SELECT fullname FROM users WHERE id = ?")
+                        .bind(0, id)
+                        .mapTo(String.class)
+                        .one()
+        );
+        return fullName;
+    }
     public static void main(String[] args) {
-        System.out.println(getSatusById(4));
+        System.out.println(getFullNameById(4));
     }
 
 

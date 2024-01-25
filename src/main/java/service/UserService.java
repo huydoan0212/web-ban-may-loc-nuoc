@@ -67,6 +67,10 @@ public class UserService {
             UserDAO.setStatusById(id);
         }
     }
+    public String getFullNameById(int id){
+        return UserDAO.getFullNameById(id);
+    }
+
 
 
 }

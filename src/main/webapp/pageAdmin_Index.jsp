@@ -3,6 +3,7 @@
 <%@ page import="model.Order" %>
 <%@ page import="java.util.List" %>
 <%@ page import="model.Product" %>
+<%@ page import="service.UserService" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
   Object tempObj = session.getAttribute("countOrder");
@@ -76,7 +77,7 @@
       </a>
     </li>
     <li>
-      <a href="pageAdmin_Storage.jsp" class="active">
+      <a href="./pageAdminCommentController" class="active">
         <i class="fa-solid fa-box-open"></i>
         <span class="links_name">Quản lý kho</span>
       </a>
@@ -168,7 +169,7 @@
             <thead>
             <tr>
               <th scope="col">Mã đơn hàng</th>
-              <th scope="col">Địa chỉ</th>
+              <th scope="col">Tên người dùng</th>
               <th scope="col">Ngày đặt</th>
               <th scope="col">Số điện thoại</th>
               <th scope="col">Tổng tiền</th>
@@ -178,7 +179,7 @@
             <%for (Order order : orders) {%>
             <tr>
               <th scope="row"><%=order.getId()%></th>
-              <td><%=order.getAddress()%></td>
+              <td><%= UserService.getInstance().getFullNameById(order.getUser_id()) %></td>
               <td><%=order.getOrder_date()%></td>
               <td><%=order.getPhone()%></td>
               <td><%=numberFormat.format(order.getTotal_money())%> vnđ</td>

@@ -5,6 +5,7 @@
 <%@ page import="java.util.Locale" %>
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="model.Comment" %>
+<%@ page import="service.UserService" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% Product product = (Product) request.getAttribute("product");
     if (product == null) product = new Product();
@@ -437,7 +438,7 @@
                 <div class="danhgia-sp-footer">
                     <% for (Comment comment : comments) { %>
                     <div class="khachhang1">
-                        <h3>Người dùng #<%= comment.getUserId() %>
+                        <h3>Người dùng: <%= UserService.getInstance().getFullNameById(comment.getUserId()) %>
                         </h3>
                         <h2>Đánh giá <%= comment.getStar() %><i class="fa-solid fa-star" style="color: #f18f31"></i>
                         </h2>

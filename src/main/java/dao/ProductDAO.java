@@ -45,9 +45,17 @@ public class ProductDAO {
                 .mapToBean(Product.class).stream().collect(Collectors.toList())));
         return products;
     }
-
+    public static String getNameById(int id){
+        String title = JDBIConnector.me().withHandle(handle ->
+                handle.createQuery("SELECT title FROM products WHERE id = ?")
+                        .bind(0, id)
+                        .mapTo(String.class)
+                        .one()
+        );
+        return title;
+    }
     public static void main(String[] args) {
-        System.out.println(getProductByName("Máy lọc nước RO"));
+        System.out.println(getNameById(1));
     }
 
 }
