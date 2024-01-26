@@ -57,14 +57,96 @@ public class PageAdminDao {
                         .mapToBean(Product.class).stream().collect(Collectors.toList())));
         return products;
     }
+
+    public static int countOrderToday() {
+        int count = JDBIConnector.me().withHandle(handle ->
+                handle.createQuery("SELECT COUNT(id) FROM orders WHERE DATE(order_date) = CURDATE()")
+                        .mapTo(Integer.class)
+                        .one()
+        );
+        return count;
+    }
+    public static int countOrderThisWeek() {
+        int count = JDBIConnector.me().withHandle(handle ->
+                handle.createQuery("SELECT COUNT(id) FROM orders WHERE WEEK(order_date) = WEEK(CURDATE()) AND YEAR(order_date) = YEAR(CURDATE())")
+                        .mapTo(Integer.class)
+                        .one()
+        );
+        return count;
+    }
+    public static int countOrderThisMonth() {
+        int count = JDBIConnector.me().withHandle(handle ->
+                handle.createQuery("SELECT COUNT(id) FROM orders WHERE MONTH(order_date) = MONTH(CURDATE()) AND YEAR(order_date) = YEAR(CURDATE())")
+                        .mapTo(Integer.class)
+                        .one()
+        );
+        return count;
+    }
+    public static int totalMoneyToday() {
+        Integer count = JDBIConnector.me().withHandle(handle ->
+                handle.createQuery("SELECT SUM(total_money) FROM orders  WHERE DATE(order_date) = CURDATE()")
+                        .mapTo(Integer.class)
+                        .one()
+        );
+        return (count != null) ? count : 0;
+    }
+    public static int totalMoneyWeek() {
+        Integer count = JDBIConnector.me().withHandle(handle ->
+                handle.createQuery("SELECT SUM(total_money) FROM orders  WHERE WEEK(order_date) = WEEK(CURDATE()) AND YEAR(order_date) = YEAR(CURDATE())")
+                        .mapTo(Integer.class)
+                        .one()
+        );
+        return (count != null) ? count : 0;
+    }
+    public static int totalMoneyMonth() {
+        Integer count = JDBIConnector.me().withHandle(handle ->
+                handle.createQuery("SELECT SUM(total_money) FROM orders  WHERE MONTH(order_date) = MONTH(CURDATE()) AND YEAR(order_date) = YEAR(CURDATE())")
+                        .mapTo(Integer.class)
+                        .one()
+        );
+        return (count != null) ? count : 0;
+    }
+    public static int countOrderCancelToday() {
+        int count = JDBIConnector.me().withHandle(handle ->
+                handle.createQuery("SELECT COUNT(id) FROM orders WHERE status LIKE ? AND WEEK(order_date) = WEEK(CURDATE()) AND YEAR(order_date) = YEAR(CURDATE())")
+                        .bind(0, "%Đã Hủy%")
+                        .mapTo(Integer.class)
+                        .one()
+        );
+        return count;
+    }
+    public static int countOrderCancelWeek() {
+        int count = JDBIConnector.me().withHandle(handle ->
+                handle.createQuery("SELECT COUNT(id) FROM orders WHERE status LIKE ? AND DATE(order_date) = CURDATE()")
+                        .bind(0, "%Đã Hủy%")
+                        .mapTo(Integer.class)
+                        .one()
+        );
+        return count;
+    }
+    public static int countOrderCancelMonth() {
+        int count = JDBIConnector.me().withHandle(handle ->
+                handle.createQuery("SELECT COUNT(id) FROM orders WHERE status LIKE ? AND MONTH(order_date) = MONTH(CURDATE()) AND YEAR(order_date) = YEAR(CURDATE())")
+                        .bind(0, "%Đã Hủy%")
+                        .mapTo(Integer.class)
+                        .one()
+        );
+        return count;
+    }
+
+
+
+
+
+
     public static void main(String[] args) {
 //        System.out.println(countOrder());
 //        System.out.println(countProductOutStock());
 //        System.out.println(totalMoney());
 //        System.out.println(countOrderCancel());
 //        System.out.println(getOderRecent());
-//        System.out.println(getProductBestSeller());
-        System.out.println(getOderRecent());
+        System.out.println(countOrderCancelToday());
+
     }
 }
 

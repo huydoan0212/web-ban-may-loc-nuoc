@@ -7,6 +7,9 @@ public class Contact {
     private String phone_number;
     private String content;
 
+    public Contact() {
+    }
+
     public Contact(int id, String name, String email, String phone_number, String content) {
         this.id = id;
         this.name = name;
