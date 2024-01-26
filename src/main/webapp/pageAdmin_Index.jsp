@@ -120,12 +120,12 @@
       <div class="header-box">
         <div class="title">Thống kê</div>
         <div>
-          <select>
-            <option value="0">Tất cả</option>
-            <option value="1">Hôm nay</option>
-            <option value="2">Tuần</option>
-            <option value="3">Tháng</option>
-          </select>
+          <div id="buttonGroup">
+            <a href="pageAdminController">Tất cả</a>
+            <a href="pageAdminControllerToday">Hôm nay</a>
+            <a href="pageAdminControllerWeek">Tuần</a>
+            <a href="pageAdminControllerMonth">Tháng</a>
+          </div>
         </div>
       </div>
       <div class="overview-boxes">
