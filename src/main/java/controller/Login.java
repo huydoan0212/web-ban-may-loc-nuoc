@@ -44,7 +44,7 @@ public class Login extends HttpServlet {
       }
     } else {
       // Đăng nhập thất bại
-      handleLoginFailure(response, request, "Tài khoản chưa được kích hoạt");
+      handleLoginFailure(response, request, "Tài khoản chưa được kích hoạt ");
 
     }
   }

@@ -2,6 +2,7 @@ package controller;
 
 import dao.UserDAO;
 import service.MD5Hash;
+import service.UserService;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -20,7 +21,11 @@ public class ChangePassForgot extends HttpServlet {
         String newPassword = request.getParameter("newPassword");
         String re_newPassword = request.getParameter("re_newPassword");
         String username = (String) request.getSession().getAttribute("username");
-        if (newPassword.equals(re_newPassword)) {
+        if (UserService.countPassword(newPassword) == false) {
+            request.getSession().setAttribute("message", "Mật khẩu phải có ít nhất 8 kí tự");
+            request.getRequestDispatcher("newPassword.jsp").forward(request,response);
+        }
+        else if (newPassword.equals(re_newPassword)) {
             boolean isChangePass = UserDAO.changePassword(username, newPassword);
             if (isChangePass) {
                 request.getSession().setAttribute("message", "Đổi mật khẩu thành công!");
