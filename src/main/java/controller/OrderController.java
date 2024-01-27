@@ -60,7 +60,8 @@ public class OrderController extends HttpServlet {
                     int total_money = price * quantity;
                     OrderDetailService.getInstance().insertOrder(order_id, product_id, price, quantity, total_money);
                 }
-                req.getRequestDispatcher("payment").forward(req, resp);
+                req.getSession().removeAttribute("cart");
+                req.getRequestDispatcher("paymentpage.jsp").forward(req, resp);
             }
         }
     }

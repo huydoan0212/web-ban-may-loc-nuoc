@@ -17,7 +17,11 @@ public class ProductDAO {
                 .mapToBean(Product.class).stream().collect(Collectors.toList())));
         return products;
     }
-
+    public static List<Product> getAllLimit5() {
+        List<Product> products = JDBIConnector.me().withHandle((handle -> handle.createQuery("select * from products limit 5")
+                .mapToBean(Product.class).stream().collect(Collectors.toList())));
+        return products;
+    }
     public static Product getById(int id) {
         Optional<Product> product = JDBIConnector.me().withHandle((handle -> handle
                 .createQuery("select * from products where id = :id")
