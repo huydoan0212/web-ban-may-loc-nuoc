@@ -80,7 +80,7 @@
                             <tbody>
                             <%
                                 for (Order o : listOrderWaitConfirm) {
-                                    User user = UserDAO.getUserByUserId(o.getUser_id());
+                                    User user = UserDAO.getUserById(o.getUser_id());
                             %>
                             <tr>
                                 <th scope="row"><%=o.getId()%></th>
@@ -130,7 +130,7 @@
                             <tbody>
                             <%
                                 for (Order o : listOrderConfirm) {
-                                    User user = UserDAO.getUserByUserId(o.getUser_id());
+                                    User user = UserDAO.getUserById(o.getUser_id());
                             %>
                             <tr>
                                 <th scope="row"><%=o.getId()%></th>
@@ -177,7 +177,7 @@
                             <tbody>
                             <%
                                 for (Order o : listOrderCancel) {
-                                    User user = UserDAO.getUserByUserId(o.getUser_id());
+                                    User user = UserDAO.getUserById(o.getUser_id());
                             %>
                             <tr>
                                 <th scope="row"><%=o.getId()%></th>
@@ -216,7 +216,7 @@
                             <tbody>
                             <%
                                 for (Order o : listOrderTransport) {
-                                    User user = UserDAO.getUserByUserId(o.getUser_id());
+                                    User user = UserDAO.getUserById(o.getUser_id());
                             %>
                             <tr>
                                 <th scope="row"><%=o.getId()%></th>
@@ -263,7 +263,7 @@
                             <tbody>
                             <%
                                 for (Order o : listOrderTransported) {
-                                    User user = UserDAO.getUserByUserId(o.getUser_id());
+                                    User user = UserDAO.getUserById(o.getUser_id());
                             %>
                             <tr>
                                 <th scope="row"><%=o.getId()%></th>
