@@ -187,7 +187,7 @@
                                 <%--                                trọng, phù hợp cho<br> không gian phòng khách, phòng bếp, văn phòng,...<br>--%>
 
                                 <%--                                - Máy lọc nước được nguồn nước máy, nước giếng đã xử lý thô.<br>--%>
-                            <p><b><%=product.getDescription()%>
+                            <p><b><%=product.getDescriptions()%>
                             </b>
                                 <img src="<%=galleries.get(3).getImg()%>"/>
                                 <%--                                       <br><b style="font-size: 15px">Chứng nhận nước sạch của Bộ Y&ndash;%&gt;--%>

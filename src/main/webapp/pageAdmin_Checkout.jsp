@@ -297,7 +297,7 @@
 <script type="text/javascript" charset="utf8" src="./js/bootstrap.bundle.min.js"></script>
 <script src="./js/pageAdmin_main.js"></script>
 <script>
-    $("#table-id").DataTable();
+    // $("#table-id").DataTable();
     $("#table-id-1").DataTable();
     $("#table-id-2").DataTable();
     $("#table-id-4").DataTable();

@@ -5,7 +5,7 @@ import java.sql.Date;
 public class Product {
     private int id;
     private int category_id;
-    private int type_machine;
+    private int type_machine_id;
     private int brand_id;
     private String title;
     private int price;
@@ -16,10 +16,13 @@ public class Product {
     private Date created_at;
     private Date updated_at;
 
-    public Product(int id, int category_id, int type_machine, int brand_id, String title, int price, String img, int discount_price, String descriptions, int available, Date created_at, Date updated_at) {
+    public Product() {
+    }
+
+    public Product(int id, int category_id, int type_machine_id, int brand_id, String title, int price, String img, int discount_price, String descriptions, int available, Date created_at, Date updated_at) {
         this.id = id;
         this.category_id = category_id;
-        this.type_machine = type_machine;
+        this.type_machine_id = type_machine_id;
         this.brand_id = brand_id;
         this.title = title;
         this.price = price;
@@ -31,15 +34,12 @@ public class Product {
         this.updated_at = updated_at;
     }
 
-    public Product() {
-    }
-
     @Override
     public String toString() {
         return "Product{" +
                 "id=" + id +
                 ", category_id=" + category_id +
-                ", type_machine=" + type_machine +
+                ", type_machine_id=" + type_machine_id +
                 ", brand_id=" + brand_id +
                 ", title='" + title + '\'' +
                 ", price=" + price +
@@ -68,12 +68,12 @@ public class Product {
         this.category_id = category_id;
     }
 
-    public int getType_machine() {
-        return type_machine;
+    public int getType_machine_id() {
+        return type_machine_id;
     }
 
-    public void setType_machine(int type_machine) {
-        this.type_machine = type_machine;
+    public void setType_machine_id(int type_machine_id) {
+        this.type_machine_id = type_machine_id;
     }
 
     public int getBrand_id() {

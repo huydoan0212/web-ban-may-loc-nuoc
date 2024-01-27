@@ -29,6 +29,8 @@ public class PageAdminEditProductController extends HttpServlet {
             }
         }
         Product product = ProductService.getInstance().getById(product_id);
+        System.out.println(product_id);
+        System.out.println(product);
         if(product!=null){
             req.getSession().setAttribute("product", product);
             resp.sendRedirect("pageAdmin_editProduct.jsp");
