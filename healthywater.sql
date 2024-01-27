@@ -141,7 +141,7 @@ CREATE  TABLE IF NOT EXISTS `posts` (
                                   `title` VARCHAR(200) NOT NULL,
                                   `content` TEXT,
                                    `author` VARCHAR(50)  NOT NULL,
-                                   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                                   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   );
 
 
