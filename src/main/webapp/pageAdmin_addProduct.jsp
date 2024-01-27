@@ -1,6 +1,10 @@
 <%@ page import="model.Category" %>
 <%@ page import="dao.CategoryDAO" %>
 <%@ page import="java.util.List" %>
+<%@ page import="dao.BrandDAO" %>
+<%@ page import="model.Brand" %>
+<%@ page import="model.TypeMachine" %>
+<%@ page import="dao.TypeMachineDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
@@ -21,7 +25,7 @@
     <div class="home-content">
         <div class="manager-product">
             <div class="title">Thêm Sản Phẩm</div>
-            <form class="row" action="add-product">
+            <form class="row" action="add-product" method="post" enctype="multipart/form-data">
                 <div class="form-group col-md-3" style="display: none" type="hidden">
                     <input class="form-control" value="" type="hidden" placeholder=""
                            name="product_id">
@@ -36,8 +40,8 @@
                     <input class="form-control" value="" type="number"
                            name="availableProduct">
                 </div>
-                <%List<Category> categories = CategoryDAO.getListCategorys();%>
 
+                <%List<Category> categories = CategoryDAO.getListCategorys();%>
                 <div class="form-group col-md-3">
                     <label class="control-label">Danh mục</label>
                     <select class="form-control" name="category">
@@ -47,6 +51,38 @@
 
                         %>
                         <option value="<%=c.getId()%>"><%=c.getName()%>
+                        </option>
+                        <%}%>
+                    </select>
+
+
+                </div>
+                <%List<Brand> brands = BrandDAO.getListBrand();%>
+                <div class="form-group col-md-3">
+                    <label class="control-label">Thương hiệu</label>
+                    <select class="form-control" name="brand">
+                        <option>--- Chọn danh mục ---</option>
+                        <%
+                            for (Brand b : brands) {
+
+                        %>
+                        <option value="<%=b.getId()%>"><%=b.getName()%>
+                        </option>
+                        <%}%>
+                    </select>
+
+
+                </div>
+                <%List<TypeMachine> typeMachines = TypeMachineDAO.getListTypeMachine();%>
+                <div class="form-group col-md-3">
+                    <label class="control-label">Loại máy</label>
+                    <select class="form-control" name="typeMachine">
+                        <option>--- Chọn danh mục ---</option>
+                        <%
+                            for (TypeMachine t : typeMachines) {
+
+                        %>
+                        <option value="<%=t.getId()%>"><%=t.getType_name()%>
                         </option>
                         <%}%>
                     </select>
@@ -64,20 +100,17 @@
                 </div>
                 <div class="form-group col-md-12">
                     <label class="control-label">Ảnh sản phẩm</label>
-                    <input class="form-control" value="" type="text" name="imgProduct">
-                    <!--                    <div id="thumbbox">-->
-                    <!--                        <img height="450" width="400" alt="Thumb image" id="thumbimage" style="display: none">-->
-                    <!--                                         <a class="removeimg" href="javascript:"></a>-->
-                    <!--                    </div>-->
+                    <input type="file" name="imgProduct">
                 </div>
                 <div class="form-group col-md-12">
                     <label class="control-label">Mô tả sản phẩm</label>
                     <textarea class="form-control" name="mota" id="mota"></textarea>
                 </div>
-                <button class="btn btn-save" type="submit">Lưu lại</button>
+                <button style="margin-right: 15px" class="btn btn-save" type="submit">Lưu lại</button>
+                <a class="btn btn-cancel" href="pageAdmin_Product.jsp">Hủy bỏ</a>
             </form>
 
-            <a class="btn btn-cancel" href="pageAdmin_Product.jsp">Hủy bỏ</a>
+
         </div>
     </div>
 </section>

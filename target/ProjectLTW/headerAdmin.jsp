@@ -35,23 +35,18 @@
 <body>
 <div class="sidebar">
     <div class="logo-details">
-        <a href="../../../html/pageAdmin_Index.html"><img
+        <a href=""><img
                 src="https://th.bing.com/th/id/OIP.ZpscpAS7kf2k2s_W_YdeuQHaHa?pid=ImgDet&rs=1" width="240px"
                 height="150px"></a>
     </div>
     <ul class="nav-links">
         <li>
-            <a href="" class="active">
+            <a href="pageAdminController" class="active">
                 <i class="fa-solid fa-border-all"></i>
                 <span class="links_name">Trang chủ</span>
             </a>
         </li>
-        <li>
-            <a href="pageAdmin_Storage.jsp" class="active">
-                <i class="fa-solid fa-box-open"></i>
-                <span class="links_name">Quản lý kho</span>
-            </a>
-        </li>
+
         <li>
             <a href="pageAdmin_Product.jsp">
                 <i class="fa-solid fa-box-archive"></i>
@@ -70,7 +65,18 @@
                 <span class="links_name">Quản Lý Tài Khoản</span>
             </a>
         </li>
-
+        <li>
+            <a href="pageAdminCommentController">
+                <i class="fa-solid fa-user"></i>
+                <span class="links_name">Quản lý bình luận</span>
+            </a>
+        </li>
+        <li>
+            <a href="pageAdminContact" class="active">
+                <i class="fa-solid fa-box-open"></i>
+                <span class="links_name">Quản lý phản hồi</span>
+            </a>
+        </li>
         <li class="log_out">
             <a href="../../../html/pageAdmin_login.html">
                 <i class="fa-solid fa-right-from-bracket"></i>

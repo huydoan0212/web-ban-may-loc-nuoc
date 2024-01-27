@@ -4,6 +4,9 @@ import db.JDBIConnector;
 import model.Comment;
 import model.Product;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -69,7 +72,7 @@ public class ProductDAO {
         return rowsUpdated > 0;
     }
 
-    public static boolean changeInfoProduct(int idProduct, int category, String nameProduct, int availableProduct, int priceProduct, int discountPriceProduct, String imgProduct, String desProduct) {
+    public static boolean changeInfoProduct(int idProduct, int category, String nameProduct, int availableProduct, int priceProduct, int discountPriceProduct, String imgProduct, String desProduct, int brand,int type) {
         int rowsUpdated = JDBIConnector.me().withHandle(handle ->
                 handle.createUpdate("UPDATE products SET " +
                                 "title = :title, " +
@@ -78,6 +81,9 @@ public class ProductDAO {
                                 "price =:price," +
                                 "discount_price=:discount_price," +
                                 "img=:img," +
+                                "type_machine_id=:type_machine_id," +
+                                "brand_id=:brand_id," +
+                                "updated_at=:updated_at," +
                                 "descriptions=:descriptions WHERE id=:id")
                         .bind("title", nameProduct)
                         .bind("available", availableProduct)
@@ -86,15 +92,19 @@ public class ProductDAO {
                         .bind("img", imgProduct)
                         .bind("descriptions", desProduct)
                         .bind("id", idProduct)
+                        .bind("brand_id", brand)
+                        .bind("type_machine_id", type)
+                        .bind("updated_at", LocalDate.now().toString())
                         .bind("category_id", category)
                         .execute()
         );
         return rowsUpdated > 0;
     }
 
-    public static boolean addProduct(int category, String nameProduct, int availableProduct, int priceProduct, int discountPriceProduct, String imgProduct, String desProduct) {
+    public static boolean addProduct(int category, String nameProduct, int availableProduct, int priceProduct, int discountPriceProduct, String imgProduct, String desProduct,int type,int brand) {
         int rowsUpdated = JDBIConnector.me().withHandle(handle ->
-                handle.createUpdate("INSERT INTO products(title,available,category_id,price,discount_price,img,descriptions) values (:title, :available, :category_id, :price, :discount_price, :img, :descriptions)")
+                handle.createUpdate("INSERT INTO products(title,available,category_id,price,discount_price,img,descriptions,updated_at,created_at,type_machine_id,brand_id) \n" +
+                                "values (:title, :available, :category_id, :price, :discount_price, :img, :descriptions, :updated_at, :created_at, :type_machine_id, :brand_id)\n")
                         .bind("title", nameProduct)
                         .bind("available", availableProduct)
                         .bind("price", priceProduct)
@@ -102,6 +112,10 @@ public class ProductDAO {
                         .bind("img", imgProduct)
                         .bind("descriptions", desProduct)
                         .bind("category_id", category)
+                        .bind("type_machine_id", type)
+                        .bind("brand_id", brand)
+                        .bind("updated_at", LocalDate.now().toString())
+                        .bind("created_at", LocalDate.now().toString())
                         .execute()
         );
         return rowsUpdated > 0;

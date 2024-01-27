@@ -3,12 +3,16 @@ package controller;
 import service.ProductService;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 import java.io.IOException;
-
+import java.nio.file.Files;
+import java.nio.file.Path;
+@MultipartConfig
 @WebServlet(name = "PageAdminAddProductController", value = "/add-product")
 public class PageAdminAddProductController extends HttpServlet {
     @Override
@@ -18,6 +22,9 @@ public class PageAdminAddProductController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html; charset=UTF-8");
+        resp.setCharacterEncoding("UTF-8");
         String nameProduct = req.getParameter("nameProduct");
         Object objectAvailable = req.getParameter("availableProduct");
         int availableProduct = 0;
@@ -46,7 +53,7 @@ public class PageAdminAddProductController extends HttpServlet {
                 discountPriceProduct = Integer.valueOf((String) objectDiscountPrice);
             }
         }
-        String imgProduct = req.getParameter("imgProduct");
+
         String desProduct = req.getParameter("mota");
         Object objectCategory = req.getParameter("category");
         int selectedCategory = 0;
@@ -57,8 +64,34 @@ public class PageAdminAddProductController extends HttpServlet {
                 selectedCategory = Integer.valueOf((String) objectCategory);
             }
         }
+        Object objectBrand = req.getParameter("brand");
+        int selectedBrand = 0;
+        if (objectCategory != null) {
+            if (objectBrand instanceof Integer) {
+                selectedBrand = (Integer) objectBrand;
+            } else if (objectBrand instanceof String) {
+                selectedBrand = Integer.valueOf((String) objectBrand);
+            }
+        }
+        Object objectType = req.getParameter("typeMachine");
+        int selectedType = 0;
+        if (objectCategory != null) {
+            if (objectType instanceof Integer) {
+                selectedType = (Integer) objectType;
+            } else if (objectType instanceof String) {
+                selectedType = Integer.valueOf((String) objectType);
+            }
+        }
+        Part part = req.getPart("imgProduct");
+        String realPath = req.getServletContext().getRealPath("/img");
+        String fileName = Path.of(part.getSubmittedFileName()).getFileName().toString();
+        if(!Files.exists(Path.of(realPath))){
+            Files.createDirectory(Path.of(realPath));
 
-        boolean isAddProduct = ProductService.getInstance().addProduct( selectedCategory, nameProduct, availableProduct, priceProduct, discountPriceProduct,  imgProduct, desProduct);
+        }
+        part.write(realPath+"/"+fileName);
+        String imgProduct = "img/"+fileName;
+        boolean isAddProduct = ProductService.getInstance().addProduct( selectedCategory, nameProduct, availableProduct, priceProduct, discountPriceProduct,  imgProduct, desProduct,selectedType,selectedBrand);
         if (isAddProduct) {
             req.getRequestDispatcher("pageAdmin_Product.jsp").forward(req,resp);
         }
