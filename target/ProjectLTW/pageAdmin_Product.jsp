@@ -45,6 +45,14 @@
     <div class="home-content">
         <div class="manager-product">
             <div class="title">Danh Sách Sản Phẩm</div>
+            <div class="row element-button">
+                <div class="col-sm-2">
+                    <a class="btn btn-add btn-sm" href="pageAdmin_addProduct.jsp" title="Thêm">
+                        <i class="fas fa-plus"></i>
+                        Thêm sản phẩm</a>
+                </div>
+
+            </div>
             <div class="row">
                 <div class="col-md-12">
 

@@ -47,11 +47,11 @@
         }
     }
 
-    List<Order> listOderRecent = (List<Order>) session.getAttribute("listOderRecent");
-    if (listOderRecent == null) listOderRecent = new ArrayList<Order>();
-    System.out.println(listOderRecent);
-    List<Product> products = (List<Product>) session.getAttribute("listProductBestSeller");
-    if (products == null) products = new ArrayList<Product>();
+    List<Order> listOrderRecent = (List<Order>) session.getAttribute("listOrderRecent");
+    if (listOrderRecent == null) listOrderRecent = new ArrayList<Order>();
+    System.out.println(listOrderRecent);
+    List<Product> listProductBestSeller = (List<Product>) session.getAttribute("listProductBestSeller");
+    if (listProductBestSeller == null) listProductBestSeller = new ArrayList<Product>();
 
 %>
 <% Locale locale = new Locale("vi", "VN");
@@ -75,11 +75,12 @@
             <div class="header-box">
                 <div class="title">Thống kê</div>
                 <div>
-                    <select>
-                        <option value="0">Hôm nay</option>
-                        <option value="1">Tuần</option>
-                        <option value="2">Tháng</option>
-                    </select>
+                    <div id="buttonGroup">
+                        <a href="pageAdminController">Tất cả</a>
+                        <a href="pageAdminControllerToday">Hôm nay</a>
+                        <a href="pageAdminControllerWeek">Tuần</a>
+                        <a href="pageAdminControllerMonth">Tháng</a>
+                    </div>
                 </div>
             </div>
             <div class="overview-boxes">
@@ -139,7 +140,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <%for (Order order : listOderRecent) {%>
+                        <%for (Order order : listOrderRecent) {%>
                         <tr>
                             <th scope="row"><%=order.getId()%>
                             </th>
@@ -163,55 +164,22 @@
             <div class="top-sales box">
                 <div class="title">Sản Phẩm Bán Chạy</div>
                 <ul class="top-sales-details">
+                    <%
+                        for (Product product:listProductBestSeller
+                        ) {
+
+                    %>
                     <li>
+
                         <a href="#">
 
                             <span title="Máy lọc nước nóng lạnh Sanaky"
-                                  class="product">Máy lọc nước nóng lạnh Sanaky</span>
+                                  class="product"><%=product.getTitle()%></span>
                         </a>
-                        <span class="price">3.000.000<sup>đ</sup></span>
-                    </li>
-                    <li>
-                        <a href="#">
+                        <span class="price"><%=product.getDiscount_price()%><sup>đ</sup></span>
 
-                            <span title="Máy lọc nước RO Karofi" class="product">Máy lọc nước RO Karofi</span>
-                        </a>
-                        <span class="price">5.335.000<sup>đ</sup></span>
                     </li>
-                    <li>
-                        <a href="#">
-
-                            <span title="Máy lọc nước RO Kangaroo" class="product">Máy lọc nước RO Kangaroo</span>
-                        </a>
-                        <span class="price">6.300.000<sup>đ</sup></span>
-                    </li>
-                    <li>
-                        <a href="#">
-
-                            <span title="Máy lọc nước không vỏ RO Karofi" class="product">Máy lọc nước không vỏ RO Karofi</span>
-                        </a>
-                        <span class="price">4.590.000<sup>đ</sup></span>
-                    </li>
-                    <li>
-                        <a href="#">
-
-                            <span title="Máy lọc nước không vỏ RO Kangaroo" class="product">Máy lọc nước không vỏ RO Kangaroo</span>
-                        </a>
-                        <span class="price">6.325.000<sup>đ</sup></span>
-                    </li>
-                    <li>
-                        <a href="#">
-
-                            <span title="Máy lọc nước không vỏ RO Sanaky" class="product">Máy lọc nước không vỏ RO Sanaky</span>
-                        </a>
-                        <span class="price">5.280.000<sup>đ</sup></span>
-                    <li>
-                        <a href="#">
-
-                            <span title="Máy lọc Nano Sanaky" class="product">Máy lọc Nano Sanaky</span>
-                        </a>
-                        <span class="price">9.150.000<sup>đ</sup></span>
-                    </li>
+                    <%}%>
                 </ul>
             </div>
         </div>
