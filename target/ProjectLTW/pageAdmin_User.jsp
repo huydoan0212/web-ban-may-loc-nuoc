@@ -1,7 +1,11 @@
 <%@ page import="model.User" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%List<User> users = (List<User>) request.getAttribute("users");%>
+<%
+    List<User> users = (List<User>) request.getAttribute("users");
+    if (users == null) users = new ArrayList<>();
+%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -31,7 +35,9 @@
 <body>
 <div class="sidebar">
     <div class="logo-details">
-        <a href="./html/pageAdmin_Index.html"><img src="https://th.bing.com/th/id/OIP.ZpscpAS7kf2k2s_W_YdeuQHaHa?pid=ImgDet&rs=1" width="240px" height="150px"></a>
+        <a href="./html/pageAdmin_Index.html"><img
+                src="https://th.bing.com/th/id/OIP.ZpscpAS7kf2k2s_W_YdeuQHaHa?pid=ImgDet&rs=1" width="240px"
+                height="150px"></a>
     </div>
     <ul class="nav-links">
         <li>
@@ -100,36 +106,38 @@
                         <tbody>
                         <%for (User user : users) {%>
                         <tr>
-                                <div>
-                                    <th scope="row"><%=user.getId()%></th>
-                                    <td><%=user.getUserName()%></td>
-                                    <td><%  int role = user.getRoleId();
-                                        if (role == 1) {
-                                        %>
-                                        Admin
-                                        <%
-                                        } else {
-                                        %>
-                                        User
-                                        <%
-                                            }
-                                        %>
-                                    </td>
-                                    <td>
-                                        <%
-                                            int status = user.getStatus();
-                                            if (status == 1) {
-                                        %>
-                                        Hoạt động
-                                        <%
-                                        } else {
-                                        %>
-                                        Đã khóa
-                                        <%
-                                            }
-                                        %>
-                                    </td
-                                </div>
+                            <div>
+                                <th scope="row"><%=user.getId()%>
+                                </th>
+                                <td><%=user.getUserName()%>
+                                </td>
+                                <td><% int role = user.getRoleId();
+                                    if (role == 1) {
+                                %>
+                                    Admin
+                                    <%
+                                    } else {
+                                    %>
+                                    User
+                                    <%
+                                        }
+                                    %>
+                                </td>
+                                <td>
+                                    <%
+                                        int status = user.getStatus();
+                                        if (status == 1) {
+                                    %>
+                                    Hoạt động
+                                    <%
+                                    } else {
+                                    %>
+                                    Đã khóa
+                                    <%
+                                        }
+                                    %>
+                                </td
+                            </div>
                             <td>
                                 <a title="Khóa tài khoản" href="editStatus?id=<%=user.getId()%>" class="icon-link">
                                     <i>Chỉnh sửa trạng thái</i>
@@ -139,7 +147,7 @@
                                 </a>
                                 <a title="Phân quyền" href="editRoleUser?id=<%=user.getId()%>" class="icon-link">
                                     <i>Phân quyền</i>
-                                        <i class="icon-wrapper">
+                                    <i class="icon-wrapper">
                                         <i class="fa-solid fa-up-down"></i>
                                     </i>
                                 </a>
