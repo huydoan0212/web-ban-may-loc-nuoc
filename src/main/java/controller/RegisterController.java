@@ -44,6 +44,9 @@ public class RegisterController extends HttpServlet {
         } else if (UserService.isEmailExists(email) == true) {
             req.setAttribute("error", "Email đã được sử dụng");
             req.getRequestDispatcher("register.jsp").forward(req, resp);
+        } else if (UserService.countPassword(password) == false) {
+            req.setAttribute("error", "Mật khẩu phải có ít nhất 8 kí tự");
+            req.getRequestDispatcher("register.jsp").forward(req, resp);
         } else if (UserService.isUserExists(userName) == true) {
             req.setAttribute("error", "Tên đăng nhập đã được sử dụng");
             req.getRequestDispatcher("register.jsp").forward(req, resp);
