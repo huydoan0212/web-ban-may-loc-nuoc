@@ -1,4 +1,21 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="model.Post" %>
+<%@ page import="dao.BlogDAO" %>
+<%@ page import="controller.BlogController" %>
+<% Object object = request.getParameter("id");
+    int id = 0;
+  if (object != null) {
+    if (object instanceof Integer) {
+      id = (Integer) object;
+    } else if (object instanceof String) {
+      id = Integer.valueOf((String) object);
+    }
+  }
+%>
+<% String title = request.getParameter("title");%>
+<% String content =request.getParameter("content");%>
+<% String author =request.getParameter("author");%>
+
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -52,8 +69,9 @@
 </head>
 
 <body>
-<div class="main">
 <%@include file="header.jsp"%>
+<div class="main">
+
 <!-- Hero Section Begin -->
 <section class="hero hero-normal">
   <div class="container">
@@ -70,6 +88,16 @@
 ">
   <div class="container">
     <div class="row">
+      <form action="BlogServlet" method="post">
+        <%
+          String message = (String) request.getSession().getAttribute("message");
+          if (message != null && !message.isEmpty()) {
+        %>
+        <%
+            request.getSession().removeAttribute("message");
+          }
+        %>
+      </form>
 
       <div class="row">
         <div class="col-lg-4 col-md-6 col-sm-6">
@@ -85,6 +113,7 @@
               <h5><a class="long-title" href="blog_detail.jsp">Máy lọc nước Pureit của nước nào ?</a></h5>
               <p class="long-content">Bạn đang quan tâm máy lọc nước Pureit, nhưng lại chưa có đủ thông tin về nguồn gốc, xuất xứ và chất lượng của hãng...? Cùng Điện máy XANH tìm hiểu máy lọc nước Pureit của nước nào và có thực sự tốt hay không nhé! </p>
               <a href="blog_detail.jsp" class="blog__btn">ĐỌC THÊM <span class="arrow_right"></span></a>
+
             </div>
           </div>
         </div>
@@ -165,8 +194,9 @@
     </div>
 </section>
 
-<%@include file="footer.jsp"%>
+
 </div>
+<%@include file="footer.jsp"%>
 <script src="https://kit.fontawesome.com/3e135170bd.js" crossorigin="anonymous"></script>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>

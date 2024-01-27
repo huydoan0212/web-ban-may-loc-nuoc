@@ -38,4 +38,15 @@ public class ProductService {
         System.out.println(ProductService.getInstance().getProductByName("Máy lọc nước RO"));
     }
 
+    public boolean removeProductById(int productId) {
+        return ProductDAO.removeProductById( productId);
+    }
+
+    public boolean changeInfoProduct(int idProduct,int category, String nameProduct, int availableProduct, int priceProduct, int discountPriceProduct, String imgProduct, String desProduct) {
+        return ProductDAO.changeInfoProduct(idProduct,category,nameProduct, availableProduct,priceProduct,discountPriceProduct,imgProduct,desProduct);
+    }
+
+    public boolean addProduct(int selectedCategory, String nameProduct, int availableProduct, int priceProduct, int discountPriceProduct, String imgProduct, String desProduct) {
+        return ProductDAO.addProduct(selectedCategory,nameProduct, availableProduct,priceProduct,discountPriceProduct,imgProduct,desProduct);
+    }
 }
