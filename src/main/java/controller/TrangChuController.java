@@ -20,7 +20,7 @@ public class TrangChuController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Product> products = ProductService.getInstance().getAll();
+        List<Product> products = ProductService.getInstance().getAllLimit5();
         req.setAttribute("data", products);
         req.getRequestDispatcher("trangchu.jsp").forward(req, resp);
     }

@@ -18,8 +18,8 @@ public class ProductService {
         return ProductDAO.filterByTypeAndBrand(brand,type);
     }
 
-    public List<Product> getAll() {
-        return ProductDAO.getAll();
+    public List<Product> getAllLimit5() {
+        return ProductDAO.getAllLimit5();
     }
 
     public Product getById(int id) {
