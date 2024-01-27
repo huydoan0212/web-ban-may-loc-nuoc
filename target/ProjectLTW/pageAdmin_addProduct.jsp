@@ -106,7 +106,7 @@
                     <label class="control-label">Mô tả sản phẩm</label>
                     <textarea class="form-control" name="mota" id="mota"></textarea>
                 </div>
-                <button class="btn btn-save" type="submit">Lưu lại</button>
+                <button style="margin-right: 15px" class="btn btn-save" type="submit">Lưu lại</button>
                 <a class="btn btn-cancel" href="pageAdmin_Product.jsp">Hủy bỏ</a>
             </form>
 
