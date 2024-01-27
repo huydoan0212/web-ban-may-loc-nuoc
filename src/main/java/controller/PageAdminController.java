@@ -24,14 +24,13 @@ public class PageAdminController extends HttpServlet {
         int countProductOutStock = PageAdminService.getInstance().countProductOutStock();
         int totalMoney = PageAdminService.getInstance().totalMoney();
         int countOrderCancel = PageAdminService.getInstance().countOrderCancel();
-        List<Order> listOderRecent = PageAdminService.getInstance().getOderRecent();
+        List<Order> listOrderRecent = PageAdminService.getInstance().getOrderRecent();
         List<Product> listProductBestSeller = PageAdminService.getInstance().getProductBestSeller();
-        System.out.println(listOderRecent);
         request.getSession().setAttribute("countOrder", countOrder);
         request.getSession().setAttribute("countProductOutStock", countProductOutStock);
         request.getSession().setAttribute("totalMoney", totalMoney);
         request.getSession().setAttribute("countOrderCancel", countOrderCancel);
-        request.getSession().setAttribute("listOderRecent", listOderRecent );
+        request.getSession().setAttribute("listOrderRecent", listOrderRecent );
         request.getSession().setAttribute("listProductBestSeller", listProductBestSeller);
         request.getRequestDispatcher("pageAdmin_Index.jsp").forward(request, response);
     }

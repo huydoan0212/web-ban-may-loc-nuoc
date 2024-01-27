@@ -3,6 +3,7 @@ package service;
 import dao.UserDAO;
 import model.User;
 
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -42,14 +43,6 @@ public class UserService {
         return UserDAO.addUser(username, fullname, email, phone_number, password);
     }
 
-    public static boolean updateUser(User user) {
-        return UserDAO.updateUser(user);
-    }
-
-    public static User getUserByUserName(String userName) {
-        return UserDAO.getUserByUserName(userName);
-    }
-
     public boolean checkPassByUserId(int id, String password) {
         return UserDAO.checkPassByUserId(id, password);
     }
@@ -57,4 +50,36 @@ public class UserService {
     public boolean changePassworById(int id, String password){
         return UserDAO.changePassworById(id,password);
     }
+    public List<User> getAll(){
+        return UserDAO.getAll();
+    }
+    public void editRole(int id){
+        if (UserDAO.getRoleById(id) == 1){
+            UserDAO.setRoleIdUser(id);
+        }else if (UserDAO.getRoleById(id) == 2){
+            UserDAO.setRoleIdAdmin(id);
+        }
+    }
+    public void editStatus(int id){
+        if (UserDAO.getSatusById(id) == 1){
+            UserDAO.setStatuslockById(id);
+        }else if (UserDAO.getSatusById(id) == 2){
+            UserDAO.setStatusById(id);
+        }
+    }
+    public String getFullNameById(int id){
+        return UserDAO.getFullNameById(id);
+    }
+    public User getUserById(int id){
+        return UserDAO.getUserById(id);
+    }
+    public  boolean updateUserAdminById(int id, String username ,String fullname, String phone_number, String email, String password){
+        return UserDAO.updateUserAdminById(id, username, fullname, phone_number, email, password);
+    }
+    public boolean insertUserAdmin(int role, String username, String fullname, String phone_number, String email, String password){
+        return UserDAO.insertUserAdmin(role, username, fullname, phone_number, email, password);
+    }
+
+
+
 }

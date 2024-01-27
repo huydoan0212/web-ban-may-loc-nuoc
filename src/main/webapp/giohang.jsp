@@ -168,7 +168,7 @@
                             document.getElementById('ma-giam-gia').addEventListener('change', function () {
                                 var id = this.value;
                                 document.getElementById('ap-dung').href = "use-voucher?voucher_id=" + id;
-                                document.getElementById('ma-giam-gia').selected();
+
                             });
                         </script>
                     </div>

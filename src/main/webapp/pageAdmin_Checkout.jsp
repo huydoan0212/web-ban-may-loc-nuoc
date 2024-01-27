@@ -47,58 +47,7 @@
     </style>
 </head>
 <body>
-<div class="sidebar">
-    <div class="logo-details">
-        <a href="pageAdmin_Index.jsp"><img
-                src="https://th.bing.com/th/id/OIP.ZpscpAS7kf2k2s_W_YdeuQHaHa?pid=ImgDet&rs=1" width="240px"
-                height="150px"></a>
-    </div>
-    <ul class="nav-links">
-        <li>
-            <a href="pageAdmin_Index.jsp" class="active">
-                <i class="fa-solid fa-border-all"></i>
-                <span class="links_name">Trang chủ</span>
-            </a>
-        </li>
-        <li>
-            <a href="pageAdmin_Storage.jsp" class="active">
-                <i class="fa-solid fa-box-open"></i>
-                <span class="links_name">Quản lý kho</span>
-            </a>
-        </li>
-        <li>
-            <a href="pageAdmin_Product.jsp">
-                <i class="fa-solid fa-box-archive"></i>
-                <span class="links_name">Quản Lý Sản Phẩm</span>
-            </a>
-        </li>
-        <li>
-            <a href="pageAdmin_Checkout.jsp">
-                <i class="fa-solid fa-note-sticky"></i>
-                <span class="links_name">Quản Lý Đơn Hàng</span>
-            </a>
-        </li>
-        <li>
-            <a href="pageAdmin_User.jsp">
-                <i class="fa-solid fa-user"></i>
-                <span class="links_name">Quản Lý Tài Khoản</span>
-            </a>
-        </li>
-      <li>
-        <a href="pageAdmin_Blog.jsp">
-          <i class="fa-solid fa-blog"></i>
-          <span class="links_name">Quản Lý Blog</span>
-        </a>
-      </li>
-
-        <li class="log_out">
-            <a href="pageAdmin_login.jsp">
-                <i class="fa-solid fa-right-from-bracket"></i>
-                <span class="links_name">Đăng xuất</span>
-            </a>
-        </li>
-    </ul>
-</div>
+<%@include file="headerAdmin.jsp" %>
 
 
 <section class="home-section">
@@ -131,7 +80,7 @@
                             <tbody>
                             <%
                                 for (Order o : listOrderWaitConfirm) {
-                                    User user = UserDAO.getUserByUserId(o.getUser_id());
+                                    User user = UserDAO.getUserById(o.getUser_id());
                             %>
                             <tr>
                                 <th scope="row"><%=o.getId()%></th>
@@ -181,7 +130,7 @@
                             <tbody>
                             <%
                                 for (Order o : listOrderConfirm) {
-                                    User user = UserDAO.getUserByUserId(o.getUser_id());
+                                    User user = UserDAO.getUserById(o.getUser_id());
                             %>
                             <tr>
                                 <th scope="row"><%=o.getId()%></th>
@@ -228,7 +177,7 @@
                             <tbody>
                             <%
                                 for (Order o : listOrderCancel) {
-                                    User user = UserDAO.getUserByUserId(o.getUser_id());
+                                    User user = UserDAO.getUserById(o.getUser_id());
                             %>
                             <tr>
                                 <th scope="row"><%=o.getId()%></th>
@@ -267,7 +216,7 @@
                             <tbody>
                             <%
                                 for (Order o : listOrderTransport) {
-                                    User user = UserDAO.getUserByUserId(o.getUser_id());
+                                    User user = UserDAO.getUserById(o.getUser_id());
                             %>
                             <tr>
                                 <th scope="row"><%=o.getId()%></th>
@@ -309,14 +258,12 @@
                                 <th scope="col">Địa chỉ</th>
                                 <th scope="col">Tổng tiền</th>
                                 <th scope="col">Chức năng</th>
-
-
                             </tr>
                             </thead>
                             <tbody>
                             <%
                                 for (Order o : listOrderTransported) {
-                                    User user = UserDAO.getUserByUserId(o.getUser_id());
+                                    User user = UserDAO.getUserById(o.getUser_id());
                             %>
                             <tr>
                                 <th scope="row"><%=o.getId()%></th>
@@ -350,7 +297,7 @@
 <script type="text/javascript" charset="utf8" src="./js/bootstrap.bundle.min.js"></script>
 <script src="./js/pageAdmin_main.js"></script>
 <script>
-    $("#table-id").DataTable();
+    // $("#table-id").DataTable();
     $("#table-id-1").DataTable();
     $("#table-id-2").DataTable();
     $("#table-id-4").DataTable();

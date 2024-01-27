@@ -5,6 +5,7 @@
 <%@ page import="java.util.Locale" %>
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="model.Comment" %>
+<%@ page import="service.UserService" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% Product product = (Product) request.getAttribute("product");
     if (product == null) product = new Product();
@@ -186,7 +187,7 @@
                                 <%--                                trọng, phù hợp cho<br> không gian phòng khách, phòng bếp, văn phòng,...<br>--%>
 
                                 <%--                                - Máy lọc nước được nguồn nước máy, nước giếng đã xử lý thô.<br>--%>
-                            <p><b><%=product.getDescription()%>
+                            <p><b><%=product.getDescriptions()%>
                             </b>
                                 <img src="<%=galleries.get(3).getImg()%>"/>
                                 <%--                                       <br><b style="font-size: 15px">Chứng nhận nước sạch của Bộ Y&ndash;%&gt;--%>
@@ -437,10 +438,45 @@
                 <div class="danhgia-sp-footer">
                     <% for (Comment comment : comments) { %>
                     <div class="khachhang1">
-                        <h3>Người dùng #<%= comment.getUserId() %>
+                        <h3>Người dùng: <%= UserService.getInstance().getFullNameById(comment.getUserId()) %>
                         </h3>
-                        <h2>Đánh giá <%= comment.getStar() %><i class="fa-solid fa-star" style="color: #f18f31"></i>
+                        <h2>Đánh giá
+                            <%
+                                String star = comment.getStar();
+                                if (star.equals("5")) {
+                                    for (int i = 0; i < 5; i++) {
+                            %>
+                            <i class="fa-solid fa-star" style="color: #f18f31"></i>
+                            <%
+                                }
+                            } else if (star.equals("4")) {
+                                for (int i = 0; i < 4; i++) {
+                            %>
+                            <i class="fa-solid fa-star" style="color: #f18f31"></i>
+                            <%
+                                }
+                            } else if (star.equals("3")) {
+                                for (int i = 0; i < 3; i++) {
+                            %>
+                            <i class="fa-solid fa-star" style="color: #f18f31"></i>
+                            <%
+                                }
+                            } else if (star.equals("2")) {
+                                for (int i = 0; i < 2; i++) {
+                            %>
+                            <i class="fa-solid fa-star" style="color: #f18f31"></i>
+                            <%
+                                }
+                            } else if (star.equals("1")) {
+                                for (int i = 0; i < 1; i++) {
+                            %>
+                            <i class="fa-solid fa-star" style="color: #f18f31"></i>
+                            <%
+                                    }
+                                }
+                            %>
                         </h2>
+
                         <p> Nội dung: <%= comment.getContents() %>
                         </p>
                         <p>Thời gian: <%= comment.getCreate_date() %>

@@ -54,10 +54,8 @@ public class RegisterController extends HttpServlet {
 //            req.setAttribute("success", "Đăng ký thành công");
             // Tạo một đối tượng Random
             Random rand = new Random();
-
             // Tạo một số ngẫu nhiên từ 0 đến 999999
             int otp = rand.nextInt(1000000);
-
             // Đảm bảo rằng số OTP có đủ 6 chữ số bằng cách thêm các số 0 vào đầu nếu cần
             String otpString = String.format("%06d", otp);
             MailService.send(email, "Mã xác nhận", "Mã xác nhận của bạn là: " + otpString);

@@ -17,6 +17,7 @@ public class MailService {
         props.put("mail.smtp.port", MailProperties.port);
     }
     public static boolean send(String to, String subject, String mes) {
+
         try {
             Session session = Session.getInstance(props, new Authenticator() {
                 protected PasswordAuthentication getPasswordAuthentication() {
@@ -24,7 +25,7 @@ public class MailService {
                 }
             });
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(MailProperties.username, "WEB BÁN HÀNG"));
+            message.setFrom(new InternetAddress(MailProperties.username, "WEB BÁN MÁY LỌC NƯỚC"));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
             message.setSubject(subject);
             message.setText(mes);
