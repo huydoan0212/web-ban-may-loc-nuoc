@@ -124,7 +124,7 @@
                   <img src="https://i.pinimg.com/236x/05/9a/6f/059a6f3e7a59ba3d2370a9a39b961982.jpg" alt="">
                 </div>
                 <div class="blog__details__author__text">
-                  <h6>Trần Quỳnh Anh</h6>
+<%--                  <h6>Nguyễn Quốc Bình</h6>--%>
                   <span>Admin</span>
                 </div>
               </div>
