@@ -1,17 +1,20 @@
 package dao;
 
 import db.JDBIConnector;
+import org.jdbi.v3.core.Handle;
+import org.jdbi.v3.core.HandleCallback;
 import org.jdbi.v3.core.statement.Update;
 import model.Post;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 
 public  class BlogDAO {
   public static List<Post> getAllPosts() {
-    String query = "SELECT * FROM posts";
-    return JDBIConnector.me().withHandle(handle -> handle.createQuery(query)
-      .mapToBean(Post.class)
-      .list());
+    List<Post> posts = JDBIConnector.me().withHandle(handle ->
+      handle.createQuery("SELECT * FROM posts").mapToBean(Post.class).stream().collect(Collectors.toList()));
+    return posts;
   }
 
   public static Post getPostById(int postId) {
@@ -24,19 +27,19 @@ public  class BlogDAO {
   }
 
   public static void addPost(Post post) {
-    String query = "INSERT INTO posts (id, title, content, author) VALUES (:id, :title, :content, :author)";
+    String query = "INSERT INTO posts (title, content, author, img) VALUES ( :title, :content, :author, :img)";
     JDBIConnector.me().useHandle(handle -> {
       Update update = handle.createUpdate(query)
-        .bind("id", post.getId())
         .bind("title", post.getTitle())
         .bind("content", post.getContent())
-        .bind("author", post.getAuthor());
+        .bind("author", post.getAuthor())
+        .bind("img", post.getImg());
       update.execute();
     });
   }
 
   public static void main(String[] args) {
-    BlogDAO.getPostById(1);
+    System.out.println(getAllPosts());
   }
 
   public static void deletePost(int postId) {
@@ -48,9 +51,159 @@ public  class BlogDAO {
 
   public static void updatePost(Post post) {
     JDBIConnector.me().useHandle(handle -> {
-      String query = "UPDATE posts SET title = ?, content = ?, author = ? WHERE id = ?";
-      handle.execute(query, post.getTitle(), post.getContent(), post.getAuthor(), post.getId());
+      String query = "UPDATE posts SET  title = ?, content = ?, author = ?, img =? WHERE id = ?";
+      handle.execute(query, post.getTitle(), post.getContent(), post.getAuthor(), post.getImg());
     });
   }
-}
+
+
+  public static void addPost( String title, String content, String author, String img) {
+    JDBIConnector.me().useHandle(handle -> {
+      String query = "INSERT INTO posts( title, content, author, img) VALUES ( ?, ?, ?, ?)";
+      handle.createUpdate(query)
+        .bind(1, title)
+        .bind(2, content)
+        .bind(3, author)
+        .bind(4, img)
+        .execute();
+    });
+  }
+
+
+  public static int getNewID() {
+    AtomicInteger newID = new AtomicInteger(0);
+    String query = "SELECT MAX(id) + 1 AS new_id FROM posts";
+    JDBIConnector.me().useHandle(handle ->
+      newID.set(handle.createQuery(query)
+        .mapTo(Integer.class)
+        .findFirst()
+        .orElse(0))
+    );
+
+    return newID.get();
+  }
+
+    public static int getPostId(int idParam) {
+      int postId = 0;
+
+      try {
+        postId = JDBIConnector.me().withHandle(new HandleCallback<Integer, Exception>() {
+          @Override
+          public Integer withHandle(Handle handle) throws Exception {
+            return handle.createQuery("SELECT postId FROM posts WHERE id = :id")
+              .bind("id", idParam)
+              .mapTo(Integer.class)
+              .findFirst()
+              .orElse(0);
+          }
+        });
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+
+      return postId;
+    }
+
+  public static String getNewTitle(int idParam) {
+    String newTitle = "";
+
+    try {
+      newTitle = JDBIConnector.me().withHandle(new HandleCallback<String, Exception>() {
+        @Override
+        public String withHandle(Handle handle) throws Exception {
+          return handle.createQuery("SELECT newTitle FROM posts WHERE id = :id")
+            .bind("id", idParam)
+            .mapTo(String.class)
+            .findFirst()
+            .orElse(null);
+        }
+      });
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    return newTitle;
+  }
+
+  public static String getNewContent(int idParam) {
+    String newContent = "";
+
+    try {
+      newContent = JDBIConnector.me().withHandle(new HandleCallback<String, Exception>() {
+        @Override
+        public String withHandle(Handle handle) throws Exception {
+          return handle.createQuery("SELECT newContent FROM posts WHERE id = :id")
+            .bind("id", idParam)
+            .mapTo(String.class)
+            .findFirst()
+            .orElse(null);
+        }
+      });
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    return newContent;
+
+  }
+
+  public static String getNewAuthor(int idParam) {
+    String newAuthor = "";
+
+    try {
+      newAuthor = JDBIConnector.me().withHandle(new HandleCallback<String, Exception>() {
+        @Override
+        public String withHandle(Handle handle) throws Exception {
+          return handle.createQuery("SELECT newAuthor FROM posts WHERE id = :id")
+            .bind("id", idParam)
+            .mapTo(String.class)
+            .findFirst()
+            .orElse(null);
+        }
+      });
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    return newAuthor;
+  }
+
+  public static String getNewImg(int idParam) {
+    String newImg = "";
+
+    try {
+      newImg = JDBIConnector.me().withHandle(new HandleCallback<String, Exception>() {
+
+        public String withHandle(Handle handle) throws Exception {
+          return handle.createQuery("SELECT newImg FROM posts WHERE id = :id")
+            .bind("id", idParam)
+            .mapTo(String.class)
+            .findFirst()
+            .orElse(null);
+        }
+      });
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    return newImg;
+  }
+
+  public boolean updatePost(String postId, String newTitle, String newContent, String newAuthor, String newImg) {
+    return JDBIConnector.me().withHandle(handle -> {
+      String query = "UPDATE posts SET title = ?, content = ?, author = ?, img = ? WHERE id = ?";
+      int rowsAffected = handle.createUpdate(query)
+        .bind(0, newTitle)
+        .bind(1, newContent)
+        .bind(2, newAuthor)
+        .bind(3, newImg)
+        .bind(4, postId)
+        .execute();
+
+      return rowsAffected > 0;
+    });
+  }
+
+ }
+
 

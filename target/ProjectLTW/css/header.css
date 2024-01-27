@@ -77,6 +77,8 @@ body {
     border: none;
     outline: none;
     padding: 0 20px;
+  margin-right: 140px;
+
 }
 
 #header-top .search-bar {

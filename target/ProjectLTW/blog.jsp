@@ -11,6 +11,7 @@
   <title>Tin Tức</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/3e135170bd.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
   <link rel="stylesheet" href="css/font_awesome.min.css" type="text/css">
   <link rel="stylesheet" href="css/elegant_icon.css" type="text/css">
@@ -19,11 +20,11 @@
   <link rel="stylesheet" href="css/owl_carousel_min.css" type="text/css">
   <link rel="stylesheet" href="css/slicknav_min.css" type="text/css">
   <link rel="stylesheet" href="css/style_blog.css" type="text/css">
-  <link rel="stylesheet" href="css/blog.css" type="text/css">
-  <link rel="stylesheet" href="./css/header.css">
-  <link rel="stylesheet" href="./css/footer.css">
-  <link rel="stylesheet" href="./css/style.css">
-
+<%--  <link rel="stylesheet" href="css/blog.css" type="text/css">--%>
+<%--  <link rel="stylesheet" href="./css/header.css">--%>
+<%--  <link rel="stylesheet" href="./css/footer.css">--%>
+<%--&lt;%&ndash;  <link rel="stylesheet" href="./css/style.css">&ndash;%&gt;--%>
+<%--  <link rel="stylesheet" href="css/loc_nuoc_RO_page.css">--%>
 
 
 
@@ -52,8 +53,9 @@
 </head>
 
 <body>
-<div class="main">
+<%--<div id="main">--%>
 <%@include file="header.jsp"%>
+<%--</div>--%>
 <!-- Hero Section Begin -->
 <section class="hero hero-normal">
   <div class="container">
@@ -70,7 +72,6 @@
 ">
   <div class="container">
     <div class="row">
-
       <div class="row">
         <div class="col-lg-4 col-md-6 col-sm-6">
           <div class="blog__item">
@@ -85,6 +86,7 @@
               <h5><a class="long-title" href="blog_detail.jsp">Máy lọc nước Pureit của nước nào ?</a></h5>
               <p class="long-content">Bạn đang quan tâm máy lọc nước Pureit, nhưng lại chưa có đủ thông tin về nguồn gốc, xuất xứ và chất lượng của hãng...? Cùng Điện máy XANH tìm hiểu máy lọc nước Pureit của nước nào và có thực sự tốt hay không nhé! </p>
               <a href="blog_detail.jsp" class="blog__btn">ĐỌC THÊM <span class="arrow_right"></span></a>
+
             </div>
           </div>
         </div>

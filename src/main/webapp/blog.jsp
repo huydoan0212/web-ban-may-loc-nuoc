@@ -1,12 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="model.Post" %>
-<%@ page import="dao.BlogDAO" %>
-<%@ page import="controller.BlogController" %>
-<% Integer id = Integer.valueOf(request.getParameter("id"));%>
-<% String title = request.getParameter("title");%>
-<% String content =request.getParameter("content");%>
-<% String author =request.getParameter("author");%>
-
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -19,6 +11,7 @@
   <title>Tin Tức</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/3e135170bd.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
   <link rel="stylesheet" href="css/font_awesome.min.css" type="text/css">
   <link rel="stylesheet" href="css/elegant_icon.css" type="text/css">
@@ -27,11 +20,11 @@
   <link rel="stylesheet" href="css/owl_carousel_min.css" type="text/css">
   <link rel="stylesheet" href="css/slicknav_min.css" type="text/css">
   <link rel="stylesheet" href="css/style_blog.css" type="text/css">
-  <link rel="stylesheet" href="css/blog.css" type="text/css">
-  <link rel="stylesheet" href="./css/header.css">
-  <link rel="stylesheet" href="./css/footer.css">
-  <link rel="stylesheet" href="./css/style.css">
-
+<%--  <link rel="stylesheet" href="css/blog.css" type="text/css">--%>
+<%--  <link rel="stylesheet" href="./css/header.css">--%>
+<%--  <link rel="stylesheet" href="./css/footer.css">--%>
+<%--&lt;%&ndash;  <link rel="stylesheet" href="./css/style.css">&ndash;%&gt;--%>
+<%--  <link rel="stylesheet" href="css/loc_nuoc_RO_page.css">--%>
 
 
 
@@ -60,8 +53,9 @@
 </head>
 
 <body>
-<div class="main">
+<%--<div id="main">--%>
 <%@include file="header.jsp"%>
+<%--</div>--%>
 <!-- Hero Section Begin -->
 <section class="hero hero-normal">
   <div class="container">
@@ -78,17 +72,6 @@
 ">
   <div class="container">
     <div class="row">
-      <form action="BlogServlet" method="post">
-        <%
-          String message = (String) request.getSession().getAttribute("message");
-          if (message != null && !message.isEmpty()) {
-        %>
-        <%
-            request.getSession().removeAttribute("message");
-          }
-        %>
-      </form>
-
       <div class="row">
         <div class="col-lg-4 col-md-6 col-sm-6">
           <div class="blog__item">

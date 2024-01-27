@@ -26,11 +26,11 @@
 <body>
 <div class="sidebar">
     <div class="logo-details">
-        <a href="../../../html/pageAdmin_Index.html"><img src="https://th.bing.com/th/id/OIP.ZpscpAS7kf2k2s_W_YdeuQHaHa?pid=ImgDet&rs=1" width="240px" height="150px"></a>
+        <a href="pageAdmin_Index.jsp"><img src="https://th.bing.com/th/id/OIP.ZpscpAS7kf2k2s_W_YdeuQHaHa?pid=ImgDet&rs=1" width="240px" height="150px"></a>
     </div>
     <ul class="nav-links">
         <li>
-            <a href="../../../html/pageAdmin_Index.html" class="active">
+            <a href="pageAdmin_Index.jsp" class="active">
                 <i class="fa-solid fa-border-all"></i>
                 <span class="links_name">Trang chủ</span>
             </a>
@@ -42,13 +42,13 @@
             </a>
         </li>
         <li>
-            <a href="pageAdmin_Product.html">
+            <a href="pageAdmin_Product.jsp">
                 <i class="fa-solid fa-box-archive"></i>
                 <span class="links_name">Quản Lý Sản Phẩm</span>
             </a>
         </li>
         <li>
-            <a href="../../../html/pageAdmin_Checkout.html">
+            <a href="pageAdmin_Checkout.jsp">
                 <i class="fa-solid fa-note-sticky"></i>
                 <span class="links_name">Quản Lý Đơn Hàng</span>
             </a>
@@ -59,9 +59,15 @@
                 <span class="links_name">Quản Lý Tài Khoản</span>
             </a>
         </li>
+      <li>
+        <a href="pageAdmin_Blog.jsp">
+          <i class="fa-solid fa-blog"></i>
+          <span class="links_name">Quản Lý Blog</span>
+        </a>
+      </li>
 
         <li class="log_out">
-            <a href="../../../html/pageAdmin_login.html">
+            <a href="pageAdmin_login.jsp">
                 <i class="fa-solid fa-right-from-bracket"></i>
                 <span class="links_name">Đăng xuất</span>
             </a>

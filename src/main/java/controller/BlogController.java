@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+
 @WebServlet(name = "BlogServlet", value = "/blog")
 public class BlogController extends HttpServlet {
 
@@ -39,19 +40,20 @@ public class BlogController extends HttpServlet {
       String title = request.getParameter("title");
       String content = request.getParameter("content");
       String author = request.getParameter("author");
+      String img = request.getParameter("img");
 
-      Post post = new Post(id, title, content, author);
+      Post post = new Post(id,title, content, author, img);
       BlogDAO.addPost(post);
       response.sendRedirect(request.getContextPath() + "/blog");
-    }
-    else if (action != null && action.equals("updatePost")) {
+    } else if (action != null && action.equals("updatePost")) {
       // Cập nhật một bài đăng
       int id = Integer.parseInt(request.getParameter("id"));
       String title = request.getParameter("title");
       String content = request.getParameter("content");
       String author = request.getParameter("author");
+      String img = request.getParameter("img");
 
-      Post post = new Post(id, title, content, author);
+      Post post = new Post(id, title, content, author, img);
       BlogDAO.updatePost(post);
       response.sendRedirect(request.getContextPath() + "/blog");
     } else if (action != null && action.equals("deletePost")) {

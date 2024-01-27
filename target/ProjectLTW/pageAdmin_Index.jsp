@@ -105,6 +105,12 @@
                 <span class="links_name">Quản Lý Tài Khoản</span>
             </a>
         </li>
+      <li>
+        <a href="pageAdmin_Blog.jsp">
+          <i class="fa-solid fa-blog"></i>
+          <span class="links_name">Quản Lý Blog</span>
+        </a>
+      </li>
         <li class="log_out">
             <a href="pageAdmin_login.html">
                 <i class="fa-solid fa-right-from-bracket"></i>
