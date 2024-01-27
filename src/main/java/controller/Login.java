@@ -37,6 +37,7 @@ public class Login extends HttpServlet {
         handleUserLoginSuccess(response, session, user, "index.jsp");
       } else if (user != null && user.getRoleId() == 1) {
         //admin
+        request.getSession().setAttribute("user", user);
         handleUserLoginSuccess(response, session, user, "/ProjectLTW_war/pageAdminController");
       } else {
         //  không có quyền hoặc thông tin không hợp lệ

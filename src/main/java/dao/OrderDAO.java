@@ -96,7 +96,8 @@ public class OrderDAO {
 //        System.out.println(OrderDAO.getOrderByIdUser(1));
 //        System.out.println(getOrderById(104));
 //        System.out.println(insertOrder(1,"sdafsdf","safas","saffs",555555,2));
-        System.out.println(getOrderByIdUser(14));
+      //  System.out.println(getOrderByIdUser(14));
+        System.out.println(changeInfoOrder(157,"Trân","84 phuoc long","05658112"));
     }
 
     public static List<Order> getListOrderConfirm() {
@@ -165,6 +166,18 @@ public class OrderDAO {
         );
         return rowsUpdated > 0;
 
+    }
+
+    public static boolean changeInfoOrder(int id, String name, String address, String phone) {
+        int rowsUpdated = JDBIConnector.me().withHandle(handle ->
+                handle.createUpdate("UPDATE orders SET address =:address, phone=:phone, name=:name WHERE id = :id AND status NOT LIKE 'Đơn hàng đã giao' AND status NOT LIKE 'Đơn hàng đang vận chuyển'")
+                        .bind("id", id)
+                        .bind("address", address)
+                        .bind("phone", phone)
+                        .bind("name", name)
+                        .execute()
+        );
+        return rowsUpdated > 0;
     }
 
 }

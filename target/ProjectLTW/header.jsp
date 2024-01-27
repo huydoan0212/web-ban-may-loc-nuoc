@@ -3,6 +3,7 @@
 <% User user = (User) session.getAttribute("user");
     String checkLogin = user != null ? "/ProjectLTW_war/account-page" : "login.jsp";
     String isCheckLogin = user != null ? "/ProjectLTW_war/cart" : "login.jsp";
+
 %>
 <%--<% String title = (String) request.getParameter("search"); %>--%>
 <html>
@@ -19,29 +20,33 @@
                 <a href="/ProjectLTW_war/trangchu" class="logo">
                     <img src="./img/logo-removebg-preview.png" alt="">
                 </a>
-
-
+                <%if (user != null) {%>
+                <%if (user.getRoleId() == 1) {%>
+                <a href="pageAdminController"
+                   class="tai-khoan-don-hang chung"><span>Trang quản lý</span></a>
+                <%}%>
+                <%}%>
                 <div class="search-bar ">
-<%--                        <input type="text" placeholder="Bạn muốn tìm gì..." id="input-search" name="title">--%>
-<%--                        <input type="submit" value="Tìm kiếm" id="input-submit">--%>
-                    <input style=" position: relative;" type="text" placeholder="Bạn muốn tìm gì..." id="input-search" name="search">
-    <a style="width: 50px; height: 50px;
+                    <%--                        <input type="text" placeholder="Bạn muốn tìm gì..." id="input-search" name="title">--%>
+                    <%--                        <input type="submit" value="Tìm kiếm" id="input-submit">--%>
+                    <input style=" position: relative;" type="text" placeholder="Bạn muốn tìm gì..." id="input-search"
+                           name="search">
+                    <a style="width: 50px; height: 50px;
     display: block;
     position: absolute;
     left: 300px;
     bottom: 27px;" href="findProductController?search=<%=request.getParameter("search")%>"
-                        id="input-submit"><i class="fa-solid fa-magnifying-glass" style="color: #000000;"></i></a>
+                       id="input-submit"><i class="fa-solid fa-magnifying-glass" style="color: #000000;"></i></a>
                 </div>
                 <script>
-                    document.getElementById('input-search').addEventListener('input', function(e) {
+                    document.getElementById('input-search').addEventListener('input', function (e) {
                         document.getElementById('input-submit').href = "findProductController?search=" + encodeURIComponent(e.target.value);
                     });
                 </script>
 
 
-
                 <a href="<%=checkLogin%>"
-                class="tai-khoan-don-hang chung"><span>Tài khoản và đơn hàng</span></a>
+                   class="tai-khoan-don-hang chung"><span>Tài khoản và đơn hàng</span></a>
                 <a href="<%=isCheckLogin%>" class="gio-hang ">
                     <i class="fa-solid fa-cart-shopping" style="color: #ffffff;"></i>
                     <span>Giỏ hàng</span>

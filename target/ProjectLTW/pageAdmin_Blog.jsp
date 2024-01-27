@@ -32,56 +32,7 @@
   </style>
 </head>
 <body>
-<div class="sidebar">
-  <div class="logo-details">
-    <a href="pageAdmin_Index.jsp"><img src="https://th.bing.com/th/id/OIP.ZpscpAS7kf2k2s_W_YdeuQHaHa?pid=ImgDet&rs=1" width="240px" height="150px"></a>
-  </div>
-  <ul class="nav-links">
-    <li>
-      <a href="pageAdmin_Index.jsp" class="active">
-        <i class="fa-solid fa-border-all"></i>
-        <span class="links_name">Trang chủ</span>
-      </a>
-    </li>
-    <li>
-      <a href="pageAdmin_Storage.jsp" class="active">
-        <i class="fa-solid fa-box-open"></i>
-        <span class="links_name">Quản lý kho</span>
-      </a>
-    </li>
-    <li>
-      <a href="pageAdmin_Product.jsp">
-        <i class="fa-solid fa-box-archive"></i>
-        <span class="links_name">Quản Lý Sản Phẩm</span>
-      </a>
-    </li>
-    <li>
-      <a href="pageAdmin_Checkout.jsp">
-        <i class="fa-solid fa-note-sticky"></i>
-        <span class="links_name">Quản Lý Đơn Hàng</span>
-      </a>
-    </li>
-    <li>
-      <a href="pageAdmin_User.jsp">
-        <i class="fa-solid fa-user"></i>
-        <span class="links_name">Quản Lý Tài Khoản</span>
-      </a>
-    </li>
-    <li>
-      <a href="pageAdmin_Blog.jsp">
-        <i class="fa-solid fa-blog"></i>
-        <span class="links_name">Quản Lý Blog</span>
-      </a>
-    </li>
-
-    <li class="log_out">
-      <a href="pageAdmin_login.jsp">
-        <i class="fa-solid fa-right-from-bracket"></i>
-        <span class="links_name">Đăng xuất</span>
-      </a>
-    </li>
-  </ul>
-</div>
+<%@include file="headerAdmin.jsp" %>
 
 
 
@@ -118,9 +69,9 @@
               <td><%=post.getTitle()%></td>
               <td><%=post.getContent()%></td>
              <td><%=post.getAuthor()%></td>
-              <td><img src="https://cdn.tgdd.vn/Files/2018/02/21/1068412/may-loc-nuoc-pureit-cua-nuoc-nao-1.jpg"  style="max-width: 100px; max-height: 100px;"></td>
+              <td><img src="<%=post.getImg()%>"  style="max-width: 100px; max-height: 100px;"></td>
               <td>
-                <a title="Xóa" href="pageAdmin_removeBlog1.jsp" class="icon-link">
+                <a title="Xóa" href="remove-blog?id=<%=post.getId()%>" class="icon-link">
                   <i class="icon-wrapper">
                     <i class="fas fa-trash-alt"></i> <!-- Biểu tượng thùng rác -->
                   </i>

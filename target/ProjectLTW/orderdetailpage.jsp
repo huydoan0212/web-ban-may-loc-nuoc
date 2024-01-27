@@ -76,15 +76,29 @@
                                 <p><i class="fa-solid fa-map-location-dot"></i>THÔNG TIN NHẬN
                                     HÀNG</p>
                             </div>
+                            <form action="change-info-order?id=<%=order.getId()%>" method="post">
                             <div class="content-receive">
                                 <p>Người nhận: </p>
-                                <span><%=user.getSex()%> <span
-                                        class="name-receive"><%=user.getFullName()%></span></span>
+                                <input style="width: 385px;
+    height: 30px;
+    border-radius: 4px; margin: auto" type="text" name="name" value="<%=(user.getFullName()!=null && user.getFullName()!="")? user.getFullName():""%>">
                                 <p>Địa chỉ: </p>
-                                <span class="dia-chi"><%=user.getAddress()%></span>
+                                <input style="width: 385px;
+    height: 30px;
+    border-radius: 4px; margin: auto" type="text" name="address" value="<%=(user.getAddress()!=null && user.getAddress()!="")? user.getAddress():""%>">
                                 <p>Số điện thoại: </p>
-                                <span class="time"><%=user.getPhoneNumber()%></span>
+                                <input style="width: 385px;
+    height: 30px;
+    border-radius: 4px; margin: auto" type="text" name="phone" value="<%=(user.getPhoneNumber()!=null && user.getPhoneNumber()!="")? user.getPhoneNumber():""%>">
                             </div>
+                                <a style="    text-align: center;
+    display: block;
+    font-size: 14px;
+    text-decoration: none;
+    color: #4a90e2;
+    margin-top: 15px;" href="">Cập nhật</a>
+                            </form>
+
                         </div>
                         <div class="payment">
                             <div class="title-infor">

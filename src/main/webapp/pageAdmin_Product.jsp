@@ -6,8 +6,9 @@
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="model.Category" %>
 <%@ page import="dao.CategoryDAO" %>
+<%@ page import="dao.ProductDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<% List<Product> products = ProductService.getInstance().getAll();
+<% List<Product> products = ProductDAO.getAll();
     if(products==null) products = new ArrayList<>();
 %>
 <% Locale locale = new Locale("vi", "VN");

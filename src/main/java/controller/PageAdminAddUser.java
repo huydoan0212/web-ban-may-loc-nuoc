@@ -29,27 +29,27 @@ public class PageAdminAddUser extends HttpServlet {
         String roleUser = req.getParameter("roleUser");
         if (fullName == null || fullName.equals("") || email == null || email.equals("") || userName == null || userName.equals("") ||
                 phone == null || phone.equals("") || password == null || password.equals("")) {
-            req.setAttribute("error2", "Bạn cần nhập các đủ thông tin ");
+            req.getSession().setAttribute("error2", "Bạn cần nhập các đủ thông tin ");
             req.getRequestDispatcher("pageAdmin_addUser.jsp").forward(req, resp);
         } else if (UserService.isValidEmail(email) == false) {
-            req.setAttribute("error2", "Email không hợp lệ");
+            req.getSession().setAttribute("error2", "Email không hợp lệ");
             req.getRequestDispatcher("pageAdmin_addUser.jsp").forward(req, resp);
         } else if (UserService.isEmailExists(email) == true && UserService.isUserExists(userName) == true) {
-            req.setAttribute("error2", "Email và Tên đăng nhập đã được sử dụng");
+            req.getSession().setAttribute("error2", "Email và Tên đăng nhập đã được sử dụng");
             req.getRequestDispatcher("pageAdmin_addUser.jsp").forward(req, resp);
         } else if (UserService.isEmailExists(email) == true) {
-            req.setAttribute("error2", "Email đã được sử dụng");
+            req.getSession().setAttribute("error2", "Email đã được sử dụng");
             req.getRequestDispatcher("pageAdmin_addUser.jsp").forward(req, resp);
         } else if (UserService.isUserExists(userName) == true) {
-            req.setAttribute("error2", "Tên đăng nhập đã được sử dụng");
+            req.getSession().setAttribute("error2", "Tên đăng nhập đã được sử dụng");
             req.getRequestDispatcher("pageAdmin_addUser.jsp").forward(req, resp);
         }else
             if (roleUser.equals("2")){
                 UserService.getInstance().insertUserAdmin(2, userName, fullName, phone, email, password);
-                req.getRequestDispatcher("/pageAdminUserController").forward(req, resp);
+                req.getRequestDispatcher("pageAdminUserController").forward(req, resp);
             } else if (roleUser.equals("1")){
                 UserService.getInstance().insertUserAdmin(1, userName, fullName, phone, email, password);
-                req.getRequestDispatcher("/pageAdminUserController").forward(req, resp);
+                req.getRequestDispatcher("pageAdminUserController").forward(req, resp);
             }
     }
 }

@@ -23,6 +23,7 @@ public class TrangChuController extends HttpServlet {
         List<Product> products = ProductService.getInstance().getAllLimit5();
         req.setAttribute("data", products);
         req.getRequestDispatcher("trangchu.jsp").forward(req, resp);
+        System.out.println(products);
     }
 
 

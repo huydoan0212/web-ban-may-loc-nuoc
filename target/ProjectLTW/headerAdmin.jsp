@@ -1,4 +1,4 @@
-<%--
+<%@ page import="model.User" %><%--
   Created by IntelliJ IDEA.
   User: admin
   Date: 27/01/2024
@@ -6,6 +6,15 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<% User userAdmin = (User) session.getAttribute("user");
+    String checkLogin = userAdmin != null ? "pageAdminController" : "login.jsp";
+    String isCheckLogin = userAdmin != null ? "pageAdmin_Product.jsp" : "login.jsp";
+    String isCheckLogin1 = userAdmin != null ? "page-admin-checkout" : "login.jsp";
+    String isCheckLogin2 = userAdmin != null ? "pageAdminUserController" : "login.jsp";
+    String isCheckLogin3 = userAdmin != null ? "pageAdminCommentController" : "login.jsp";
+    String isCheckLogin4 = userAdmin != null ? "pageAdminContact" : "login.jsp";
+    String isCheckLogin5 = userAdmin != null ? "pageAdmin_Blog.jsp" : "login.jsp";
+%>
 <html>
 <html lang="en">
 <head>
@@ -34,51 +43,57 @@
 </head>
 <body>
 <div class="sidebar">
-    <div class="logo-details">
-        <a href=""><img
+    <div style="height: 150px" class="logo-details">
+        <a href="/ProjectLTW_war/trangchu" style="height: 212px"><img
                 src="https://th.bing.com/th/id/OIP.ZpscpAS7kf2k2s_W_YdeuQHaHa?pid=ImgDet&rs=1" width="240px"
-                height="150px"></a>
+                height="240px"></a>
     </div>
     <ul class="nav-links">
         <li>
-            <a href="pageAdminController" class="active">
+            <a href="<%=checkLogin%>" class="active">
                 <i class="fa-solid fa-border-all"></i>
                 <span class="links_name">Trang chủ</span>
             </a>
         </li>
 
         <li>
-            <a href="pageAdmin_Product.jsp">
+            <a href="<%=isCheckLogin%>">
                 <i class="fa-solid fa-box-archive"></i>
                 <span class="links_name">Quản Lý Sản Phẩm</span>
             </a>
         </li>
         <li>
-            <a href="page-admin-checkout">
+            <a href="<%=isCheckLogin1%>">
                 <i class="fa-solid fa-note-sticky"></i>
                 <span class="links_name">Quản Lý Đơn Hàng</span>
             </a>
         </li>
         <li>
-            <a href="pageAdminUserController">
+            <a href="<%=isCheckLogin2%>">
                 <i class="fa-solid fa-user"></i>
                 <span class="links_name">Quản Lý Tài Khoản</span>
             </a>
         </li>
         <li>
-            <a href="pageAdminCommentController">
+            <a href="<%=isCheckLogin3%>">
                 <i class="fa-solid fa-user"></i>
                 <span class="links_name">Quản lý bình luận</span>
             </a>
         </li>
         <li>
-            <a href="pageAdminContact" class="active">
+            <a href="<%=isCheckLogin4%>" class="active">
                 <i class="fa-solid fa-box-open"></i>
                 <span class="links_name">Quản lý phản hồi</span>
             </a>
         </li>
+        <li>
+            <a href="<%=isCheckLogin5%>" class="active">
+                <i class="fa-solid fa-box-open"></i>
+                <span class="links_name">Quản lý bài viết</span>
+            </a>
+        </li>
         <li class="log_out">
-            <a href="../../../html/pageAdmin_login.html">
+            <a href="logOutController">
                 <i class="fa-solid fa-right-from-bracket"></i>
                 <span class="links_name">Đăng xuất</span>
             </a>
