@@ -33,7 +33,9 @@ public class ProductService {
     public List<Product> getProductByName(String title){
         return ProductDAO.getProductByName(title);
     }
-
+    public String getNameById(int id){
+        return ProductDAO.getNameById(id);
+    }
     public static void main(String[] args) {
         System.out.println(ProductService.getInstance().getProductByName("Máy lọc nước RO"));
     }

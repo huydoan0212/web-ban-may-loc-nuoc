@@ -258,8 +258,6 @@
                                 <th scope="col">Địa chỉ</th>
                                 <th scope="col">Tổng tiền</th>
                                 <th scope="col">Chức năng</th>
-
-
                             </tr>
                             </thead>
                             <tbody>

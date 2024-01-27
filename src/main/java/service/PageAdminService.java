@@ -32,7 +32,33 @@ public class PageAdminService {
     public List<Product> getProductBestSeller(){
         return PageAdminDao.getProductBestSeller();
     }
-
+    public int countOrderToday(){
+        return PageAdminDao.countOrderToday();
+    }
+    public int countOrderThisWeek(){
+        return PageAdminDao.countOrderCancelWeek();
+    }
+    public  int countOrderThisMonth(){
+        return PageAdminDao.countOrderThisMonth();
+    }
+    public  int totalMoneyToday(){
+        return PageAdminDao.totalMoneyToday();
+    }
+    public int totalMoneyWeek(){
+        return PageAdminDao.totalMoneyWeek();
+    }
+    public  int totalMoneyMonth(){
+        return PageAdminDao.totalMoneyMonth();
+    }
+    public int countOrderCancelToday(){
+        return PageAdminDao.countOrderCancelToday();
+    }
+    public int countOrderCancelWeek(){
+        return PageAdminDao.countOrderCancelWeek();
+    }
+    public int countOrderCancelMonth(){
+        return PageAdminDao.countOrderCancelMonth();
+    }
     public static void main(String[] args) {
         System.out.println(PageAdminService.getInstance().getOderRecent());
     }

@@ -31,7 +31,7 @@ public class UpdateUserInfoController extends HttpServlet {
         String fullName = req.getParameter("inputFullName").trim();
         String phone = req.getParameter("inputPhone").trim();
         User user = (User) session.getAttribute("user");
-        boolean checkUpdate = UserDAO.updateUserInfomationById(fullName, phone, user.getId(),gender);
+        boolean checkUpdate = UserDAO.updateUserInfomationById(fullName, phone, user.getId());
         if (checkUpdate) {
             User newUser = UserDAO.getUserById(user.getId());
             System.out.println(newUser);

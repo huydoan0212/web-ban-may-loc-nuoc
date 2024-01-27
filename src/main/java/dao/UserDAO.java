@@ -1,12 +1,15 @@
 package dao;
 
 import db.JDBIConnector;
+import model.Product;
 import model.User;
 import org.jdbi.v3.core.Handle;
 import org.jdbi.v3.core.JdbiException;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 public class UserDAO {
@@ -212,14 +215,13 @@ public class UserDAO {
         return null;
     }
 
-    public static boolean updateUserInfomationById(String fullname, String phone_number, int id, String sex) {
+    public static boolean updateUserInfomationById(String fullname, String phone_number, int id) {
         int rowsUpdated = JDBIConnector.me().withHandle(handle ->
-                handle.createUpdate("UPDATE users SET fullname = ?, phone_number = ?, updated_at = ?, sex = ? WHERE id = ?")
+                handle.createUpdate("UPDATE users SET fullname = ?, phone_number = ?, updated_at = ? WHERE id = ?")
                         .bind(0, fullname)
                         .bind(1, phone_number)
                         .bind(2, LocalDateTime.now().toString())
-                        .bind(3, sex)
-                        .bind(4, id)
+                        .bind(3, id)
                         .execute()
         );
         return rowsUpdated > 0;
@@ -253,7 +255,7 @@ public class UserDAO {
         return false;
     }
 
-    public static boolean changePassworById(int id, String password) {
+    public static boolean changePassworById(int id, String password){
         int rowsUpdated = JDBIConnector.me().withHandle(handle ->
                 handle.createUpdate("UPDATE users SET password = :password WHERE id = :id")
                         .bind("password", password)
@@ -262,20 +264,120 @@ public class UserDAO {
         );
         return rowsUpdated > 0;
     }
-
-
-    public static User getUserByUserId(int id) {
-        Optional<User> user = JDBIConnector.me().withHandle(handle ->
-                handle.createQuery("select * from users where id = :id")
-                        .bind("id", id).mapToBean(User.class).stream().findFirst());
-        return user.isEmpty() ? null : user.get();
+    public static List<User> getAll() {
+        List<User> users = JDBIConnector.me().withHandle((handle -> handle.createQuery("select * from users")
+                .mapToBean(User.class).stream().collect(Collectors.toList())));
+        return users;
     }
-
+    public static boolean setStatusById(int id) {
+        int rowsUpdated = JDBIConnector.me().withHandle(handle ->
+                handle.createUpdate("UPDATE users SET status = ?, updated_at = ? WHERE id = ?")
+                        .bind(0, 1)
+                        .bind(1, LocalDateTime.now().toString())
+                        .bind(2, id)
+                        .execute()
+        );
+        return rowsUpdated > 0;
+    }
+    public static boolean setStatuslockById(int id) {
+        int rowsUpdated = JDBIConnector.me().withHandle(handle ->
+                handle.createUpdate("UPDATE users SET status = ?, updated_at = ? WHERE id = ?")
+                        .bind(0, 2)
+                        .bind(1, LocalDateTime.now().toString())
+                        .bind(2, id)
+                        .execute()
+        );
+        return rowsUpdated > 0;
+    }
+    public static int getSatusById(int id){
+        int status = JDBIConnector.me().withHandle(handle ->
+                handle.createQuery("SELECT status FROM users WHERE id = ?")
+                        .bind(0, id)
+                        .mapTo(Integer.class)
+                        .one()
+        );
+        return status;
+    }
+    public static boolean setRoleIdAdmin(int id) {
+        int rowsUpdated = JDBIConnector.me().withHandle(handle ->
+                handle.createUpdate("UPDATE users SET role_id = ?, updated_at = ? WHERE id = ?")
+                        .bind(0, 1)
+                        .bind(1, LocalDateTime.now().toString())
+                        .bind(2, id)
+                        .execute()
+        );
+        return rowsUpdated > 0;
+    }
+    public static boolean setRoleIdUser(int id) {
+        int rowsUpdated = JDBIConnector.me().withHandle(handle ->
+                handle.createUpdate("UPDATE users SET role_id = ?, updated_at = ? WHERE id = ?")
+                        .bind(0, 2)
+                        .bind(1, LocalDateTime.now().toString())
+                        .bind(2, id)
+                        .execute()
+        );
+        return rowsUpdated > 0;
+    }
+    public static int getRoleById(int id){
+        int roleId = JDBIConnector.me().withHandle(handle ->
+                handle.createQuery("SELECT role_id FROM users WHERE id = ?")
+                        .bind(0, id)
+                        .mapTo(Integer.class)
+                        .one()
+        );
+        return roleId;
+    }
+    public static String getFullNameById(int id){
+        String fullName = JDBIConnector.me().withHandle(handle ->
+                handle.createQuery("SELECT fullname FROM users WHERE id = ?")
+                        .bind(0, id)
+                        .mapTo(String.class)
+                        .one()
+        );
+        return fullName;
+    }
+    public static boolean updateUserAdminById(int id, String username ,String fullname, String phone_number, String email, String password) {
+        int rowsUpdated = JDBIConnector.me().withHandle(handle ->
+                handle.createUpdate("UPDATE users SET username = ?, fullname = ?, phone_number = ?, email = ?, password = ?, updated_at = ? WHERE id = ?")
+                        .bind(0, username)
+                        .bind(1, fullname)
+                        .bind(2, phone_number)
+                        .bind(3, email)
+                        .bind(4, password)
+                        .bind(5, LocalDateTime.now().toString())
+                        .bind(6, id)
+                        .execute()
+        );
+        return rowsUpdated > 0;
+    }
+    public static boolean insertUserAdmin(int role, String username, String fullname, String phone_number, String email, String password) {
+        int rowsInserted = JDBIConnector.me().withHandle(handle ->
+                handle.createUpdate("INSERT INTO users (role_id, username, fullname, phone_number, email, password, status, active, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")
+                        .bind(0, role)
+                        .bind(1, username)
+                        .bind(2, fullname)
+                        .bind(3, phone_number)
+                        .bind(4, email)
+                        .bind(5, password)
+                        .bind(6, 1) // status = 1
+                        .bind(7, 1) // active = 1
+                        .bind(8, LocalDateTime.now().toString())
+                        .execute()
+        );
+        return rowsInserted > 0;
+    }
     public static void main(String[] args) {
-//        System.out.println(UserDAO.getEmail("tranquynhanh23"));
-//    System.out.println(UserDAO.getUserByUserName("tranquynhanh23"));
-//        System.out.println(checkPassByUserId(1,"1"));
-        System.out.println(changePassworById(1, "2"));
+//        // Tạo dữ liệu mẫu
+//        int role = 1;
+//        String username = "testUse1r";
+//        String fullname = "Test User";
+//        String phone_number = "1234567890";
+//        String email = "testuser@example.com";
+//        String password = "password";
+//
+//        // Gọi hàm và in kết quả
+//        boolean isInserted = insertUserAdmin(role, username, fullname, phone_number, email, password);
+//        System.out.println("Kết quả của hàm insertUserAdmin: " + isInserted);
     }
 
 
