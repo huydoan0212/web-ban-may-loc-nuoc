@@ -46,7 +46,6 @@
             countOrderCancel = Integer.valueOf((String) tempObj4);
         }
     }
-
     List<Order> listOderRecent = (List<Order>) session.getAttribute("listOderRecent");
     if (listOderRecent == null) listOderRecent = new ArrayList<Order>();
     System.out.println(listOderRecent);
@@ -75,11 +74,7 @@
             <div class="header-box">
                 <div class="title">Thống kê</div>
                 <div>
-                    <select>
-                        <option value="0">Hôm nay</option>
-                        <option value="1">Tuần</option>
-                        <option value="2">Tháng</option>
-                    </select>
+
                 </div>
             </div>
             <div class="overview-boxes">
@@ -165,12 +160,12 @@
                 <ul class="top-sales-details">
                     <li>
                         <a href="#">
-
                             <span title="Máy lọc nước nóng lạnh Sanaky"
                                   class="product">Máy lọc nước nóng lạnh Sanaky</span>
                         </a>
                         <span class="price">3.000.000<sup>đ</sup></span>
                     </li>
+                    <%for (Order order : listOderRecent) {%>
                     <li>
                         <a href="#">
 

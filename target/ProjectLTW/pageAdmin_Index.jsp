@@ -46,7 +46,6 @@
             countOrderCancel = Integer.valueOf((String) tempObj4);
         }
     }
-
     List<Order> listOderRecent = (List<Order>) session.getAttribute("listOderRecent");
     if (listOderRecent == null) listOderRecent = new ArrayList<Order>();
     System.out.println(listOderRecent);
@@ -75,11 +74,7 @@
             <div class="header-box">
                 <div class="title">Thống kê</div>
                 <div>
-                    <select>
-                        <option value="0">Hôm nay</option>
-                        <option value="1">Tuần</option>
-                        <option value="2">Tháng</option>
-                    </select>
+
                 </div>
             </div>
             <div class="overview-boxes">

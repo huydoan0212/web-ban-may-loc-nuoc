@@ -24,7 +24,7 @@ public class PageAdminControllerWeek extends HttpServlet {
         int countOrder = PageAdminService.getInstance().countOrderCancelWeek();
         int countProductOutStock = PageAdminService.getInstance().countProductOutStock();
         int totalMoney = PageAdminService.getInstance().totalMoneyWeek();
-        int countOrderCancel = PageAdminService.getInstance().countOrderCancelWeek();
+        int countOrderCancel = PageAdminService.getInstance().countOrderThisWeek();
         List<Order> listOderRecent = PageAdminService.getInstance().getOderRecent();
         List<Product> listProductBestSeller = PageAdminService.getInstance().getProductBestSeller();
         request.getSession().setAttribute("countOrder", countOrder);
