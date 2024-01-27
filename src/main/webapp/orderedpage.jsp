@@ -83,11 +83,17 @@
                                 class="money"><%=numberFormat.format(order.getTotal_money())%>₫</span></span>
                         <div class="btn-bot">
                             <a href="view-detail?order_id=<%=order.getId()%>" class="xem-chi-tiet">Xem chi tiết</a>
-                            <%if (order.getStatus().equalsIgnoreCase("Đang đặt hàng")) {%>
+                            <%if (order.getStatus().equalsIgnoreCase("Chưa chọn phương thức thanh toán")) {%>
                             <a style="margin-left: 10px" href="payment" class="mua-lai">Thanh toán</a>
                             <%}%>
+                            <% if (!"Đã hủy".equalsIgnoreCase(order.getStatus()) && !"Đơn hàng đã giao".equalsIgnoreCase(order.getStatus())) { %>
                             <a href="cancel-order?order_id=<%=order.getId()%>" class="mua-lai">Hủy đơn hàng</a>
+                            <% } %>
 
+                        <%--                            <%if (order.getStatus().equalsIgnoreCase("Đã hủy")||order.getStatus().equalsIgnoreCase("Đơn hàng đã giao")) {%>--%>
+<%--                            <%}else{%>--%>
+<%--                                <a href="cancel-order?order_id=<%=order.getId()%>" class="mua-lai">Hủy đơn hàng</a>--%>
+<%--                            <%}%>--%>
                         </div>
                     </div>
                     <%}%>

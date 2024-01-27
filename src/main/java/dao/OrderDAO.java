@@ -49,7 +49,7 @@ public class OrderDAO {
 
     public static List<Order> getOrderByIdUser(int user_id){
         List<Order> orders = JDBIConnector.me().withHandle(handle ->
-                handle.createQuery("SELECT * FROM orders WHERE user_id = :user_id ")
+                handle.createQuery("SELECT * FROM orders WHERE user_id = :user_id ORDER BY id DESC " )
                         .bind("user_id", user_id)
                         .mapToBean(Order.class).stream().collect(Collectors.toList()));
         return orders.isEmpty() ? null : orders;
@@ -84,7 +84,7 @@ public class OrderDAO {
     }
     public static List<Order> getListOrderWaitConfirm(){
         List<Order> orders = JDBIConnector.me().withHandle(handle ->
-                handle.createQuery("SELECT * FROM orders WHERE status = 'Đã thanh toán' or status = 'Đang đặt hàng' limit 100")
+                handle.createQuery("SELECT * FROM orders WHERE status = 'Đã chọn phương thức thanh toán' limit 100")
                         .mapToBean(Order.class).stream().collect(Collectors.toList()));
         return orders;
     }
@@ -95,7 +95,8 @@ public class OrderDAO {
 //        System.out.println(OrderDAO.cancelOrder("Thay doi dia chi", 5));
 //        System.out.println(OrderDAO.getOrderByIdUser(1));
 //        System.out.println(getOrderById(104));
-        System.out.println(insertOrder(1,"sdafsdf","safas","saffs",555555,2));
+//        System.out.println(insertOrder(1,"sdafsdf","safas","saffs",555555,2));
+        System.out.println(getOrderByIdUser(14));
     }
 
     public static List<Order> getListOrderConfirm() {
@@ -165,6 +166,7 @@ public class OrderDAO {
         return rowsUpdated > 0;
 
     }
+
 }
 
 

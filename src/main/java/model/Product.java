@@ -1,47 +1,55 @@
 package model;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Product {
     private int id;
     private int category_id;
-    private int type_machine_id;
+    private int type_machine;
     private int brand_id;
-    private int sale_product_id;
     private String title;
     private int price;
+    private String img;
     private int discount_price;
-    private String description;
+    private String descriptions;
     private int available;
     private Date created_at;
     private Date updated_at;
-    private String img;
+
+    public Product(int id, int category_id, int type_machine, int brand_id, String title, int price, String img, int discount_price, String descriptions, int available, Date created_at, Date updated_at) {
+        this.id = id;
+        this.category_id = category_id;
+        this.type_machine = type_machine;
+        this.brand_id = brand_id;
+        this.title = title;
+        this.price = price;
+        this.img = img;
+        this.discount_price = discount_price;
+        this.descriptions = descriptions;
+        this.available = available;
+        this.created_at = created_at;
+        this.updated_at = updated_at;
+    }
 
     public Product() {
     }
 
-    public String getImg() {
-        return img;
-    }
-
-    public void setImg(String img) {
-        this.img = img;
-    }
-
-    public Product(int id, int category_id, int type_machine_id, int brand_id, int sale_product_id, String title, int price, int discount_price, String description, int available, Date created_at, Date updated_at, String img) {
-        this.id = id;
-        this.category_id = category_id;
-        this.type_machine_id = type_machine_id;
-        this.brand_id = brand_id;
-        this.sale_product_id = sale_product_id;
-        this.title = title;
-        this.price = price;
-        this.discount_price = discount_price;
-        this.description = description;
-        this.available = available;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
-        this.img = img;
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", category_id=" + category_id +
+                ", type_machine=" + type_machine +
+                ", brand_id=" + brand_id +
+                ", title='" + title + '\'' +
+                ", price=" + price +
+                ", img='" + img + '\'' +
+                ", discount_price=" + discount_price +
+                ", descriptions='" + descriptions + '\'' +
+                ", available=" + available +
+                ", created_at=" + created_at +
+                ", updated_at=" + updated_at +
+                '}';
     }
 
     public int getId() {
@@ -60,12 +68,12 @@ public class Product {
         this.category_id = category_id;
     }
 
-    public int getType_machine_id() {
-        return type_machine_id;
+    public int getType_machine() {
+        return type_machine;
     }
 
-    public void setType_machine_id(int type_machine_id) {
-        this.type_machine_id = type_machine_id;
+    public void setType_machine(int type_machine) {
+        this.type_machine = type_machine;
     }
 
     public int getBrand_id() {
@@ -74,14 +82,6 @@ public class Product {
 
     public void setBrand_id(int brand_id) {
         this.brand_id = brand_id;
-    }
-
-    public int getSale_product_id() {
-        return sale_product_id;
-    }
-
-    public void setSale_product_id(int sale_product_id) {
-        this.sale_product_id = sale_product_id;
     }
 
     public String getTitle() {
@@ -100,6 +100,14 @@ public class Product {
         this.price = price;
     }
 
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
     public int getDiscount_price() {
         return discount_price;
     }
@@ -108,12 +116,12 @@ public class Product {
         this.discount_price = discount_price;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDescriptions() {
+        return descriptions;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescriptions(String descriptions) {
+        this.descriptions = descriptions;
     }
 
     public int getAvailable() {
@@ -138,25 +146,5 @@ public class Product {
 
     public void setUpdated_at(Date updated_at) {
         this.updated_at = updated_at;
-    }
-
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", category_id=" + category_id +
-                ", type_machine_id=" + type_machine_id +
-                ", brand_id=" + brand_id +
-                ", sale_product_id=" + sale_product_id +
-                ", title='" + title + '\'' +
-                ", price=" + price +
-                ", discount_price=" + discount_price +
-                ", description='" + description + '\'' +
-                ", available=" + available +
-                ", created_at=" + created_at +
-                ", updated_at=" + updated_at +
-                ", img='" + img + '\'' +
-                '}';
     }
 }

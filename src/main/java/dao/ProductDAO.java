@@ -37,6 +37,7 @@ public class ProductDAO {
                         .stream().collect(Collectors.toList()));
         return products;
     }
+
     public static List<Product> filterByTypeAndBrand(int brand, int type_machine_id) {
         List<Product> products = JDBIConnector.me().withHandle((handle -> handle
                 .createQuery("select * from products where type_machine_id=:type_machine_id and brand_id=:brand_id")
@@ -55,7 +56,56 @@ public class ProductDAO {
         return title;
     }
     public static void main(String[] args) {
-        System.out.println(getNameById(1));
+        System.out.println(getProductByName("Máy lọc nước RO"));
+
+    }
+
+    public static boolean removeProductById(int productId) {
+        int rowsUpdated = JDBIConnector.me().withHandle(handle ->
+                handle.createUpdate("DELETE FROM products WHERE id = :id")
+                        .bind("id", productId)
+                        .execute()
+        );
+        return rowsUpdated > 0;
+    }
+
+    public static boolean changeInfoProduct(int idProduct, int category, String nameProduct, int availableProduct, int priceProduct, int discountPriceProduct, String imgProduct, String desProduct) {
+        int rowsUpdated = JDBIConnector.me().withHandle(handle ->
+                handle.createUpdate("UPDATE products SET " +
+                                "title = :title, " +
+                                "available = :available, " +
+                                "category_id = :category_id, " +
+                                "price =:price," +
+                                "discount_price=:discount_price," +
+                                "img=:img," +
+                                "descriptions=:descriptions WHERE id=:id")
+                        .bind("title", nameProduct)
+                        .bind("available", availableProduct)
+                        .bind("price", priceProduct)
+                        .bind("discount_price", discountPriceProduct)
+                        .bind("img", imgProduct)
+                        .bind("descriptions", desProduct)
+                        .bind("id", idProduct)
+                        .bind("category_id", category)
+                        .execute()
+        );
+        return rowsUpdated > 0;
+    }
+
+    public static boolean addProduct(int category, String nameProduct, int availableProduct, int priceProduct, int discountPriceProduct, String imgProduct, String desProduct) {
+        int rowsUpdated = JDBIConnector.me().withHandle(handle ->
+                handle.createUpdate("INSERT INTO products(title,available,category_id,price,discount_price,img,descriptions) values (:title, :available, :category_id, :price, :discount_price, :img, :descriptions)")
+                        .bind("title", nameProduct)
+                        .bind("available", availableProduct)
+                        .bind("price", priceProduct)
+                        .bind("discount_price", discountPriceProduct)
+                        .bind("img", imgProduct)
+                        .bind("descriptions", desProduct)
+                        .bind("category_id", category)
+                        .execute()
+        );
+        return rowsUpdated > 0;
+
     }
 
 }

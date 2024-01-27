@@ -140,7 +140,7 @@ CREATE  TABLE IF NOT EXISTS `posts` (
                                   `id` INT PRIMARY KEY AUTO_INCREMENT,
                                   `title` VARCHAR(200) NOT NULL,
                                   `content` TEXT,
-                                   'author' VARCHAR(50)  NOT NULL,
+                                   `author` VARCHAR(50)  NOT NULL,
                                    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   );
 

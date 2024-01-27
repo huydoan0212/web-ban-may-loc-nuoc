@@ -47,10 +47,10 @@ public class OrderController extends HttpServlet {
             }
         }
         if (cart.getTotal() > 0 && user != null) {
-            boolean checkCreatedOrder = OrderService.getInstance().insertOrder(user.getId(), user.getAddress(), user.getPhoneNumber(), "Đang đặt hàng", total_decrease, voucher_id);
+            boolean checkCreatedOrder = OrderService.getInstance().insertOrder(user.getId(), user.getAddress(), user.getPhoneNumber(), "Chưa chọn phương thức thanh toán", total_decrease, voucher_id);
 
             if (checkCreatedOrder) {
-                Order order = OrderService.getInstance().getOrder(user.getId(), user.getAddress(), user.getPhoneNumber(), "Đang đặt hàng", total_decrease);
+                Order order = OrderService.getInstance().getOrder(user.getId(), user.getAddress(), user.getPhoneNumber(), "Chưa chọn phương thức thanh toán", total_decrease);
                 if (order != null) session.setAttribute("order", order);
                 for (Object key : set) {
                     int order_id = order.getId();

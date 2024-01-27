@@ -1,15 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<% String name2 = (String) request.getParameter("name2"); %>
-<% String username2 = (String) request.getParameter("username2"); %>
-<% String phone2 = (String) request.getParameter("phone2"); %>
-<% String email2 = (String) request.getParameter("email2"); %>
-<% String password2 = (String) request.getParameter("password2"); %>
-<% String roleUser  = (String) request.getParameter("roleUser"); %>
-<% String error2 = (String) request.getAttribute("error2");%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Thêm tài khoản</title>
+    <title>Quản lý - Thêm tài khoản</title>
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/all.min.css">
     <link rel="stylesheet" href="./css/style.css">
@@ -17,90 +10,47 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-<div class="sidebar">
-    <div class="logo-details">
-        <a href="#"><img src="https://th.bing.com/th/id/OIP.ZpscpAS7kf2k2s_W_YdeuQHaHa?pid=ImgDet&rs=1" width="240px" height="150px"></a>
-    </div>
-    <ul class="nav-links">
-        <li>
-            <a href="#" class="active">
-                <i class="fa-solid fa-border-all"></i>
-                <span class="links_name">Trang chủ</span>
-            </a>
-        </li>
-        <li>
-            <a href="#" class="active">
-                <i class="fa-solid fa-box-open"></i>
-                <span class="links_name">Quản lý kho</span>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <i class="fa-solid fa-box-archive"></i>
-                <span class="links_name">Quản Lý Sản Phẩm</span>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <i class="fa-solid fa-note-sticky"></i>
-                <span class="links_name">Quản Lý Đơn Hàng</span>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <i class="fa-solid fa-user"></i>
-                <span class="links_name">Quản Lý Tài Khoản</span>
-            </a>
-        </li>
+<%@include file="headerAdmin.jsp" %>
 
-        <li class="log_out">
-            <a href="#">
-                <i class="fa-solid fa-right-from-bracket"></i>
-                <span class="links_name">Đăng xuất</span>
-            </a>
-        </li>
-    </ul>
-</div>
+
 
 <section class="home-section">
     <div class="home-content">
         <div class="manager-product">
-            <div class="title">Thêm tài khoản</div>
-            <form class="row" action="pageAdminAddUser" method="post">
+            <div class="title">Thêm Tài Khoản</div>
+            <form class="row">
                 <div class="form-group col-md-4">
-                    <label class="control-label">Tên tài khoản</label>
-                    <input class="form-control" type="text" name="username2"  placeholder="">
+                    <label class="control-label">Mã tài khoản </label>
+                    <input class="form-control" type="number" placeholder="">
                 </div>
                 <div class="form-group col-md-4">
-                    <label class="control-label">Họ và tên</label>
-                    <input class="form-control" type="text" name="name2">
+                    <label class="control-label">Tên người dùng</label>
+                    <input class="form-control" type="text">
                 </div>
-                <div class="form-group col-md-4">
-                    <label class="control-label">Số điện thoại</label>
-                    <input class="form-control" type="text" name="phone2" >
+                <div class="form-group col-md-4 ">
+                    <label class="control-label">Phân quyền</label>
+                    <select class="form-control">
+                        <option>-- Chọn quyền --</option>
+                        <option>Admin</option>
+                        <option>User</option>
+                    </select>
                 </div>
                 <div class="form-group col-md-6 ">
                     <label class="control-label">Email</label>
-                    <input class="form-control" type="email" name="email2" >
+                    <input class="form-control" type="email">
                 </div>
                 <div class="form-group col-md-6">
                     <label class="control-label">Mật khẩu</label>
-                    <input class="form-control" type="password" name="password2" >
+                    <input class="form-control" type="text">
                 </div>
-                <div class="form-group col-md-6">
-                    <input type="radio"  name="roleUser" value="1" checked>
-                    <i>User</i>
-                    <input type="radio"  name="roleUser" value="2" >
-                    <i>Admin</i>
-                </div>
-                    <button class="btn btn-save" type="submit" style="margin-left: 60px">Lưu lại</button>
-                <span style="color: red; font-size: 14px;padding-left: 20px;"><%=(error2 != null && error2 != "") ? error2 : ""%></span>
             </form>
+            <button class="btn btn-save" type="button">Lưu lại</button>
+            <a class="btn btn-cancel" href="pageAdmin_User.jsp">Hủy bỏ</a>
         </div>
     </div>
 </section>
-<script src="./js/jquery.min.js"></script>
-<script type="text/javascript" charset="utf8" src="./js/bootstrap.bundle.min.js"></script>
-<script src="./js/pageAdmin_main.js"></script>
+<script src="../../../js/jquery.min.js"></script>
+<script type="text/javascript" charset="utf8" src="../../../js/bootstrap.bundle.min.js"></script>
+<script src="../../../js/pageAdmin_main.js"></script>
 </body>
 </html>

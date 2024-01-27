@@ -2,7 +2,16 @@
 <%@ page import="model.Post" %>
 <%@ page import="dao.BlogDAO" %>
 <%@ page import="controller.BlogController" %>
-<% Integer id = Integer.valueOf(request.getParameter("id"));%>
+<% Object object = request.getParameter("id");
+    int id = 0;
+  if (object != null) {
+    if (object instanceof Integer) {
+      id = (Integer) object;
+    } else if (object instanceof String) {
+      id = Integer.valueOf((String) object);
+    }
+  }
+%>
 <% String title = request.getParameter("title");%>
 <% String content =request.getParameter("content");%>
 <% String author =request.getParameter("author");%>
@@ -60,8 +69,9 @@
 </head>
 
 <body>
-<div class="main">
 <%@include file="header.jsp"%>
+<div class="main">
+
 <!-- Hero Section Begin -->
 <section class="hero hero-normal">
   <div class="container">
@@ -184,8 +194,9 @@
     </div>
 </section>
 
-<%@include file="footer.jsp"%>
+
 </div>
+<%@include file="footer.jsp"%>
 <script src="https://kit.fontawesome.com/3e135170bd.js" crossorigin="anonymous"></script>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
