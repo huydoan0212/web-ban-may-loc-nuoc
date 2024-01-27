@@ -42,9 +42,9 @@ public class PageAdminDao {
         );
         return count;
     }
-    public static List<Order> getOderRecent() {
+    public static List<Order> getOrderRecent() {
         List<Order> orders= JDBIConnector.me().withHandle((handle ->
-                handle.createQuery("select * from orders order by order_date desc limit 2")
+                handle.createQuery("select * from orders order by order_date desc limit 10")
                         .mapToBean(Order.class).stream().collect(Collectors.toList())));
         return orders;
     }
@@ -144,8 +144,8 @@ public class PageAdminDao {
 //        System.out.println(countProductOutStock());
 //        System.out.println(totalMoney());
 //        System.out.println(countOrderCancel());
-//        System.out.println(getOderRecent());
-        System.out.println(countOrderCancelToday());
+        System.out.println(getOrderRecent());
+//        System.out.println(countOrderCancelToday());
 
     }
 }

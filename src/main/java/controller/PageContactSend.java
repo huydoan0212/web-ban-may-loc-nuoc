@@ -18,6 +18,9 @@ public class PageContactSend extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html; charset=UTF-8");
+        resp.setCharacterEncoding("UTF-8");
         Object temp = req.getParameter("id");
         int id = 0;
         if(temp != null){
@@ -27,9 +30,6 @@ public class PageContactSend extends HttpServlet {
                 id = Integer.valueOf((String) temp);
             }
         }
-        req.setCharacterEncoding("UTF-8");
-        resp.setContentType("text/html; charset=UTF-8");
-        resp.setCharacterEncoding("UTF-8");
         String contact_input = req.getParameter("contact_input");
         String email = ContactService.getInstance().getEmailById(id);
         MailService.send(email, "Healthy Water", "Phản Hồi: " + contact_input);

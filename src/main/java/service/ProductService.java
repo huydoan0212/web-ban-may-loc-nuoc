@@ -44,11 +44,11 @@ public class ProductService {
         return ProductDAO.removeProductById( productId);
     }
 
-    public boolean changeInfoProduct(int idProduct,int category, String nameProduct, int availableProduct, int priceProduct, int discountPriceProduct, String imgProduct, String desProduct) {
-        return ProductDAO.changeInfoProduct(idProduct,category,nameProduct, availableProduct,priceProduct,discountPriceProduct,imgProduct,desProduct);
+    public boolean changeInfoProduct(int idProduct,int category, String nameProduct, int availableProduct, int priceProduct, int discountPriceProduct, String imgProduct, String desProduct,int brand,int typeMachine) {
+        return ProductDAO.changeInfoProduct(idProduct,category,nameProduct, availableProduct,priceProduct,discountPriceProduct,imgProduct,desProduct,brand,typeMachine);
     }
 
-    public boolean addProduct(int selectedCategory, String nameProduct, int availableProduct, int priceProduct, int discountPriceProduct, String imgProduct, String desProduct) {
-        return ProductDAO.addProduct(selectedCategory,nameProduct, availableProduct,priceProduct,discountPriceProduct,imgProduct,desProduct);
+    public boolean addProduct(int selectedCategory, String nameProduct, int availableProduct, int priceProduct, int discountPriceProduct, String imgProduct, String desProduct,int type, int brand) {
+        return ProductDAO.addProduct(selectedCategory,nameProduct, availableProduct,priceProduct,discountPriceProduct,imgProduct,desProduct,type,brand);
     }
 }

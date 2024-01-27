@@ -14,7 +14,7 @@
 <%
     Order order = (Order) session.getAttribute("order");
     if (order == null) order = new Order();
-    User user = UserDAO.getUserByUserId(order.getUser_id());
+    User user = UserDAO.getUserById(order.getUser_id());
     List<OrderDetail> orderDetails = OrderDetailService.getInstance().getOrderDetailByIdOrder(order.getId());
     if (orderDetails == null) orderDetails = new ArrayList<OrderDetail>();
 %>

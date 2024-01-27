@@ -26,8 +26,8 @@ public class PageAdminService {
     public int countOrderCancel(){
         return PageAdminDao.countOrderCancel();
     }
-    public List<Order> getOderRecent(){
-        return PageAdminDao.getOderRecent();
+    public List<Order> getOrderRecent(){
+        return PageAdminDao.getOrderRecent();
     }
     public List<Product> getProductBestSeller(){
         return PageAdminDao.getProductBestSeller();
@@ -60,6 +60,6 @@ public class PageAdminService {
         return PageAdminDao.countOrderCancelMonth();
     }
     public static void main(String[] args) {
-        System.out.println(PageAdminService.getInstance().getOderRecent());
+        System.out.println(PageAdminService.getInstance().getOrderRecent());
     }
 }

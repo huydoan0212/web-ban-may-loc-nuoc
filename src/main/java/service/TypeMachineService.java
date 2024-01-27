@@ -13,7 +13,7 @@ public class TypeMachineService {
             instance = new TypeMachineService();
         return instance;
     }
-    public List<TypeMachine> getListBrand() {
+    public List<TypeMachine> getListTypeMachine() {
         return TypeMachineDAO.getListTypeMachine();
     }
     public TypeMachine getTypeMachineById(int id){
