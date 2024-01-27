@@ -51,12 +51,11 @@
                     <div class="product-content-left-big-img">
                         <img src="<%=product.getImg()%>"/>
                     </div>
-                    <%--                    <div class="product-content-left-small-img">--%>
-                    <%--                        <img src="<%=galleries.get(1).getImg()%>"/>--%>
-                    <%--                        <img src="<%=galleries.get(2).getImg()%>"/>--%>
-                    <%--                        <img src="<%=galleries.get(3).getImg()%>"/>--%>
-                    <%--                    </div>--%>
-
+                                        <div class="product-content-left-small-img">
+                                            <img src="<%=galleries.get(1).getImg()%>"/>
+                                            <img src="<%=galleries.get(2).getImg()%>"/>
+                                            <img src="<%=galleries.get(3).getImg()%>"/>
+                                        </div>
                     <div class="product-content-right">
                         <div class="product-content-right-product-name">
                             <h1 style="font-size: 22px"><%=product.getTitle()%>

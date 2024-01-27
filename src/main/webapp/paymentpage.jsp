@@ -1,10 +1,12 @@
-<%@ page import="model.Order" %>
-<%@ page import="model.Product" %>
 <%@ page import="cart.Cart" %>
 <%@ page import="java.util.Set" %>
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="java.util.Locale" %>
-<%@ page import="model.Voucher" %><%--
+<%@ page import="model.*" %>
+<%@ page import="dao.OrderDetailDAO" %>
+<%@ page import="dao.VoucherDAO" %>
+<%@ page import="java.util.List" %>
+<%@ page import="dao.ProductDAO" %><%--
   Created by IntelliJ IDEA.
   User: admin
   Date: 21/01/2024
@@ -14,15 +16,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     Order order = (Order) session.getAttribute("order");
-    Cart cart = (Cart) session.getAttribute("cart");
-    if (cart == null) cart = new Cart();
-    int total = 0;
-    Set set = cart.getData().keySet();
-    for (Object key : set
-    ) {
-        total += cart.getData().get(key).getProduct().getDiscount_price() * cart.getData().get(key).getQuantity();
-    }
-    Voucher voucher = (Voucher) session.getAttribute("voucher");
 
     Object tempObj = session.getAttribute("percent_decrease");
     double percent_decrease = 0;
@@ -33,8 +26,10 @@
             percent_decrease = Double.valueOf((String) tempObj);
         }
     }
-    int decrease = (int) (total * percent_decrease);
-    int total_decrease = (int) (total - (total * percent_decrease));
+    List<OrderDetail> orderDetails = OrderDetailDAO.getOrderDetailByIdOrder(order.getId());
+    Voucher voucher = VoucherDAO.getVoucherById(order.getVoucher_id());
+    System.out.println(order.getId());
+    request.getSession().setAttribute("order_id",order.getId());
     String reason = request.getParameter("reason");
 %>
 <% Locale locale = new Locale("vi", "VN");
@@ -176,13 +171,14 @@
         <div class="container">
             <div class="payment">
                 <h1 class="payment-h1">Thanh Toán <i class="fa-solid fa-money-bill"></i></h1>
+                <form action="cancel-order?order_id=<%=order.getId()%>">
                 <div class="payment-id">
                     <h2 class="payment-id-title">Đơn hàng của bạn</h2>
                     <h3 id="payment-id-main">Mã đơn hàng: #<%=order.getId()%>
                     </h3>
                     <button type="submit" href="" id="cancel-form">Huỷ đơn hàng</button>
-
                 </div>
+                </form>
                 <div class="payment-information">
                     <div class="information-1">
                         <h4>Người nhận hàng: </h4>
@@ -204,42 +200,43 @@
                     <h3 class="title-1">Sản phẩm</h3>
                     <h3 class="title-2">Tổng tiền</h3>
                 </div>
+                <%int total = 0;%>
                 <%
-                    for
-                    (
-                            Object
-                                    key
-                            :
-                            set
+                    for (OrderDetail od : orderDetails
+
                     ) {
+                        total += od.getTotal_money();
+
                 %>
                 <div class="product">
-                    <p class="product-1"><%=cart.getData().get(key).getProduct().getTitle()%>
-                        x <%=cart.getData().get(key).getQuantity()%>
+                    <p class="product-1"><%=ProductDAO.getById(od.getProduct_id()).getTitle()%>
+                        x <%=od.getQuantity()%>
                     </p>
-                    <p class="product-price"><%=numberFormat.format(cart.getData().get(key).getProduct().getDiscount_price() * cart.getData().get(key).getQuantity())%>
+                    <p class="product-price"><%=numberFormat.format(od.getTotal_money())%>
                         ₫</p>
                 </div>
                 <%}%>
                 <div class="tax">
                     <p class="tax-title"><%=voucher.getVoucher_name()%>
                     </p>
-                    <p class="tax-price"><%=numberFormat.format(decrease)%>₫
+                    <p class="tax-price"><%=numberFormat.format(total - order.getTotal_money())%>₫
                     </p>
                 </div>
                 <div class="total">
                     <p class="total-title">Tồng tiền</p>
-                    <p class="total-price"><%=numberFormat.format(total_decrease)%>₫</p>
+                    <p class="total-price"><%=numberFormat.format(order.getTotal_money())%>₫</p>
                 </div>
                 <form id="paymentForm" action="payment-order">
                     <h3 style="padding: 0 24px">Chọn hình thức thanh toán</h3>
                     <div class="payment-type">
                         <div class="payment-type-1">
-                            <input type="radio" value="Thanh toán bằng tiền mặt" name="paymentOption" class="checkbox-2">
+                            <input type="radio" value="Thanh toán bằng tiền mặt" name="paymentOption"
+                                   class="checkbox-2">
                             <p>Thanh toán bằng tiền mặt</p>
                         </div>
                         <div class="payment-type-1">
-                            <input type="radio" value="Thanh toán bằng thẻ ngân hàng" name="paymentOption" class="checkbox-2">
+                            <input type="radio" value="Thanh toán bằng thẻ ngân hàng" name="paymentOption"
+                                   class="checkbox-2">
                             <p>Thanh toán bằng thẻ ngân hàng</p>
                         </div>
                     </div>
@@ -275,36 +272,36 @@
         </div>
     </div>
     <div class="cancel-form">
-        <form action="cancel-order?order_id=<%=order.getId()%>&reason=<%=reason%>" id="cancel">
-            <%--        <%String reason = "Cần thay đổi thông tin địa chỉ giao hàng";--%>
-            <%--            String reason1 = "Cần thay đổi sdt người nhận";--%>
-            <%--            String reason2 = "Giá cả không hợp lý";--%>
-            <%--        %>--%>
-            <div class="cancel-form-content">
-                <i class="fa-solid fa-x" id="close"></i>
-                <h3 style="padding-top: 50px;
-    padding-bottom: 30px;">Vui lòng chọn lý do bạn muốn huỷ đơn hàng</h3>
-                <%--            <div class="cancel-1">--%>
-                <%--                <input type="radio" name="cancelReason" value="<%=reason%>" class="checkbox-cancel-1">--%>
-                <%--                <p><%=reason%></p>--%>
-                <%--            </div>--%>
-                <%--            <div class="cancel-2">--%>
-                <%--                <input type="radio" name="cancelReason" value="<%=reason1%>" class="checkbox-cancel-2">--%>
-                <%--                <p><%=reason1%></p>--%>
-                <%--            </div>--%>
-                <%--            <div class="cancel-3">--%>
-                <%--                <input type="radio" name="cancelReason" value="<%=reason2%>" class="checkbox-cancel-3">--%>
-                <%--                <p><%=reason2%></p>--%>
-                <%--            </div>--%>
-                <%--            <div class="cancel-4">--%>
-                <%--                <input type="radio" name="cancelReason" value="other" class="checkbox-cancel-4">--%>
-                <%--                <p>Lý do khác</p>--%>
-                <%--            </div>--%>
-                <textarea name="reason" id="otherReason" cols="30" rows="10"
-                          placeholder="Nhập lý do muốn huỷ đơn hàng"></textarea>
-                <button type="submit">Xác nhận</button>
-            </div>
-        </form>
+<%--        <form action="&reason=<%=reason%>" id="cancel">--%>
+<%--            &lt;%&ndash;        <%String reason = "Cần thay đổi thông tin địa chỉ giao hàng";&ndash;%&gt;--%>
+<%--            &lt;%&ndash;            String reason1 = "Cần thay đổi sdt người nhận";&ndash;%&gt;--%>
+<%--            &lt;%&ndash;            String reason2 = "Giá cả không hợp lý";&ndash;%&gt;--%>
+<%--            &lt;%&ndash;        %>&ndash;%&gt;--%>
+<%--            <div class="cancel-form-content">--%>
+<%--                <i class="fa-solid fa-x" id="close"></i>--%>
+<%--                <h3 style="padding-top: 50px;--%>
+<%--    padding-bottom: 30px;">Vui lòng chọn lý do bạn muốn huỷ đơn hàng</h3>--%>
+<%--                &lt;%&ndash;            <div class="cancel-1">&ndash;%&gt;--%>
+<%--                &lt;%&ndash;                <input type="radio" name="cancelReason" value="<%=reason%>" class="checkbox-cancel-1">&ndash;%&gt;--%>
+<%--                &lt;%&ndash;                <p><%=reason%></p>&ndash;%&gt;--%>
+<%--                &lt;%&ndash;            </div>&ndash;%&gt;--%>
+<%--                &lt;%&ndash;            <div class="cancel-2">&ndash;%&gt;--%>
+<%--                &lt;%&ndash;                <input type="radio" name="cancelReason" value="<%=reason1%>" class="checkbox-cancel-2">&ndash;%&gt;--%>
+<%--                &lt;%&ndash;                <p><%=reason1%></p>&ndash;%&gt;--%>
+<%--                &lt;%&ndash;            </div>&ndash;%&gt;--%>
+<%--                &lt;%&ndash;            <div class="cancel-3">&ndash;%&gt;--%>
+<%--                &lt;%&ndash;                <input type="radio" name="cancelReason" value="<%=reason2%>" class="checkbox-cancel-3">&ndash;%&gt;--%>
+<%--                &lt;%&ndash;                <p><%=reason2%></p>&ndash;%&gt;--%>
+<%--                &lt;%&ndash;            </div>&ndash;%&gt;--%>
+<%--                &lt;%&ndash;            <div class="cancel-4">&ndash;%&gt;--%>
+<%--                &lt;%&ndash;                <input type="radio" name="cancelReason" value="other" class="checkbox-cancel-4">&ndash;%&gt;--%>
+<%--                &lt;%&ndash;                <p>Lý do khác</p>&ndash;%&gt;--%>
+<%--                &lt;%&ndash;            </div>&ndash;%&gt;--%>
+<%--                <textarea name="reason" id="otherReason" cols="30" rows="10"--%>
+<%--                          placeholder="Nhập lý do muốn huỷ đơn hàng"></textarea>--%>
+<%--                <button type="submit">Xác nhận</button>--%>
+<%--            </div>--%>
+<%--        </form>--%>
 
         <%--    <script>--%>
         <%--        function updateAction() {--%>

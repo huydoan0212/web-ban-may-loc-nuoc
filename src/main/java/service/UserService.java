@@ -15,7 +15,13 @@ public class UserService {
             instance = new UserService();
         return instance;
     }
-
+    public static boolean countPassword(String password){
+        if(password.length() >= 8){
+            return true;
+        } else {
+            return false;
+        }
+    }
     public static boolean isValidEmail(String email) {
         String emailPattern = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
         Pattern pattern = Pattern.compile(emailPattern);
