@@ -34,7 +34,7 @@
 <%--        %>--%>
 <%--        <input type="hidden" name="otp" value="<%= otp %>"/>--%>
 <%--        <input type="hidden" name="username" value="<%= username %>"/>--%>
-        <h1>Nhập email</h1>
+        <h1>Nhập mã OTP </h1>
         <div class="input-box">
           <input type="text" placeholder="Nhập mã OTP được gửi về email" name="enterOTP">
         </div>

@@ -264,7 +264,7 @@ VALUES(1, 1, 'img/may-loc-nuoc-ro-karofi-kaq-x16-10-loi-130223-054043-600x600.jp
       (79, 20, 'img/p20.3.jpg'),
       (80, 21, 'img/p21.1.jpg'),
       (82, 21, 'img/p21.2.jpg'),
-      (83, 21, 'img/p21.3.jpg'),
+      (83, 21, 'img/p21.3.jpg');
 
 INSERT INTO `orders` (`id`, `user_id`, `address`, `phone`, `order_date`, `status`, `received_date`, `total_money`, `voucher_id`) VALUES
                                                                                                                                      (109, 1, '126 Phuoc Long', '0586485990', '2024-01-22 21:08:12', 'Đang đặt hàng', NULL, 7984000, 2),
@@ -295,7 +295,7 @@ INSERT INTO `payments` (`id`, `order_id`, `payment_type`, `payment_date`, `total
                                                                                        (1, 115, 'Thanh toán bằng thẻ ngân hàng', '2024-01-23 00:32:08', 13960000),
                                                                                        (2, 116, 'Thanh toán bằng tiền mặt', '2024-01-23 00:40:12', 7590000);
 INSERT INTO `products` (`id`, `category_id`, `type_machine_id`, `brand_id`, `title`, `price`, `img`, `discount_price`, `descriptions`, `available`, `created_at`, `updated_at`)
-VALUES (1, 1, 4, 1, 'Máy lọc nước RO nóng nguội lạnh Karofi KAD-X39 10 lõi', 10490000, 'img/ro-nong-lanh-karofi-kad-x39-10-loi-140223-034144-600x600.jpg', 6190000, 'Máy lọc nước', 100, '2023-12-18', '2023-12-18'),
+VALUES ( , 1, 4, 1, 'Máy lọc nước RO nóng nguội lạnh Karofi KAD-X39 10 lõi', 10490000, 'img/ro-nong-lanh-karofi-kad-x39-10-loi-140223-034144-600x600.jpg', 6190000, 'Máy lọc nước', 100, '2023-12-18', '2023-12-18'),
        (2, 1, 1, 4, 'Máy lọc nước RO Mutosi MP-290SK 9 lõi', 6670000, 'img/ro-mutosi-mp-290sk-9-loi-140223-054510-600x600-1-600x600.jpg', 3490000, 'Máy lọc nước', 100, '2023-12-10', '2023-12-10'),
        (3, 1, 2, 1,  'Máy lọc nước RO nóng nguội lạnh Karofi KAD-X58 11 lõi', 12660000, 'img/may-loc-nuoc-ro-nong-nguoi-lanh-karofi-kad-x58-11-loi-0-600x600.jpg', 8690000, 'Máy lọc nước', 50, '2023-12-11', '2023-12-11'),
        (4, 1, 2, 5,  'Máy lọc nước RO nóng nguội lạnh Hòa Phát HWBS3A 1021 10 lõi', 10670000, 'img/may-loc-nuoc-ro-nong-nguoi-lanh-hoa-phat-hwbs3a-1021-10-loi-210623-023624-600x600.jpg', 6490000, 'Máy lọc nước', 2002, '2023-12-16', '2023-12-16'),

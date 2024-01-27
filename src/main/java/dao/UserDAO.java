@@ -34,29 +34,20 @@ public class UserDAO {
     }
 
     public static boolean addUser(String username, String fullname, String email, String phone_number, String password) {
-        boolean result = false;
-        String insertQuery = "INSERT INTO users (role_id, username, fullname, email, phone_number, sex, address, password, created_at, status) " +
-                "VALUES (?, ?, ?, ?, ?, '', '', ?, ?, 1)";
-
-        try (Handle handle = JDBIConnector.me().open()) {
-            int rowsInserted = handle.createUpdate(insertQuery)
-                    .bind(0, 2)
-                    .bind(1, username)
-                    .bind(2, fullname)
-                    .bind(3, email)
-                    .bind(4, phone_number)
-                    .bind(5, password)
-                    .bind(6, LocalDateTime.now().toString())
-                    .execute();
-
-            result = rowsInserted > 0;
-        } catch (Exception e) {
-            e.printStackTrace(); // In ra lỗi để theo dõi và xử lý nếu cần
-        }
-
-        return result;
+        int rowsInserted = JDBIConnector.me().withHandle(handle ->
+                handle.createUpdate("INSERT INTO users (role_id ,username, fullname, phone_number, email, password, status, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)")
+                        .bind(0, 2) // role_id = 2
+                        .bind(1, username)
+                        .bind(2, fullname)
+                        .bind(3, phone_number)
+                        .bind(4, email)
+                        .bind(5, password)
+                        .bind(6, 1) // status = 1
+                        .bind(7, LocalDateTime.now().toString())
+                        .execute()
+        );
+        return rowsInserted > 0;
     }
-
 
     public static boolean loginUser(String username, String password) {
         try {
@@ -385,7 +376,6 @@ public class UserDAO {
         String password = "testPassword";
 
         boolean isUserAdded = addUser(username, fullname, email, phone_number, password);
-
         if (isUserAdded) {
             System.out.println("User added successfully!");
         } else {

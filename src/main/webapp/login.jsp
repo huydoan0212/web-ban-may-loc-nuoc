@@ -31,21 +31,21 @@
             </div>
             <div class="slider-form">
                     <form action="LoginServlet" method="post">
-                      <%
-                        String message = (String) request.getSession().getAttribute("message");
-                        if (message != null && !message.isEmpty()) {
-                      %>
-                      <p style="color: red;
+                        <h1 style="text-align: center;">Đăng Nhập</h1>
+                        <%
+                            String message = (String) request.getSession().getAttribute("message");
+                            if (message != null && !message.isEmpty()) {
+                        %>
+                        <p style="color: red;
     text-align: center;
     font-size: 14px;
     font-weight: bold;
     margin-top: 10px;"> <%= message %> </p>
-                      <%
-                          // Đặt lại giá trị message sau khi đã hiển thị
-                          request.getSession().removeAttribute("message");
-                        }
-                      %>
-                        <h1 style="text-align: center;">Đăng Nhập</h1>
+                        <%
+                                // Đặt lại giá trị message sau khi đã hiển thị
+                                request.getSession().removeAttribute("message");
+                            }
+                        %>
                         <div class="input-box">
                             <input type="text" placeholder="Email/ Tên đăng nhập" name="username">
                         </div>
@@ -62,14 +62,6 @@
                         </div>
                         <div class="label-or">
                             <p for="">Hoặc</p>
-                        </div>
-                        <div class="btn-ggfb">
-                           <button class="btnfb">
-                               <i class="fa-brands fa-facebook"></i> Facebook
-                           </button>
-                            <button class="btngg">
-                                <i class="fa-brands fa-google"></i> Google
-                            </button>
                         </div>
                         <div class="des">
                             <p>Bạn mới biết đến Healthywater? </p>
