@@ -42,7 +42,7 @@ public class  UpdateBlogAdmin extends HttpServlet {
     boolean updateSuccess = blogDAO.updatePost(postId, newTitle, newContent, newAuthor, newImg);
 
     if (updateSuccess) {
-      response.sendRedirect("blog.jsp");
+      response.sendRedirect("pageAdmin_Blog.jsp");
     } else {
       response.getWriter().println("Cập nhật bài đăng thất bại!");
     }
