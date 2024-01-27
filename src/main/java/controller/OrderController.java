@@ -47,7 +47,7 @@ public class OrderController extends HttpServlet {
             }
         }
         if (cart.getTotal() > 0 && user != null) {
-            boolean checkCreatedOrder = OrderService.getInstance().insertOrder(user.getId(), user.getAddress(), user.getPhoneNumber(), "Chưa chọn phương thức thanh toán", total_decrease, voucher_id);
+            boolean checkCreatedOrder = OrderService.getInstance().insertOrder(user.getId(), user.getAddress(), user.getPhoneNumber(), "Chưa chọn phương thức thanh toán", total_decrease, voucher_id,user.getFullName());
 
             if (checkCreatedOrder) {
                 Order order = OrderService.getInstance().getOrder(user.getId(), user.getAddress(), user.getPhoneNumber(), "Chưa chọn phương thức thanh toán", total_decrease);

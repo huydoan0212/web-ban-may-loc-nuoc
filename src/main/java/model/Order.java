@@ -13,35 +13,7 @@ public class Order {
     private int total_money;
     private int voucher_id;
 
-    public Order(int id, int user_id, String address, String phone, LocalDateTime order_date, String status, LocalDateTime received_date, int total_money, int voucher_id) {
-        this.id = id;
-        this.user_id = user_id;
-        this.address = address;
-        this.phone = phone;
-        this.order_date = order_date;
-        this.status = status;
-        this.received_date = received_date;
-        this.total_money = total_money;
-        this.voucher_id = voucher_id;
-    }
-
-    public Order() {
-    }
-
-    @Override
-    public String toString() {
-        return "Order{" +
-                "id=" + id +
-                ", user_id=" + user_id +
-                ", address='" + address + '\'' +
-                ", phone='" + phone + '\'' +
-                ", order_date=" + order_date +
-                ", status='" + status + '\'' +
-                ", received_date=" + received_date +
-                ", total_money=" + total_money +
-                ", voucher_id=" + voucher_id +
-                '}';
-    }
+    private String name;
 
     public int getId() {
         return id;
@@ -113,5 +85,29 @@ public class Order {
 
     public void setVoucher_id(int voucher_id) {
         this.voucher_id = voucher_id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Order() {
+    }
+
+    public Order(int id, int user_id, String address, String phone, LocalDateTime order_date, String status, LocalDateTime received_date, int total_money, int voucher_id, String name) {
+        this.id = id;
+        this.user_id = user_id;
+        this.address = address;
+        this.phone = phone;
+        this.order_date = order_date;
+        this.status = status;
+        this.received_date = received_date;
+        this.total_money = total_money;
+        this.voucher_id = voucher_id;
+        this.name = name;
     }
 }

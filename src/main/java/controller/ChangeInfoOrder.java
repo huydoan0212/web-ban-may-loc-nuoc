@@ -24,14 +24,17 @@ public class ChangeInfoOrder extends HttpServlet {
         String name = req.getParameter("name");
         String address = req.getParameter("address");
         String phone = req.getParameter("phone");
-        String idStr = req.getParameter("id");
+        String idStr = req.getParameter("order_id");
         int id = 0;
         if (idStr != null && !idStr.isEmpty()) {
             id = Integer.valueOf(idStr);
         }
         boolean isChangeInfoOrder = OrderDAO.changeInfoOrder(id, name, address, phone);
         if (isChangeInfoOrder) {
-            req.getRequestDispatcher("view-detail?order_id").forward(req, resp);
+            req.getRequestDispatcher("ordered-page").forward(req, resp);
+        } else {
+            req.getSession().setAttribute("error", "Đơn hàng đang giao hoặc đã hủy");
+            req.getRequestDispatcher("view-detail").forward(req,resp);
         }
     }
 }

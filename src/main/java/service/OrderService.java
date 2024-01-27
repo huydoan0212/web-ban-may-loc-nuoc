@@ -15,8 +15,8 @@ public class OrderService {
         return instance;
     }
 
-    public boolean insertOrder(int user_id, String address, String phone, String status, int total_money, int voucher_id) {
-        return OrderDAO.insertOrder(user_id, address, phone, status, total_money,voucher_id);
+    public boolean insertOrder(int user_id, String address, String phone, String status, int total_money, int voucher_id,String name) {
+        return OrderDAO.insertOrder(user_id, address, phone, status, total_money,voucher_id,name);
     }
     public Order getOrder(int user_id, String address, String phone, String status, int total_money){
         return OrderDAO.getOrder(user_id, address, phone, status, total_money);

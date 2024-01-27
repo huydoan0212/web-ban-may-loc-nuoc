@@ -11,10 +11,10 @@ import java.util.stream.Collectors;
 public class OrderDAO {
     LocalDateTime time = null;
 
-    public static boolean insertOrder(int user_id, String address, String phone, String status, int total_money, int voucher_id) {
+    public static boolean insertOrder(int user_id, String address, String phone, String status, int total_money, int voucher_id,String name) {
         int rowAffected = JDBIConnector.me().withHandle(handle ->
-                handle.createUpdate("INSERT INTO orders( user_id, address, phone, order_date,status,total_money,voucher_id) " +
-                                "VALUES ( :user_id, :address, :phone, :order_date, :status, :total_money,:voucher_id)")
+                handle.createUpdate("INSERT INTO orders( user_id, address, phone, order_date,status,total_money,voucher_id,name) " +
+                                "VALUES ( :user_id, :address, :phone, :order_date, :status, :total_money,:voucher_id,:name)")
                         .bind("user_id", user_id)
                         .bind("address", address)
                         .bind("phone", phone)
@@ -22,6 +22,7 @@ public class OrderDAO {
                         .bind("status", status)
                         .bind("total_money", total_money)
                         .bind("voucher_id",voucher_id)
+                        .bind("name",name)
                         .execute());
         if (rowAffected > 0) {
             return true;
@@ -170,7 +171,7 @@ public class OrderDAO {
 
     public static boolean changeInfoOrder(int id, String name, String address, String phone) {
         int rowsUpdated = JDBIConnector.me().withHandle(handle ->
-                handle.createUpdate("UPDATE orders SET address =:address, phone=:phone, name=:name WHERE id = :id AND status NOT LIKE 'Đơn hàng đã giao' AND status NOT LIKE 'Đơn hàng đang vận chuyển'")
+                handle.createUpdate("UPDATE orders SET address =:address, phone=:phone, name=:name WHERE id = :id AND status NOT LIKE 'Đơn hàng đã giao' AND status NOT LIKE 'Đơn hàng đang vận chuyển' AND status NOT LIKE 'Đã hủy'")
                         .bind("id", id)
                         .bind("address", address)
                         .bind("phone", phone)

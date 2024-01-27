@@ -76,27 +76,35 @@
                                 <p><i class="fa-solid fa-map-location-dot"></i>THÔNG TIN NHẬN
                                     HÀNG</p>
                             </div>
-                            <form action="change-info-order?id=<%=order.getId()%>" method="post">
+                            <form action="change-info-order?order_id=<%=order.getId()%>" method="post">
                             <div class="content-receive">
                                 <p>Người nhận: </p>
                                 <input style="width: 385px;
     height: 30px;
-    border-radius: 4px; margin: auto" type="text" name="name" value="<%=(user.getFullName()!=null && user.getFullName()!="")? user.getFullName():""%>">
+    border-radius: 4px; margin: auto" type="text" name="name" value="<%=(order.getName()!=null && order.getName()!="")? order.getName():""%>">
                                 <p>Địa chỉ: </p>
                                 <input style="width: 385px;
     height: 30px;
-    border-radius: 4px; margin: auto" type="text" name="address" value="<%=(user.getAddress()!=null && user.getAddress()!="")? user.getAddress():""%>">
+    border-radius: 4px; margin: auto" type="text" name="address" value="<%=(order.getAddress()!=null && order.getAddress()!="")? order.getAddress():""%>">
                                 <p>Số điện thoại: </p>
                                 <input style="width: 385px;
     height: 30px;
-    border-radius: 4px; margin: auto" type="text" name="phone" value="<%=(user.getPhoneNumber()!=null && user.getPhoneNumber()!="")? user.getPhoneNumber():""%>">
+    border-radius: 4px; margin: auto" type="text" name="phone" value="<%=(order.getPhone()!=null && order.getPhone()!="")? order.getPhone():""%>">
                             </div>
-                                <a style="    text-align: center;
+                                <%String error = (String) request.getSession().getAttribute("error");
+                                if (error!=null){%>
+                                <div style="text-align: center"><span style="color:red;"><%=error%></span></div>
+                                <%}%>
+                                <%request.getSession().removeAttribute("error");%>
+                                <button type="submit" style="    text-align: center;
     display: block;
     font-size: 14px;
     text-decoration: none;
     color: #4a90e2;
-    margin-top: 15px;" href="">Cập nhật</a>
+    margin: auto;
+    margin-top: 15px;
+    background-color: white;
+    border: 1px #4a90e2;" href="">Cập nhật</button>
                             </form>
 
                         </div>
