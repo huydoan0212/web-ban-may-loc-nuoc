@@ -35,8 +35,8 @@ public class UserDAO {
 
     public static boolean addUser(String username, String fullname, String email, String phone_number, String password) {
         boolean result = false;
-        String insertQuery = "INSERT INTO users (role_id, username, fullname, email, phone_number, sex, address, password, created_at) " +
-                "VALUES (?, ?, ?, ?, ?, '', '', ?, ?)";
+        String insertQuery = "INSERT INTO users (role_id, username, fullname, email, phone_number, sex, address, password, created_at, status) " +
+                "VALUES (?, ?, ?, ?, ?, '', '', ?, ?, 1)";
 
         try (Handle handle = JDBIConnector.me().open()) {
             int rowsInserted = handle.createUpdate(insertQuery)
@@ -378,6 +378,19 @@ public class UserDAO {
 //        // Gọi hàm và in kết quả
 //        boolean isInserted = insertUserAdmin(role, username, fullname, phone_number, email, password);
 //        System.out.println("Kết quả của hàm insertUserAdmin: " + isInserted);
+        String username = "testUser";
+        String fullname = "Test User";
+        String email = "testuser@example.com";
+        String phone_number = "1234567890";
+        String password = "testPassword";
+
+        boolean isUserAdded = addUser(username, fullname, email, phone_number, password);
+
+        if (isUserAdded) {
+            System.out.println("User added successfully!");
+        } else {
+            System.out.println("Failed to add user.");
+        }
     }
 
 
