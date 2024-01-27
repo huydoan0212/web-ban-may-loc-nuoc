@@ -52,9 +52,9 @@
                         <img src="<%=product.getImg()%>"/>
                     </div>
                                         <div class="product-content-left-small-img">
+                                            <img src="<%=galleries.get(0).getImg()%>"/>
                                             <img src="<%=galleries.get(1).getImg()%>"/>
                                             <img src="<%=galleries.get(2).getImg()%>"/>
-                                            <img src="<%=galleries.get(3).getImg()%>"/>
                                         </div>
                     <div class="product-content-right">
                         <div class="product-content-right-product-name">
@@ -188,7 +188,7 @@
                                 <%--                                - Máy lọc nước được nguồn nước máy, nước giếng đã xử lý thô.<br>--%>
                             <p><b><%=product.getDescriptions()%>
                             </b>
-                                <img src="<%=galleries.get(3).getImg()%>"/>
+                                <img src="<%=galleries.get(2).getImg()%>"/>
                                 <%--                                       <br><b style="font-size: 15px">Chứng nhận nước sạch của Bộ Y&ndash;%&gt;--%>
                                 <%--                                    tế</b><br>--%>
                                 <%--                                Nước sau khi lọc đạt tiêu chuẩn nước uống trực tiếp không cần đun sôi QCVN 6-1:2010/BYT.<br>--%>
