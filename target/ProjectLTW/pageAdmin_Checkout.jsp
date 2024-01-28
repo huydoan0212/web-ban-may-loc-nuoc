@@ -298,10 +298,10 @@
 <script src="./js/pageAdmin_main.js"></script>
 <script>
     // $("#table-id").DataTable();
-    $("#table-id-1").DataTable();
-    $("#table-id-2").DataTable();
-    $("#table-id-4").DataTable();
-    $("#table-id-5").DataTable();
+    // $("#table-id-1").DataTable();
+    // $("#table-id-2").DataTable();
+    // $("#table-id-4").DataTable();
+    // $("#table-id-5").DataTable();
 </script>
 
 </body>

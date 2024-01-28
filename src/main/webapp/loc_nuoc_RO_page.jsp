@@ -12,7 +12,7 @@
     if (products == null) products = new ArrayList<>();
     List<Brand> brands = BrandService.getInstance().getListBrand();
     if (brands == null) brands = new ArrayList<>();
-    List<TypeMachine> typeMachines = TypeMachineService.getInstance().getListBrand();
+    List<TypeMachine> typeMachines = TypeMachineService.getInstance().getListTypeMachine();
     if (typeMachines == null) typeMachines = new ArrayList<>();
 %>
 <% Locale locale = new Locale("vi", "VN");

@@ -13,20 +13,6 @@ import model.Post;
 @WebServlet(name = "PageAdminUpdatePage", value = "/PageAdminUpdatePage")
 public class PageAdminUpdatePage extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//    String idParam = request.getParameter("id");
-//    if (idParam != null) {
-//      int id = Integer.parseInt(idParam);
-//
-//      BlogDAO blogDAO = new BlogDAO();
-//      Post post = blogDAO.getPostById(id);
-//
-//      if (post != null) {
-//        request.setAttribute("post", post);
-//        request.getRequestDispatcher("pageAdmin_updateBlog1.jsp").forward(request, response);
-//      } else {
-//        response.getWriter().write("Không tìm thấy bài viết với ID: " + id);
-//      }
-//    }
     doPost(request, response);
   }
 
@@ -51,8 +37,8 @@ public class PageAdminUpdatePage extends HttpServlet {
       BlogDAO blogDAO = new BlogDAO();
       Post post = blogDAO.getPostById(id);
 
-      request.setAttribute("post", post);
-      request.getRequestDispatcher("PageAdminUpdatePage.jsp").forward(request, response);
+      request.getSession().setAttribute("post", post);
+      request.getRequestDispatcher("pageAdminUpdatePage.jsp").forward(request, response);
     }
   }
 

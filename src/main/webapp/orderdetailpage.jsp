@@ -76,15 +76,37 @@
                                 <p><i class="fa-solid fa-map-location-dot"></i>THÔNG TIN NHẬN
                                     HÀNG</p>
                             </div>
+                            <form action="change-info-order?order_id=<%=order.getId()%>" method="post">
                             <div class="content-receive">
                                 <p>Người nhận: </p>
-                                <span><%=user.getSex()%> <span
-                                        class="name-receive"><%=user.getFullName()%></span></span>
+                                <input style="width: 385px;
+    height: 30px;
+    border-radius: 4px; margin: auto" type="text" name="name" value="<%=(order.getName()!=null && order.getName()!="")? order.getName():""%>">
                                 <p>Địa chỉ: </p>
-                                <span class="dia-chi"><%=user.getAddress()%></span>
+                                <input style="width: 385px;
+    height: 30px;
+    border-radius: 4px; margin: auto" type="text" name="address" value="<%=(order.getAddress()!=null && order.getAddress()!="")? order.getAddress():""%>">
                                 <p>Số điện thoại: </p>
-                                <span class="time"><%=user.getPhoneNumber()%></span>
+                                <input style="width: 385px;
+    height: 30px;
+    border-radius: 4px; margin: auto" type="text" name="phone" value="<%=(order.getPhone()!=null && order.getPhone()!="")? order.getPhone():""%>">
                             </div>
+                                <%String error = (String) request.getSession().getAttribute("error");
+                                if (error!=null){%>
+                                <div style="text-align: center"><span style="color:red;"><%=error%></span></div>
+                                <%}%>
+                                <%request.getSession().removeAttribute("error");%>
+                                <button type="submit" style="    text-align: center;
+    display: block;
+    font-size: 14px;
+    text-decoration: none;
+    color: #4a90e2;
+    margin: auto;
+    margin-top: 15px;
+    background-color: white;
+    border: 1px #4a90e2;" href="">Cập nhật</button>
+                            </form>
+
                         </div>
                         <div class="payment">
                             <div class="title-infor">

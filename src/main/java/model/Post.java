@@ -1,6 +1,7 @@
 package model;
 
 import java.rmi.Remote;
+import java.time.LocalDate;
 
 public class Post {
   private int id;
@@ -8,6 +9,7 @@ public class Post {
   private String content;
   private String author;
   private String img;
+
 
   public Post(int id, String title, String content, String author, String img) {
     this.id = id;
