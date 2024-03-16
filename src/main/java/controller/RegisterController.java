@@ -62,7 +62,8 @@ public class RegisterController extends HttpServlet {
             // Đảm bảo rằng số OTP có đủ 6 chữ số bằng cách thêm các số 0 vào đầu nếu cần
             String otpString = String.format("%06d", otp);
             MailService.send(email, "Mã xác nhận", "Mã xác nhận của bạn là: " + otpString);
-            UserService.addUser(userName, fullName, email, phone, password);
+            String encryptedPassword = PasswordUtils.hashPassword(password);
+            UserService.addUser(userName, fullName, email, phone, encryptedPassword);
             req.getSession().setAttribute("otp",otpString);
             req.getSession().setAttribute("userName",userName);
 

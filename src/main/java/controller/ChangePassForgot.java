@@ -26,7 +26,8 @@ public class ChangePassForgot extends HttpServlet {
             request.getRequestDispatcher("newPassword.jsp").forward(request,response);
         }
         else if (newPassword.equals(re_newPassword)) {
-            boolean isChangePass = UserDAO.changePassword(username, newPassword);
+            String encryptedPassword = PasswordUtils.hashPassword(newPassword);
+            boolean isChangePass = UserDAO.changePassword(username, encryptedPassword);
             if (isChangePass) {
                 request.getSession().setAttribute("message", "Đổi mật khẩu thành công!");
                 response.sendRedirect("login.jsp");
