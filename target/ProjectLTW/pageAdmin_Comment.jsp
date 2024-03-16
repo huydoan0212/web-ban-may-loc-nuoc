@@ -4,8 +4,11 @@
 <%@ page import="service.UserService" %>
 <%@ page import="dao.UserDAO" %>
 <%@ page import="service.ProductService" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%List<Comment> comments = (List<Comment>) request.getAttribute("comments");%>
+<%List<Comment> comments = (List<Comment>) request.getAttribute("comments");
+    if (comments==null) comments = new ArrayList<>();
+%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -51,7 +54,7 @@
                         <thead>
                         <tr>
                             <th scope="col">Mã bình luận</th>
-                            <th scope="col">Tên người dùng</th>
+<%--                            <th scope="col">Tên người dùng</th>--%>
                             <th scope="col">Tên sản phẩm</th>
                             <th scope="col">Nội dung</th>
                             <th scope="col">Số sao</th>
@@ -64,7 +67,7 @@
                         <%for (Comment comment : comments) {%>
                         <tr>
                             <th scope="row"><%=comment.getId()%></th>
-                            <td><%= UserService.getInstance().getFullNameById(comment.getUserId()) %></td>
+<%--                            <td><%= UserService.getInstance().getFullNameById(comment.getUserId()) %></td>--%>
                             <td><%= ProductService.getInstance().getNameById(comment.getProductId()) %></td>
                             <td><%=comment.getContents()%></td>
                             <td><span class="badge bg-success"><%=comment.getStar()%></span></td>
@@ -91,6 +94,7 @@
                             </td>
                         </tr>
                         <%}%>
+
 <%--                        <tr>--%>
 <%--                            <th scope="row">102</th>--%>
 <%--                            <td>Máy lọc nước không vỏ RO Karofi</td>--%>

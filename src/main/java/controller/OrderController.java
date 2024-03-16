@@ -1,8 +1,12 @@
 package controller;
 
 import cart.Cart;
+import dao.OrderDAO;
+import dao.OrderDetailDAO;
+import dao.ProductDAO;
 import model.Order;
 import model.User;
+import model.Voucher;
 import service.OrderDetailService;
 import service.OrderService;
 
@@ -46,11 +50,13 @@ public class OrderController extends HttpServlet {
                 total_decrease = Integer.valueOf((String) tempObj);
             }
         }
+
         if (cart.getTotal() > 0 && user != null) {
             boolean checkCreatedOrder = OrderService.getInstance().insertOrder(user.getId(), user.getAddress(), user.getPhoneNumber(), "Chưa chọn phương thức thanh toán", total_decrease, voucher_id,user.getFullName());
 
             if (checkCreatedOrder) {
                 Order order = OrderService.getInstance().getOrder(user.getId(), user.getAddress(), user.getPhoneNumber(), "Chưa chọn phương thức thanh toán", total_decrease);
+                System.out.println(order.getId());
                 if (order != null) session.setAttribute("order", order);
                 for (Object key : set) {
                     int order_id = order.getId();
@@ -59,10 +65,13 @@ public class OrderController extends HttpServlet {
                     int quantity = cart.getData().get(key).getQuantity();
                     int total_money = price * quantity;
                     OrderDetailService.getInstance().insertOrder(order_id, product_id, price, quantity, total_money);
+                    ProductDAO.decreaseProductAvailable(quantity, product_id);
+
+                    }
                 }
-                req.getSession().removeAttribute("cart");
+
                 req.getRequestDispatcher("paymentpage.jsp").forward(req, resp);
             }
         }
     }
-}
+

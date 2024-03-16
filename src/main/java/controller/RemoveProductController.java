@@ -1,5 +1,6 @@
 package controller;
 
+import dao.ProductDAO;
 import service.ProductService;
 
 import javax.servlet.ServletException;
@@ -28,9 +29,8 @@ public class RemoveProductController extends HttpServlet {
             }
         }
 
-        boolean isRemoveProduct = ProductService.getInstance().removeProductById(product_id);
-        if(isRemoveProduct){
+        ProductDAO.editStatus(product_id);
             resp.sendRedirect("pageAdmin_Product.jsp");
-        }
+
     }
 }

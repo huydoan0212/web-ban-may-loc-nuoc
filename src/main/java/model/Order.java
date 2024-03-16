@@ -19,6 +19,22 @@ public class Order {
         return id;
     }
 
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", user_id=" + user_id +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                ", order_date=" + order_date +
+                ", status='" + status + '\'' +
+                ", received_date=" + received_date +
+                ", total_money=" + total_money +
+                ", voucher_id=" + voucher_id +
+                ", name='" + name + '\'' +
+                '}';
+    }
+
     public void setId(int id) {
         this.id = id;
     }

@@ -16,23 +16,7 @@ public class Product {
     private Date created_at;
     private Date updated_at;
 
-    public Product() {
-    }
-
-    public Product(int id, int category_id, int type_machine_id, int brand_id, String title, int price, String img, int discount_price, String descriptions, int available, Date created_at, Date updated_at) {
-        this.id = id;
-        this.category_id = category_id;
-        this.type_machine_id = type_machine_id;
-        this.brand_id = brand_id;
-        this.title = title;
-        this.price = price;
-        this.img = img;
-        this.discount_price = discount_price;
-        this.descriptions = descriptions;
-        this.available = available;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
-    }
+    private int status;
 
     @Override
     public String toString() {
@@ -49,6 +33,7 @@ public class Product {
                 ", available=" + available +
                 ", created_at=" + created_at +
                 ", updated_at=" + updated_at +
+                ", status=" + status +
                 '}';
     }
 
@@ -146,5 +131,32 @@ public class Product {
 
     public void setUpdated_at(Date updated_at) {
         this.updated_at = updated_at;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public Product() {
+    }
+
+    public Product(int id, int category_id, int type_machine_id, int brand_id, String title, int price, String img, int discount_price, String descriptions, int available, Date created_at, Date updated_at, int status) {
+        this.id = id;
+        this.category_id = category_id;
+        this.type_machine_id = type_machine_id;
+        this.brand_id = brand_id;
+        this.title = title;
+        this.price = price;
+        this.img = img;
+        this.discount_price = discount_price;
+        this.descriptions = descriptions;
+        this.available = available;
+        this.created_at = created_at;
+        this.updated_at = updated_at;
+        this.status = status;
     }
 }
