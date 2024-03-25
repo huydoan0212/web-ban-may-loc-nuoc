@@ -2,7 +2,7 @@ package model;
 
 import java.time.LocalDateTime;
 
-public class Log extends AbsModel {
+public class Log{
     private int id;
     private int userId;
     private String ipAddress;
