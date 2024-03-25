@@ -257,7 +257,7 @@ public class UserDAO extends AbsDao<User> {
         return false;
     }
 
-    public static boolean changePassworById(int id, String password){
+    public static boolean changePassworById(int id, String password) {
         int rowsUpdated = JDBIConnector.me().withHandle(handle ->
                 handle.createUpdate("UPDATE users SET password = :password WHERE id = :id")
                         .bind("password", password)
@@ -266,11 +266,13 @@ public class UserDAO extends AbsDao<User> {
         );
         return rowsUpdated > 0;
     }
+
     public static List<User> getAll() {
         List<User> users = JDBIConnector.me().withHandle((handle -> handle.createQuery("select * from users")
                 .mapToBean(User.class).stream().collect(Collectors.toList())));
         return users;
     }
+
     public static boolean setStatusById(int id) {
         int rowsUpdated = JDBIConnector.me().withHandle(handle ->
                 handle.createUpdate("UPDATE users SET status = ?, updated_at = ? WHERE id = ?")
@@ -281,6 +283,7 @@ public class UserDAO extends AbsDao<User> {
         );
         return rowsUpdated > 0;
     }
+
     public static boolean setStatuslockById(int id) {
         int rowsUpdated = JDBIConnector.me().withHandle(handle ->
                 handle.createUpdate("UPDATE users SET status = ?, updated_at = ? WHERE id = ?")
@@ -291,7 +294,8 @@ public class UserDAO extends AbsDao<User> {
         );
         return rowsUpdated > 0;
     }
-    public static int getSatusById(int id){
+
+    public static int getSatusById(int id) {
         int status = JDBIConnector.me().withHandle(handle ->
                 handle.createQuery("SELECT status FROM users WHERE id = ?")
                         .bind(0, id)
@@ -300,6 +304,7 @@ public class UserDAO extends AbsDao<User> {
         );
         return status;
     }
+
     public static boolean setRoleIdAdmin(int id) {
         int rowsUpdated = JDBIConnector.me().withHandle(handle ->
                 handle.createUpdate("UPDATE users SET role_id = ?, updated_at = ? WHERE id = ?")
@@ -310,6 +315,7 @@ public class UserDAO extends AbsDao<User> {
         );
         return rowsUpdated > 0;
     }
+
     public static boolean setRoleIdUser(int id) {
         int rowsUpdated = JDBIConnector.me().withHandle(handle ->
                 handle.createUpdate("UPDATE users SET role_id = ?, updated_at = ? WHERE id = ?")
@@ -320,7 +326,8 @@ public class UserDAO extends AbsDao<User> {
         );
         return rowsUpdated > 0;
     }
-    public static int getRoleById(int id){
+
+    public static int getRoleById(int id) {
         int roleId = JDBIConnector.me().withHandle(handle ->
                 handle.createQuery("SELECT role_id FROM users WHERE id = ?")
                         .bind(0, id)
@@ -329,7 +336,8 @@ public class UserDAO extends AbsDao<User> {
         );
         return roleId;
     }
-    public static String getFullNameById(int id){
+
+    public static String getFullNameById(int id) {
         String fullName = JDBIConnector.me().withHandle(handle ->
                 handle.createQuery("SELECT fullname FROM users WHERE id = ?")
                         .bind(0, id)
@@ -338,7 +346,8 @@ public class UserDAO extends AbsDao<User> {
         );
         return fullName;
     }
-    public static boolean updateUserAdminById(int id, String username ,String fullname, String phone_number, String email, String password) {
+
+    public static boolean updateUserAdminById(int id, String username, String fullname, String phone_number, String email, String password) {
         int rowsUpdated = JDBIConnector.me().withHandle(handle ->
                 handle.createUpdate("UPDATE users SET username = ?, fullname = ?, phone_number = ?, email = ?, password = ?, updated_at = ? WHERE id = ?")
                         .bind(0, username)
@@ -352,6 +361,7 @@ public class UserDAO extends AbsDao<User> {
         );
         return rowsUpdated > 0;
     }
+
     public static boolean insertUserAdmin(int role, String username, String fullname, String phone_number, String email, String password) {
         int rowsInserted = JDBIConnector.me().withHandle(handle ->
                 handle.createUpdate("INSERT INTO users (role_id, username, fullname, phone_number, email, password, status, active, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")
@@ -369,9 +379,26 @@ public class UserDAO extends AbsDao<User> {
         return rowsInserted > 0;
     }
 
+
+
     @Override
-    public int update(IModel model) {
-        return super.update(model);
+    public int insert(IModel model, int userId, String ipAddress, String action, String resource, int previousValue, int currentValue, String level, LocalDateTime created_at, LocalDateTime updated_at, boolean status, String nationality) {
+        return super.insert(model, userId, ipAddress, action, resource, previousValue, currentValue, level, created_at, updated_at, status, nationality);
+    }
+
+    @Override
+    public int update(IModel model, int userId, String ipAddress, String action, String resource, int previousValue, int currentValue, String level, LocalDateTime created_at, LocalDateTime updated_at, boolean status, String nationality) {
+        return 0;
+    }
+
+    @Override
+    public int delete(IModel model, int userId, String ipAddress, String action, String resource, int previousValue, int currentValue, String level, LocalDateTime created_at, LocalDateTime updated_at, boolean status, String nationality) {
+        return 0;
+    }
+
+    @Override
+    public List<User> select(IModel model, int userId, String ipAddress, String action, String resource, int previousValue, int currentValue, String level, LocalDateTime created_at, LocalDateTime updated_at, boolean status, String nationality) {
+        return null;
     }
 
     public static void main(String[] args) {

@@ -2,9 +2,11 @@ package controller;
 
 
 import dao.UserDAO;
+import model.AbsDao;
 import model.User;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,6 +41,8 @@ public class Login extends HttpServlet {
         //admin
         request.getSession().setAttribute("user", user);
         handleUserLoginSuccess(response, session, user, "/ProjectLTW_war/pageAdminController");
+        UserDAO userDAO = new UserDAO();
+        userDAO.insert(user, user.getId(), request.getRemoteAddr(),"Login","LoginController",0,0,"Normal", LocalDateTime.now(),LocalDateTime.now(),true,"Viet Nam");
       } else {
         //  không có quyền hoặc thông tin không hợp lệ
         response.sendRedirect("login.jsp");
