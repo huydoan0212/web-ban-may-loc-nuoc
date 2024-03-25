@@ -46,6 +46,7 @@ public class Log extends AbsModel {
                 '}';
     }
 
+
     public int getId() {
         return id;
     }
