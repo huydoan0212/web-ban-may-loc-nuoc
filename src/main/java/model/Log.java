@@ -7,27 +7,30 @@ public class Log extends AbsModel {
     private int userId;
     private String ipAddress;
     private String action;
+    private String resource;
     private int previousValue;
     private int currentValue;
-    private String type;
+    private String level;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private boolean status;
-
+    private String nationality;
     public Log() {
     }
 
-    public Log(int id, int userId, String ipAddress, String action, int previousValue, int currentValue, String type, LocalDateTime createdAt, LocalDateTime updatedAt, boolean status) {
+    public Log(int id, int userId, String ipAddress, String action, String resource, int previousValue, int currentValue, String level, LocalDateTime createdAt, LocalDateTime updatedAt, boolean status, String nationality) {
         this.id = id;
         this.userId = userId;
         this.ipAddress = ipAddress;
         this.action = action;
+        this.resource = resource;
         this.previousValue = previousValue;
         this.currentValue = currentValue;
-        this.type = type;
+        this.level = level;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.status = status;
+        this.nationality = nationality;
     }
 
     @Override
@@ -36,16 +39,17 @@ public class Log extends AbsModel {
                 "id=" + id +
                 ", userId=" + userId +
                 ", ipAddress='" + ipAddress + '\'' +
-                ", action=" + action +
+                ", action='" + action + '\'' +
+                ", resource='" + resource + '\'' +
                 ", previousValue=" + previousValue +
                 ", currentValue=" + currentValue +
-                ", type='" + type + '\'' +
+                ", level='" + level + '\'' +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
                 ", status=" + status +
+                ", nationality='" + nationality + '\'' +
                 '}';
     }
-
 
     public int getId() {
         return id;
@@ -79,6 +83,14 @@ public class Log extends AbsModel {
         this.action = action;
     }
 
+    public String getResource() {
+        return resource;
+    }
+
+    public void setResource(String resource) {
+        this.resource = resource;
+    }
+
     public int getPreviousValue() {
         return previousValue;
     }
@@ -95,12 +107,12 @@ public class Log extends AbsModel {
         this.currentValue = currentValue;
     }
 
-    public String getType() {
-        return type;
+    public String getLevel() {
+        return level;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setLevel(String level) {
+        this.level = level;
     }
 
     public LocalDateTime getCreatedAt() {
@@ -126,4 +138,16 @@ public class Log extends AbsModel {
     public void setStatus(boolean status) {
         this.status = status;
     }
+
+    public String getNationality() {
+        return nationality;
+    }
+
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
+    }
+    public static void update(IModel model){
+
+    }
 }
+

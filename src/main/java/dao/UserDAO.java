@@ -1,6 +1,8 @@
 package dao;
 
 import db.JDBIConnector;
+import model.AbsDao;
+import model.IModel;
 import model.Product;
 import model.User;
 import org.jdbi.v3.core.Handle;
@@ -12,7 +14,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 
-public class UserDAO {
+public class UserDAO extends AbsDao<User> {
     public static boolean isEmailExists(String email) {
         int count = JDBIConnector.me().withHandle(handle ->
                 handle.createQuery("SELECT COUNT(*) FROM users WHERE email = ?")
@@ -366,6 +368,12 @@ public class UserDAO {
         );
         return rowsInserted > 0;
     }
+
+    @Override
+    public int update(IModel model) {
+        return super.update(model);
+    }
+
     public static void main(String[] args) {
 //        // Tạo dữ liệu mẫu
 //        int role = 1;
