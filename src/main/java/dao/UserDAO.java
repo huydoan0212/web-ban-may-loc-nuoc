@@ -382,7 +382,7 @@ public class UserDAO extends AbsDao<User> {
 
 
     @Override
-    public int insert(IModel model, int userId, String ipAddress, String action, String resource, int previousValue, int currentValue, String level, LocalDateTime created_at, LocalDateTime updated_at, boolean status, String nationality) {
+    public boolean insert(IModel model, int userId, String ipAddress, String action, String resource, int previousValue, int currentValue, String level, LocalDateTime created_at, LocalDateTime updated_at, boolean status, String nationality) {
         return super.insert(model, userId, ipAddress, action, resource, previousValue, currentValue, level, created_at, updated_at, status, nationality);
     }
 

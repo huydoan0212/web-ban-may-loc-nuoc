@@ -161,11 +161,11 @@ public class Log {
         );
     }
 
-    public static void insert(IModel model, int userId, String ipAddress, String action, String resource, int previousValue, int currentValue, String level, LocalDateTime created_at, LocalDateTime updated_at, boolean status, String nationality) {
+    public static boolean insert(IModel model, int userId, String ipAddress, String action, String resource, int previousValue, int currentValue, String level, LocalDateTime created_at, LocalDateTime updated_at, boolean status, String nationality) {
+        int rowInserted = 0;
         if (model instanceof User) {
-            JDBIConnector.me().withHandle(handle -> {
-                String query = "INSERT INTO log(userId, ipAddress, action, resource, previousValue, currentValue, level, created_at, updated_at, status, nationality) values (?,?,?,?,?,?,?,?,?,?,?)";
-                handle.createUpdate(query)
+             rowInserted = JDBIConnector.me().withHandle(handle -> {
+                return handle.createUpdate("INSERT INTO log(user_id, ip_address, action, resource, pre_value, current_value, level, created_at, updated_at, status, nationality) values (?,?,?,?,?,?,?,?,?,?,?)")
                         .bind(0, userId)
                         .bind(1, ipAddress)
                         .bind(2, action)
@@ -178,12 +178,10 @@ public class Log {
                         .bind(9, status)
                         .bind(10, nationality)
                         .execute();
-                return null;
             });
-        }else if (model instanceof Product){
-            JDBIConnector.me().withHandle(handle -> {
-                String query = "INSERT INTO log(userId, ipAddress, action, resource, previousValue, currentValue, level, created_at, updated_at, status, nationality) values (?,?,?,?,?,?,?,?,?,?,?)";
-                handle.createUpdate(query)
+        } else if (model instanceof Product) {
+             rowInserted = JDBIConnector.me().withHandle(handle -> {
+                return handle.createUpdate("INSERT INTO log(userId, ipAddress, action, resource, previousValue, currentValue, level, created_at, updated_at, status, nationality) values (?,?,?,?,?,?,?,?,?,?,?)")
                         .bind(0, userId)
                         .bind(1, ipAddress)
                         .bind(2, action)
@@ -196,9 +194,9 @@ public class Log {
                         .bind(9, status)
                         .bind(10, nationality)
                         .execute();
-                return null;
             });
         }
+        return rowInserted > 0;
     }
 
 }

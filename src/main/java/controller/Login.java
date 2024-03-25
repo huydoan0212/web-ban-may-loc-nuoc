@@ -36,13 +36,16 @@ public class Login extends HttpServlet {
 
       if (user != null && user.getRoleId() == 2) {
         //user
+        UserDAO userDAO = new UserDAO();
+        boolean inserted = userDAO.insert(user, user.getId(), request.getHeader("X-Forwarded-For"),"Login","LoginController",0,0,"Normal", LocalDateTime.now(),LocalDateTime.now(),true,"Viet Nam");
+        System.out.println(inserted);
         handleUserLoginSuccess(response, session, user, "index.jsp");
       } else if (user != null && user.getRoleId() == 1) {
         //admin
         request.getSession().setAttribute("user", user);
+
         handleUserLoginSuccess(response, session, user, "/ProjectLTW_war/pageAdminController");
-        UserDAO userDAO = new UserDAO();
-        userDAO.insert(user, user.getId(), request.getRemoteAddr(),"Login","LoginController",0,0,"Normal", LocalDateTime.now(),LocalDateTime.now(),true,"Viet Nam");
+
       } else {
         //  không có quyền hoặc thông tin không hợp lệ
         response.sendRedirect("login.jsp");
