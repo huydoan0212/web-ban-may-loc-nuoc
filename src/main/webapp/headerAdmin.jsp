@@ -86,12 +86,12 @@
                 <span class="links_name">Quản lý phản hồi</span>
             </a>
         </li>
-        <li>
-            <a href="<%=isCheckLogin5%>" class="active">
-                <i class="fa-solid fa-box-open"></i>
-                <span class="links_name">Quản lý bài viết</span>
-            </a>
-        </li>
+<%--        <li>--%>
+<%--            <a href="<%=isCheckLogin5%>" class="active">--%>
+<%--                <i class="fa-solid fa-box-open"></i>--%>
+<%--                <span class="links_name">Quản lý bài viết</span>--%>
+<%--            </a>--%>
+<%--        </li>--%>
         <li class="log_out">
             <a href="logOutController">
                 <i class="fa-solid fa-right-from-bracket"></i>

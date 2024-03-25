@@ -70,6 +70,7 @@
                             <th scope="col">Giá giảm</th>
                             <th scope="col">Danh mục</th>
                             <th scope="col">Chức năng</th>
+                            <th scope="col">Trạng thái</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -94,6 +95,13 @@
                             <td><%=numberFormat.format(product.getPrice())%><sup>đ</sup></td>
                             <td><%=numberFormat.format(product.getDiscount_price())%>đ</td>
                             <td><%=category_name%></td>
+                            <%String status = "";%>
+                            <%if (product.getStatus()==1){%>
+                            <%status = "Hiện";%>
+                            <%}else if(product.getStatus()==0){%>
+                            <%status = "Ẩn";%>
+                            <%}%>
+                            <td><%=status%></td>
                             <td>
                                 <a title="Xóa" href="remove-product?product_id=<%=product.getId()%>" class="icon-link">
                                     <i class="icon-wrapper">

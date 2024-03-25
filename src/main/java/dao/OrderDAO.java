@@ -181,6 +181,13 @@ public class OrderDAO {
         return rowsUpdated > 0;
     }
 
+    public static void deleteOrder(int orderId) {
+        JDBIConnector.me().withHandle(handle ->
+                handle.createUpdate("DELETE FROM orders WHERE id = :id")
+                        .bind("id", orderId)
+                        .execute());
+    }
+
 }
 
 

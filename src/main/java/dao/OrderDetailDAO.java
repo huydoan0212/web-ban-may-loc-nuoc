@@ -35,4 +35,10 @@ public class OrderDetailDAO {
 
     }
 
+    public static void deleteOrderDetails(int id) {
+        JDBIConnector.me().withHandle(handle ->
+                handle.createUpdate("DELETE FROM order_details WHERE order_id = :order_id")
+                        .bind("order_id", id)
+                        .execute());
+    }
 }

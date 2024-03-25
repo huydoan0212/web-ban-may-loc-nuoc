@@ -24,6 +24,7 @@ public class OrderedPageController extends HttpServlet {
         User user = (User) req.getSession().getAttribute("user");
         List<Order> orders = OrderService.getInstance().getOrderByIdUser(user.getId());
         req.getSession().setAttribute("orders", orders);
+//        System.out.println(orders);
         req.getRequestDispatcher("orderedpage.jsp").forward(req, resp);
     }
 }

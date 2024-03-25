@@ -25,7 +25,7 @@ public class Login extends HttpServlet {
     String username = request.getParameter("username");
     String password = request.getParameter("password");
 
-      String hashedPassword = hashPassword(password);
+      String hashedPassword = PasswordUtils.hashPassword(password);
 
     boolean loginSuccess = UserDAO.loginUser(username, hashedPassword);
     if (loginSuccess) {

@@ -16,6 +16,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% List<Order> orders = (List<Order>) session.getAttribute("orders");
     if (orders == null) orders = new ArrayList<>();
+    System.out.println(orders);
 %>
 <% Locale locale = new Locale("vi", "VN");
     NumberFormat numberFormat = NumberFormat.getInstance(locale);
