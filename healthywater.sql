@@ -141,10 +141,25 @@ CREATE  TABLE IF NOT EXISTS `posts` (
                                   `title` VARCHAR(200) NOT NULL,
                                   `content` TEXT,
                                    `author` VARCHAR(50)  NOT NULL,
-                                   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                                   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   );
 
-
+CREATE TABLE `log` (
+                       `id` INT(11) NULL DEFAULT NULL,
+                       `ip_address` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+                       `nationality` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+                       `user_id` INT(11) NULL DEFAULT NULL,
+                       `level` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+                       `resource` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+                       `status` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+                       `pre_value` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+                       `current_value` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+                       `created_at` DATETIME NULL DEFAULT NULL,
+                       `updated_at` DATETIME NULL DEFAULT NULL,
+                       `action` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+                       INDEX `FK_log_users` (`user_id`) USING BTREE,
+                       CONSTRAINT `FK_log_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION
+);
 
 
 

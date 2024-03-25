@@ -4,7 +4,7 @@ package model;
 
 import java.time.LocalDateTime;
 
-public class User {
+public class User implements IModel{
     private int id;
     private int roleId;
     private String userName;
@@ -159,6 +159,21 @@ public class User {
                 ", status=" + status +
                 ", active=" + active +
                 '}';
+    }
+
+    @Override
+    public String getTable() {
+        return null;
+    }
+
+    @Override
+    public String beforeData() {
+        return null;
+    }
+
+    @Override
+    public String afterData() {
+        return null;
     }
 }
 
