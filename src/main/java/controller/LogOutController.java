@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 public class LogOutController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doPost(req,resp);
+        doPost(req, resp);
     }
 
     @Override
@@ -24,7 +24,7 @@ public class LogOutController extends HttpServlet {
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
         UserDAO userDAO = new UserDAO();
-        userDAO.insert(user, user.getId(), req.getHeader("X-Forwarded-For"),"Logout","LogoutController",0,0,"Normal", LocalDateTime.now(),LocalDateTime.now(),true,"Viet Nam");
+        userDAO.insert(user, user.getId(), req.getHeader("X-Forwarded-For") != null ? req.getHeader("X-Forwarded-For") : req.getRemoteAddr(), "Logout", "LogoutController", "Normal", LocalDateTime.now(), LocalDateTime.now(), true, "Viet Nam");
         session.removeAttribute("user");
         session.removeAttribute("userName");
         resp.sendRedirect("login.jsp");

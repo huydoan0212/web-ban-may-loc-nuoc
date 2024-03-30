@@ -161,41 +161,23 @@ public class Log {
         );
     }
 
-    public static boolean insert(IModel model, int userId, String ipAddress, String action, String resource, int previousValue, int currentValue, String level, LocalDateTime created_at, LocalDateTime updated_at, boolean status, String nationality) {
+    public static boolean insert(IModel model, int userId, String ipAddress, String action, String resource, String level, LocalDateTime created_at, LocalDateTime updated_at, boolean status, String nationality) {
         int rowInserted = 0;
-        if (model instanceof User) {
-             rowInserted = JDBIConnector.me().withHandle(handle -> {
-                return handle.createUpdate("INSERT INTO log(user_id, ip_address, action, resource, pre_value, current_value, level, created_at, updated_at, status, nationality) values (?,?,?,?,?,?,?,?,?,?,?)")
-                        .bind(0, userId)
-                        .bind(1, ipAddress)
-                        .bind(2, action)
-                        .bind(3, resource)
-                        .bind(4, previousValue)
-                        .bind(5, currentValue)
-                        .bind(6, level)
-                        .bind(7, created_at)
-                        .bind(8, updated_at)
-                        .bind(9, status)
-                        .bind(10, nationality)
-                        .execute();
-            });
-        } else if (model instanceof Product) {
-             rowInserted = JDBIConnector.me().withHandle(handle -> {
-                return handle.createUpdate("INSERT INTO log(userId, ipAddress, action, resource, previousValue, currentValue, level, created_at, updated_at, status, nationality) values (?,?,?,?,?,?,?,?,?,?,?)")
-                        .bind(0, userId)
-                        .bind(1, ipAddress)
-                        .bind(2, action)
-                        .bind(3, resource)
-                        .bind(4, previousValue)
-                        .bind(5, currentValue)
-                        .bind(6, level)
-                        .bind(7, created_at)
-                        .bind(8, updated_at)
-                        .bind(9, status)
-                        .bind(10, nationality)
-                        .execute();
-            });
-        }
+        rowInserted = JDBIConnector.me().withHandle(handle -> {
+            return handle.createUpdate("INSERT INTO log(user_id, ip_address, action, resource, pre_value, current_value, level, created_at, updated_at, status, nationality) values (?,?,?,?,?,?,?,?,?,?,?)")
+                    .bind(0, userId)
+                    .bind(1, ipAddress)
+                    .bind(2, action)
+                    .bind(3, resource)
+                    .bind(4, model.beforeData())
+                    .bind(5, model.afterData())
+                    .bind(6, level)
+                    .bind(7, created_at)
+                    .bind(8, updated_at)
+                    .bind(9, status)
+                    .bind(10, nationality)
+                    .execute();
+        });
         return rowInserted > 0;
     }
 
