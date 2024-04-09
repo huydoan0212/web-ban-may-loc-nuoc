@@ -163,7 +163,7 @@ public class User implements IModel{
 
     @Override
     public String getTable() {
-        return null;
+        return "User";
     }
 
     @Override
@@ -175,6 +175,8 @@ public class User implements IModel{
     public String afterData() {
         return null;
     }
+
+
 }
 
 

@@ -1,8 +1,10 @@
 package model;
 
+import db.JDBIConnector;
+
 import java.time.LocalDateTime;
 
-public class Log{
+public class Log {
     private int id;
     private int userId;
     private String ipAddress;
@@ -15,6 +17,7 @@ public class Log{
     private LocalDateTime updatedAt;
     private boolean status;
     private String nationality;
+
     public Log() {
     }
 
@@ -32,6 +35,7 @@ public class Log{
         this.status = status;
         this.nationality = nationality;
     }
+
 
     @Override
     public String toString() {
@@ -146,8 +150,36 @@ public class Log{
     public void setNationality(String nationality) {
         this.nationality = nationality;
     }
-    public static void update(IModel model){
 
+    public static void update(IModel model) {
+        User user = model instanceof User ? (User) model : new User();
+        JDBIConnector.me().withHandle(handle ->
+                handle.createQuery("UPDATE fullname FROM log WHERE id = ?")
+                        .bind(0, user.getId())
+                        .mapTo(String.class)
+                        .one()
+        );
     }
+
+    public static boolean insert(IModel model, int userId, String ipAddress, String action, String resource, String level, LocalDateTime created_at, LocalDateTime updated_at, boolean status, String nationality) {
+        int rowInserted = 0;
+        rowInserted = JDBIConnector.me().withHandle(handle -> {
+            return handle.createUpdate("INSERT INTO log(user_id, ip_address, action, resource, pre_value, current_value, level, created_at, updated_at, status, nationality) values (?,?,?,?,?,?,?,?,?,?,?)")
+                    .bind(0, userId)
+                    .bind(1, ipAddress)
+                    .bind(2, action)
+                    .bind(3, resource)
+                    .bind(4, model.beforeData())
+                    .bind(5, model.afterData())
+                    .bind(6, level)
+                    .bind(7, created_at)
+                    .bind(8, updated_at)
+                    .bind(9, status)
+                    .bind(10, nationality)
+                    .execute();
+        });
+        return rowInserted > 0;
+    }
+
 }
 
