@@ -38,6 +38,7 @@ public class PaymentOrderController extends HttpServlet {
         boolean isInsertPayment = PaymentService.getInstance().insertPayment(order.getId(), payment_type, order.getTotal_money());
         if (isPayment && isInsertPayment) {
             req.getSession().removeAttribute("order_id");
+            req.getSession().removeAttribute("cart");
             resp.sendRedirect("trangchu");
         }
     }

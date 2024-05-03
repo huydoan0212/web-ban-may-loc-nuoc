@@ -99,6 +99,7 @@ public class OrderDAO {
 //        System.out.println(insertOrder(1,"sdafsdf","safas","saffs",555555,2));
       //  System.out.println(getOrderByIdUser(14));
         System.out.println(changeInfoOrder(157,"Trân","84 phuoc long","05658112"));
+        System.out.println(changeStatusToConfirmed(28));
     }
 
     public static List<Order> getListOrderConfirm() {

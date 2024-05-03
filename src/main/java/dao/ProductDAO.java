@@ -155,7 +155,8 @@ public class ProductDAO {
                         .bind("quantity", quantity)
                         .execute());
     }
-    public static int getSatusById(int id){
+
+    public static int getSatusById(int id) {
         int status = JDBIConnector.me().withHandle(handle ->
                 handle.createQuery("SELECT status FROM products WHERE id = ?")
                         .bind(0, id)
@@ -164,12 +165,16 @@ public class ProductDAO {
         );
         return status;
     }
-    public static void editStatus(int id){
-        if (ProductDAO.getSatusById(id) == 0){
+
+    public static String editStatus(int id) {
+        if (ProductDAO.getSatusById(id) == 0) {
             ProductDAO.setStatusById(id);
-        }else if (ProductDAO.getSatusById(id) == 1){
+            return "Hiện";
+        } else if (ProductDAO.getSatusById(id) == 1) {
             ProductDAO.setStatus(id);
+            return "Ẩn";
         }
+        return "";
     }
 
     public static boolean setStatusById(int id) {
@@ -182,6 +187,7 @@ public class ProductDAO {
         );
         return rowsUpdated > 0;
     }
+
     public static boolean setStatus(int id) {
         int rowsUpdated = JDBIConnector.me().withHandle(handle ->
                 handle.createUpdate("UPDATE products SET status = ?, updated_at = ? WHERE id = ?")

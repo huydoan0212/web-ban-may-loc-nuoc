@@ -144,7 +144,10 @@
     font-weight: 600;
     letter-spacing: 1px;
 }
-
+button {
+    border: none;
+    background: none;
+}
 .btn-cancel {
     background-color: #4a90e2;
     color: rgb(190, 40, 40);
