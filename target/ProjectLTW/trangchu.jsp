@@ -538,34 +538,6 @@
         </div>
 
     </div>
-    <script>
-        const timTinh = document.querySelectorAll('.js-tim-tinh');
-        const modal = document.querySelector('.js-modal-tinh-thanh');
-        const close = document.querySelectorAll('.js-close');
-        const modalContainer = document.querySelector('.js-modal-container');
-
-        function showTinhThanh() {
-            modal.classList.add('open');
-        }
-
-        function hideTinhThanh() {
-            modal.classList.remove('open');
-        }
-
-        for (const timTinhElement of timTinh) {
-            timTinhElement.addEventListener('click', showTinhThanh);
-
-        }
-        for (const closeElement of close) {
-            closeElement.addEventListener('click', hideTinhThanh);
-
-        }
-
-        modal.addEventListener('click', hideTinhThanh);
-        modalContainer.addEventListener('click', function (event) {
-            event.stopPropagation();
-        });
-    </script>
 </div>
 <!--Kết thúc phẩn tỉnh thành-->
 </body>
