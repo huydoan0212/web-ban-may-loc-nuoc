@@ -161,14 +161,14 @@ public class Log {
         );
     }
 
-    public static boolean insert(IModel model, int userId, String ipAddress, String action, String resource, String level, LocalDateTime created_at, LocalDateTime updated_at, boolean status, String nationality) {
+    public static boolean insert(IModel model, int userId, String ipAddress, String action, String level, LocalDateTime created_at, LocalDateTime updated_at, boolean status, String nationality) {
         int rowInserted = 0;
         rowInserted = JDBIConnector.me().withHandle(handle -> {
-            return handle.createUpdate("INSERT INTO log(user_id, ip_address, action, resource, pre_value, current_value, level, created_at, updated_at, status, nationality) values (?,?,?,?,?,?,?,?,?,?,?)")
+            return handle.createUpdate("INSERT INTO log(user_id, ip_address, action, pre_value, current_value, level, created_at, updated_at, status, nationality) values (?,?,?,?,?,?,?,?,?,?,?)")
                     .bind(0, userId)
                     .bind(1, ipAddress)
                     .bind(2, action)
-                    .bind(3, resource)
+                    .bind(3, model.getTable())
                     .bind(4, model.beforeData())
                     .bind(5, model.afterData())
                     .bind(6, level)

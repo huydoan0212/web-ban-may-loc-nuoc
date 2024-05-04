@@ -15,6 +15,7 @@
     NumberFormat numberFormat = NumberFormat.getInstance(locale);
 %>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Quản lý</title>
@@ -33,19 +34,21 @@
             background-color: #4a90e2;
             display: inline-block;
             margin-right: 10px;
-            padding: 5px; /* Điều này tạo khoảng trắng xung quanh biểu tượng */
-            border-radius: 50%; /* Để tạo biểu tượng hình tròn */
+            padding: 5px;
+            /* Điều này tạo khoảng trắng xung quanh biểu tượng */
+            border-radius: 50%;
+            /* Để tạo biểu tượng hình tròn */
         }
 
         .icon-wrapper i {
-            color: #ffffff; /* Màu trắng cho biểu tượng */
+            color: #ffffff;
+            /* Màu trắng cho biểu tượng */
         }
     </style>
 </head>
+
 <body>
 <%@include file="headerAdmin.jsp" %>
-
-
 <section class="home-section">
     <div class="home-content">
         <div class="manager-product">
@@ -56,11 +59,9 @@
                         <i class="fas fa-plus"></i>
                         Thêm sản phẩm</a>
                 </div>
-
             </div>
             <div class="row">
                 <div class="col-md-12">
-
                     <table id="table-id" class="table table-hover table-bordered">
                         <thead>
                         <tr>
@@ -87,8 +88,7 @@
                             </th>
                             <td><%=product.getTitle()%>
                             </td>
-                            <td><img src="<%=product.getImg()%>"
-                                     style="max-width: 100px; max-height: 100px;">
+                            <td><img src="<%=product.getImg()%>" style="max-width: 100px; max-height: 100px;">
                             </td>
                             <td><%=product.getAvailable()%>
                             </td>
@@ -145,20 +145,6 @@
 //<%--</script>--%>
 <script>
     new DataTable('#table-id', {
-        // columnDefs: [
-        //     {
-        //         targets: [0],
-        //         orderData: [0, 1]
-        //     },
-        //     {
-        //         targets: [1],
-        //         orderData: [1, 0]
-        //     },
-        //     {
-        //         targets: [4],
-        //         orderData: [4, 0]
-        //     }
-        // ]
     });
 
     function changeStatusProduct(productId) {
@@ -193,4 +179,5 @@
     }
 </script>
 </body>
+
 </html>

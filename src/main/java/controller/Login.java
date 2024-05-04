@@ -38,7 +38,7 @@ public class Login extends HttpServlet {
             if (user != null && user.getRoleId() == 2) {
                 //user
                 UserDAO userDAO = new UserDAO();
-                boolean inserted = userDAO.insert(user, user.getId(), request.getHeader("X-Forwarded-For") != null ? request.getHeader("X-Forwarded-For") : request.getRemoteAddr(), "Login", "LoginController", "Normal", LocalDateTime.now(), LocalDateTime.now(), true, "Viet Nam");
+                boolean inserted = userDAO.insert(user, user.getId(), request.getHeader("X-Forwarded-For") != null ? request.getHeader("X-Forwarded-For") : request.getRemoteAddr(), "Login", "Normal", LocalDateTime.now(), LocalDateTime.now(), true, "Viet Nam");
                 System.out.println(inserted);
                 handleUserLoginSuccess(response, session, user, "index.jsp");
             } else if (user != null && user.getRoleId() == 1) {
