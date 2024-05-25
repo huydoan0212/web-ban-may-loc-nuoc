@@ -57,6 +57,7 @@
                 <div class="signin-btn">
                     <button type="submit" class="btn">Đăng Nhập</button>
                 </div>
+            </form>
                 <div class="label-forget">
                     <a href="forgotPassword.jsp" class="forget">Quên mật khẩu</a>
 
@@ -65,12 +66,17 @@
                     <p for="">Hoặc</p>
                 </div>
                 <div class="btn-ggfb">
-                    <button class="btnfb">
+                    <button class="btnfb"  >
                         <i class="fa-brands fa-facebook"></i> Facebook
                     </button>
-                    <button class="btngg">
-                        <i class="fa-brands fa-google"></i> Google
-                    </button>
+                    <a href="https://accounts.google.com/o/oauth2/auth?scope=email profile openid
+&redirect_uri=http://localhost:8080/ProjectLTW_war_exploded/loginGoogle
+&response_type=code
+&client_id=192822040743-18a4tpap0e863adnqs3rh60ro2e33qip.apps.googleusercontent.com
+&approval_prompt=force">
+                            <i class="fa-brands fa-google"></i> Google
+                    </a>
+
                 </div>
                 <div class="des">
                     <p>Bạn mới biết đến Healthywater? </p>
@@ -88,7 +94,6 @@
                     }
                 %>
 
-            </form>
         </div>
     </div>
 </div>
