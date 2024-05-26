@@ -85,7 +85,9 @@ public class UserService {
     public boolean insertUserAdmin(int role, String username, String fullname, String phone_number, String email, String password){
         return UserDAO.insertUserAdmin(role, username, fullname, phone_number, email, password);
     }
-
+    public boolean loginUser(String username, String password){
+        return UserDAO.loginUser(username,password);
+    }
 
 
 }
