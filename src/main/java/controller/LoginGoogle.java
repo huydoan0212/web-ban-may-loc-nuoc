@@ -14,52 +14,65 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDateTime;
-
 @WebServlet(name = "LoginGoogle", value = "/loginGoogle")
 public class LoginGoogle extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        processRequest(req, resp);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request, response);
     }
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        processRequest(req, resp);
-    }
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String code = request.getParameter("code");
         String error = request.getParameter("error");
         Google gg = new Google();
         String accessToken = gg.getToken(code);
         GoogleAccount acc = gg.getUserInfo(accessToken);
-        HttpSession session = request.getSession();
+        System.out.println(acc.getId());
         if(!(UserService.getInstance().loginUser(acc.getId(), PasswordUtils.hashPassword(acc.getId())))){
-            UserService.addUser(acc.getId(),acc.getName(), acc.getEmail(), "", PasswordUtils.hashPassword(acc.getId()));
-            User user = UserDAO.getUserInfo(acc.getId());
-            handleUserLoginSuccess(response, session, user, "index.jsp");
-            UserDAO userDAO = new UserDAO();
-//            boolean inserted = userDAO.insert(user, user.getId(), request.getHeader("X-Forwarded-For") != null ? request.getHeader("X-Forwarded-For") : request.getRemoteAddr(), "Login", "LoginController", "Normal", LocalDateTime.now(), LocalDateTime.now(), true, "Viet Nam");
+            UserService.addUser(acc.getId(),acc.getName(), acc.getEmail(), "null", PasswordUtils.hashPassword(acc.getId()));
             UserDAO.updateActiveAccount(acc.getId());
+            String hashedPassword = PasswordUtils.hashPassword(acc.getId());
+            boolean loginSuccess = UserDAO.loginUser(acc.getId(), hashedPassword);
+            if (loginSuccess) {
+                HttpSession session = request.getSession();
+                User user = UserDAO.getUserInfo(acc.getId());
+                UserDAO userDAO = new UserDAO();
+                boolean inserted = userDAO.insert(user, user.getId(), request.getHeader("X-Forwarded-For") != null ? request.getHeader("X-Forwarded-For") : request.getRemoteAddr(), "Login", "LoginController", "Normal", LocalDateTime.now(), LocalDateTime.now(), true, "Viet Nam");
+                System.out.println(inserted);
+                handleUserLoginSuccess(response, session, user, "index.jsp");
+                System.out.println(user);
+            }
         }
-
-    }
-    @Override
-    public String getServletInfo() {
-        return "Short description";
+        else if (UserDAO.loginUser(acc.getId(), PasswordUtils.hashPassword(acc.getId()))) {
+            User user = UserDAO.getUserInfo(acc.getId());
+            HttpSession session = request.getSession();
+            if (user != null && user.getRoleId() == 2) {
+                UserDAO userDAO = new UserDAO();
+                boolean inserted = userDAO.insert(user, user.getId(), request.getHeader("X-Forwarded-For") != null ? request.getHeader("X-Forwarded-For") : request.getRemoteAddr(), "Login", "LoginController", "Normal", LocalDateTime.now(), LocalDateTime.now(), true, "Viet Nam");
+                handleUserLoginSuccess(response, session, user, "index.jsp");
+            } else if (user != null && user.getRoleId() == 1) {
+                request.getSession().setAttribute("user", user);
+                handleUserLoginSuccess(response, session, user, "/ProjectLTW_war/pageAdminController");
+            } else {
+                response.sendRedirect("login.jsp");
+            }
+        } else {
+            handleLoginFailure(response, request, "Tài khoản chưa được kích hoạt ");
+        }
     }
     private void handleUserLoginSuccess(HttpServletResponse response, HttpSession session, User user, String redirectPage)
             throws IOException {
         session.setAttribute("user", user);
-        String name = UserDAO.getUserName(user.getUserName());
-        session.setAttribute("name", name);
         response.sendRedirect(redirectPage);
+        System.out.println("User: " + user);
+        System.out.println("Session after setting attribute: " + session.getAttribute("user"));
     }
-
     private void handleLoginFailure(HttpServletResponse response, HttpServletRequest request, String errorMessage) throws IOException {
         HttpSession session = request.getSession();
         session.setAttribute("message2", errorMessage);
         response.sendRedirect("login.jsp");
     }
-
 }
+
+

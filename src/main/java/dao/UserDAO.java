@@ -199,9 +199,7 @@ public class UserDAO extends AbsDao<User> {
 
 
     private static final String SELECT_USERNAME_SQL = "SELECT username FROM users WHERE username = :username";
-
     // Các phương thức khác của lớp DAO
-
     public static String getUserName(String username) {
         try {
             JDBIConnector.me().withHandle(handle ->
@@ -400,30 +398,10 @@ public class UserDAO extends AbsDao<User> {
     }
 
     public static void main(String[] args) {
-//        // Tạo dữ liệu mẫu
-//        int role = 1;
-//        String username = "testUse1r";
-//        String fullname = "Test User";
-//        String phone_number = "1234567890";
-//        String email = "testuser@example.com";
-//        String password = "password";
-//
-//        // Gọi hàm và in kết quả
-//        boolean isInserted = insertUserAdmin(role, username, fullname, phone_number, email, password);
-//        System.out.println("Kết quả của hàm insertUserAdmin: " + isInserted);
-        String username = "testUser";
-        String fullname = "Test User";
-        String email = "testuser@example.com";
-        String phone_number = "1234567890";
-        String password = "testPassword";
+        User user = UserDAO.getUserInfo("112649102310854549392");
+        System.out.println(user);
 
-        boolean isUserAdded = addUser(username, fullname, email, phone_number, password);
 
-        if (isUserAdded) {
-            System.out.println("User added successfully!");
-        } else {
-            System.out.println("Failed to add user.");
-        }
     }
 
 

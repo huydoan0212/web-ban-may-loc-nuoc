@@ -12,13 +12,13 @@
     String inputPhone = request.getParameter("inputPhone");
     String inputAddress = request.getParameter("inputAddress");
     String error = (String) request.getAttribute("error");
-
     String inputOldPass = request.getParameter("inputOldPass");
     String inputNewPass = request.getParameter("inputNewPass");
     String inputRePass = request.getParameter("inputRePass");
-
     String error1 = (String) session.getAttribute("error");
+
 %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

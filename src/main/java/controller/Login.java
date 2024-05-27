@@ -27,14 +27,11 @@ public class Login extends HttpServlet {
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-
         String hashedPassword = PasswordUtils.hashPassword(password);
-
         boolean loginSuccess = UserDAO.loginUser(username, hashedPassword);
         if (loginSuccess) {
             HttpSession session = request.getSession();
             User user = UserDAO.getUserInfo(username);
-
             if (user != null && user.getRoleId() == 2) {
                 //user
                 UserDAO userDAO = new UserDAO();
@@ -44,12 +41,7 @@ public class Login extends HttpServlet {
             } else if (user != null && user.getRoleId() == 1) {
                 //admin
                 request.getSession().setAttribute("user", user);
-
                 handleUserLoginSuccess(response, session, user, "/ProjectLTW_war/pageAdminController");
-
-            } else {
-                //  không có quyền hoặc thông tin không hợp lệ
-                response.sendRedirect("login.jsp");
             }
         } else {
             // Đăng nhập thất bại
@@ -65,6 +57,8 @@ public class Login extends HttpServlet {
         String name = UserDAO.getUserName(user.getUserName());
         session.setAttribute("name", name);
         response.sendRedirect(redirectPage);
+        System.out.println("User: " + user);
+        System.out.println("Session after setting attribute: " + session.getAttribute("user"));
     }
 
     private void handleLoginFailure(HttpServletResponse response, HttpServletRequest request, String errorMessage) throws IOException {
@@ -76,4 +70,5 @@ public class Login extends HttpServlet {
     private String hashPassword(String password) {
         return password;
     }
+
 }
