@@ -304,7 +304,6 @@ public class UserDAO extends AbsDao<User> {
         );
         return status;
     }
-
     public static boolean setRoleIdAdmin(int id) {
         int rowsUpdated = JDBIConnector.me().withHandle(handle ->
                 handle.createUpdate("UPDATE users SET role_id = ?, updated_at = ? WHERE id = ?")
