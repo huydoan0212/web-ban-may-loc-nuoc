@@ -16,7 +16,6 @@
     String inputNewPass = request.getParameter("inputNewPass");
     String inputRePass = request.getParameter("inputRePass");
     String error1 = (String) session.getAttribute("error");
-
 %>
 
 <!DOCTYPE html>
