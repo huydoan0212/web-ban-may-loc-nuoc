@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +10,7 @@
     <script src="https://kit.fontawesome.com/3e135170bd.js" crossorigin="anonymous"></script>
 </head>
 <body>
+
 <div id="header">
     <div class="container">
         <ul>
@@ -30,7 +32,7 @@
             <img src="./img/logo-removebg-preview.png" alt="">
         </div>
         <div class="slider-form">
-            <form action="LoginServlet" method="post">
+            <form action="LoginServlet" method="post" >
                 <%
                     String message = (String) request.getSession().getAttribute("message");
                     if (message != null && !message.isEmpty()) {
@@ -48,20 +50,22 @@
                 %>
                 <h1 style="text-align: center;">Đăng Nhập</h1>
                 <div class="input-box">
-                    <input type="text" placeholder="Email/ Tên đăng nhập" name="username">
+                    <input type="text" placeholder="Email/ Tên đăng nhập" name="username" value="${usernameCookie}"/>
                 </div>
                 <div class="input-box">
-                    <input type="password" placeholder="Mật khẩu" name="password">
+                    <input type="password" placeholder="Mật khẩu" name="password" value="${passwordCookie}"/>
                 </div>
-
                 <div class="signin-btn">
                     <button type="submit" class="btn">Đăng Nhập</button>
                 </div>
-            </form>
-                <div class="label-forget">
-                    <a href="forgotPassword.jsp" class="forget">Quên mật khẩu</a>
-
+                <div style="padding-left: 20px; padding-top: 20px" >
+                    <input type="checkbox" name="remember" style="cursor: pointer" value="on">
+                    <label style="font-size: 14px">Ghi nhớ tài khoản</label><br>
                 </div>
+            </form>
+            <div class="label-forget">
+                <a href="forgotPassword.jsp" class="forget">Quên mật khẩu</a>
+            </div>
                 <div class="label-or">
                     <p for="">Hoặc</p>
                 </div>
@@ -78,6 +82,9 @@
                     </a>
 
                 </div>
+
+
+
                 <div class="des">
                     <p>Bạn mới biết đến Healthywater? </p>
                     <a href="register.jsp">Đăng kí</a>
