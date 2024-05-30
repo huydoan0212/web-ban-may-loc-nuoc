@@ -188,7 +188,7 @@
                     </div>
                     <% } %>
                     <div class="rating">
-                        <form action="./commentController?id=<%=idProduct%>" accept-charset="UTF-8" method="post">
+                        <form id="reviewForm" action="./commentController?id=<%=idProduct%>" accept-charset="UTF-8" method="post">
                             <div class="star-rating">
                                 <input type="radio" id="star1" name="rating" value="1">
                                 <label for="star1"><i class="fa-solid fa-star" style="color: #f18f31"></i></label>
@@ -204,14 +204,22 @@
                             <div class="input-box">
                                 <input type="text" placeholder="Viết đánh giá" name="content">
                             </div>
-                            <span style="color: red; font-size: 14px;padding-left: 20px;"><%=(error != null && error != "") ? error : ""%></span>
+                            <span class="error-message" style="color: red; font-size: 14px;padding-left: 20px;"></span>
                             <div class="sent-btn">
-                                <button type="submit" class="btn">Gửi đánh giá</button>
+                                <button type="submit" id="gui" class="btn">Gửi đánh giá</button>
                             </div>
                         </form>
+
                     </div>
                 </div>
             </div>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+            <script>
+                // Lắng nghe sự kiện click vào nút "Gửi"
+                $('#gui').click(function () {
+
+                });
+            </script>
 
             <!--------------------------San pham lien quan------>
             <section class="product-related container">
