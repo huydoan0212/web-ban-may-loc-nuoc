@@ -43,6 +43,8 @@ public class CommentController extends HttpServlet {
 
         long millis = System.currentTimeMillis();
         java.sql.Date date = new java.sql.Date(millis);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        String dateStr = sdf.format(date);
 
         int id = 0;
         Object temp = req.getParameter("id");
@@ -66,26 +68,15 @@ public class CommentController extends HttpServlet {
             }
             else{
                 CommentService.insertComment(user.getId(), id, content, rating);
-
-                CommentService commentService = CommentService.getInstance();
-                List<Comment> comments = commentService.getAllComment();
-                Comment comment = comments.get(comments.toArray().length-1);
-                int idComment = comment.getId();
-
-                Gson gson = new Gson();
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-                String dateStr = sdf.format(date);
-
-                // Thêm tên người dùng vào đối tượng JSON được trả về
-                String responseText = "{\"idcus\": " + user.getId() + ",\"idp\": " + id + ",\"idc\": " + idComment + ", \"comment\": " + gson.toJson(content) + ", \"date\": \"" + dateStr + "\", \"username\": \"" + user.getFullName() + "\" }";
-                System.out.println(responseText);
-                out.print(responseText);
-                out.flush();
-
-
+                UserService userService = UserService.getInstance();
+                String userFullName = userService.getFullNameById(user.getId());
+                JSONObject jsonResponse = new JSONObject();
+                jsonResponse.put("userFullName", userFullName);
+                jsonResponse.put("content", content);
+                jsonResponse.put("rating", rating);
+                jsonResponse.put("createDate", dateStr);
+                out.write(jsonResponse.toString());
             }
-
         }
-
     }
 }

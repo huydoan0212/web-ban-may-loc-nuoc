@@ -139,85 +139,82 @@
                 </div>
             </div>
             <div class="danhgia-sp">
+                <div class="rating">
+                    <form id="reviewForm" action="javascript:void(0);">
+                        <div class="star-rating">
+                            <input type="radio" id="star1" name="rating" value="1">
+                            <label for="star1"><i class="fa-solid fa-star" style="color: #f18f31"></i></label>
+                            <input type="radio" id="star2" name="rating" value="2">
+                            <label for="star2"><i class="fa-solid fa-star" style="color: #f18f31"></i></label>
+                            <input type="radio" id="star3" name="rating" value="3">
+                            <label for="star3"><i class="fa-solid fa-star" style="color: #f18f31"></i></label>
+                            <input type="radio" id="star4" name="rating" value="4">
+                            <label for="star4"><i class="fa-solid fa-star" style="color: #f18f31"></i></label>
+                            <input type="radio" id="star5" name="rating" value="5" checked>
+                            <label for="star5"><i class="fa-solid fa-star" style="color: #f18f31"></i></label>
+                        </div>
+                        <div class="input-box">
+                            <input type="text" placeholder="Viết đánh giá" name="content" id="content">
+                        </div>
+                        <span class="error-message" style="color: red; font-size: 14px;padding-left: 20px;"></span>
+                        <div class="sent-btn">
+                            <button type="submit" id="gui" class="btn">Gửi đánh giá</button>
+                        </div>
+                    </form>
+                </div>
                 <div class="danhgia-sp-footer">
                     <% for (Comment comment : comments) { %>
-                    <div class="khachhang1">
-                        <h3>Người dùng: <%= UserService.getInstance().getFullNameById(comment.getUserId()) %>
-                        </h3>
+                    <div class="khachhang1" id="comment-<%= comment.getId() %>">
+                        <h3>Người dùng: <%= UserService.getInstance().getFullNameById(comment.getUserId()) %></h3>
                         <h2>Đánh giá
                             <%
-                                String star = comment.getStar();
-                                if (star.equals("5")) {
-                                    for (int i = 0; i < 5; i++) {
+                                int starCount = Integer.parseInt(comment.getStar());
+                                for (int i = 0; i < starCount; i++) {
                             %>
                             <i class="fa-solid fa-star" style="color: #f18f31"></i>
                             <%
-                                }
-                            } else if (star.equals("4")) {
-                                for (int i = 0; i < 4; i++) {
-                            %>
-                            <i class="fa-solid fa-star" style="color: #f18f31"></i>
-                            <%
-                                }
-                            } else if (star.equals("3")) {
-                                for (int i = 0; i < 3; i++) {
-                            %>
-                            <i class="fa-solid fa-star" style="color: #f18f31"></i>
-                            <%
-                                }
-                            } else if (star.equals("2")) {
-                                for (int i = 0; i < 2; i++) {
-                            %>
-                            <i class="fa-solid fa-star" style="color: #f18f31"></i>
-                            <%
-                                }
-                            } else if (star.equals("1")) {
-                                for (int i = 0; i < 1; i++) {
-                            %>
-                            <i class="fa-solid fa-star" style="color: #f18f31"></i>
-                            <%
-                                    }
                                 }
                             %>
                         </h2>
-
-                        <p> Nội dung: <%= comment.getContents() %>
-                        </p>
-                        <p>Thời gian: <%= comment.getCreate_date() %>
-                        </p>
+                        <p>Nội dung: <%= comment.getContents() %></p>
+                        <p>Thời gian: <%= comment.getCreate_date() %></p>
                     </div>
                     <% } %>
-                    <div class="rating">
-                        <form id="reviewForm" action="./commentController?id=<%=idProduct%>" accept-charset="UTF-8" method="post">
-                            <div class="star-rating">
-                                <input type="radio" id="star1" name="rating" value="1">
-                                <label for="star1"><i class="fa-solid fa-star" style="color: #f18f31"></i></label>
-                                <input type="radio" id="star2" name="rating" value="2">
-                                <label for="star2"><i class="fa-solid fa-star" style="color: #f18f31"></i></label>
-                                <input type="radio" id="star3" name="rating" value="3">
-                                <label for="star3"><i class="fa-solid fa-star" style="color: #f18f31"></i></label>
-                                <input type="radio" id="star4" name="rating" value="4">
-                                <label for="star4"><i class="fa-solid fa-star" style="color: #f18f31"></i></label>
-                                <input type="radio" id="star5" name="rating" value="5" checked>
-                                <label for="star5"><i class="fa-solid fa-star" style="color: #f18f31"></i></label>
-                            </div>
-                            <div class="input-box">
-                                <input type="text" placeholder="Viết đánh giá" name="content">
-                            </div>
-                            <span class="error-message" style="color: red; font-size: 14px;padding-left: 20px;"></span>
-                            <div class="sent-btn">
-                                <button type="submit" id="gui" class="btn">Gửi đánh giá</button>
-                            </div>
-                        </form>
-
-                    </div>
                 </div>
             </div>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
             <script>
-                // Lắng nghe sự kiện click vào nút "Gửi"
-                $('#gui').click(function () {
+                $(document).ready(function() {
+                    $('#reviewForm').on('submit', function(e) {
+                        e.preventDefault();
+                        var content = $('#content').val();
+                        var rating = $('input[name="rating"]:checked').val();
+                        var productId = '<%=idProduct%>';
 
+                        $.ajax({
+                            url: './commentController',
+                            type: 'POST',
+                            data: {
+                                content: content,
+                                rating: rating,
+                                id: productId
+                            },
+                            success: function(response) {
+                                var commentHtml = '<div class="khachhang1"><h3>Người dùng: ' + response.userFullName + '</h3><h2>Đánh giá';
+                                for (var i = 0; i < response.rating; i++) {
+                                    commentHtml += '<i class="fa-solid fa-star" style="color: #f18f31"></i>';
+                                }
+                                commentHtml += '</h2><p>Nội dung: ' + response.content + '</p><p>Thời gian: ' + response.createDate + '</p></div>';
+                                $('.danhgia-sp-footer').append(commentHtml);
+                                $('#content').val('');
+                                $('input[name="rating"]').prop('checked', false);
+                                $('#star5').prop('checked', true);
+                            },
+                            error: function(response) {
+                                alert('Đã xảy ra lỗi. Vui lòng thử lại.');
+                            }
+                        });
+                    });
                 });
             </script>
 
