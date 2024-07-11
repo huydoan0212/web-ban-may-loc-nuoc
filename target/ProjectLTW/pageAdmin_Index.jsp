@@ -72,14 +72,25 @@
 <section class="home-section">
     <div class="home-content">
         <div class="view-box">
+           <div class="" style="margin-bottom: 20px">
+            <form action="" method="post">
+                <label for="start-date">Ngày bắt đầu:</label>
+                <input type="date" id="start-date" name="start-date" required>
+                <br><br>
+                <label for="end-date">Ngày kết thúc:</label>
+                <input type="date" id="end-date" name="end-date" required>
+                <br><br>
+                <input type="submit" value="Thống kê">
+            </form>
+           </div>
             <div class="header-box">
                 <div class="title">Thống kê</div>
                 <div>
                     <div id="buttonGroup">
-                        <a href="pageAdminController">Tất cả</a>
-                        <a href="pageAdminControllerToday">Hôm nay</a>
-                        <a href="pageAdminControllerWeek">Tuần</a>
-                        <a href="pageAdminControllerMonth">Tháng</a>
+                        <a href="pageAdminController" style="margin-right: 15px">Tất cả</a>
+                        <a href="pageAdminControllerToday" style="margin-right: 15px">Hôm nay</a>
+                        <a href="pageAdminControllerWeek" style="margin-right: 15px">Tuần này</a>
+                        <a href="pageAdminControllerMonth" style="margin-right: 15px">Tháng này</a>
                     </div>
                 </div>
             </div>
