@@ -73,7 +73,7 @@
     <div class="home-content">
         <div class="view-box">
            <div class="" style="margin-bottom: 20px">
-            <form action="" method="post">
+            <form action="./pageAdminStartEnd" method="post">
                 <label for="start-date">Ngày bắt đầu:</label>
                 <input type="date" id="start-date" name="start-date" required>
                 <br><br>
@@ -83,14 +83,63 @@
                 <input type="submit" value="Thống kê">
             </form>
            </div>
+            <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    // Xử lý sự kiện submit của form
+                    var form = document.querySelector("form");
+                    form.addEventListener("submit", function(event) {
+                        event.preventDefault(); // Ngăn chặn hành động mặc định của form
+
+                        // Lấy giá trị của start-date và end-date từ form
+                        var startDate = document.getElementById("start-date").value;
+                        var endDate = document.getElementById("end-date").value;
+
+                        // Định dạng lại ngày tháng
+                        var formattedStartDate = formatDate(startDate);
+                        var formattedEndDate = formatDate(endDate);
+
+                        // Cập nhật nội dung của các thẻ div có class là "title"
+                        var titleDivs = document.querySelectorAll(".title");
+                        titleDivs[0].textContent = "Thống kê từ ngày " + formattedStartDate + " đến ngày " + formattedEndDate;
+                        titleDivs[1].textContent = "Đơn hàng từ ngày  " + formattedStartDate + " đến ngày " + formattedEndDate;
+                        titleDivs[2].textContent = "Sản Phẩm Bán Chạy từ ngày  " + formattedStartDate + " đến ngày " + formattedEndDate;
+                    });
+                    // // Xử lý sự kiện click của các liên kết trong buttonGroup
+                    // var buttonGroup = document.getElementById("buttonGroup");
+                    // var links = buttonGroup.getElementsByTagName("a");
+                    // for (var i = 0; i < links.length; i++) {
+                    //     links[i].addEventListener("click", function(event) {
+                    //         event.preventDefault(); // Ngăn chặn hành động mặc định của thẻ a
+                    //
+                    //         // Lấy nội dung của thẻ a được click
+                    //         var linkText = this.textContent.trim();
+                    //
+                    //         // Cập nhật nội dung của div có class là "title"
+                    //         var titleDivs = document.querySelectorAll(".title");
+                    //         titleDivs[0].textContent = "Thống kê " + linkText;
+                    //         titleDivs[1].textContent = "Đơn hàng " + linkText;
+                    //         titleDivs[2].textContent = "Sản Phẩm Bán Chạy " + linkText;
+                    //     });
+                    // }
+                    // Hàm định dạng ngày tháng
+                    function formatDate(dateString) {
+                        var date = new Date(dateString);
+                        var day = date.getDate();
+                        var month = date.getMonth() + 1; // Tháng trong JavaScript đếm từ 0
+                        var year = date.getFullYear();
+                        // Định dạng lại thành dạng "ngày/tháng/năm"
+                        return day + '/' + month + '/' + year;
+                    }
+                });
+            </script>
             <div class="header-box">
                 <div class="title">Thống kê</div>
                 <div>
                     <div id="buttonGroup">
-                        <a href="pageAdminController" style="margin-right: 15px">Tất cả</a>
-                        <a href="pageAdminControllerToday" style="margin-right: 15px">Hôm nay</a>
-                        <a href="pageAdminControllerWeek" style="margin-right: 15px">Tuần này</a>
-                        <a href="pageAdminControllerMonth" style="margin-right: 15px">Tháng này</a>
+                        <a href="./pageAdminController" style="margin-right: 15px">Tất cả</a>
+                        <a href="./pageAdminControllerToday" style="margin-right: 15px">Hôm nay</a>
+                        <a href="./pageAdminControllerWeek" style="margin-right: 15px">Tuần này</a>
+                        <a href="./pageAdminControllerMonth" style="margin-right: 15px">Tháng này</a>
                     </div>
                 </div>
             </div>

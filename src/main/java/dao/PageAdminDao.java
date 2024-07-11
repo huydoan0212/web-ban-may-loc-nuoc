@@ -133,9 +133,33 @@ public class PageAdminDao {
         );
         return count;
     }
+
+
+
     public static int totalMoneyStartEnd(String startDate, String endDate) {
         Integer count = JDBIConnector.me().withHandle(handle ->
                 handle.createQuery("SELECT SUM(total_money) FROM orders WHERE order_date BETWEEN :startDate AND :endDate")
+                        .bind("startDate", startDate)
+                        .bind("endDate", endDate)
+                        .mapTo(Integer.class)
+                        .one()
+        );
+        return (count != null) ? count : 0;
+    }
+    public static int countOrderStartEnd(String startDate, String endDate) {
+        Integer count = JDBIConnector.me().withHandle(handle ->
+                handle.createQuery("SELECT COUNT(id) FROM orders WHERE order_date BETWEEN :startDate AND :endDate")
+                        .bind("startDate", startDate)
+                        .bind("endDate", endDate)
+                        .mapTo(Integer.class)
+                        .one()
+        );
+        return (count != null) ? count : 0;
+    }
+    public static int countOrderCancelOrderStartEnd(String startDate, String endDate) {
+        Integer count = JDBIConnector.me().withHandle(handle ->
+                handle.createQuery("SELECT COUNT(id) FROM orders WHERE status LIKE :status AND order_date BETWEEN :startDate AND :endDate")
+                        .bind("status", "%Đã Hủy%")
                         .bind("startDate", startDate)
                         .bind("endDate", endDate)
                         .mapTo(Integer.class)
@@ -159,26 +183,42 @@ public class PageAdminDao {
                         .collect(Collectors.toList())
         );
     }
-    public static int countOrderStartEnd(String startDate, String endDate) {
-        Integer count = JDBIConnector.me().withHandle(handle ->
-                handle.createQuery("SELECT COUNT(id) FROM orders WHERE order_date BETWEEN :startDate AND :endDate")
+    public static List<Order> getOrderRecentStartEnd(String startDate, String endDate) {
+        return JDBIConnector.me().withHandle(handle ->
+                handle.createQuery("SELECT * FROM orders WHERE order_date BETWEEN :startDate AND :endDate ORDER BY order_date DESC")
                         .bind("startDate", startDate)
                         .bind("endDate", endDate)
-                        .mapTo(Integer.class)
-                        .one()
+                        .mapToBean(Order.class)
+                        .stream()
+                        .collect(Collectors.toList())
         );
-        return (count != null) ? count : 0;
     }
-    public static int countOrderCancelOrderStartEnd(String startDate, String endDate) {
-        Integer count = JDBIConnector.me().withHandle(handle ->
-                handle.createQuery("SELECT COUNT(id) FROM orders WHERE status LIKE :status AND order_date BETWEEN :startDate AND :endDate")
+    public static List<Order> getOrderRecentCanceledStartEnd(String startDate, String endDate) {
+        return JDBIConnector.me().withHandle(handle ->
+                handle.createQuery("SELECT * FROM orders WHERE status LIKE :status AND order_date BETWEEN :startDate AND :endDate ORDER BY order_date DESC")
                         .bind("status", "%Đã Hủy%")
                         .bind("startDate", startDate)
                         .bind("endDate", endDate)
-                        .mapTo(Integer.class)
-                        .one()
+                        .mapToBean(Order.class)
+                        .stream()
+                        .collect(Collectors.toList())
         );
-        return (count != null) ? count : 0;
+    }
+    public static List<Product> getProductsNotSoldStartEnd(String startDate, String endDate) {
+        return JDBIConnector.me().withHandle(handle ->
+                handle.createQuery("SELECT * FROM products " +
+                                "WHERE NOT EXISTS (" +
+                                "   SELECT 1 FROM order_details " +
+                                "   JOIN orders ON order_details.order_id = orders.id " +
+                                "   WHERE order_details.product_id = products.id " +
+                                "   AND orders.order_date BETWEEN :startDate AND :endDate" +
+                                ")")
+                        .bind("startDate", startDate)
+                        .bind("endDate", endDate)
+                        .mapToBean(Product.class)
+                        .stream()
+                        .collect(Collectors.toList())
+        );
     }
 
 
@@ -190,7 +230,7 @@ public class PageAdminDao {
 //        System.out.println(getOrderRecent());
 //        System.out.println(countOrderCancelToday());
 //        System.out.println(totalMoneyStartEnd("2024-01-23", "2024-01-25"));
-        System.out.println(countOrderStartEnd("2024-01-23", "2024-01-25"));
+        System.out.println(getProductsNotSoldStartEnd("2024-01-23", "2024-01-25"));
 
     }
 }

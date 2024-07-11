@@ -59,6 +59,28 @@ public class PageAdminService {
     public int countOrderCancelMonth(){
         return PageAdminDao.countOrderCancelMonth();
     }
+    public int totalMoneyStartEnd(String startDate, String endDate){
+        return PageAdminDao.totalMoneyStartEnd(startDate, endDate);
+    }
+    public int countOrderStartEnd(String startDate, String endDate){
+        return PageAdminDao.countOrderStartEnd(startDate, endDate);
+    }
+    public int countOrderCancelOrderStartEnd(String startDate, String endDate){
+        return PageAdminDao.countOrderCancelOrderStartEnd(startDate, endDate);
+    }
+    public List<Product> getProductBestSellerStartEnd(String startDate, String endDate){
+        return PageAdminDao.getProductBestSellerStartEnd(startDate, endDate);
+    }
+    public List<Order> getOrderRecentStartEnd(String startDate, String endDate){
+        return PageAdminDao.getOrderRecentStartEnd(startDate, endDate);
+    }
+    public List<Order> getOrderRecentCanceledStartEnd(String startDate, String endDate){
+        return PageAdminDao.getOrderRecentCanceledStartEnd(startDate, endDate);
+    }
+    public static List<Product> getProductsNotSoldStartEnd(String startDate, String endDate){
+        return PageAdminDao.getProductsNotSoldStartEnd(startDate, endDate);
+    }
+
     public static void main(String[] args) {
         System.out.println(PageAdminService.getInstance().getOrderRecent());
     }
