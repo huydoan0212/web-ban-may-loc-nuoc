@@ -398,9 +398,9 @@ public class UserDAO extends AbsDao<User> {
     }
 
     public static void main(String[] args) {
-        User user = UserDAO.getUserInfo("112649102310854549392");
-        System.out.println(user);
-
+//        User user = UserDAO.getUserInfo("112649102310854549392");
+//        System.out.println(user);
+        System.out.println(getFullNameById(1));
 
     }
 

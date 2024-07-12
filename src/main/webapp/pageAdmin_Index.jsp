@@ -4,6 +4,9 @@
 <%@ page import="java.util.List" %>
 <%@ page import="model.Product" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="dao.UserDAO" %>
+<%@ page import="service.UserService" %>
+<%@ page import="service.PageAdminService" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     Object tempObj = session.getAttribute("countOrder");
@@ -47,9 +50,6 @@
         }
     }
 
-    List<Order> listOrderRecent = (List<Order>) session.getAttribute("listOrderRecent");
-    if (listOrderRecent == null) listOrderRecent = new ArrayList<Order>();
-    System.out.println(listOrderRecent);
     List<Product> listProductBestSeller = (List<Product>) session.getAttribute("listProductBestSeller");
     if (listProductBestSeller == null) listProductBestSeller = new ArrayList<Product>();
 
@@ -65,24 +65,16 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/home.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
+    <link href="DataTables/datatables.min.css" rel="stylesheet">
+    <script src="DataTables/datatables.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 </head>
 <body>
 <%@include file="headerAdmin.jsp" %>
 <section class="home-section">
     <div class="home-content">
         <div class="view-box">
-           <div class="" style="margin-bottom: 20px">
-            <form action="./pageAdminStartEnd" method="post">
-                <label for="start-date">Ngày bắt đầu:</label>
-                <input type="date" id="start-date" name="start-date" required>
-                <br><br>
-                <label for="end-date">Ngày kết thúc:</label>
-                <input type="date" id="end-date" name="end-date" required>
-                <br><br>
-                <input type="submit" value="Thống kê">
-            </form>
-           </div>
             <script>
                 document.addEventListener("DOMContentLoaded", function() {
                     // Xử lý sự kiện submit của form
@@ -104,30 +96,11 @@
                         titleDivs[1].textContent = "Đơn hàng từ ngày  " + formattedStartDate + " đến ngày " + formattedEndDate;
                         titleDivs[2].textContent = "Sản Phẩm Bán Chạy từ ngày  " + formattedStartDate + " đến ngày " + formattedEndDate;
                     });
-                    // // Xử lý sự kiện click của các liên kết trong buttonGroup
-                    // var buttonGroup = document.getElementById("buttonGroup");
-                    // var links = buttonGroup.getElementsByTagName("a");
-                    // for (var i = 0; i < links.length; i++) {
-                    //     links[i].addEventListener("click", function(event) {
-                    //         event.preventDefault(); // Ngăn chặn hành động mặc định của thẻ a
-                    //
-                    //         // Lấy nội dung của thẻ a được click
-                    //         var linkText = this.textContent.trim();
-                    //
-                    //         // Cập nhật nội dung của div có class là "title"
-                    //         var titleDivs = document.querySelectorAll(".title");
-                    //         titleDivs[0].textContent = "Thống kê " + linkText;
-                    //         titleDivs[1].textContent = "Đơn hàng " + linkText;
-                    //         titleDivs[2].textContent = "Sản Phẩm Bán Chạy " + linkText;
-                    //     });
-                    // }
-                    // Hàm định dạng ngày tháng
                     function formatDate(dateString) {
                         var date = new Date(dateString);
                         var day = date.getDate();
-                        var month = date.getMonth() + 1; // Tháng trong JavaScript đếm từ 0
+                        var month = date.getMonth() + 1;
                         var year = date.getFullYear();
-                        // Định dạng lại thành dạng "ngày/tháng/năm"
                         return day + '/' + month + '/' + year;
                     }
                 });
@@ -146,26 +119,6 @@
             <div class="overview-boxes">
                 <div class="box">
                     <div class="right-side">
-                        <div class="box-topic">Tổng Đơn Hàng</div>
-                        <div class="number">
-                            <h3><%=countOrder%>
-                            </h3>
-                        </div>
-                    </div>
-                    <i class="fa-solid fa-cart-plus cart"></i>
-                </div>
-                <div class="box">
-                    <div class="right-side">
-                        <div class="box-topic">Hết Hàng</div>
-                        <div class="number">
-                            <h3><%=countProductOutStock%>
-                            </h3>
-                        </div>
-                    </div>
-                    <i class="fa-solid fa-xmark cart two"></i>
-                </div>
-                <div class="box">
-                    <div class="right-side">
                         <div class="box-topic">Doanh Thu</div>
                         <div class="number">
                             <h3><%=numberFormat.format(totalMoney)%> vnđ</h3>
@@ -175,76 +128,185 @@
                 </div>
                 <div class="box">
                     <div class="right-side">
-                        <div class="box-topic">Đơn Hàng Hủy</div>
+                            <a class="box-topic" href="./thongKeDonHang" style="">Đơn Hàng</a>
+                    </div>
+                    <i class="fa-solid fa-cart-plus cart"></i>
+                </div>
+                <div class="box">
+                    <div class="right-side">
+                        <div class="box-topic">Đơn hàng bị huỷ</div>
                         <div class="number">
                             <h3><%=countOrderCancel%>
                             </h3>
                         </div>
+                        <div>
+                            <a href="" style="">Xem chi tiết</a>
+                        </div>
                     </div>
                     <i class="fa-solid fa-scroll cart four"></i>
+                </div>
+                <div class="box">
+                    <div class="right-side">
+                        <div class="box-topic">Sản phẩm bán chạy</div>
+                        <div class="number">
+                            <h3>1
+                            </h3>
+                        </div>
+                        <div>
+                            <a href="" style="">Xem chi tiết</a>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-xmark cart two"></i>
+                </div>
+                <div class="box">
+                    <div class="right-side">
+                        <div class="box-topic">Sản phẩm không bán được</div>
+                        <div class="number">
+                            <h3>1
+                            </h3>
+                        </div>
+                        <div>
+                            <a href="" style="">Xem chi tiết</a>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-xmark cart two"></i>
+                </div>
+                <div class="box">
+                    <div class="right-side">
+                        <div class="box-topic">Khách hàng mới</div>
+                        <div class="number">
+                            <h3>1
+                            </h3>
+                        </div>
+                        <div>
+                            <a href="" style="">Xem chi tiết</a>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-xmark cart two"></i>
+                </div>
+                <div class="box">
+                    <div class="right-side">
+                        <div class="box-topic">Sản phẩm tồn kho</div>
+                        <div class="number">
+                            <h3>1
+                            </h3>
+                        </div>
+                        <div>
+                            <a href="" style="">Xem chi tiết</a>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-xmark cart two"></i>
+                </div>
+                <div class="box">
+                    <div class="right-side">
+                        <div class="box-topic">Sản phẩm cần nhập kho</div>
+                        <div class="number">
+                            <h3>1
+                            </h3>
+                        </div>
+                        <div>
+                            <a href="" style="">Xem chi tiết</a>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-xmark cart two"></i>
+                </div>
+                <div class="box">
+                    <div class="right-side">
+                        <div class="box-topic">Hết Hàng</div>
+                        <div class="number">
+                            <h3><%=countProductOutStock%>
+                            </h3>
+                        </div>
+                        <div>
+                            <a href="" style="">Xem chi tiết</a>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-xmark cart two"></i>
                 </div>
             </div>
         </div>
         <div class="sales-boxes">
-            <div class="recent-sales box">
-                <div class="title">Đơn Hàng Gần Đây</div>
-                <div class="sales-details">
-                    <table class="table table-hover table-bordered">
-                        <thead>
-                        <tr>
-                            <th scope="col">Mã đơn hàng</th>
-                            <th scope="col">Địa chỉ</th>
-                            <th scope="col">Ngày đặt</th>
-                            <th scope="col">Số điện thoại</th>
-                            <th scope="col">Tổng tiền</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <%for (Order order : listOrderRecent) {%>
-                        <tr>
-                            <th scope="row"><%=order.getId()%>
-                            </th>
-                            <td><%=order.getAddress()%>
-                            </td>
-                            <td><%=order.getOrder_date()%>
-                            </td>
-                            <td><%=order.getPhone()%>
-                            </td>
-                            <td><%=numberFormat.format(order.getTotal_money())%></td>
-                        </tr>
-                        <%}%>
-
-                        </tbody>
-                    </table>
-                </div>
-                <div class="button">
-                    <a href="page-admin-checkout">Xem tất cả</a>
-                </div>
-            </div>
-            <div class="top-sales box">
-                <div class="title">Sản Phẩm Bán Chạy</div>
-                <ul class="top-sales-details">
-                    <%
-                        for (Product product:listProductBestSeller
-                        ) {
-
-                    %>
-                    <li>
-
-                        <a href="#">
-
-                            <span title="Máy lọc nước nóng lạnh Sanaky"
-                                  class="product"><%=product.getTitle()%></span>
-                        </a>
-                        <span class="price"><%=product.getDiscount_price()%><sup>đ</sup></span>
-
-                    </li>
-                    <%}%>
-                </ul>
-            </div>
+<%--            <div class="recent-sales box">--%>
+<%--                <div class="title">Đơn Hàng Gần Đây</div>--%>
+<%--                <div class="row">--%>
+<%--                    <div class="col-md-12">--%>
+<%--                        <table id="table-id" class="table table-hover table-bordered">--%>
+<%--                            <thead>--%>
+<%--                            <tr>--%>
+<%--                                <th scope="col">Mã đơn hàng</th>--%>
+<%--                                <th scope="col">Tên Khách Hàng</th>--%>
+<%--                                <th scope="col">Địa chỉ</th>--%>
+<%--                                <th scope="col">Ngày đặt</th>--%>
+<%--                                <th scope="col">Số điện thoại</th>--%>
+<%--                                <th scope="col">Trạng thái</th>--%>
+<%--                                <th scope="col">Tổng tiền</th>--%>
+<%--                            </tr>--%>
+<%--                            </thead>--%>
+<%--                            <tbody>--%>
+<%--                            <%for (Order order : listOrderRecent) {%>--%>
+<%--                            <tr>--%>
+<%--                                <th scope="row"><%=order.getId()%>--%>
+<%--                                </th>--%>
+<%--                                <td><%=UserService.getFullNameById(order.getUser_id())%>--%>
+<%--                                </td>--%>
+<%--                                <td><%=order.getAddress()%>--%>
+<%--                                </td>--%>
+<%--                                <td><%=order.getOrder_date()%>--%>
+<%--                                </td>--%>
+<%--                                <td><%=order.getPhone()%>--%>
+<%--                                </td>--%>
+<%--                                <td><%=order.getStatus()%>--%>
+<%--                                </td>--%>
+<%--                                <td><%=numberFormat.format(order.getTotal_money())%></td>--%>
+<%--                            </tr>--%>
+<%--                            <%}%>--%>
+<%--                            </tbody>--%>
+<%--                        </table>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            <div class="top-sales box">--%>
+<%--                <div class="title">Sản Phẩm Bán Chạy</div>--%>
+<%--                <div class="row">--%>
+<%--                    <div class="col-md-12">--%>
+<%--                        <table id="table-id-2" class="table table-hover table-bordered">--%>
+<%--                            <thead>--%>
+<%--                            <tr>--%>
+<%--                                <th scope="col">Mã sản phẩm</th>--%>
+<%--                                <th scope="col">Tên sản phẩm</th>--%>
+<%--                                <th scope="col">Giá</th>--%>
+<%--                                <th scope="col">Số lượng đã bán</th>--%>
+<%--                            </tr>--%>
+<%--                            </thead>--%>
+<%--                            <tbody>--%>
+<%--                            <%--%>
+<%--                                for (Product product:listProductBestSeller) {--%>
+<%--                            %>--%>
+<%--                            <tr>--%>
+<%--                                <th scope="row"><%=product.getId()%>--%>
+<%--                                </th>--%>
+<%--                                <td><%=product.getTitle()%>--%>
+<%--                                </td>--%>
+<%--                                <td><%=product.getPrice()%>--%>
+<%--                                </td>--%>
+<%--                                <td><%=PageAdminService.countProductSoldQuantity(product.getId(), request.getParameter("start-date"), request.getParameter("end-date"))%>--%>
+<%--                                </td>--%>
+<%--                                <td><%=numberFormat.format(product.getPrice())%></td>--%>
+<%--                            </tr>--%>
+<%--                            <%}%>--%>
+<%--                            </tbody>--%>
+<%--                        </table>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
         </div>
     </div>
 </section>
+<script>
+    new DataTable('#table-id', {
+
+    });
+</script>
 </body>
 </html>
 

@@ -60,7 +60,6 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-
                     <table id="table-id" class="table table-hover table-bordered">
                         <thead>
                         <tr>

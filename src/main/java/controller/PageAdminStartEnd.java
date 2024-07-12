@@ -34,6 +34,7 @@ public class PageAdminStartEnd extends HttpServlet {
         request.getSession().setAttribute("countOrderCancel", countOrderCancel);
         request.setAttribute("listOderRecent", listOderRecent );
         request.setAttribute("listProductBestSeller", listProductBestSeller);
+
         request.getRequestDispatcher("pageAdmin_Index.jsp").forward(request, response);
     }
 }

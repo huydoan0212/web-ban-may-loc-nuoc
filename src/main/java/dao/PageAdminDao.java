@@ -220,6 +220,21 @@ public class PageAdminDao {
                         .collect(Collectors.toList())
         );
     }
+    public static int countProductSoldQuantity(int productId, String startDate, String endDate) {
+        return JDBIConnector.me().withHandle(handle ->
+                handle.createQuery("SELECT SUM(order_details.quantity) AS total_sold " +
+                                "FROM order_details " +
+                                "JOIN orders ON orders.id = order_details.order_id " +
+                                "WHERE order_details.product_id = :productId " +
+                                "AND orders.order_date BETWEEN :startDate AND :endDate")
+                        .bind("productId", productId)
+                        .bind("startDate", startDate)
+                        .bind("endDate", endDate)
+                        .mapTo(Integer.class)
+                        .findOne()
+                        .orElse(0)
+        );
+    }
 
 
     public static void main(String[] args) {
@@ -230,7 +245,7 @@ public class PageAdminDao {
 //        System.out.println(getOrderRecent());
 //        System.out.println(countOrderCancelToday());
 //        System.out.println(totalMoneyStartEnd("2024-01-23", "2024-01-25"));
-        System.out.println(getProductsNotSoldStartEnd("2024-01-23", "2024-01-25"));
+//        System.out.println(countProductSoldQuantity(2,"2024-01-23", "2024-01-25"));
 
     }
 }

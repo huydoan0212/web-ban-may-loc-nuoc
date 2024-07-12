@@ -80,6 +80,9 @@ public class PageAdminService {
     public static List<Product> getProductsNotSoldStartEnd(String startDate, String endDate){
         return PageAdminDao.getProductsNotSoldStartEnd(startDate, endDate);
     }
+    public static int countProductSoldQuantity(int productId, String startDate, String endDate){
+        return PageAdminDao.countProductSoldQuantity(productId, startDate, endDate);
+    }
 
     public static void main(String[] args) {
         System.out.println(PageAdminService.getInstance().getOrderRecent());
