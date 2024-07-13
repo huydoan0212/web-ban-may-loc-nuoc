@@ -44,7 +44,7 @@ public class PageAdminDao {
     }
     public static List<Order> getOrderRecent() {
         List<Order> orders= JDBIConnector.me().withHandle((handle ->
-                handle.createQuery("select * from orders order by order_date desc limit 10")
+                handle.createQuery("select * from orders order by order_date desc ")
                         .mapToBean(Order.class).stream().collect(Collectors.toList())));
         return orders;
     }
@@ -235,6 +235,17 @@ public class PageAdminDao {
                         .orElse(0)
         );
     }
+    public static List<Order> getOrderStatusStartEnd(String startDate, String endDate, String status) {
+        return JDBIConnector.me().withHandle(handle ->
+                handle.createQuery("SELECT * FROM orders WHERE order_date BETWEEN :startDate AND :endDate AND status = :status ORDER BY order_date DESC")
+                        .bind("startDate", startDate)
+                        .bind("endDate", endDate)
+                        .bind("status", status)
+                        .mapToBean(Order.class)
+                        .stream()
+                        .collect(Collectors.toList())
+        );
+    }
 
 
     public static void main(String[] args) {
@@ -245,7 +256,7 @@ public class PageAdminDao {
 //        System.out.println(getOrderRecent());
 //        System.out.println(countOrderCancelToday());
 //        System.out.println(totalMoneyStartEnd("2024-01-23", "2024-01-25"));
-//        System.out.println(countProductSoldQuantity(2,"2024-01-23", "2024-01-25"));
+        System.out.println(getOrderStatusStartEnd("2024-01-23", "2024-01-25", "Đã Giao"));
 
     }
 }

@@ -160,36 +160,6 @@
         // ]
     });
 
-    function changeStatusProduct(productId) {
-        $.ajax({
-            url: '/ProjectLTW_war/change-status-product',
-            type: 'POST',
-            data: {
-                product_id: productId
-            },
-            success: function (response) {
-                // Cập nhật trạng thái của sản phẩm trong bảng
-                var newStatus = response.newStatus;
-                // Tìm hàng có chứa productId và cập nhật giá trị của cột 8
-                var table = $('#table-id').DataTable();
-                var data = table.column(0).data();
-                var index = null;
-                for (i = 0; i < data.length; i++) {
-                    if (parseInt(productId) === parseInt(data[i])) { // giả sử cột đầu tiên là cột id
-                        index = i;
-                        break;
-                    }
-                }
-                if (index !== null) {
-                    table.cell(index, 8).data(newStatus); // cập nhật giá trị của cột 8 và vẽ lại bảng
-                }
-            },
-            error: function (error) {
-                // Xử lý khi có lỗi xảy ra
-                console.log(error);
-            }
-        });
-    }
 </script>
 </body>
 </html>
