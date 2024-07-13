@@ -66,20 +66,14 @@
                         <p><span style="font-weight: bold">Tên người nhận: </span> <%=order.getName()%></p>
                         <p><span style="font-weight: bold">Số điện thoại: </span> <%=order.getPhone()%></p>
                         <p><span style="font-weight: bold">Ngày đặt hàng: </span> <%=order.getOrder_date()%></p>
-                        <p><span style="font-weight: bold">Địa chỉ: </span> <%=order.getAddress()%>
-                        </p>
-                        <%--                        <p><span style="font-weight: bold">Ghi chú: </span> Giao ở khoa CNTT</p>--%>
-                        <div class="card">
-                            <div class="card-body">
-                                <table class="table">
+                        <p><span style="font-weight: bold">Địa chỉ: </span> <%=order.getAddress()%></p>
+                        <div class="card"><div class="card-body"><table class="table">
                                     <thead>
                                     <tr>
                                         <th scope="col">Sản phẩm</th>
                                         <th scope="col">Giá tiền</th>
                                         <th scope="col">Số lượng</th>
                                         <th scope="col">Thành tiền</th>
-
-
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -93,8 +87,6 @@
                                         <td><a><%=o.getQuantity()%>
                                         </a></td>
                                         <td><%=numberFormat.format(o.getTotal_money())%><sup>đ</sup></td>
-
-
                                     </tr>
                                     <%}%>
                                     </tbody>

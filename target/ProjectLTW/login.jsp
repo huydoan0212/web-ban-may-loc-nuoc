@@ -65,7 +65,7 @@
                     <p for="">Hoặc</p>
                 </div>
                 <div class="btn-ggfb">
-                    <button class="btnfb">
+                    <button class="btnfb" onclick="checkLoginState()">
                         <i class="fa-brands fa-facebook"></i> Facebook
                     </button>
                     <button class="btngg">
@@ -92,6 +92,7 @@
         </div>
     </div>
 </div>
+<div id="fb-root"></div>
 <%@include file="footer.jsp" %>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -99,6 +100,9 @@
     $('.message a').click(function () {
         $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
     });
+
 </script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js"></script>
+<script src="js/facebookAPI.js"></script>
 </body>
 </html>

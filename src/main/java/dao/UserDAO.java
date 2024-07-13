@@ -35,7 +35,7 @@ public class UserDAO extends AbsDao<User> {
         return count > 0;
     }
 
-    public static boolean addUser(String username, String fullname, String email, String phone_number, String password) {
+    public boolean addUser(String username, String fullname, String email, String phone_number, String password) {
         boolean result = false;
         String insertQuery = "INSERT INTO users (role_id, username, fullname, email, phone_number, sex, address, password, created_at, status) " +
                 "VALUES (?, ?, ?, ?, ?, '', '', ?, ?, 1)";
@@ -52,6 +52,13 @@ public class UserDAO extends AbsDao<User> {
                     .execute();
 
             result = rowsInserted > 0;
+            User user = new User();
+            user.setUserName(username);
+            user.setFullName(fullname);
+            user.setEmail(email);
+            user.setPhoneNumber(phone_number);
+            user.setPassword(password);
+            super.insert(user);
         } catch (Exception e) {
             e.printStackTrace(); // In ra lỗi để theo dõi và xử lý nếu cần
         }
@@ -380,26 +387,6 @@ public class UserDAO extends AbsDao<User> {
     }
 
 
-    @Override
-    public boolean insert(IModel model, int userId, String ipAddress, String action, String level, LocalDateTime created_at, LocalDateTime updated_at, boolean status, String nationality) {
-        return super.insert(model, userId, ipAddress, action, level, created_at, updated_at, status, nationality);
-    }
-
-    @Override
-    public int update(IModel model, int userId, String ipAddress, String action, String resource, int previousValue, int currentValue, String level, LocalDateTime created_at, LocalDateTime updated_at, boolean status, String nationality) {
-        return 0;
-    }
-
-    @Override
-    public int delete(IModel model, int userId, String ipAddress, String action, String resource, int previousValue, int currentValue, String level, LocalDateTime created_at, LocalDateTime updated_at, boolean status, String nationality) {
-        return 0;
-    }
-
-    @Override
-    public List<User> select(IModel model, int userId, String ipAddress, String action, String resource, int previousValue, int currentValue, String level, LocalDateTime created_at, LocalDateTime updated_at, boolean status, String nationality) {
-        return null;
-    }
-
     public static void main(String[] args) {
 //        // Tạo dữ liệu mẫu
 //        int role = 1;
@@ -418,13 +405,13 @@ public class UserDAO extends AbsDao<User> {
         String phone_number = "1234567890";
         String password = "testPassword";
 
-        boolean isUserAdded = addUser(username, fullname, email, phone_number, password);
-
-        if (isUserAdded) {
-            System.out.println("User added successfully!");
-        } else {
-            System.out.println("Failed to add user.");
-        }
+//        boolean isUserAdded = addUser(username, fullname, email, phone_number, password);
+//
+//        if (isUserAdded) {
+//            System.out.println("User added successfully!");
+//        } else {
+//            System.out.println("Failed to add user.");
+//        }
     }
 
 

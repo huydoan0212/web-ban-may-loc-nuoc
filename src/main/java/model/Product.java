@@ -2,7 +2,7 @@ package model;
 
 import java.sql.Date;
 
-public class Product {
+public class Product implements IModel{
     private int id;
     private int category_id;
     private int type_machine_id;
@@ -158,5 +158,20 @@ public class Product {
         this.created_at = created_at;
         this.updated_at = updated_at;
         this.status = status;
+    }
+
+    @Override
+    public String table() {
+        return "products";
+    }
+
+    @Override
+    public String beforeData() {
+        return "";
+    }
+
+    @Override
+    public String afterData() {
+        return toString();
     }
 }

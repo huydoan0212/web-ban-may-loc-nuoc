@@ -38,10 +38,10 @@ public class ProductDAO {
     }
 
     public static List<Product> getLocNuocTheoDanhMuc(String category) {
-        List<Product> products = JDBIConnector.me().withHandle((handle ->
+        List<Product> products = JDBIConnector.me().withHandle(handle ->
                 handle.createQuery("select products.id, products.category_id, products.title, products.price, products.discount_price, products.img from products inner join categorys on products.category_id = categorys.id where categorys.name = :category and status = 1 limit 10")
                         .bind("category", category)
-                        .mapToBean(Product.class).stream().collect(Collectors.toList())));
+                        .mapToBean(Product.class).stream().collect(Collectors.toList()));
         return products;
     }
 

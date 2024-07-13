@@ -24,7 +24,6 @@ public class LogOutController extends HttpServlet {
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
         UserDAO userDAO = new UserDAO();
-        userDAO.insert(user, user.getId(), req.getHeader("X-Forwarded-For") != null ? req.getHeader("X-Forwarded-For") : req.getRemoteAddr(), "Logout" , "Normal", LocalDateTime.now(), LocalDateTime.now(), true, "Viet Nam");
         session.removeAttribute("user");
         session.removeAttribute("userName");
         resp.sendRedirect("login.jsp");

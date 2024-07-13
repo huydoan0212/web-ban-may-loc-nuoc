@@ -11,11 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+
 @WebServlet(name = "PageAdminController", value = "/pageAdminController")
 public class PageAdminController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doPost(req,resp);
+        doPost(req, resp);
     }
 
     @Override
@@ -30,7 +31,7 @@ public class PageAdminController extends HttpServlet {
         request.getSession().setAttribute("countProductOutStock", countProductOutStock);
         request.getSession().setAttribute("totalMoney", totalMoney);
         request.getSession().setAttribute("countOrderCancel", countOrderCancel);
-        request.getSession().setAttribute("listOrderRecent", listOrderRecent );
+        request.getSession().setAttribute("listOrderRecent", listOrderRecent);
         request.getSession().setAttribute("listProductBestSeller", listProductBestSeller);
         request.getRequestDispatcher("pageAdmin_Index.jsp").forward(request, response);
     }

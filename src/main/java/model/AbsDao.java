@@ -1,29 +1,43 @@
 package model;
 
+import dao.LogDao;
+
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public abstract class AbsDao<T extends IModel> implements IDao<T> {
+public class AbsDao<T extends IModel> implements IDao<T> {
+    private LogDao logDao = new LogDao();
+    protected static int user_id = 0;
 
     @Override
-    public boolean insert(IModel model, int userId, String ipAddress, String action, String level, LocalDateTime created_at, LocalDateTime updated_at, boolean status, String nationality) {
-        return Log.insert(model, userId, ipAddress, action, level, created_at, updated_at, status, nationality);
+    public int insert(T t) {
+        return logDao.insert(Log.insert(t, user_id));
     }
 
     @Override
-    public int update(IModel model, int userId, String ipAddress, String action, String resource, int previousValue, int currentValue, String level, LocalDateTime created_at, LocalDateTime updated_at, boolean status, String nationality) {
-        return 0;
+    public int update(T t) {
+        return logDao.insert(Log.update(t, user_id));
     }
 
     @Override
-    public int delete(IModel model, int userId, String ipAddress, String action, String resource, int previousValue, int currentValue, String level, LocalDateTime created_at, LocalDateTime updated_at, boolean status, String nationality) {
-        return 0;
+    public int delete(T t) {
+        return logDao.insert(Log.delete(t, user_id));
     }
 
     @Override
-    public List<T> select(IModel model, int userId, String ipAddress, String action, String resource, int previousValue, int currentValue, String level, LocalDateTime created_at, LocalDateTime updated_at, boolean status, String nationality) {
+    public ArrayList<T> selectAll() {
         return null;
+    }
+
+    @Override
+    public T selectById(int id) {
+        return null;
+    }
+
+    public int login(T model) {
+        return logDao.insert(Log.login(model, user_id));
     }
 }
 
