@@ -20,8 +20,12 @@ public class ThongKeDonHang extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Order> listOderRecent = PageAdminService.getInstance().getOrderRecent();
-        request.getSession().setAttribute("listOderRecent", listOderRecent);
+        if (request.getSession().getAttribute("startDateConverted")!=null && request.getSession().getAttribute("endDateConverted") != null) {
+            request.getSession().removeAttribute("startDateConverted");
+            request.getSession().removeAttribute("endDateConverted");
+        }
+        List<Order> listOrders = PageAdminService.getInstance().getOrderRecent();
+        request.setAttribute("listOrders", listOrders);
         request.getRequestDispatcher("thongkedonhang.jsp").forward(request, response);
     }
 }

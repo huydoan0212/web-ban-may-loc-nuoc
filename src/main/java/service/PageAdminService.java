@@ -85,6 +85,6 @@ public class PageAdminService {
     }
 
     public static void main(String[] args) {
-        System.out.println(PageAdminService.getInstance().getOrderRecent());
+        System.out.println(PageAdminService.getInstance().getOrderRecentStartEnd("2024-01-23", "2024-01-25"));
     }
 }

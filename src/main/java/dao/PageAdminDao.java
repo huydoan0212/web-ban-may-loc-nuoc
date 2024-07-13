@@ -42,12 +42,7 @@ public class PageAdminDao {
         );
         return count;
     }
-    public static List<Order> getOrderRecent() {
-        List<Order> orders= JDBIConnector.me().withHandle((handle ->
-                handle.createQuery("select * from orders order by order_date desc ")
-                        .mapToBean(Order.class).stream().collect(Collectors.toList())));
-        return orders;
-    }
+
     public static List<Product> getProductBestSeller() {
         List<Product> products = JDBIConnector.me().withHandle((handle ->
                 handle.createQuery("select products.*, count(order_details.product_id) " +
@@ -183,16 +178,7 @@ public class PageAdminDao {
                         .collect(Collectors.toList())
         );
     }
-    public static List<Order> getOrderRecentStartEnd(String startDate, String endDate) {
-        return JDBIConnector.me().withHandle(handle ->
-                handle.createQuery("SELECT * FROM orders WHERE order_date BETWEEN :startDate AND :endDate ORDER BY order_date DESC")
-                        .bind("startDate", startDate)
-                        .bind("endDate", endDate)
-                        .mapToBean(Order.class)
-                        .stream()
-                        .collect(Collectors.toList())
-        );
-    }
+
     public static List<Order> getOrderRecentCanceledStartEnd(String startDate, String endDate) {
         return JDBIConnector.me().withHandle(handle ->
                 handle.createQuery("SELECT * FROM orders WHERE status LIKE :status AND order_date BETWEEN :startDate AND :endDate ORDER BY order_date DESC")
@@ -246,7 +232,22 @@ public class PageAdminDao {
                         .collect(Collectors.toList())
         );
     }
-
+    public static List<Order> getOrderRecent() {
+        List<Order> orders= JDBIConnector.me().withHandle((handle ->
+                handle.createQuery("select * from orders order by order_date desc ")
+                        .mapToBean(Order.class).stream().collect(Collectors.toList())));
+        return orders;
+    }
+    public static List<Order> getOrderRecentStartEnd(String startDate, String endDate) {
+        return JDBIConnector.me().withHandle(handle ->
+                handle.createQuery("SELECT * FROM orders WHERE order_date BETWEEN :startDate AND :endDate ORDER BY order_date DESC")
+                        .bind("startDate", startDate)
+                        .bind("endDate", endDate)
+                        .mapToBean(Order.class)
+                        .stream()
+                        .collect(Collectors.toList())
+        );
+    }
 
     public static void main(String[] args) {
 //        System.out.println(countOrder());
@@ -256,7 +257,7 @@ public class PageAdminDao {
 //        System.out.println(getOrderRecent());
 //        System.out.println(countOrderCancelToday());
 //        System.out.println(totalMoneyStartEnd("2024-01-23", "2024-01-25"));
-        System.out.println(getOrderStatusStartEnd("2024-01-23", "2024-01-25", "Đã Giao"));
+        System.out.println(getOrderRecentStartEnd("2024-01-23", "2024-01-25"));
 
     }
 }

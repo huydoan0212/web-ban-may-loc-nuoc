@@ -11,6 +11,7 @@
 <% Locale locale = new Locale("vi", "VN");
     NumberFormat numberFormat = NumberFormat.getInstance(locale);
 %>
+
 <html lang="en">
 <head>
     <title>Quản lý</title>
@@ -57,7 +58,6 @@
                 </div>
                 <div class="box">
                     <div class="right-side">
-<%--                        <div class="box-topic">Đơn hàng bị huỷ</div>--%>
                              <a class="box-topic" href="./thongKeDonHang" style="">Đơn Hàng</a>
                     </div>
                     <i class="fa-solid fa-scroll cart four"></i>
