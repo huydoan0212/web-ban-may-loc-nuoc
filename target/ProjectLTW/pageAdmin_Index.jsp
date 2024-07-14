@@ -11,6 +11,7 @@
 <% Locale locale = new Locale("vi", "VN");
     NumberFormat numberFormat = NumberFormat.getInstance(locale);
 %>
+
 <html lang="en">
 <head>
     <title>Quản lý</title>
@@ -31,17 +32,17 @@
         <div class="view-box">
             <div class="header-box">
                 <div class="title">Thống kê</div>
-                <div>
-                    <div id="buttonGroup">
-                        <a href="./pageAdminController" style="margin-right: 15px">Tất cả</a>
-                        <a href="./pageAdminControllerToday" style="margin-right: 15px">Hôm nay</a>
-                        <a href="./pageAdminControllerWeek" style="margin-right: 15px">Tuần này</a>
-                        <a href="./pageAdminControllerMonth" style="margin-right: 15px">Tháng này</a>
-                    </div>
-                </div>
+                <%--                <div>--%>
+                <%--                    <div id="buttonGroup">--%>
+                <%--                        <a href="./pageAdminController" style="margin-right: 15px">Tất cả</a>--%>
+                <%--                        <a href="./pageAdminControllerToday" style="margin-right: 15px">Hôm nay</a>--%>
+                <%--                        <a href="./pageAdminControllerWeek" style="margin-right: 15px">Tuần này</a>--%>
+                <%--                        <a href="./pageAdminControllerMonth" style="margin-right: 15px">Tháng này</a>--%>
+                <%--                    </div>--%>
+                <%--                </div>--%>
             </div>
             <div class="overview-boxes">
-                <div class="box">
+                <div class="box" style="margin-bottom: 10px">
                     <div class="right-side">
                         <div class="box-topic">Doanh Thu</div>
                         <div class="number">
@@ -51,97 +52,54 @@
                 </div>
                 <div class="box">
                     <div class="right-side">
-                            <a class="box-topic" href="./thongKeDonHang" style="">Đơn Hàng</a>
+                        <a class="box-topic" href="./thongKeDonHang" style="">Đơn Hàng</a>
                     </div>
                     <i class="fa-solid fa-cart-plus cart"></i>
                 </div>
                 <div class="box">
                     <div class="right-side">
-<%--                        <div class="box-topic">Đơn hàng bị huỷ</div>--%>
-                             <a class="box-topic" href="./thongKeDonHang" style="">Đơn Hàng</a>
-                    </div>
-                    <i class="fa-solid fa-scroll cart four"></i>
-                </div>
-                <div class="box">
-                    <div class="right-side">
-                        <div class="box-topic">Sản phẩm bán chạy</div>
-                        <div class="number">
-                            <h3>1
-                            </h3>
-                        </div>
-                        <div>
-                            <a href="" style="">Xem chi tiết</a>
-                        </div>
+                        <a class="box-topic" href="./thongKeDonHangHuy" style="">Đơn Hàng Huỷ</a>
                     </div>
                     <i class="fa-solid fa-xmark cart two"></i>
                 </div>
                 <div class="box">
                     <div class="right-side">
-                        <div class="box-topic">Sản phẩm không bán được</div>
-                        <div class="number">
-                            <h3>1
-                            </h3>
-                        </div>
-                        <div>
-                            <a href="" style="">Xem chi tiết</a>
-                        </div>
+                        <a class="box-topic" href="./thongKeSanPham" style="">Sản phẩm bán chạy</a>
                     </div>
-                    <i class="fa-solid fa-xmark cart two"></i>
+                    <i class="fa-solid fa-arrow-trend-up cart"></i>
+                </div>
+                <div class="box" style="margin-bottom: 10px">
+                    <div class="right-side">
+                        <a class="box-topic" href="./thongKeSanPhamNotSold" style="">Sản phẩm không bán được</a>
+                    </div>
+                    <i class="fa-solid fa-xmark cart"></i>
                 </div>
                 <div class="box">
                     <div class="right-side">
-                        <div class="box-topic">Khách hàng mới</div>
-                        <div class="number">
-                            <h3>1
-                            </h3>
-                        </div>
-                        <div>
-                            <a href="" style="">Xem chi tiết</a>
-                        </div>
+                        <a class="box-topic" href="./thongKeDonHangHuy" style="">Khách hàng mới</a>
                     </div>
-                    <i class="fa-solid fa-xmark cart two"></i>
+                    <i class="fa-solid fa-users-between-lines cart"></i>
                 </div>
                 <div class="box">
                     <div class="right-side">
-                        <div class="box-topic">Sản phẩm tồn kho</div>
-                        <div class="number">
-                            <h3>1
-                            </h3>
-                        </div>
-                        <div>
-                            <a href="" style="">Xem chi tiết</a>
-                        </div>
+                        <a class="box-topic" href="./thongKeDonHangHuy" style="">Sản phẩm tồn kho</a>
                     </div>
-                    <i class="fa-solid fa-xmark cart two"></i>
+                    <i class="fa-solid fa-warehouse cart"></i>
                 </div>
                 <div class="box">
                     <div class="right-side">
-                        <div class="box-topic">Sản phẩm cần nhập kho</div>
-                        <div class="number">
-                            <h3>1
-                            </h3>
-                        </div>
-                        <div>
-                            <a href="" style="">Xem chi tiết</a>
-                        </div>
+                        <a class="box-topic" href="./thongKeDonHangHuy" style="">Sản phẩm cần nhập kho</a>
                     </div>
-                    <i class="fa-solid fa-xmark cart two"></i>
+                    <i class="fa-solid fa-industry cart"></i>
                 </div>
                 <div class="box">
                     <div class="right-side">
-                        <div class="box-topic">Hết Hàng</div>
-                        <div class="number">
-                            </h3>
-                        </div>
-                        <div>
-                            <a href="" style="">Xem chi tiết</a>
-                        </div>
+                        <a class="box-topic" href="./thongKeDonHangHuy" style="">Hết Hàng</a>
                     </div>
-                    <i class="fa-solid fa-xmark cart two"></i>
+                    <i class="fa-solid fa-border-none cart"></i>
                 </div>
-            </div>
         </div>
-        </div>
+    </div>
     </div>
 </section>
 </body>

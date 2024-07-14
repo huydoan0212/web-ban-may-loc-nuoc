@@ -83,5 +83,9 @@
 //<%--<script type="text/javascript" charset="utf8" src="./js/bootstrap.bundle.min.js"></script>--%>
 //<%--<script>$("#table-id").DataTable();--%>
 //<%--</script>--%>
+<script>
+    new DataTable('#table-id', {
+    });
+</script>
 </body>
 </html>

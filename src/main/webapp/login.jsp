@@ -74,7 +74,7 @@
                         <i class="fa-brands fa-facebook"></i> Facebook
                     </button>
                     <a href="https://accounts.google.com/o/oauth2/auth?scope=email profile openid
-&redirect_uri=http://localhost:8080/ProjectLTW_war_exploded/loginGoogle
+&redirect_uri=http://localhost:8080/ProjectLTW_war/loginGoogle
 &response_type=code
 &client_id=192822040743-18a4tpap0e863adnqs3rh60ro2e33qip.apps.googleusercontent.com
 &approval_prompt=force">

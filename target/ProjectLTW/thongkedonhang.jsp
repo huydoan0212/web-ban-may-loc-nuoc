@@ -9,12 +9,15 @@
 <%@ page import="service.UserService" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    List<Order> listOrderRecent = (List<Order>) session.getAttribute("listOderRecent");
-    if (listOrderRecent == null) listOrderRecent = new ArrayList<Order>();
+    List<Order> listOrders = (List<Order>) request.getAttribute("listOrders");
+    if (listOrders == null) listOrders = new ArrayList<>();
 %>
 <% Locale locale = new Locale("vi", "VN");
     NumberFormat numberFormat = NumberFormat.getInstance(locale);
 %>
+
+<% String startDateConverted = (String) session.getAttribute("startDateConverted");%>
+<% String endDateConverted = (String) session.getAttribute("endDateConverted"); %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -54,7 +57,13 @@
                     <input type="submit" value="Thống kê">
                 </form>
             </div>
-            <div class="title">Đơn hàng</div>
+            <div class="title">
+                <% if (startDateConverted != null && endDateConverted != null) { %>
+                Đơn hàng từ <%= startDateConverted %> đến <%= endDateConverted %>
+                <% } else { %>
+                Thống kê gần đây
+                <% } %>
+            </div>
             <div class="row">
                 <div class="col-md-12">
                     <table id="table-id" class="table table-hover table-bordered">
@@ -70,7 +79,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <%for (Order order : listOrderRecent) {%>
+                        <%for (Order order : listOrders) {%>
                         <tr>
                             <th scope="row"><%=order.getId()%>
                             </th>

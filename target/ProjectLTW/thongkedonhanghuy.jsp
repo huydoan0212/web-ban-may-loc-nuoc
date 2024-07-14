@@ -9,12 +9,15 @@
 <%@ page import="service.UserService" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    List<Order> listOrderRecent = (List<Order>) session.getAttribute("listOrderRecent");
-    if (listOrderRecent == null) listOrderRecent = new ArrayList<Order>();
+    List<Order> listOrdersCancel = (List<Order>) request.getAttribute("listOrdersCancel");
+    if (listOrdersCancel == null) listOrdersCancel = new ArrayList<>();
 %>
 <% Locale locale = new Locale("vi", "VN");
     NumberFormat numberFormat = NumberFormat.getInstance(locale);
 %>
+
+<% String startDateConverted = (String) session.getAttribute("startDateConverted");%>
+<% String endDateConverted = (String) session.getAttribute("endDateConverted"); %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -44,7 +47,7 @@
     <div class="home-content">
         <div class="manager-product">
             <div class="" style="margin-bottom: 20px">
-                <form action="./pageAdminStartEnd" method="post">
+                <form action="./donHangStartEndHuy" method="post">
                     <label for="start-date">Ngày bắt đầu:</label>
                     <input type="date" id="start-date" name="start-date" required>
                     <br><br>
@@ -54,7 +57,13 @@
                     <input type="submit" value="Thống kê">
                 </form>
             </div>
-            <div class="title">Đơn hàng bị huỷ</div>
+            <div class="title">
+                <% if (startDateConverted != null && endDateConverted != null) { %>
+                Đơn hàng huỷ từ <%= startDateConverted %> đến <%= endDateConverted %>
+                <% } else { %>
+                Thống kê Đơn hàng huỷ gần đây
+                <% } %>
+            </div>
             <div class="row">
                 <div class="col-md-12">
                     <table id="table-id" class="table table-hover table-bordered">
@@ -70,7 +79,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <%for (Order order : listOrderRecent) {%>
+                        <%for (Order order : listOrdersCancel) {%>
                         <tr>
                             <th scope="row"><%=order.getId()%>
                             </th>
@@ -103,35 +112,6 @@
     new DataTable('#table-id', {
     });
 </script>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // Xử lý sự kiện submit của form
-        var form = document.querySelector("form");
-        form.addEventListener("submit", function(event) {
-            event.preventDefault(); // Ngăn chặn hành động mặc định của form
 
-            // Lấy giá trị của start-date và end-date từ form
-            var startDate = document.getElementById("start-date").value;
-            var endDate = document.getElementById("end-date").value;
-
-            // Định dạng lại ngày tháng
-            var formattedStartDate = formatDate(startDate);
-            var formattedEndDate = formatDate(endDate);
-
-            // Cập nhật nội dung của các thẻ div có class là "title"
-            var titleDivs = document.querySelectorAll(".title");
-            titleDivs[0].textContent = "Thống kê từ ngày " + formattedStartDate + " đến ngày " + formattedEndDate;
-            titleDivs[1].textContent = "Đơn hàng từ ngày  " + formattedStartDate + " đến ngày " + formattedEndDate;
-            titleDivs[2].textContent = "Sản Phẩm Bán Chạy từ ngày  " + formattedStartDate + " đến ngày " + formattedEndDate;
-        });
-        function formatDate(dateString) {
-            var date = new Date(dateString);
-            var day = date.getDate();
-            var month = date.getMonth() + 1;
-            var year = date.getFullYear();
-            return day + '/' + month + '/' + year;
-        }
-    });
-</script>
 </body>
 </html>

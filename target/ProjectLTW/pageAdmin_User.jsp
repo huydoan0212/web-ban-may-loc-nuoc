@@ -126,6 +126,10 @@
 <script src="./js/jquery.dataTables.js"></script>
 <script type="text/javascript" charset="utf8" src="./js/bootstrap.bundle.min.js"></script>
 <%--<script>$("#table-id").DataTable();--%>
+<script>
+    new DataTable('#table-id', {
+    });
+</script>
 </script>
 </body>
 </html>
