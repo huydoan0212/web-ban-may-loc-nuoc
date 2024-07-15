@@ -162,7 +162,7 @@ public class User implements IModel {
 
     @Override
     public String table() {
-        return "";
+        return "user";
     }
 
     @Override
@@ -172,7 +172,7 @@ public class User implements IModel {
 
     @Override
     public String afterData() {
-        return "";
+        return toString();
     }
 }
 

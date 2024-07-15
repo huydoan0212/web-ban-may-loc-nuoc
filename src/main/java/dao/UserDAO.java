@@ -59,6 +59,7 @@ public class UserDAO extends AbsDao<User> {
             user.setPhoneNumber(phone_number);
             user.setPassword(password);
             super.insert(user);
+            System.out.println(user);
         } catch (Exception e) {
             e.printStackTrace(); // In ra lỗi để theo dõi và xử lý nếu cần
         }

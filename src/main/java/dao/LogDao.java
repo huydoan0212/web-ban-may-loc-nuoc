@@ -26,8 +26,25 @@ public class LogDao implements IDao<Log> {
 
     @Override
     public int insert(Log log) {
-        return 0;
+        try {
+            int rowsInserted = JDBIConnector.me().withHandle(handle ->
+                    handle.createUpdate("INSERT INTO logs (action, table_name, level, beforeData, afterData, user_id, time) VALUES (?, ?, ?, ?, ?, ?, ?)")
+                            .bind(0, log.getAction())
+                            .bind(1, log.getTable())
+                            .bind(2, log.getLevel())
+                            .bind(3, log.getBeforeData())
+                            .bind(4, log.getAfterData())
+                            .bind(5, log.getUser_id())
+                            .bind(6, log.getTime())
+                            .execute()
+            );
+            return rowsInserted;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
     }
+
 
     @Override
     public int update(Log log) {

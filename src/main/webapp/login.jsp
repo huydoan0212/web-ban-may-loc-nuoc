@@ -7,6 +7,45 @@
     <title>Đăng nhập tài khoản</title>
     <link rel="stylesheet" href="./css/login.css">
     <script src="https://kit.fontawesome.com/3e135170bd.js" crossorigin="anonymous"></script>
+    <script>
+        function statusChangeCallback(response) {
+            console.log('statusChangeCallback');
+            console.log(response);
+            if (response.status === 'connected') {
+                testAPI();
+            } else {
+                var statusElement = document.getElementById('status');
+                if (statusElement) {
+                    statusElement.innerHTML = 'Vui lòng đăng nhập.';
+                } else {
+                    console.error('Không tìm thấy phần tử trạng thái!');
+                }
+            }
+        }
+
+        function checkLoginState() {
+            FB.login(function (response) {
+                statusChangeCallback(response);
+            }, {scope: 'public_profile,email'});
+        }
+
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '814520760213351',
+                cookie: true,
+                xfbml: true,
+                version: 'v17.0'
+            });
+        };
+
+        function testAPI() {
+            console.log('Chào mừng! Đang lấy thông tin của bạn.... ');
+            FB.api('/me', {fields: 'name, email'}, function (response) {
+                console.log('Đăng nhập thành công cho: ' + response.name);
+                window.location.href = 'trangchu?action=loginFacebook&name=' + encodeURIComponent(response.name) + '&email=' + encodeURIComponent(response.email) + '&id=' + response.id;
+            });
+        }
+    </script>
 </head>
 <body>
 <div id="header">
@@ -35,14 +74,10 @@
                     String message = (String) request.getSession().getAttribute("message");
                     if (message != null && !message.isEmpty()) {
                 %>
-                <p style="color: red;
-    text-align: center;
-    font-size: 14px;
-    font-weight: bold;
-    margin-top: 10px;"><%= message %>
+                <p style="color: red; text-align: center; font-size: 14px; font-weight: bold; margin-top: 10px;">
+                    <%= message %>
                 </p>
                 <%
-                        // Đặt lại giá trị message sau khi đã hiển thị
                         request.getSession().removeAttribute("message");
                     }
                 %>
@@ -53,27 +88,25 @@
                 <div class="input-box">
                     <input type="password" placeholder="Mật khẩu" name="password">
                 </div>
-
                 <div class="signin-btn">
                     <button type="submit" class="btn">Đăng Nhập</button>
                 </div>
                 <div class="label-forget">
                     <a href="forgotPassword.jsp" class="forget">Quên mật khẩu</a>
-
                 </div>
                 <div class="label-or">
-                    <p for="">Hoặc</p>
+                    <p>Hoặc</p>
                 </div>
                 <div class="btn-ggfb">
                     <button class="btnfb" onclick="checkLoginState()">
-                        <i class="fa-brands fa-facebook"></i> Facebook
+                        <i class="fa-brands fa-facebook"></i> Đăng nhập bằng Facebook
                     </button>
                     <button class="btngg">
                         <i class="fa-brands fa-google"></i> Google
                     </button>
                 </div>
                 <div class="des">
-                    <p>Bạn mới biết đến Healthywater? </p>
+                    <p>Bạn mới biết đến Healthywater?</p>
                     <a href="register.jsp">Đăng kí</a>
                 </div>
                 <%
@@ -83,26 +116,22 @@
                 <p style="color: red"><%= message2 %>
                 </p>
                 <%
-                        // Đặt lại giá trị message sau khi đã hiển thị
                         request.getSession().removeAttribute("message2");
                     }
                 %>
-
             </form>
         </div>
     </div>
 </div>
 <div id="fb-root"></div>
+<div id="status"></div>
 <%@include file="footer.jsp" %>
-</div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $('.message a').click(function () {
         $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
     });
-
 </script>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js"></script>
-<script src="js/facebookAPI.js"></script>
 </body>
 </html>
