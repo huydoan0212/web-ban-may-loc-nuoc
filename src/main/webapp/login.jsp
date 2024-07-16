@@ -42,7 +42,7 @@
             console.log('Chào mừng! Đang lấy thông tin của bạn.... ');
             FB.api('/me', {fields: 'name, email'}, function (response) {
                 console.log('Đăng nhập thành công cho: ' + response.name);
-                window.location.href = 'trangchu?action=loginFacebook&name=' + encodeURIComponent(response.name) + '&email=' + encodeURIComponent(response.email) + '&id=' + response.id;
+                window.location.href = 'LoginServlet?action=loginFacebook&name=' + encodeURIComponent(response.name) + '&email=' + encodeURIComponent(response.email) + '&id=' + response.id ;
             });
         }
     </script>

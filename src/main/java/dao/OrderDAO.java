@@ -31,17 +31,13 @@ public class OrderDAO {
         }
     }
 
-    public static Order getOrder(int user_id, String address, String phone, String status, int total_money) {
+    public static Order getOrder(int user_id, String status, int total_money) {
         Optional<Order> order = JDBIConnector.me().withHandle(handle ->
                 handle.createQuery("SELECT * FROM orders WHERE " +
                                 "user_id = :user_id " +
-                                "and address = :address " +
-                                "and phone = :phone " +
                                 "and status = :status " +
                                 "and total_money = :total_money ")
                         .bind("user_id", user_id)
-                        .bind("address", address)
-                        .bind("phone", phone)
                         .bind("status", status)
                         .bind("total_money", total_money)
                         .mapToBean(Order.class).stream().findFirst());

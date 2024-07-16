@@ -18,8 +18,8 @@ public class OrderService {
     public boolean insertOrder(int user_id, String address, String phone, String status, int total_money, int voucher_id,String name) {
         return OrderDAO.insertOrder(user_id, address, phone, status, total_money,voucher_id,name);
     }
-    public Order getOrder(int user_id, String address, String phone, String status, int total_money){
-        return OrderDAO.getOrder(user_id, address, phone, status, total_money);
+    public Order getOrder(int user_id, String address, int total_money){
+        return OrderDAO.getOrder(user_id, address, total_money);
     }
     public Order getOrderById(int id){
         return OrderDAO.getOrderById(id);

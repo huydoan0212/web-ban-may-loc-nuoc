@@ -95,5 +95,12 @@ public class UserService {
         return UserDAO.insertUserAdmin(role, username, fullname, phone_number, email, password);
     }
 
+    public User checkProviderUserId(String providerUserId) {
+        return UserDAO.checkProviderUserId(providerUserId);
+    }
 
+
+    public void insertUser(User user) {
+        UserDAO.insertUser(user);
+    }
 }

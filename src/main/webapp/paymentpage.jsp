@@ -29,7 +29,7 @@
     List<OrderDetail> orderDetails = OrderDetailDAO.getOrderDetailByIdOrder(order.getId());
     Voucher voucher = VoucherDAO.getVoucherById(order.getVoucher_id());
     System.out.println(order.getId());
-    request.getSession().setAttribute("order_id",order.getId());
+    request.getSession().setAttribute("order_id", order.getId());
     String reason = request.getParameter("reason");
 %>
 <% Locale locale = new Locale("vi", "VN");
@@ -42,142 +42,72 @@
     <title>Thanh Toán</title>
     <script src="https://kit.fontawesome.com/3e135170bd.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/payment.css">
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
 
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        #changeAddressBtn {
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #changeAddressBtn:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
 <!--header-->
-<%@include file="header.jsp"%>
+<%@include file="header.jsp" %>
 <div id="main">
     !--Phần tỉnh thành-->
-    <div class="modal-tinh-thanh js-modal-tinh-thanh">
-        <div class="modal-container js-modal-container">
-            <div class="header-modal">
-                <div class="title-modal">
-                    <p>Quý khách vui lòng cho biết <span>Địa Chỉ Nhận Hàng </span>để biết chính xác thời gian dao hàng
-                    </p>
-                    <a class="js-close"><i class="fa-solid fa-x fa-2xs" style="color: #ffffff;"></i></i>Đóng</a>
-                </div>
-                <form action="">
-                    <input type="text" placeholder="Tìm nhanh tỉnh thành, quận huyện, phường xã" class="tim-khu-vuc">
-                    <div class="icon-mini">
-                        <i class="fa-solid fa-magnifying-glass fa-xl"></i>
-                    </div>
-                </form>
-            </div>
-            <div class="content-big">
-                <div class="content-modal">
-                    <p class="title">Hoặc chọn tỉnh, thành phố</p>
-                    <ul class="list-tinh-thanh">
-                        <li><a href="">Hồ Chí Minh</a></li>
-                        <li><a href="">Hà Nội</a></li>
-                        <li><a href="">Đà Nẵng</a></li>
-                        <li><a href="">An Giang</a></li>
-                        <li><a href="">Bà Rịa - Vũng Tàu</a></li>
-                        <li><a href="">Bắc Giang</a></li>
-                        <li><a href="">Bắc Kạn</a></li>
-                        <li><a href="">Bạc Liêu</a></li>
-                        <li><a href="">Bắc Ninh</a></li>
-                        <li><a href="">Bến Tre</a></li>
-                        <li><a href="">Bình Định</a></li>
-                        <li><a href="">Bình Dương</a></li>
-                        <li><a href="">Bình Phước</a></li>
-                        <li><a href="">Bình Thuận</a></li>
-                        <li><a href="">Cà Mau</a></li>
-                        <li><a href="">Cần Thơ</a></li>
-                        <li><a href="">Cao Bằng</a></li>
-                        <li><a href="">Đắk Lắk</a></li>
-                        <li><a href="">Đắk Nông</a></li>
-                        <li><a href="">Điện Biên</a></li>
-                        <li><a href="">Đồng Nai</a></li>
-                        <li><a href="">Đồng Tháp</a></li>
-                        <li><a href="">Gia Lai</a></li>
-                        <li><a href="">Hà Giang</a></li>
-                        <li><a href="">Hà Nam</a></li>
-                        <li><a href="">Hà Tĩnh</a></li>
-                        <li><a href="">Hải Dương</a></li>
-                        <li><a href="">Hải Phòng</a></li>
-                        <li><a href="">Hậu Giang</a></li>
-                        <li><a href="">Hòa Bình</a></li>
-                        <li><a href="">Hưng Yên</a></li>
-                        <li><a href="">Khánh Hòa</a></li>
-                        <li><a href="">Kiên Giang</a></li>
-                        <li><a href="">Kon Tum</a></li>
-                        <li><a href="">Lai Châu</a></li>
-                        <li><a href="">Lâm Đồng</a></li>
-                        <li><a href="">Lạng Sơn</a></li>
-                        <li><a href="">Lào Cai</a></li>
-                        <li><a href="">Long An</a></li>
-                        <li><a href="">Nam Định</a></li>
-                        <li><a href="">Nghệ An</a></li>
-                        <li><a href="">Ninh Bình</a></li>
-                        <li><a href="">Ninh Thuận</a></li>
-                        <li><a href="">Phú Thọ</a></li>
-                        <li><a href="">Phú Yên</a></li>
-                        <li><a href="">Quảng Bình</a></li>
-                        <li><a href="">Quảng Nam</a></li>
-                        <li><a href="">Quảng Ngãi</a></li>
-                        <li><a href="">Quảng Ninh</a></li>
-                        <li><a href="">Quảng Trị</a></li>
-                        <li><a href="">Sóc Trăng</a></li>
-                        <li><a href="">Sơn La</a></li>
-                        <li><a href="">Tây Ninh</a></li>
-                        <li><a href="">Thái Bình</a></li>
-                        <li><a href="">Thái Nguyên</a></li>
-                        <li><a href="">Thanh Hóa</a></li>
-                        <li><a href="">Thừa Thiên Huế</a></li>
-                        <li><a href="">Tiền Giang</a></li>
-                        <li><a href="">Trà Vinh</a></li>
-                        <li><a href="">Tuyên Quang</a></li>
-                        <li><a href="">Vĩnh Long</a></li>
-                        <li><a href="">Vĩnh Phúc</a></li>
-                        <li><a href="">Yên Bái</a></li>
-                    </ul>
-                </div>
-            </div>
-
-        </div>
-        <script>
-            const timTinh = document.querySelectorAll('.js-tim-tinh');
-            const modal = document.querySelector('.js-modal-tinh-thanh');
-            const close = document.querySelectorAll('.js-close');
-            const modalContainer = document.querySelector('.js-modal-container');
-
-            function showTinhThanh() {
-                modal.classList.add('open');
-            }
-
-            function hideTinhThanh() {
-                modal.classList.remove('open');
-            }
-
-            for (const timTinhElement of timTinh) {
-                timTinhElement.addEventListener('click', showTinhThanh);
-
-            }
-            for (const closeElement of close) {
-                closeElement.addEventListener('click', hideTinhThanh);
-
-            }
-
-            modal.addEventListener('click', hideTinhThanh);
-            modalContainer.addEventListener('click', function (event) {
-                event.stopPropagation();
-            });
-        </script>
-    </div>
-    <!--Kết thúc phẩn tỉnh thành-->
     <!--silder-->
     <div class="slider">
         <div class="container">
             <div class="payment">
                 <h1 class="payment-h1">Thanh Toán <i class="fa-solid fa-money-bill"></i></h1>
                 <form action="cancel-order?order_id=<%=order.getId()%>">
-                <div class="payment-id">
-                    <h2 class="payment-id-title">Đơn hàng của bạn</h2>
-                    <h3 id="payment-id-main">Mã đơn hàng: #<%=order.getId()%>
-                    </h3>
-                    <button type="submit" href="" id="cancel-form">Huỷ đơn hàng</button>
-                </div>
+                    <div class="payment-id">
+                        <h2 class="payment-id-title">Đơn hàng của bạn</h2>
+                        <h3 id="payment-id-main">Mã đơn hàng: #<%=order.getId()%>
+                        </h3>
+                        <button type="submit" href="" id="cancel-form">Huỷ đơn hàng</button>
+                    </div>
                 </form>
                 <div class="payment-information">
                     <div class="information-1">
@@ -192,10 +122,22 @@
                     </div>
                     <div class="information-3">
                         <h4>Giao đến: </h4>
-                        <p><%=order.getAddress()%> (nhân viên sẽ gọi xác nhận trước khi giao)</p>
+                        <p id="selectedAddress"><%=order.getAddress()%> (nhân viên sẽ gọi xác nhận trước khi giao)</p>
+                        <button id="changeAddressBtn" type="button">Thay đổi địa chỉ</button>
                     </div>
-
                 </div>
+
+                <!-- Thêm phần modal để chọn địa chỉ -->
+                <div id="addressModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <h2>Chọn địa chỉ giao hàng</h2>
+                        <div id="addressList">
+                            <!-- Địa chỉ sẽ được thêm vào đây bằng JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
                 <div class="payment-title">
                     <h3 class="title-1">Sản phẩm</h3>
                     <h3 class="title-2">Tổng tiền</h3>
@@ -271,57 +213,56 @@
             </div>
         </div>
     </div>
-    <div class="cancel-form">
-<%--        <form action="&reason=<%=reason%>" id="cancel">--%>
-<%--            &lt;%&ndash;        <%String reason = "Cần thay đổi thông tin địa chỉ giao hàng";&ndash;%&gt;--%>
-<%--            &lt;%&ndash;            String reason1 = "Cần thay đổi sdt người nhận";&ndash;%&gt;--%>
-<%--            &lt;%&ndash;            String reason2 = "Giá cả không hợp lý";&ndash;%&gt;--%>
-<%--            &lt;%&ndash;        %>&ndash;%&gt;--%>
-<%--            <div class="cancel-form-content">--%>
-<%--                <i class="fa-solid fa-x" id="close"></i>--%>
-<%--                <h3 style="padding-top: 50px;--%>
-<%--    padding-bottom: 30px;">Vui lòng chọn lý do bạn muốn huỷ đơn hàng</h3>--%>
-<%--                &lt;%&ndash;            <div class="cancel-1">&ndash;%&gt;--%>
-<%--                &lt;%&ndash;                <input type="radio" name="cancelReason" value="<%=reason%>" class="checkbox-cancel-1">&ndash;%&gt;--%>
-<%--                &lt;%&ndash;                <p><%=reason%></p>&ndash;%&gt;--%>
-<%--                &lt;%&ndash;            </div>&ndash;%&gt;--%>
-<%--                &lt;%&ndash;            <div class="cancel-2">&ndash;%&gt;--%>
-<%--                &lt;%&ndash;                <input type="radio" name="cancelReason" value="<%=reason1%>" class="checkbox-cancel-2">&ndash;%&gt;--%>
-<%--                &lt;%&ndash;                <p><%=reason1%></p>&ndash;%&gt;--%>
-<%--                &lt;%&ndash;            </div>&ndash;%&gt;--%>
-<%--                &lt;%&ndash;            <div class="cancel-3">&ndash;%&gt;--%>
-<%--                &lt;%&ndash;                <input type="radio" name="cancelReason" value="<%=reason2%>" class="checkbox-cancel-3">&ndash;%&gt;--%>
-<%--                &lt;%&ndash;                <p><%=reason2%></p>&ndash;%&gt;--%>
-<%--                &lt;%&ndash;            </div>&ndash;%&gt;--%>
-<%--                &lt;%&ndash;            <div class="cancel-4">&ndash;%&gt;--%>
-<%--                &lt;%&ndash;                <input type="radio" name="cancelReason" value="other" class="checkbox-cancel-4">&ndash;%&gt;--%>
-<%--                &lt;%&ndash;                <p>Lý do khác</p>&ndash;%&gt;--%>
-<%--                &lt;%&ndash;            </div>&ndash;%&gt;--%>
-<%--                <textarea name="reason" id="otherReason" cols="30" rows="10"--%>
-<%--                          placeholder="Nhập lý do muốn huỷ đơn hàng"></textarea>--%>
-<%--                <button type="submit">Xác nhận</button>--%>
-<%--            </div>--%>
-<%--        </form>--%>
-
-        <%--    <script>--%>
-        <%--        function updateAction() {--%>
-        <%--            var form = document.getElementById('cancel');--%>
-        <%--            var checkedRadio = document.querySelector('input[name="cancelReason"]:checked');--%>
-        <%--            var textarea = document.getElementById('otherReason');--%>
-        <%--            if (checkedRadio.value === 'other') {--%>
-        <%--                if (textarea.value.trim() === '') {--%>
-        <%--                    alert('Vui lòng nhập lý do muốn huỷ đơn hàng');--%>
-        <%--                    return false;--%>
-        <%--                }--%>
-        <%--                form.action += "&reason=" + encodeURIComponent(textarea.value);--%>
-        <%--            } else {--%>
-        <%--                form.action += "&reason=" + encodeURIComponent(checkedRadio.value);--%>
-        <%--            }--%>
-        <%--            return true;--%>
-        <%--        }--%>
-        <%--    </script>--%>
-    </div>
     <%@include file="footer.jsp" %>
     <script src="./js/payment.js"></script>
+    <script>
+        var modal = document.getElementById("addressModal");
+        var btn = document.getElementById("changeAddressBtn");
+        var span = document.getElementsByClassName("close")[0];
+        var selectedAddressElement = document.getElementById("selectedAddress");
+        document.addEventListener('DOMContentLoaded', (event) => {
+            btn.onclick = function () {
+                modal.style.display = "block";
+                // Gọi API để lấy danh sách địa chỉ
+                fetch('/get-list-address?userId=<%=user.getId()%>')
+                    .then(response => response.json())
+                    .then(addresses => {
+                        var addressList = document.getElementById("addressList");
+                        addressList.innerHTML = '';
+                        addresses.forEach(address => {
+                            var addressElement = document.createElement('div');
+                            addressElement.innerHTML = address.address;
+                            addressElement.onclick = function () {
+                                selectedAddressElement.textContent = address.address;
+                                modal.style.display = "none";
+                                // Gửi yêu cầu cập nhật địa chỉ đơn hàng
+                                <%--fetch('/update-order-address', {--%>
+                                <%--    method: 'POST',--%>
+                                <%--    headers: {--%>
+                                <%--        'Content-Type': 'application/json',--%>
+                                <%--    },--%>
+                                <%--    body: JSON.stringify({--%>
+                                <%--        orderId: <%=order.getId()%>,--%>
+                                <%--        newAddress: address.address--%>
+                                <%--    }),--%>
+                                <%--});--%>
+                            };
+                            addressList.appendChild(addressElement);
+                        });
+                    });
+            }
+
+
+            span.onclick = function () {
+                modal.style.display = "none";
+            }
+
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        })
+    </script>
 </body>
 </html>

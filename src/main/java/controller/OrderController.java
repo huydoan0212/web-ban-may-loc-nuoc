@@ -52,26 +52,33 @@ public class OrderController extends HttpServlet {
         }
 
         if (cart.getTotal() > 0 && user != null) {
-            boolean checkCreatedOrder = OrderService.getInstance().insertOrder(user.getId(), user.getAddress(), user.getPhoneNumber(), "Chưa chọn phương thức thanh toán", total_decrease, voucher_id,user.getFullName());
+            boolean checkCreatedOrder = OrderService.getInstance().insertOrder(user.getId(), user.getAddress(), user.getPhoneNumber(), "Chưa chọn phương thức thanh toán", total_decrease, voucher_id, user.getFullName());
 
             if (checkCreatedOrder) {
-                Order order = OrderService.getInstance().getOrder(user.getId(), user.getAddress(), user.getPhoneNumber(), "Chưa chọn phương thức thanh toán", total_decrease);
-                System.out.println(order.getId());
-                if (order != null) session.setAttribute("order", order);
-                for (Object key : set) {
-                    int order_id = order.getId();
-                    int product_id = cart.getData().get(key).getProduct().getId();
-                    int price = cart.getData().get(key).getProduct().getDiscount_price();
-                    int quantity = cart.getData().get(key).getQuantity();
-                    int total_money = price * quantity;
-                    OrderDetailService.getInstance().insertOrder(order_id, product_id, price, quantity, total_money);
-                    ProductDAO.decreaseProductAvailable(quantity, product_id);
+                Order order = OrderService.getInstance().getOrder(user.getId(), "Chưa chọn phương thức thanh toán", total_decrease);
+                System.out.println(order);
+                if (order != null) {
+                    session.setAttribute("order", order);
+                    for (Object key : set) {
+                        int order_id = order.getId();
+                        int product_id = cart.getData().get(key).getProduct().getId();
+                        int price = cart.getData().get(key).getProduct().getDiscount_price();
+                        int quantity = cart.getData().get(key).getQuantity();
+                        int total_money = price * quantity;
+                        OrderDetailService.getInstance().insertOrder(order_id, product_id, price, quantity, total_money);
+                        ProductDAO.decreaseProductAvailable(quantity, product_id);
 
                     }
+                } else {
+                    // Xử lý trường hợp không tạo được đơn hàng
+                    req.setAttribute("errorMessage", "Không thể tạo đơn hàng. Vui lòng thử lại.");
+                    req.getRequestDispatcher("error.jsp").forward(req, resp);
+                    return;
                 }
 
                 req.getRequestDispatcher("paymentpage.jsp").forward(req, resp);
             }
         }
     }
+}
 
