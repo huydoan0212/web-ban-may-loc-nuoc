@@ -98,8 +98,8 @@
                     <p>Hoặc</p>
                 </div>
                 <div class="btn-ggfb">
-                    <button class="btnfb" onclick="checkLoginState()">
-                        <i class="fa-brands fa-facebook"></i> Đăng nhập bằng Facebook
+                    <button type="button" class="btnfb" onclick="checkLoginState()">
+                        <i class="fa-brands fa-facebook"></i> Facebook
                     </button>
                     <button class="btngg">
                         <i class="fa-brands fa-google"></i> Google
@@ -124,7 +124,7 @@
     </div>
 </div>
 <div id="fb-root"></div>
-<div id="status"></div>
+<div id="status"></div> <!-- Thêm phần tử này để hiển thị trạng thái -->
 <%@include file="footer.jsp" %>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
