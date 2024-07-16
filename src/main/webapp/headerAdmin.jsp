@@ -13,7 +13,7 @@
     String isCheckLogin2 = userAdmin != null ? "pageAdminUserController" : "login.jsp";
     String isCheckLogin3 = userAdmin != null ? "pageAdminCommentController" : "login.jsp";
     String isCheckLogin4 = userAdmin != null ? "pageAdminContact" : "login.jsp";
-    String isCheckLogin5 = userAdmin != null ? "pageAdmin_Blog.jsp" : "login.jsp";
+    String isCheckLogin5 = userAdmin != null ? "importProductController" : "login.jsp";
 %>
 <html>
 <html lang="en">
@@ -86,12 +86,12 @@
                 <span class="links_name">Quản lý phản hồi</span>
             </a>
         </li>
-<%--        <li>--%>
-<%--            <a href="<%=isCheckLogin5%>" class="active">--%>
-<%--                <i class="fa-solid fa-box-open"></i>--%>
-<%--                <span class="links_name">Quản lý bài viết</span>--%>
-<%--            </a>--%>
-<%--        </li>--%>
+        <li>
+            <a href="<%=isCheckLogin5%>" class="active">
+                <i class="fa-solid fa-box-open"></i>
+                <span class="links_name">Quản lý nhập hàng</span>
+            </a>
+        </li>
         <li class="log_out">
             <a href="logOutController">
                 <i class="fa-solid fa-right-from-bracket"></i>

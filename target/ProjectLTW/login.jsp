@@ -66,40 +66,40 @@
             <div class="label-forget">
                 <a href="forgotPassword.jsp" class="forget">Quên mật khẩu</a>
             </div>
-                <div class="label-or">
-                    <p for="">Hoặc</p>
-                </div>
-                <div class="btn-ggfb">
-                    <button class="btnfb"  >
-                        <i class="fa-brands fa-facebook"></i> Facebook
-                    </button>
-                    <a href="https://accounts.google.com/o/oauth2/auth?scope=email profile openid
+            <div class="label-or">
+                <p for="">Hoặc</p>
+            </div>
+            <div class="btn-ggfb">
+                <button class="btnfb"  >
+                    <i class="fa-brands fa-facebook"></i> Facebook
+                </button>
+                <a href="https://accounts.google.com/o/oauth2/auth?scope=email profile openid
+
 &redirect_uri=http://localhost:8080/ProjectLTW_war/loginGoogle
+
 &response_type=code
-&client_id=192822040743-18a4tpap0e863adnqs3rh60ro2e33qip.apps.googleusercontent.com
+
+&client_id=192822040743-2t27r1e2sp8ounatnoqjid4o2qvqij9h.apps.googleusercontent.com
+
 &approval_prompt=force">
-                            <i class="fa-brands fa-google"></i> Google
-                    </a>
-
-                </div>
-
-
-
-                <div class="des">
-                    <p>Bạn mới biết đến Healthywater? </p>
-                    <a href="register.jsp">Đăng kí</a>
-                </div>
-                <%
-                    String message2 = (String) request.getSession().getAttribute("message2");
-                    if (message2 != null && !message2.isEmpty()) {
-                %>
-                <p style="color: red"><%= message2 %>
-                </p>
-                <%
-                        // Đặt lại giá trị message sau khi đã hiển thị
-                        request.getSession().removeAttribute("message2");
-                    }
-                %>
+                    <i class="fa-brands fa-google"></i> Google
+                </a>
+            </div>
+            <div class="des">
+                <p>Bạn mới biết đến Healthywater? </p>
+                <a href="register.jsp">Đăng kí</a>
+            </div>
+            <%
+                String message2 = (String) request.getSession().getAttribute("message2");
+                if (message2 != null && !message2.isEmpty()) {
+            %>
+            <p style="color: red"><%= message2 %>
+            </p>
+            <%
+                    // Đặt lại giá trị message sau khi đã hiển thị
+                    request.getSession().removeAttribute("message2");
+                }
+            %>
 
         </div>
     </div>

@@ -1,17 +1,6 @@
 <%@ page import="java.util.Locale" %>
 <%@ page import="java.text.NumberFormat" %>
-<%@ page import="model.Order" %>
-<%@ page import="java.util.List" %>
-<%@ page import="model.Product" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="dao.UserDAO" %>
-<%@ page import="service.UserService" %>
-<%@ page import="service.PageAdminService" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<% Locale locale = new Locale("vi", "VN");
-    NumberFormat numberFormat = NumberFormat.getInstance(locale);
-%>
-
 <html lang="en">
 <head>
     <title>Quản lý</title>
@@ -32,21 +21,11 @@
         <div class="view-box">
             <div class="header-box">
                 <div class="title">Thống kê</div>
-                <%--                <div>--%>
-                <%--                    <div id="buttonGroup">--%>
-                <%--                        <a href="./pageAdminController" style="margin-right: 15px">Tất cả</a>--%>
-                <%--                        <a href="./pageAdminControllerToday" style="margin-right: 15px">Hôm nay</a>--%>
-                <%--                        <a href="./pageAdminControllerWeek" style="margin-right: 15px">Tuần này</a>--%>
-                <%--                        <a href="./pageAdminControllerMonth" style="margin-right: 15px">Tháng này</a>--%>
-                <%--                    </div>--%>
-                <%--                </div>--%>
             </div>
             <div class="overview-boxes">
                 <div class="box" style="margin-bottom: 10px">
                     <div class="right-side">
-                        <div class="box-topic">Doanh Thu</div>
-                        <div class="number">
-                        </div>
+                        <a class="box-topic" href="./pageAdminRevenuer" style="">Doanh Thu</a>
                     </div>
                     <i class="fa-solid fa-dollar-sign cart three"></i>
                 </div>
@@ -76,30 +55,18 @@
                 </div>
                 <div class="box">
                     <div class="right-side">
-                        <a class="box-topic" href="./thongKeDonHangHuy" style="">Khách hàng mới</a>
-                    </div>
-                    <i class="fa-solid fa-users-between-lines cart"></i>
-                </div>
-                <div class="box">
-                    <div class="right-side">
-                        <a class="box-topic" href="./thongKeDonHangHuy" style="">Sản phẩm tồn kho</a>
+                        <a class="box-topic" href="./pageAdminInventoryController" style="">Sản phẩm tồn kho</a>
                     </div>
                     <i class="fa-solid fa-warehouse cart"></i>
                 </div>
                 <div class="box">
                     <div class="right-side">
-                        <a class="box-topic" href="./thongKeDonHangHuy" style="">Sản phẩm cần nhập kho</a>
+                        <a class="box-topic" href="./pageAdminInventoryController" style="">Sản phẩm cần nhập kho</a>
                     </div>
                     <i class="fa-solid fa-industry cart"></i>
                 </div>
-                <div class="box">
-                    <div class="right-side">
-                        <a class="box-topic" href="./thongKeDonHangHuy" style="">Hết Hàng</a>
-                    </div>
-                    <i class="fa-solid fa-border-none cart"></i>
-                </div>
+            </div>
         </div>
-    </div>
     </div>
 </section>
 </body>
