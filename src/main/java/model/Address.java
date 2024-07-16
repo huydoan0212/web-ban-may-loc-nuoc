@@ -14,7 +14,7 @@ public class Address {
         this.receiver = receiver;
         this.phoneNumber = phoneNumber;
     }
-    
+
     public Address() {
     }
 
@@ -56,5 +56,16 @@ public class Address {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id='" + id + '\'' +
+                ", userId=" + userId +
+                ", address='" + address + '\'' +
+                ", receiver='" + receiver + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                '}';
     }
 }

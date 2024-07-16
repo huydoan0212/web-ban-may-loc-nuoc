@@ -112,12 +112,12 @@
                 <div class="payment-information">
                     <div class="information-1">
                         <h4>Người nhận hàng: </h4>
-                        <p><%=user.getFullName()%>
+                        <p id="selectedName"><%=user.getFullName()%>
                         </p>
                     </div>
                     <div class="information-2">
                         <h4>Số điện thoại nhận hàng:</h4>
-                        <p><%=user.getPhoneNumber()%>
+                        <p id="selectedPhone"><%=user.getPhoneNumber()%>
                         </p>
                     </div>
                     <div class="information-3">
@@ -135,6 +135,7 @@
                         <div id="addressList">
                             <!-- Địa chỉ sẽ được thêm vào đây bằng JavaScript -->
                         </div>
+                        <button id="addAddressBtn">Thêm địa chỉ mới</button>
                     </div>
                 </div>
 
@@ -208,61 +209,158 @@
                         }
                     });
                 </script>
-
-
             </div>
         </div>
     </div>
     <%@include file="footer.jsp" %>
     <script src="./js/payment.js"></script>
     <script>
-        var modal = document.getElementById("addressModal");
-        var btn = document.getElementById("changeAddressBtn");
-        var span = document.getElementsByClassName("close")[0];
-        var selectedAddressElement = document.getElementById("selectedAddress");
-        document.addEventListener('DOMContentLoaded', (event) => {
-            btn.onclick = function () {
-                modal.style.display = "block";
-                // Gọi API để lấy danh sách địa chỉ
-                fetch('/get-list-address?userId=<%=user.getId()%>')
-                    .then(response => response.json())
-                    .then(addresses => {
-                        var addressList = document.getElementById("addressList");
-                        addressList.innerHTML = '';
-                        addresses.forEach(address => {
-                            var addressElement = document.createElement('div');
-                            addressElement.innerHTML = address.address;
-                            addressElement.onclick = function () {
-                                selectedAddressElement.textContent = address.address;
-                                modal.style.display = "none";
-                                // Gửi yêu cầu cập nhật địa chỉ đơn hàng
-                                <%--fetch('/update-order-address', {--%>
-                                <%--    method: 'POST',--%>
-                                <%--    headers: {--%>
-                                <%--        'Content-Type': 'application/json',--%>
-                                <%--    },--%>
-                                <%--    body: JSON.stringify({--%>
-                                <%--        orderId: <%=order.getId()%>,--%>
-                                <%--        newAddress: address.address--%>
-                                <%--    }),--%>
-                                <%--});--%>
-                            };
-                            addressList.appendChild(addressElement);
+        (function () {
+            var modal = document.getElementById("addressModal");
+            var btn = document.getElementById("changeAddressBtn");
+            var span = document.getElementsByClassName("close")[0];
+            var selectedAddressElement = document.getElementById("selectedAddress");
+            var selectedPhoneElement = document.getElementById("selectedPhone");
+            var selectedNameElement = document.getElementById("selectedName");
+            var addAddressBtn = document.getElementById("addAddressBtn");
+
+            document.addEventListener('DOMContentLoaded', (event) => {
+                addAddressBtn.onclick = function () {
+                    // Hiển thị form nhập liệu
+                    var newAddressForm = document.createElement('div');
+                    newAddressForm.innerHTML = `
+        <h3>Thêm địa chỉ mới</h3>
+        <form id="newAddressForm">
+            <input type="text" id="newAddress" placeholder="Địa chỉ giao hàng" required>
+            <input type="text" id="newReceiver" placeholder="Tên người nhận" required>
+            <input type="text" id="newPhoneNumber" placeholder="Số điện thoại" required>
+            <button type="button" id="saveAddressBtn">Lưu</button>
+        </form>
+    `;
+                    addressList.appendChild(newAddressForm);
+
+                    var saveAddressBtn = document.getElementById("saveAddressBtn");
+
+                    saveAddressBtn.onclick = function () {
+                        var newAddress = document.getElementById("newAddress").value;
+                        var newReceiver = document.getElementById("newReceiver").value;
+                        var newPhoneNumber = document.getElementById("newPhoneNumber").value;
+
+                        // Gửi yêu cầu lưu địa chỉ mới vào server
+                        var params = new URLSearchParams();
+                        params.append('orderId', <%=order.getId()%>);
+                        params.append('phoneNumber', newPhoneNumber);
+                        params.append('receiver', newReceiver);
+                        params.append('newAddress', newAddress);
+
+                        fetch('/ProjectLTW_war/create-address', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded',
+                            },
+                            body: params.toString()
+                        })
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error('Network response was not ok');
+                                }
+                                return response.json();
+                            })
+                            .then(data => {
+                                console.log('Add new address successful:', data);
+                                // Hiển thị thông tin địa chỉ mới trong modal
+                                var newAddressElement = document.createElement('div');
+                                newAddressElement.innerHTML = 'Địa chỉ: ' + newAddress + ', Tên người nhận: ' + newReceiver + ', Điện thoại: ' + newPhoneNumber;
+                                newAddressElement.onclick = function () {
+                                    selectedAddressElement.textContent = newAddress;
+                                    selectedNameElement.textContent = newReceiver;
+                                    selectedPhoneElement.textContent = newPhoneNumber;
+                                    modal.style.display = "none";
+                                };
+                                addressList.appendChild(newAddressElement);
+
+                                // Xóa form nhập liệu sau khi lưu thành công
+                                newAddressForm.remove();
+                            })
+                            .catch(error => {
+                                console.error('Error adding new address:', error);
+                                // Xử lý lỗi khi gọi API
+                            });
+                    };
+                };
+                btn.onclick = function () {
+                    modal.style.display = "block";
+                    // Gọi API để lấy danh sách địa chỉ
+                    fetch('/ProjectLTW_war/get-list-address?userId=<%=user.getId()%>')
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.json();
+                        })
+                        .then(addresses => {
+                            var addressList = document.getElementById("addressList");
+                            addressList.innerHTML = '';
+                            addresses.forEach(address => {
+                                console.log('Fetched address:', address); // Kiểm tra giá trị của address
+                                var addressElement = document.createElement('div');
+                                addressElement.innerHTML = 'Dia chi: ' + address.address + ", Ten nguoi nhan: " + address.receiver + ", Dien thoai: " + address.phoneNumber;
+                                addressElement.onclick = function () {
+                                    selectedAddressElement.textContent = address.address;
+                                    selectedNameElement.textContent = address.receiver;
+                                    selectedPhoneElement.textContent = address.phoneNumber;
+                                    modal.style.display = "none";
+                                    // Gửi yêu cầu cập nhật địa chỉ đơn hàng
+                                    var params = new URLSearchParams();
+                                    params.append('orderId', <%=order.getId()%>);
+                                    params.append('phoneNumber', address.phoneNumber);
+                                    params.append('receiver', address.receiver);
+                                    params.append('newAddress', address.address);
+
+                                    fetch('/ProjectLTW_war/update-order-address', {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/x-www-form-urlencoded',
+                                        },
+                                        body: params.toString()
+                                    })
+                                        .then(response => {
+                                            if (!response.ok) {
+                                                throw new Error('Network response was not ok');
+                                            }
+                                            return response.json();
+                                        })
+                                        .then(data => {
+                                            console.log('Update order address successful:', data);
+                                            // Thực hiện các hành động cần thiết sau khi cập nhật thành công
+                                        })
+                                        .catch(error => {
+                                            console.error('Error updating order address:', error);
+                                            // Xử lý lỗi khi gọi API
+                                        });
+                                };
+                                addressList.appendChild(addressElement);
+                            });
+                        })
+                        .catch(error => {
+                            console.error('Error fetching address list:', error);
+                            // Xử lý lỗi khi lấy danh sách địa chỉ
                         });
-                    });
-            }
+                };
 
-
-            span.onclick = function () {
-                modal.style.display = "none";
-            }
-
-            window.onclick = function (event) {
-                if (event.target == modal) {
+                span.onclick = function () {
                     modal.style.display = "none";
-                }
-            }
-        })
+                };
+
+                window.onclick = function (event) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                };
+            });
+        })();
+
+
     </script>
 </body>
 </html>

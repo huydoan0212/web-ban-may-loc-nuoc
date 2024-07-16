@@ -6,7 +6,6 @@ import model.Address;
 import java.util.List;
 
 public class AddressService {
-    private AddressDAO addressDAO;
     private static AddressService instance;
 
     public static AddressService getInstance() {
@@ -16,6 +15,6 @@ public class AddressService {
     }
 
     public List<Address> getAddresses(int userId) {
-        return addressDAO.getAddressListByUserId(userId);
+        return AddressDAO.getAddressListByUserId(userId);
     }
 }

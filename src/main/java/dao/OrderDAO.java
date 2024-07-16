@@ -9,7 +9,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class OrderDAO {
-    LocalDateTime time = null;
 
     public static boolean insertOrder(int user_id, String address, String phone, String status, int total_money, int voucher_id,String name) {
         int rowAffected = JDBIConnector.me().withHandle(handle ->
@@ -86,17 +85,6 @@ public class OrderDAO {
         return orders;
     }
 
-
-    public static void main(String[] args) {
-//        System.out.println(OrderDAO.getOrder(1,"126 Phuoc Long","0586485990", "Đặt hàng",3490000));
-//        System.out.println(OrderDAO.cancelOrder("Thay doi dia chi", 5));
-//        System.out.println(OrderDAO.getOrderByIdUser(1));
-//        System.out.println(getOrderById(104));
-//        System.out.println(insertOrder(1,"sdafsdf","safas","saffs",555555,2));
-      //  System.out.println(getOrderByIdUser(14));
-        System.out.println(changeInfoOrder(157,"Trân","84 phuoc long","05658112"));
-        System.out.println(changeStatusToConfirmed(28));
-    }
 
     public static List<Order> getListOrderConfirm() {
         List<Order> orders = JDBIConnector.me().withHandle(handle ->
