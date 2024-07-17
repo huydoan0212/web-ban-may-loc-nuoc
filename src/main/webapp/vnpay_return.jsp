@@ -104,6 +104,11 @@
             </label>
         </div>
     </div>
+    <div style="text-align: center">
+        <a href="http://localhost:8080/ProjectLTW_war/trangchu" style="padding: 10px 5px;
+text-decoration: none;
+background-color: deepskyblue;
+color: white;border-radius: 5px;">Về trang chủ</a></div>
     <p>
         &nbsp;
     </p>
