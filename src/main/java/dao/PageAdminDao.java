@@ -197,21 +197,33 @@ public class PageAdminDao {
         );
     }
 
-    public static int countProductSoldQuantity(int productId, String startDate, String endDate) {
-        return JDBIConnector.me().withHandle(handle ->
-                handle.createQuery("SELECT SUM(order_details.quantity) AS total_sold " +
-                                "FROM order_details " +
-                                "JOIN orders ON orders.id = order_details.order_id " +
-                                "WHERE order_details.product_id = :productId " +
-                                "AND orders.order_date BETWEEN :startDate AND :endDate")
-                        .bind("productId", productId)
-                        .bind("startDate", startDate)
-                        .bind("endDate", endDate)
-                        .mapTo(Integer.class)
-                        .findOne()
-                        .orElse(0)
-        );
-    }
+//    public static int countProductSoldQuantity(int productId, String startDate, String endDate) {
+//        return JDBIConnector.me().withHandle(handle ->
+//                handle.createQuery("SELECT SUM(order_details.quantity) AS total_sold " +
+//                                "FROM order_details " +
+//                                "JOIN orders ON orders.id = order_details.order_id " +
+//                                "WHERE order_details.product_id = :productId " +
+//                                "AND orders.order_date BETWEEN :startDate AND :endDate")
+//                        .bind("productId", productId)
+//                        .bind("startDate", startDate)
+//                        .bind("endDate", endDate)
+//                        .mapTo(Integer.class)
+//                        .findOne()
+//                        .orElse(0)
+//        );
+//    }
+public static int countProductSoldQuantity(int productId) {
+    return JDBIConnector.me().withHandle(handle ->
+            handle.createQuery("SELECT SUM(order_details.quantity) AS total_sold " +
+                            "FROM order_details " +
+                            "JOIN orders ON orders.id = order_details.order_id " +
+                            "WHERE order_details.product_id = :productId ")
+                    .bind("productId", productId)
+                    .mapTo(Integer.class)
+                    .findOne()
+                    .orElse(0)
+    );
+}
     public static List<Order> getOrderStatusStartEnd(String startDate, String endDate, String status) {
         return JDBIConnector.me().withHandle(handle ->
                 handle.createQuery("SELECT * FROM orders WHERE order_date BETWEEN :startDate AND :endDate AND status = :status ORDER BY order_date DESC")

@@ -27,6 +27,7 @@
     <script src="DataTables/datatables.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js"
             integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <jsp:include page="cssDatatable.jsp" />
     <style>
         .icon-wrapper {
             margin-top: 2px;
@@ -135,31 +136,34 @@
         </div>
     </div>
 </section>
-
-//<%--<script src="../../../js/jquery.min.js"></script>--%>
-//<%--<script src="../../../js/jquery.dataTables.js"></script>--%>
-//
-//<%--<script type="text/javascript" charset="utf8" src="../../../js/bootstrap.bundle.min.js"></script>--%>
-//<%--<script>$("#table-id").DataTable();--%>
-//<%--</script>--%>
+<jsp:include page="jsDatatable.jsp" />
 <script>
-    new DataTable('#table-id', {
-        // columnDefs: [
-        //     {
-        //         targets: [0],
-        //         orderData: [0, 1]
-        //     },
-        //     {
-        //         targets: [1],
-        //         orderData: [1, 0]
-        //     },
-        //     {
-        //         targets: [4],
-        //         orderData: [4, 0]
-        //     }
-        // ]
+    $(document).ready(function() {
+        $('#table-id').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'excel',
+                    exportOptions: {
+                        columns: ':not(:nth-child(3)) : not(:nth-child(10))'
+                    }
+                },
+                {
+                    extend: 'pdf',
+                    exportOptions: {
+                        columns: ':not(:nth-child(3)) : not(:nth-child(10))'
+                    }
+                },
+                {
+                    extend: 'print',
+                    exportOptions: {
+                        columns: ':not(:nth-child(3)) : not(:nth-child(10))'
+                    }
+                }
+            ]
+        });
     });
-
+</script>
 </script>
 </body>
 </html>

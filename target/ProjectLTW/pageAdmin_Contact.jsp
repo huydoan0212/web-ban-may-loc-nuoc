@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/pageAdmin_product.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <jsp:include page="cssDatatable.jsp"/>
     <style>
         .icon-wrapper {
             margin-top: 2px;
@@ -77,14 +78,33 @@
         </div>
     </div>
 </section>
-//<%--<script src="./js/jquery.min.js"></script>--%>
-//<%--<script src="./js/jquery.dataTables.js"></script>--%>
-//
-//<%--<script type="text/javascript" charset="utf8" src="./js/bootstrap.bundle.min.js"></script>--%>
-//<%--<script>$("#table-id").DataTable();--%>
-//<%--</script>--%>
+<jsp:include page="jsDatatable.jsp" />
 <script>
     new DataTable('#table-id', {
+        layout: {
+            topStart: {
+                buttons: [
+                    {
+                        extend: 'excel',
+                        exportOptions: {
+                            columns: ':not(:nth-child(6)), :not(:nth-child(7))'
+                        }
+                    },
+                    {
+                        extend: 'pdf',
+                        exportOptions: {
+                            columns: ':not(:nth-child(6)), :not(:nth-child(7))'
+                        }
+                    },
+                    {
+                        extend: 'print',
+                        exportOptions: {
+                            columns: ':not(:nth-child(6)), :not(:nth-child(7))'
+                        }
+                    },
+                ]
+            }
+        },
     });
 </script>
 </body>

@@ -4,6 +4,8 @@ import db.JDBIConnector;
 import model.ImportProduct;
 import model.Product;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -105,9 +107,64 @@ public class ImportProductDao {
                         .list()
         );
     }
+    public static double getProductSalesRatio(int productId) {
+        return JDBIConnector.me().withHandle(handle -> {
+            return handle.createQuery("SELECT " +
+                            "COALESCE(SUM(od.quantity), 0) as totalSold, " +
+                            "COALESCE(SUM(ip.quantity), 0) as totalImported " +
+                            "FROM products p " +
+                            "LEFT JOIN order_details od ON p.id = od.product_id " +
+                            "LEFT JOIN import_products ip ON p.id = ip.product_id " +
+                            "WHERE p.id = :productId")
+                    .bind("productId", productId)
+                    .map((rs, ctx) -> {
+                        int totalSold = rs.getInt("totalSold");
+                        int totalImported = rs.getInt("totalImported");
+                        double ratio = totalImported == 0 ? 0 : (double) totalSold / totalImported;
+                        // Làm tròn đến 3 chữ số thập phân
+                        return BigDecimal.valueOf(ratio).setScale(3, RoundingMode.HALF_UP).doubleValue();
+                    })
+                    .findOnly();
+        });
+    }
+    public static List<Product> getProductsWithHighSalesRatio() {
+        return JDBIConnector.me().withHandle(handle -> {
+            return handle.createQuery(
+                            "SELECT p.*, " +
+                                    "COALESCE(SUM(od.quantity), 0) as totalSold, " +
+                                    "COALESCE(SUM(ip.quantity), 0) as totalImported " +
+                                    "FROM products p " +
+                                    "LEFT JOIN order_details od ON p.id = od.product_id " +
+                                    "LEFT JOIN import_products ip ON p.id = ip.product_id " +
+                                    "WHERE p.available > 0 " +
+                                    "GROUP BY p.id " +
+                                    "HAVING (CASE WHEN COALESCE(SUM(ip.quantity), 0) = 0 THEN 0 " +
+                                    "        ELSE CAST(COALESCE(SUM(od.quantity), 0) AS FLOAT) / COALESCE(SUM(ip.quantity), 1) " +
+                                    "   END) > 0.6"
+                    )
+                    .map((rs, ctx) -> {
+                        Product product = new Product();
+                        product.setId(rs.getInt("id"));
+                        product.setCategory_id(rs.getInt("category_id"));
+                        product.setType_machine_id(rs.getInt("type_machine_id"));
+                        product.setBrand_id(rs.getInt("brand_id"));
+                        product.setTitle(rs.getString("title"));
+                        product.setPrice(rs.getInt("price"));
+                        product.setImg(rs.getString("img"));
+                        product.setDiscount_price(rs.getInt("discount_price"));
+                        product.setDescriptions(rs.getString("descriptions"));
+                        product.setAvailable(rs.getInt("available"));
+                        product.setCreated_at(rs.getDate("created_at"));
+                        product.setUpdated_at(rs.getDate("updated_at"));
+                        product.setStatus(rs.getInt("status"));
+                        return product;
+                    })
+                    .list();
+        });
+    }
     public static void main(String[] args) {
 //        System.out.println(insertImportProduct(1, 100,10000, 3));
 //        System.out.println(increaseProductAvailable(100, 4));
-        System.out.println(getProductsInventory());
+        System.out.println(getProductsWithHighSalesRatio());
     }
 }

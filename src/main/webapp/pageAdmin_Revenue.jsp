@@ -1,14 +1,7 @@
-<%@ page import="model.User" %>
-<%@ page import="java.util.List" %>
-<%@ page import="model.Comment" %>
-<%@ page import="service.ProductService" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="model.Order" %>
+
 <%@ page import="java.util.Locale" %>
 <%@ page import="java.text.NumberFormat" %>
-<%@ page import="service.UserService" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <% Locale locale = new Locale("vi", "VN");
     NumberFormat numberFormat = NumberFormat.getInstance(locale);
 
@@ -67,9 +60,9 @@
             </div>
             <div class="title">
                 <% if (startDateConverted != null && endDateConverted != null) { %>
-                Đơn hàng huỷ từ <%= startDateConverted %> đến <%= endDateConverted %>
+                Doanh Thu <%= startDateConverted %> đến <%= endDateConverted %>
                 <% } else { %>
-                Thống kê Đơn hàng huỷ gần đây
+                Thống kê Doanh Thu
                 <% } %>
             </div>
             <div class="box" style="margin-bottom: 10px">
@@ -88,10 +81,5 @@
 <script type="text/javascript" charset="utf8" src="./js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-2.0.8/datatables.min.js"></script>
-<script>
-    new DataTable('#table-id', {
-    });
-</script>
-
 </body>
 </html>

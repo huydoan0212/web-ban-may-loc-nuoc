@@ -26,6 +26,7 @@
             integrity="sha256-+eDO2Q4A/8L+B+tc4HP0UO8VVFG+X5tUn8xCsxOh+dc=" crossorigin="anonymous"></script>
     <script src="DataTables/datatables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <jsp:include page="cssDatatable.jsp"/>
 </head>
 <body>
 <%@include file="headerAdmin.jsp" %>
@@ -67,8 +68,28 @@
         </div>
     </div>
 </section>
+<jsp:include page="jsDatatable.jsp" />
 <script>
     new DataTable('#table-id', {
+        layout: {
+            topStart: {
+                buttons: [
+                    {
+                        extend: 'excel',
+
+                    },
+                    {
+                        extend: 'pdf',
+
+                    },
+                    {
+                        extend: 'print',
+
+                    },
+
+                ]
+            }
+        },
 
     });
 </script>

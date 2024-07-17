@@ -51,9 +51,5 @@
 <script src="./js/jquery.min.js"></script>
 <script type="text/javascript" charset="utf8" src=./js/bootstrap.bundle.min.js"></script>
 <script src="./js/pageAdmin_main.js"></script>
-<script>
-    new DataTable('#table-id', {
-    });
-</script>
 </body>
 </html>

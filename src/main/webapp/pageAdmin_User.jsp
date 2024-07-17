@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/pageAdmin_product.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
+    <jsp:include page="cssDatatable.jsp"/>
     <style>
         .icon-wrapper {
             margin-top: 2px;
@@ -52,7 +52,10 @@
                         <thead>
                         <tr>
                             <th scope="col">Mã tài khoản</th>
+                            <th scope="col">Tên tài khoản</th>
                             <th scope="col">Tên người dùng</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Số điện thoại</th>
                             <th scope="col">Quyền</th>
                             <th scope="col">Trạng thái</th>
                             <th scope="col">Chức năng</th>
@@ -64,8 +67,10 @@
                             <div>
                                 <th scope="row"><%=user.getId()%>
                                 </th>
-                                <td><%=user.getUserName()%>
-                                </td>
+                                <td><%=user.getUserName()%></td>
+                                <td><%=user.getFullName()%></td>
+                                <td><%=user.getEmail()%></td>
+                                <td><%=user.getPhoneNumber()%></td>
                                 <td><% int role = user.getRoleId();
                                     if (role == 1) {
                                 %>
@@ -125,9 +130,33 @@
 <script src="./js/jquery.min.js"></script>
 <script src="./js/jquery.dataTables.js"></script>
 <script type="text/javascript" charset="utf8" src="./js/bootstrap.bundle.min.js"></script>
-<%--<script>$("#table-id").DataTable();--%>
+<jsp:include page="jsDatatable.jsp" />
 <script>
     new DataTable('#table-id', {
+        layout: {
+            topStart: {
+                buttons: [
+                    {
+                        extend: 'excel',
+                        exportOptions: {
+                            columns: ' :not(:nth-child(8))'
+                        }
+                    },
+                    {
+                        extend: 'pdf',
+                        exportOptions: {
+                            columns: ' :not(:nth-child(8))'
+                        }
+                    },
+                    {
+                        extend: 'print',
+                        exportOptions: {
+                            columns: ' :not(:nth-child(8))'
+                        }
+                    },
+                ]
+            }
+        },
     });
 </script>
 </script>

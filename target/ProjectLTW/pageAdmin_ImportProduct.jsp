@@ -19,7 +19,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Quản lý</title>
+    <title>Quản lý nhập hàng</title>
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/all.min.css">
     <link rel="stylesheet" href="./css/style.css">
@@ -30,6 +30,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js"
             integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <jsp:include page="cssDatatable.jsp"/>
     <style>
         .icon-wrapper {
             margin-top: 2px;
@@ -67,28 +68,24 @@
                         <thead>
                         <tr>
                             <th scope="col">Mã</th>
-                            <th scope="col">Danh mục</th>
                             <th scope="col">Tên sản phẩm</th>
                             <th scope="col">Ảnh</th>
-                            <th scope="col">Số lượng</th>
                             <th scope="col">Trạng Thái</th>
+                            <th scope="col">Số lượng</th>
                             <th scope="col">Giá tiền</th>
-                            <th scope="col">Giá giảm</th>
                             <th scope="col">Tồn kho</th>
+                            <th scope="col">Tỉ lệ bán ra so với nhập</th>
                             <th scope="col">Chức năng</th>
                         </tr>
                         </thead>
                         <tbody>
                         <%
                             for (Product product : products) {
-                                String category_name = CategoryDAO.getCategoryNameById(product.getCategory_id());
                         %>
                         <tr>
                             <th scope="row"><%=product.getId()%></th>
-                            <td><%=category_name%></td>
                             <td><%=product.getTitle()%></td>
                             <td><img src="<%=product.getImg()%>" style="max-width: 100px; max-height: 100px;"></td>
-                            <td><%=product.getAvailable()%></td>
                             <td>
                                 <% if (product.getAvailable() > 0) { %>
                                 <span class="badge bg-success">Còn hàng</span>
@@ -96,9 +93,10 @@
                                 <span style="background-color: #efbfbf !important; color: #790202 !important;" class="badge bg-failed">Hết hàng</span>
                                 <% } %>
                             </td>
+                            <td><%=product.getAvailable()%></td>
                             <td><%=numberFormat.format(product.getPrice())%><sup>đ</sup></td>
-                            <td><%=numberFormat.format(product.getDiscount_price())%><sup>đ</sup></td>
                             <td><%=ImportProductService.getInstance().countInventory(product.getId())%></td>
+                            <td><%=ImportProductService.getInstance().getProductSalesRatio(product.getId())%>%</td>
                             <td>
                                 <a title="Nhập hàng" href="#" class="icon-link import-btn" data-bs-toggle="modal" data-bs-target="#importModal<%=product.getId()%>">
                                     <i class="icon-wrapper">
@@ -141,10 +139,32 @@
         </div>
     </div>
 </section>
-
+<jsp:include page="jsDatatable.jsp" />
 <script>
-    new DataTable('#table-id', {
-
+    $(document).ready(function() {
+        $('#table-id').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'excel',
+                    exportOptions: {
+                        columns: ':not(:nth-child(3)):not(:nth-child(9))'
+                    }
+                },
+                {
+                    extend: 'pdf',
+                    exportOptions: {
+                        columns: ':not(:nth-child(3)):not(:nth-child(9))'
+                    }
+                },
+                {
+                    extend: 'print',
+                    exportOptions: {
+                        columns: ':not(:nth-child(3)):not(:nth-child(9))'
+                    }
+                }
+            ]
+        });
     });
 </script>
 </body>

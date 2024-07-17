@@ -76,7 +76,7 @@
         </li>
         <li>
             <a href="<%=isCheckLogin3%>">
-                <i class="fa-solid fa-user"></i>
+                <i class="fa-regular fa-comment"></i>
                 <span class="links_name">Quản lý bình luận</span>
             </a>
         </li>
@@ -88,7 +88,7 @@
         </li>
         <li>
             <a href="<%=isCheckLogin5%>" class="active">
-                <i class="fa-solid fa-box-open"></i>
+                <i class="fa-solid fa-plus"></i>
                 <span class="links_name">Quản lý nhập hàng</span>
             </a>
         </li>

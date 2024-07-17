@@ -61,9 +61,9 @@
                 </div>
                 <div class="box">
                     <div class="right-side">
-                        <a class="box-topic" href="./pageAdminInventoryController" style="">Sản phẩm cần nhập kho</a>
+                        <a class="box-topic" href="./pageAdminBeImportProduct" style="">Sản phẩm cần nhập kho</a>
                     </div>
-                    <i class="fa-solid fa-industry cart"></i>
+                    <i class="fa-solid fa-plus cart"></i>
                 </div>
             </div>
         </div>

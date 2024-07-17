@@ -77,8 +77,8 @@ public class PageAdminService {
     public static List<Product> getProductsNotSoldStartEnd(String startDate, String endDate){
         return PageAdminDao.getProductsNotSoldStartEnd(startDate, endDate);
     }
-    public static int countProductSoldQuantity(int productId, String startDate, String endDate){
-        return PageAdminDao.countProductSoldQuantity(productId, startDate, endDate);
+    public static int countProductSoldQuantity(int productId){
+        return PageAdminDao.countProductSoldQuantity(productId);
     }
     public static List<Order> getOrderRecentCanceled(){
         return PageAdminDao.getOrderRecentCanceled();
@@ -89,6 +89,7 @@ public class PageAdminService {
     public static List<Product> getProductsNotSold(){
         return PageAdminDao.getProductsNotSold();
     }
+
     public static void main(String[] args) {
         System.out.println(PageAdminService.getInstance().getOrderRecentStartEnd("2024-01-23", "2024-01-25"));
     }

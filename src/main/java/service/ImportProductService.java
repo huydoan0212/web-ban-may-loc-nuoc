@@ -41,5 +41,11 @@ public class ImportProductService {
     public static List<Product> getProductsInventory(){
         return ImportProductDao.getProductsInventory();
     }
+    public static double getProductSalesRatio(int productId){
+        return ImportProductDao.getProductSalesRatio(productId);
+    }
+    public static List<Product> getProductsWithHighSalesRatio(){
+        return ImportProductDao.getProductsWithHighSalesRatio();
+    }
 
 }
