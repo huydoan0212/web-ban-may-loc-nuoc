@@ -6,13 +6,7 @@
 <%@ page import="model.Product" %>
 <%@ page import="service.ProductService" %>
 <%@ page import="java.text.NumberFormat" %>
-<%@ page import="java.util.Locale" %><%--
-  Created by IntelliJ IDEA.
-  User: admin
-  Date: 22/01/2024
-  Time: 3:06 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="java.util.Locale" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% List<Order> orders = (List<Order>) session.getAttribute("orders");
     if (orders == null) orders = new ArrayList<>();
