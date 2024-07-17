@@ -28,7 +28,6 @@
     }
     List<OrderDetail> orderDetails = OrderDetailDAO.getOrderDetailByIdOrder(order.getId());
     Voucher voucher = VoucherDAO.getVoucherById(order.getVoucher_id());
-    System.out.println(order.getId());
     request.getSession().setAttribute("order_id", order.getId());
     String reason = request.getParameter("reason");
 %>
@@ -170,7 +169,7 @@
                     <p class="total-title">Tồng tiền</p>
                     <p class="total-price"><%=numberFormat.format(order.getTotal_money())%>₫</p>
                 </div>
-                <form id="paymentForm" action="payment-order">
+                <form id="paymentForm">
                     <h3 style="padding: 0 24px">Chọn hình thức thanh toán</h3>
                     <div class="payment-type">
                         <div class="payment-type-1">
@@ -189,27 +188,6 @@
                         Thanh Toán
                     </button>
                 </form>
-
-                <script>
-                    document.getElementById('paymentForm').addEventListener('submit', function (e) {
-                        var radios = document.getElementsByName('paymentOption');
-                        var isChecked = false;
-                        var selectedValue;
-                        var form = document.getElementById('paymentForm');
-                        for (var i = 0; i < radios.length; i++) {
-                            if (radios[i].checked) {
-                                isChecked = true;
-                                selectedValue = radios[i].value; // Lấy giá trị của radio button được chọn
-                                form.action += "?payment_type=" + selectedValue; // Sử dụng URL ban đầu khi cập nhật action của form
-                                break;
-                            }
-                        }
-                        if (!isChecked) {
-                            e.preventDefault();
-                            alert('Vui lòng chọn một hình thức thanh toán.');
-                        }
-                    });
-                </script>
             </div>
         </div>
     </div>
@@ -225,7 +203,76 @@
             var selectedNameElement = document.getElementById("selectedName");
             var addAddressBtn = document.getElementById("addAddressBtn");
             var addressList = document.getElementById("addressList");
+            var paymentForm = document.getElementById("paymentForm");
 
+            paymentForm.addEventListener("submit", function (event) {
+                event.preventDefault(); // Ngăn form submit mặc định
+
+                // Lấy giá trị của phương thức thanh toán được chọn
+                var paymentOption = document.querySelector('input[name="paymentOption"]:checked');
+
+                if (!paymentOption) {
+                    alert('Vui lòng chọn phương thức thanh toán');
+                    return;
+                }
+
+                var paymentOptionValue = paymentOption.value;
+                console.log(paymentOptionValue);
+
+                // Lấy giá trị của amount
+                var amount = '<%=order.getTotal_money()%>';
+
+                // Nếu là thanh toán bằng thẻ ngân hàng thì gọi ajax đến servlet
+                if (paymentOptionValue === "Thanh toán bằng thẻ ngân hàng") {
+                    var url = '/ProjectLTW_war/vnpay';
+                    console.log('Your URL: ' + url); // Console log URL để kiểm tra
+
+                    fetch(url, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: 'amount=' + encodeURIComponent(amount)
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.code === "00") {
+                                // Xử lý khi nhận được dữ liệu thành công từ servlet
+                                // Chuyển hướng đến URL thanh toán mà không hiển thị tham số trên URL
+                                window.location.replace(data.data);
+                            } else {
+                                // Xử lý khi có lỗi từ servlet
+                                alert('Có lỗi xảy ra khi chuẩn bị thanh toán.');
+                            }
+                        })
+                        .catch(error => {
+                            // Xử lý khi gọi fetch bị lỗi
+                            console.error('Error:', error);
+                            alert('Có lỗi xảy ra khi gửi yêu cầu thanh toán.');
+                        });
+                } else {
+                    // Xử lý khi chọn thanh toán bằng tiền mặt (hoặc các phương thức khác)
+                    // Sử dụng POST để chuyển hướng
+                    var form = document.createElement('form');
+                    form.method = 'post';
+                    form.action = '/ProjectLTW_war/payment-order';
+
+                    var paymentOptionInput = document.createElement('input');
+                    paymentOptionInput.type = 'hidden';
+                    paymentOptionInput.name = 'paymentOption';
+                    paymentOptionInput.value = paymentOptionValue;
+                    form.appendChild(paymentOptionInput);
+
+                    var amountInput = document.createElement('input');
+                    amountInput.type = 'hidden';
+                    amountInput.name = 'amount';
+                    amountInput.value = amount;
+                    form.appendChild(amountInput);
+
+                    document.body.appendChild(form);
+                    form.submit();
+                }
+            });
             document.addEventListener('DOMContentLoaded', (event) => {
                 addAddressBtn.onclick = function () {
                     // Hiển thị form nhập liệu
@@ -306,7 +353,6 @@
                         .then(addresses => {
                             addressList.innerHTML = '';
                             addresses.forEach(address => {
-                                console.log('Fetched address:', address); // Kiểm tra giá trị của address
                                 var addressElement = document.createElement('div');
                                 addressElement.innerHTML = 'Địa chỉ: ' + address.address +
                                     ', Tên người nhận: ' + address.receiver +
@@ -364,9 +410,8 @@
                     }
                 };
             });
-        })();
-
-
+        })
+        ();
     </script>
 </body>
 </html>

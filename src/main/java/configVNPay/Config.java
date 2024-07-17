@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 public class Config {
 
     public static String vnp_PayUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-    public static String vnp_ReturnUrl = "http://localhost:8080/vnpay_jsp/vnpay_return.jsp";
+    public static String vnp_ReturnUrl = "http://localhost:8080/ProjectLTW_war/vnpay_return.jsp";
     public static String vnp_TmnCode = "7D56GFS6";
     public static String secretKey = "0C6VZLEC9K18OT73LG4N4K7N8MYEIW3T";
     public static String vnp_ApiUrl = "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction";

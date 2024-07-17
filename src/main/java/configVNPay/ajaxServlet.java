@@ -31,16 +31,37 @@ public class ajaxServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         String vnp_Version = "2.1.0";
         String vnp_Command = "pay";
         String orderType = "other";
-        long amount = Integer.parseInt(req.getParameter("amount")) * 100;
-        String bankCode = req.getParameter("bankCode");
 
+        // Xử lý giá trị amount
+        String amountParam = req.getParameter("amount");
+        System.out.println(amountParam);
+        long amount = 0;
+        if (amountParam != null && !amountParam.isEmpty()) {
+            try {
+                amount = Long.parseLong(amountParam) * 100;
+            } catch (NumberFormatException e) {
+                // Xử lý khi không thể chuyển đổi amountParam thành số nguyên
+                JsonObject errorResponse = new JsonObject();
+                errorResponse.addProperty("code", "400");
+                errorResponse.addProperty("message", "Invalid amount parameter format.");
+                resp.getWriter().write(errorResponse.toString());
+                return;
+            }
+        } else {
+            // Xử lý trường hợp amount không tồn tại
+            JsonObject errorResponse = new JsonObject();
+            errorResponse.addProperty("code", "400");
+            errorResponse.addProperty("message", "Missing amount parameter.");
+            resp.getWriter().write(errorResponse.toString());
+            return;
+        }
+
+        String bankCode = "NCB";
         String vnp_TxnRef = Config.getRandomNumber(8);
-        String vnp_IpAddr = Config.getIpAddress(req);
-
+        String vnp_IpAddr = "192.168.0.42";
         String vnp_TmnCode = Config.vnp_TmnCode;
 
         Map<String, String> vnp_Params = new HashMap<>();
@@ -57,12 +78,7 @@ public class ajaxServlet extends HttpServlet {
         vnp_Params.put("vnp_OrderInfo", "Thanh toan don hang:" + vnp_TxnRef);
         vnp_Params.put("vnp_OrderType", orderType);
 
-        String locate = req.getParameter("language");
-        if (locate != null && !locate.isEmpty()) {
-            vnp_Params.put("vnp_Locale", locate);
-        } else {
-            vnp_Params.put("vnp_Locale", "vn");
-        }
+        vnp_Params.put("vnp_Locale", "vn");
         vnp_Params.put("vnp_ReturnUrl", Config.vnp_ReturnUrl);
         vnp_Params.put("vnp_IpAddr", vnp_IpAddr);
 
@@ -75,15 +91,16 @@ public class ajaxServlet extends HttpServlet {
         String vnp_ExpireDate = formatter.format(cld.getTime());
         vnp_Params.put("vnp_ExpireDate", vnp_ExpireDate);
 
-        List fieldNames = new ArrayList(vnp_Params.keySet());
+        List<String> fieldNames = new ArrayList<>(vnp_Params.keySet());
         Collections.sort(fieldNames);
         StringBuilder hashData = new StringBuilder();
         StringBuilder query = new StringBuilder();
-        Iterator itr = fieldNames.iterator();
+
+        Iterator<String> itr = fieldNames.iterator();
         while (itr.hasNext()) {
-            String fieldName = (String) itr.next();
-            String fieldValue = (String) vnp_Params.get(fieldName);
-            if ((fieldValue != null) && (fieldValue.length() > 0)) {
+            String fieldName = itr.next();
+            String fieldValue = vnp_Params.get(fieldName);
+            if (fieldValue != null && !fieldValue.isEmpty()) {
                 //Build hash data
                 hashData.append(fieldName);
                 hashData.append('=');
@@ -98,16 +115,20 @@ public class ajaxServlet extends HttpServlet {
                 }
             }
         }
+
         String queryUrl = query.toString();
         String vnp_SecureHash = Config.hmacSHA512(Config.secretKey, hashData.toString());
         queryUrl += "&vnp_SecureHash=" + vnp_SecureHash;
         String paymentUrl = Config.vnp_PayUrl + "?" + queryUrl;
+
         JsonObject job = new JsonObject();
         job.addProperty("code", "00");
         job.addProperty("message", "success");
         job.addProperty("data", paymentUrl);
+
         Gson gson = new Gson();
         resp.getWriter().write(gson.toJson(job));
     }
+
 
 }
