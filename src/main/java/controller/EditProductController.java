@@ -1,5 +1,7 @@
 package controller;
 
+import dao.ProductDAO;
+import model.Product;
 import service.ProductService;
 
 import javax.servlet.ServletException;
@@ -13,6 +15,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
+
 @MultipartConfig
 @WebServlet(name = "EditProductController", value = "/edit-product")
 public class EditProductController extends HttpServlet {
@@ -63,15 +66,25 @@ public class EditProductController extends HttpServlet {
                 discountPriceProduct = Integer.valueOf((String) objectDiscountPrice);
             }
         }
+        Product product = ProductDAO.getById(idProduct);
+        String imgProduct = "";
         Part part = req.getPart("imgProduct");
         String realPath = req.getServletContext().getRealPath("/img");
-        String fileName = Path.of(part.getSubmittedFileName()).getFileName().toString();
-        if(!Files.exists(Path.of(realPath))){
-            Files.createDirectory(Path.of(realPath));
+        String fileName;
 
+// Kiểm tra xem người dùng có tải lên tệp mới không
+        if (part != null && part.getSize() > 0) {
+            fileName = Path.of(part.getSubmittedFileName()).getFileName().toString();
+            if (!Files.exists(Path.of(realPath))) {
+                Files.createDirectory(Path.of(realPath));
+            }
+            part.write(realPath + "/" + fileName);
+            imgProduct = "img/" + fileName;
+        } else {
+            // Nếu không có tệp mới, sử dụng tên tệp mặc định
+            imgProduct = product.getImg(); // Thay đổi "default.jpg" thành tên tệp mặc định của bạn
         }
-        part.write(realPath+"/"+fileName);
-        String imgProduct = "img/"+fileName;
+
 
         String desProduct = req.getParameter("mota");
         Object objectCategory = req.getParameter("category");

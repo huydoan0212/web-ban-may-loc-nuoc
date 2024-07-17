@@ -73,7 +73,7 @@ public class UserService {
             UserDAO.setStatusById(id);
         }
     }
-    public String getFullNameById(int id){
+    public static String getFullNameById(int id){
         return UserDAO.getFullNameById(id);
     }
     public User getUserById(int id){
@@ -85,7 +85,9 @@ public class UserService {
     public boolean insertUserAdmin(int role, String username, String fullname, String phone_number, String email, String password){
         return UserDAO.insertUserAdmin(role, username, fullname, phone_number, email, password);
     }
-
+    public boolean loginUser(String username, String password){
+        return UserDAO.loginUser(username,password);
+    }
 
 
 }

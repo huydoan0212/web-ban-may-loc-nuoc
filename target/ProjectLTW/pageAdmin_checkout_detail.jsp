@@ -63,8 +63,8 @@
 
                     </div>
                     <div id="tab1" class="tabcontent">
-                        <p><span style="font-weight: bold">Tên người nhận: </span> <%=user.getFullName()%></p>
-                        <p><span style="font-weight: bold">Số điện thoại: </span> <%=user.getPhoneNumber()%></p>
+                        <p><span style="font-weight: bold">Tên người nhận: </span> <%=order.getName()%></p>
+                        <p><span style="font-weight: bold">Số điện thoại: </span> <%=order.getPhone()%></p>
                         <p><span style="font-weight: bold">Ngày đặt hàng: </span> <%=order.getOrder_date()%></p>
                         <p><span style="font-weight: bold">Địa chỉ: </span> <%=order.getAddress()%>
                         </p>

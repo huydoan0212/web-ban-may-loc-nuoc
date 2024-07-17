@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Random;
+import java.util.regex.Pattern;
 
 @WebServlet(name = "RegisterController", value = "/registerController")
 public class RegisterController extends HttpServlet {
@@ -31,6 +32,7 @@ public class RegisterController extends HttpServlet {
         String phone = req.getParameter("phone").trim();
         String password = req.getParameter("password");
         String rePassword = req.getParameter("repassword");
+        Pattern patternEmail = Pattern.compile("^[A-Za-z0-9+_.-]+@(.+)$");
         if (fullName == null || fullName.equals("") || email == null || email.equals("") || userName == null || userName.equals("") ||
                 phone == null || phone.equals("") || password == null || password.equals("") || rePassword == null || rePassword.equals("")) {
             req.setAttribute("error", "Bạn cần nhập các đủ thông tin ");
@@ -62,13 +64,12 @@ public class RegisterController extends HttpServlet {
             // Đảm bảo rằng số OTP có đủ 6 chữ số bằng cách thêm các số 0 vào đầu nếu cần
             String otpString = String.format("%06d", otp);
             MailService.send(email, "Mã xác nhận", "Mã xác nhận của bạn là: " + otpString);
-            UserService.addUser(userName, fullName, email, phone, password);
+            String encryptedPassword = PasswordUtils.hashPassword(password);
+            UserService.addUser(userName, fullName, email, phone, encryptedPassword);
             req.getSession().setAttribute("otp",otpString);
             req.getSession().setAttribute("userName",userName);
-
             resp.sendRedirect("enterOTP.jsp");
 //            EmailNotification.sendNotification("binhquoc23@gmail.com");
-
         }
     }
 }

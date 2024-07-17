@@ -77,30 +77,37 @@
                                 <th scope="col">Chức năng</th>
                             </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="body-table1">
                             <%
                                 for (Order o : listOrderWaitConfirm) {
                                     User user = UserDAO.getUserById(o.getUser_id());
                             %>
                             <tr>
-                                <th scope="row"><%=o.getId()%></th>
-                                <td><%=user.getFullName()%></td>
-                                <td><%=o.getOrder_date()%></td>
-                                <td><%=o.getAddress()%></td>
+                                <th scope="row"><%=o.getId()%>
+                                </th>
+                                <td><%=user.getFullName()%>
+                                </td>
+                                <td><%=o.getOrder_date()%>
+                                </td>
+                                <td><%=o.getAddress()%>
+                                </td>
 
                                 <td><%=numberFormat.format(o.getTotal_money())%><sup>đ</sup></td>
                                 <td>
-                                    <a title="xem chi tiết đơn hàng" href="page-admin-check-detail?order_id=<%=o.getId()%>" class="icon-link">
+                                    <a title="xem chi tiết đơn hàng"
+                                       href="page-admin-check-detail?order_id=<%=o.getId()%>" class="icon-link">
                                         <i class="icon-wrapper">
                                             <i class="fas fa-search"></i> <!-- Biểu tượng kính lúp -->
                                         </i>
                                     </a>
-                                    <a title="Xác nhận đơn hàng" href="confirmOrder?order_id=<%=o.getId()%>" class="icon-link">
+                                    <button style="border: none; background: none;" title="Xác nhận đơn hàng"
+                                            onclick="confirmOrder(<%=o.getId()%>)" class="icon-link">
                                         <i class="icon-wrapper">
                                             <i class="fas fa-check"></i>
                                         </i>
-                                    </a>
-                                    <a title="hủy đơn hàng" href="adminCancelOrder?order_id=<%=o.getId()%>&page_id=1" class="icon-link">
+                                    </button>
+                                    <a title="hủy đơn hàng" href="adminCancelOrder?order_id=<%=o.getId()%>&page_id=1"
+                                       class="icon-link">
                                         <i class="icon-wrapper">
                                             <i class="fas fa-trash-alt"></i> <!-- Biểu tượng thùng rác -->
                                         </i>
@@ -127,30 +134,37 @@
 
                             </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="body-table2">
                             <%
                                 for (Order o : listOrderConfirm) {
                                     User user = UserDAO.getUserById(o.getUser_id());
                             %>
                             <tr>
-                                <th scope="row"><%=o.getId()%></th>
-                                <td><%=user.getFullName()%></td>
-                                <td><%=o.getOrder_date()%></td>
-                                <td><%=o.getAddress()%></td>
+                                <th scope="row"><%=o.getId()%>
+                                </th>
+                                <td><%=user.getFullName()%>
+                                </td>
+                                <td><%=o.getOrder_date()%>
+                                </td>
+                                <td><%=o.getAddress()%>
+                                </td>
 
                                 <td><%=numberFormat.format(o.getTotal_money())%><sup>đ</sup></td>
                                 <td>
-                                    <a title="xem chi tiết đơn hàng" href="page-admin-check-detail?order_id=<%=o.getId()%>" class="icon-link">
+                                    <a title="xem chi tiết đơn hàng"
+                                       href="page-admin-check-detail?order_id=<%=o.getId()%>" class="icon-link">
                                         <i class="icon-wrapper">
                                             <i class="fas fa-search"></i> <!-- Biểu tượng kính lúp -->
                                         </i>
                                     </a>
-                                    <a title="giao hàng" href="transportOrder?order_id=<%=o.getId()%>" class="icon-link">
+                                    <a title="giao hàng" href="transportOrder?order_id=<%=o.getId()%>"
+                                       class="icon-link">
                                         <i class="icon-wrapper">
                                             <i class="fas fa-check"></i> <!-- Biểu tượng thùng rác -->
                                         </i>
                                     </a>
-                                    <a title="hủy đơn hàng" href="adminCancelOrder?order_id=<%=o.getId()%>&page_id=1" class="icon-link">
+                                    <a title="hủy đơn hàng" href="adminCancelOrder?order_id=<%=o.getId()%>&page_id=1"
+                                       class="icon-link">
                                         <i class="icon-wrapper">
                                             <i class="fas fa-trash-alt"></i> <!-- Biểu tượng thùng rác -->
                                         </i>
@@ -180,14 +194,19 @@
                                     User user = UserDAO.getUserById(o.getUser_id());
                             %>
                             <tr>
-                                <th scope="row"><%=o.getId()%></th>
-                                <td><%=user.getFullName()%></td>
-                                <td><%=o.getOrder_date()%></td>
-                                <td><%=o.getAddress()%></td>
+                                <th scope="row"><%=o.getId()%>
+                                </th>
+                                <td><%=user.getFullName()%>
+                                </td>
+                                <td><%=o.getOrder_date()%>
+                                </td>
+                                <td><%=o.getAddress()%>
+                                </td>
 
                                 <td><%=numberFormat.format(o.getTotal_money())%><sup>đ</sup></td>
                                 <td>
-                                    <a title="xem chi tiết đơn hàng" href="page-admin-check-detail?order_id=<%=o.getId()%>" class="icon-link">
+                                    <a title="xem chi tiết đơn hàng"
+                                       href="page-admin-check-detail?order_id=<%=o.getId()%>" class="icon-link">
                                         <i class="icon-wrapper">
                                             <i class="fas fa-search"></i> <!-- Biểu tượng kính lúp -->
                                         </i>
@@ -219,24 +238,31 @@
                                     User user = UserDAO.getUserById(o.getUser_id());
                             %>
                             <tr>
-                                <th scope="row"><%=o.getId()%></th>
-                                <td><%=user.getFullName()%></td>
-                                <td><%=o.getOrder_date()%></td>
-                                <td><%=o.getAddress()%></td>
+                                <th scope="row"><%=o.getId()%>
+                                </th>
+                                <td><%=user.getFullName()%>
+                                </td>
+                                <td><%=o.getOrder_date()%>
+                                </td>
+                                <td><%=o.getAddress()%>
+                                </td>
 
                                 <td><%=numberFormat.format(o.getTotal_money())%><sup>đ</sup></td>
                                 <td>
-                                    <a title="xem chi tiết đơn hàng" href="page-admin-check-detail?order_id=<%=o.getId()%>" class="icon-link">
+                                    <a title="xem chi tiết đơn hàng"
+                                       href="page-admin-check-detail?order_id=<%=o.getId()%>" class="icon-link">
                                         <i class="icon-wrapper">
                                             <i class="fas fa-search"></i> <!-- Biểu tượng kính lúp -->
                                         </i>
                                     </a>
-                                    <a title="giao hàng" href="transportedOrder?order_id=<%=o.getId()%>" class="icon-link">
+                                    <a title="giao hàng" href="transportedOrder?order_id=<%=o.getId()%>"
+                                       class="icon-link">
                                         <i class="icon-wrapper">
                                             <i class="fas fa-check"></i> <!-- Biểu tượng thùng rác -->
                                         </i>
                                     </a>
-                                    <a title="hủy đơn hàng" href="adminCancelOrder?order_id=<%=o.getId()%>&page_id=1" class="icon-link">
+                                    <a title="hủy đơn hàng" href="adminCancelOrder?order_id=<%=o.getId()%>&page_id=1"
+                                       class="icon-link">
                                         <i class="icon-wrapper">
                                             <i class="fas fa-trash-alt"></i> <!-- Biểu tượng thùng rác -->
                                         </i>
@@ -266,14 +292,19 @@
                                     User user = UserDAO.getUserById(o.getUser_id());
                             %>
                             <tr>
-                                <th scope="row"><%=o.getId()%></th>
-                                <td><%=user.getFullName()%></td>
-                                <td><%=o.getOrder_date()%></td>
-                                <td><%=o.getAddress()%></td>
+                                <th scope="row"><%=o.getId()%>
+                                </th>
+                                <td><%=user.getFullName()%>
+                                </td>
+                                <td><%=o.getOrder_date()%>
+                                </td>
+                                <td><%=o.getAddress()%>
+                                </td>
 
                                 <td><%=numberFormat.format(o.getTotal_money())%><sup>đ</sup></td>
                                 <td>
-                                    <a title="xem chi tiết đơn hàng" href="page-admin-check-detail?order_id=<%=o.getId()%>" class="icon-link">
+                                    <a title="xem chi tiết đơn hàng"
+                                       href="page-admin-check-detail?order_id=<%=o.getId()%>" class="icon-link">
                                         <i class="icon-wrapper">
                                             <i class="fas fa-search"></i> <!-- Biểu tượng kính lúp -->
                                         </i>
@@ -297,11 +328,40 @@
 <script type="text/javascript" charset="utf8" src="./js/bootstrap.bundle.min.js"></script>
 <script src="./js/pageAdmin_main.js"></script>
 <script>
-    // $("#table-id").DataTable();
-    $("#table-id-1").DataTable();
-    $("#table-id-2").DataTable();
-    $("#table-id-4").DataTable();
-    $("#table-id-5").DataTable();
+    let table1 = $("#table-id-1").DataTable();
+    let table2 = $("#table-id-2").DataTable();
+    let table3 = $("#table-id-3").DataTable();
+    let table4 = $("#table-id-4").DataTable();
+    let table5 = $("#table-id-5").DataTable();
+
+    function confirmOrder(order_id) {
+        $.ajax({
+            url: '/ProjectLTW_war/confirmOrder',
+            type: "POST",
+            data: {
+                order_id: order_id
+            },
+            success: function (response) {
+                var index = null;
+                var data = table1.column(0).data();
+                for (i = 0; i < data.length; i++) {
+                    if (parseInt(order_id) === parseInt(data[i])) {
+                        index = i;
+                        break;
+                    }
+                }
+                console.log(index);
+                if (index !== null) {
+                    table1.row(index).remove().draw();
+                }
+                var body = document.getElementById('body-table2')
+                body.innerHTML = response;
+            },
+            error: function (error) {
+            }
+        });
+    }
+
 </script>
 
 </body>

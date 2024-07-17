@@ -40,9 +40,9 @@ public class ProductService {
         System.out.println(ProductService.getInstance().getProductByName("Máy lọc nước RO"));
     }
 
-    public boolean removeProductById(int productId) {
-        return ProductDAO.removeProductById( productId);
-    }
+//    public boolean removeProductById(int productId) {
+//        return ProductDAO.removeProductById( productId);
+//    }
 
     public boolean changeInfoProduct(int idProduct,int category, String nameProduct, int availableProduct, int priceProduct, int discountPriceProduct, String imgProduct, String desProduct,int brand,int typeMachine) {
         return ProductDAO.changeInfoProduct(idProduct,category,nameProduct, availableProduct,priceProduct,discountPriceProduct,imgProduct,desProduct,brand,typeMachine);

@@ -186,6 +186,12 @@
                         <form action="order-controller" method="GET">
                             <input type="hidden" name="total_decrease" value="<%=total_decrease%>">
                             <input type="hidden" name="voucher_id" value="<%=voucher_id%>">
+                            <%String error = (String) request.getSession().getAttribute("error");
+                            %>
+                            <%if (error!=null){%>
+                            <div><span><%=error%></span></div>
+                            <%}%>
+                            <%request.getSession().removeAttribute("error");%>
                             <button type="button" id="btn-order" class="btn-order">Đặt hàng</button>
                         </form>
                     </div>

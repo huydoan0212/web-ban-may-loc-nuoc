@@ -6,9 +6,10 @@
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="model.Category" %>
 <%@ page import="dao.CategoryDAO" %>
+<%@ page import="dao.ProductDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<% List<Product> products = ProductService.getInstance().getAll();
-    if(products==null) products = new ArrayList<>();
+<% List<Product> products = ProductDAO.getAll();
+    if (products == null) products = new ArrayList<>();
 %>
 <% Locale locale = new Locale("vi", "VN");
     NumberFormat numberFormat = NumberFormat.getInstance(locale);
@@ -22,6 +23,11 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/pageAdmin_product.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="DataTables/datatables.min.css" rel="stylesheet">
+    <script src="DataTables/datatables.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <jsp:include page="cssDatatable.jsp" />
     <style>
         .icon-wrapper {
             margin-top: 2px;
@@ -55,51 +61,64 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-
                     <table id="table-id" class="table table-hover table-bordered">
                         <thead>
                         <tr>
                             <th scope="col">Mã</th>
                             <th scope="col">Tên sản phẩm</th>
-
                             <th scope="col">Ảnh</th>
                             <th scope="col">Số lượng</th>
                             <th scope="col">Tình trạng</th>
                             <th scope="col">Giá tiền</th>
                             <th scope="col">Giá giảm</th>
                             <th scope="col">Danh mục</th>
+                            <th scope="col">Trạng thái</th>
                             <th scope="col">Chức năng</th>
                         </tr>
                         </thead>
                         <tbody>
                         <%
-                            for (Product product:
-                                 products) {
-                            String category_name = CategoryDAO.getCategoryNameById(product.getCategory_id());
-                            %>
+                            for (Product product :
+                                    products) {
+                                String category_name = CategoryDAO.getCategoryNameById(product.getCategory_id());
+                        %>
                         <tr>
-                            <th scope="row"><%=product.getId()%></th>
-                            <td><%=product.getTitle()%></td>
+                            <th scope="row"><%=product.getId()%>
+                            </th>
+                            <td><%=product.getTitle()%>
+                            </td>
                             <td><img src="<%=product.getImg()%>"
                                      style="max-width: 100px; max-height: 100px;">
                             </td>
-                            <td><%=product.getAvailable()%></td>
-                            <%if (product.getAvailable() > 0){%>
+                            <td><%=product.getAvailable()%>
+                            </td>
+                            <%if (product.getAvailable() > 0) {%>
                             <td><span class="badge bg-success">Còn hàng</span></td>
-                            <%}else{%>
+                            <%} else {%>
                             <td><span style="background-color: #efbfbf !important;
     color: #790202 !important;" class="badge bg-failed">Hết hàng</span></td>
                             <%}%>
                             <td><%=numberFormat.format(product.getPrice())%><sup>đ</sup></td>
                             <td><%=numberFormat.format(product.getDiscount_price())%>đ</td>
-                            <td><%=category_name%></td>
+                            <td><%=category_name%>
+                            </td>
+                            <%String status = "";%>
+                            <%if (product.getStatus() == 1) {%>
+                            <%status = "Hiện";%>
+                            <%} else if (product.getStatus() == 0) {%>
+                            <%status = "Ẩn";%>
+                            <%}%>
+                            <td><%=status%>
+                            </td>
                             <td>
-                                <a title="Xóa" href="remove-product?product_id=<%=product.getId()%>" class="icon-link">
+                                <button style="border: none; background: none;" title="Đổi trạng thái"
+                                        onclick="changeStatusProduct(<%=product.getId()%>)" class="icon-link">
                                     <i class="icon-wrapper">
-                                        <i class="fas fa-trash-alt"></i> <!-- Biểu tượng thùng rác -->
+                                        <i class="fa-solid fa-right-left"></i>
                                     </i>
-                                </a>
-                                <a title="Chỉnh sửa" href="page-admin-edit-product?product_id=<%=product.getId()%>" class="icon-link">
+                                </button>
+                                <a title="Chỉnh sửa" href="page-admin-edit-product?product_id=<%=product.getId()%>"
+                                   class="icon-link">
                                     <i class="icon-wrapper">
                                         <i class="fas fa-pen"></i> <!-- Biểu tượng thùng rác -->
                                     </i>
@@ -117,13 +136,34 @@
         </div>
     </div>
 </section>
-
-//<%--<script src="../../../js/jquery.min.js"></script>--%>
-//<%--<script src="../../../js/jquery.dataTables.js"></script>--%>
-//
-//<%--<script type="text/javascript" charset="utf8" src="../../../js/bootstrap.bundle.min.js"></script>--%>
-//<%--<script>$("#table-id").DataTable();--%>
-//<%--</script>--%>
-
+<jsp:include page="jsDatatable.jsp" />
+<script>
+    $(document).ready(function() {
+        $('#table-id').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'excel',
+                    exportOptions: {
+                        columns: ':not(:nth-child(3)) : not(:nth-child(10))'
+                    }
+                },
+                {
+                    extend: 'pdf',
+                    exportOptions: {
+                        columns: ':not(:nth-child(3)) : not(:nth-child(10))'
+                    }
+                },
+                {
+                    extend: 'print',
+                    exportOptions: {
+                        columns: ':not(:nth-child(3)) : not(:nth-child(10))'
+                    }
+                }
+            ]
+        });
+    });
+</script>
+</script>
 </body>
 </html>
