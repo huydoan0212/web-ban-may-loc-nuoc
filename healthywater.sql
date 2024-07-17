@@ -1,231 +1,329 @@
-CREATE TABLE `role`
+CREATE TABLE role
 (
-    `id`   int PRIMARY KEY AUTO_INCREMENT,
-    `name` varchar(255)
-);
+    id   INT(11)      NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+    PRIMARY KEY (id) USING BTREE
+)
+    COLLATE = 'utf8mb4_general_ci'
+    ENGINE = InnoDB
+    AUTO_INCREMENT = 3
+;
 
-CREATE TABLE `users`
+CREATE TABLE users
 (
-    `id`           int PRIMARY KEY AUTO_INCREMENT,
-    `role_id`      int,
-    `username`     varchar(255),
-    `fullname`     varchar(255),
-    `email`        varchar(255),
-    `phone_number` varchar(255),
-    `sex`          VARCHAR(50),
-    `address`      varchar(255),
-    `password`     varchar(255),
-    `created_at`   datetime,
-    `updated_at`   datetime,
-    `status`       int,
-    `active`       int
-);
+    id               INT(11)      NOT NULL AUTO_INCREMENT,
+    role_id          INT(11)      NULL DEFAULT NULL,
+    username         VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+    fullname         VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+    email            VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+    phone_number     VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+    sex              VARCHAR(50)  NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+    address          VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+    password         VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+    created_at       DATETIME     NULL DEFAULT NULL,
+    updated_at       DATETIME     NULL DEFAULT NULL,
+    status           INT(11)      NULL DEFAULT NULL,
+    active           INT(11)      NULL DEFAULT NULL,
+    provider         VARCHAR(50)  NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+    provider_user_id VARCHAR(500) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+    PRIMARY KEY (id) USING BTREE,
+    INDEX role_id (role_id) USING BTREE,
+    CONSTRAINT users_ibfk_1 FOREIGN KEY (role_id) REFERENCES role (id) ON UPDATE RESTRICT ON DELETE RESTRICT
+)
+    COLLATE = 'utf8mb4_general_ci'
+    ENGINE = InnoDB
+    AUTO_INCREMENT = 19
+;
 
-CREATE TABLE `categorys`
+CREATE TABLE brands
 (
-    `id`   int PRIMARY KEY AUTO_INCREMENT,
-    `name` varchar(255)
-);
+    id   INT(11)      NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+    PRIMARY KEY (id) USING BTREE
+)
+    COLLATE = 'utf8mb4_general_ci'
+    ENGINE = InnoDB
+    AUTO_INCREMENT = 6
+;
 
-CREATE TABLE `products`
+CREATE TABLE categorys
 (
-    `id`              int PRIMARY KEY AUTO_INCREMENT,
-    `category_id`     int,
-    `type_machine_id` int,
-    `brand_id`        int,
-    `title`           varchar(255),
-    `price`           int,
-    `img`             varchar(255),
-    `discount_price`  int,
-    `descriptions`    varchar(255),
-    `available`       int,
-    `created_at`      date,
-    `updated_at`      date
-);
+    id   INT(11)      NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+    PRIMARY KEY (id) USING BTREE
+)
+    COLLATE = 'utf8mb4_general_ci'
+    ENGINE = InnoDB
+    AUTO_INCREMENT = 6
+;
 
-CREATE TABLE `gallerys`
+CREATE TABLE type_machines
 (
-    `id`         int PRIMARY KEY AUTO_INCREMENT,
-    `product_id` int,
-    `img`        varchar(255)
-);
+    id        INT(11)      NOT NULL AUTO_INCREMENT,
+    type_name VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+    PRIMARY KEY (id) USING BTREE
+)
+    COLLATE = 'utf8mb4_general_ci'
+    ENGINE = InnoDB
+    AUTO_INCREMENT = 6
+;
 
-
-CREATE TABLE `orders`
+CREATE TABLE products
 (
-    `id`            int PRIMARY KEY AUTO_INCREMENT,
-    `user_id`       int,
-    `address`       varchar(255),
-    `phone`         varchar(255),
-    `order_date`    datetime,
-    `status`        varchar(255),
-    `received_date` date,
-    `total_money`   INT,
-    `voucher_id`    int not null
-);
+    id              INT(11)      NOT NULL AUTO_INCREMENT,
+    category_id     INT(11)      NULL DEFAULT NULL,
+    type_machine_id INT(11)      NULL DEFAULT NULL,
+    brand_id        INT(11)      NULL DEFAULT NULL,
+    title           VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+    price           INT(11)      NULL DEFAULT NULL,
+    img             VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+    discount_price  INT(11)      NULL DEFAULT NULL,
+    available       INT(11)      NULL DEFAULT NULL,
+    descriptions    LONGTEXT     NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+    created_at      DATE         NULL DEFAULT NULL,
+    updated_at      DATE         NULL DEFAULT NULL,
+    status          BIT(1)       NULL DEFAULT NULL,
+    PRIMARY KEY (id) USING BTREE,
+    INDEX category_id (category_id) USING BTREE,
+    INDEX type_machine_id (type_machine_id) USING BTREE,
+    INDEX brand_id (brand_id) USING BTREE,
+    CONSTRAINT products_ibfk_1 FOREIGN KEY (category_id) REFERENCES categorys (id) ON UPDATE RESTRICT ON DELETE RESTRICT,
+    CONSTRAINT products_ibfk_2 FOREIGN KEY (type_machine_id) REFERENCES type_machines (id) ON UPDATE RESTRICT ON DELETE RESTRICT,
+    CONSTRAINT products_ibfk_3 FOREIGN KEY (brand_id) REFERENCES brands (id) ON UPDATE RESTRICT ON DELETE RESTRICT
+)
+    COLLATE = 'utf8mb4_general_ci'
+    ENGINE = InnoDB
+    AUTO_INCREMENT = 39
+;
 
-CREATE TABLE `order_details`
+CREATE TABLE address
 (
-    `id`          int PRIMARY KEY AUTO_INCREMENT,
-    `order_id`    int,
-    `product_id`  int,
-    `price`       int,
-    `quantity`    int,
-    `total_money` int
-);
+    id           INT(11)      NOT NULL AUTO_INCREMENT,
+    user_id      INT(11)      NULL DEFAULT NULL,
+    address      VARCHAR(500) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+    receiver     VARCHAR(500) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+    phone_number VARCHAR(50)  NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+    PRIMARY KEY (id) USING BTREE,
+    INDEX user_id (user_id) USING BTREE,
+    CONSTRAINT FK__users FOREIGN KEY (user_id) REFERENCES users (id) ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+    COLLATE = 'utf8mb4_general_ci'
+    ENGINE = InnoDB
+    AUTO_INCREMENT = 19
+;
 
-CREATE TABLE `vouchers`
+CREATE TABLE vouchers
 (
-    `id`               int PRIMARY KEY AUTO_INCREMENT,
-    `voucher_name`     varchar(255),
-    `voucher_code`     varchar(255),
-    `start_date`       datetime,
-    `end_date`         datetime,
-    `note`             varchar(255),
-    `percent_decrease` float
-);
+    id               INT(11)      NOT NULL AUTO_INCREMENT,
+    voucher_name     VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+    type             VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+    start_date       DATETIME     NULL DEFAULT NULL,
+    end_date         DATETIME     NULL DEFAULT NULL,
+    note             VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+    percent_decrease FLOAT        NULL DEFAULT NULL,
+    price_decrease   FLOAT        NULL DEFAULT NULL,
+    PRIMARY KEY (id) USING BTREE
+)
+    COLLATE = 'utf8mb4_general_ci'
+    ENGINE = InnoDB
+    AUTO_INCREMENT = 23
+;
 
-
-
-CREATE TABLE `payments`
+CREATE TABLE orders
 (
-    `id`           int PRIMARY KEY AUTO_INCREMENT,
-    `order_id`     int,
-    `payment_type` varchar(255),
-    `payment_date` datetime,
-    `total`        int
-);
+    id            INT(11)      NOT NULL AUTO_INCREMENT,
+    user_id       INT(11)      NULL DEFAULT NULL,
+    address       VARCHAR(50)  NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+    phone         VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+    order_date    DATETIME     NULL DEFAULT NULL,
+    status        VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+    received_date DATE         NULL DEFAULT NULL,
+    total_money   INT(11)      NULL DEFAULT NULL,
+    voucher_id    INT(11)      NOT NULL,
+    name          VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+    PRIMARY KEY (id) USING BTREE,
+    INDEX user_id (user_id) USING BTREE,
+    INDEX voucher_id (voucher_id) USING BTREE,
+    CONSTRAINT orders_ibfk_1 FOREIGN KEY (user_id) REFERENCES users (id) ON UPDATE RESTRICT ON DELETE RESTRICT,
+    CONSTRAINT orders_ibfk_2 FOREIGN KEY (voucher_id) REFERENCES vouchers (id) ON UPDATE RESTRICT ON DELETE RESTRICT
+)
+    COLLATE = 'utf8mb4_general_ci'
+    ENGINE = InnoDB
+    AUTO_INCREMENT = 158
+;
 
-CREATE TABLE `brands`
+CREATE TABLE order_details
 (
-    `id`   int PRIMARY KEY AUTO_INCREMENT,
-    `name` varchar(255)
+    id          INT(11) NOT NULL AUTO_INCREMENT,
+    order_id    INT(11) NULL DEFAULT NULL,
+    product_id  INT(11) NULL DEFAULT NULL,
+    price       INT(11) NULL DEFAULT NULL,
+    quantity    INT(11) NULL DEFAULT NULL,
+    total_money INT(11) NULL DEFAULT NULL,
+    PRIMARY KEY (id) USING BTREE,
+    INDEX product_id (product_id) USING BTREE,
+    INDEX order_id (order_id) USING BTREE,
+    CONSTRAINT order_details_ibfk_1 FOREIGN KEY (product_id) REFERENCES products (id) ON UPDATE RESTRICT ON DELETE RESTRICT,
+    CONSTRAINT order_details_ibfk_2 FOREIGN KEY (order_id) REFERENCES orders (id) ON UPDATE RESTRICT ON DELETE RESTRICT
+)
+    COLLATE = 'utf8mb4_general_ci'
+    ENGINE = InnoDB
+    AUTO_INCREMENT = 97
+;
 
-);
-
-CREATE TABLE `type_machines`
+CREATE TABLE payments
 (
-    `id`        int PRIMARY KEY AUTO_INCREMENT,
-    `type_name` varchar(255)
-);
+    id           INT(11)      NOT NULL AUTO_INCREMENT,
+    order_id     INT(11)      NULL DEFAULT NULL,
+    payment_type VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+    payment_date DATETIME     NULL DEFAULT NULL,
+    total        INT(11)      NULL DEFAULT NULL,
+    PRIMARY KEY (id) USING BTREE,
+    INDEX order_id (order_id) USING BTREE,
+    CONSTRAINT payments_ibfk_1 FOREIGN KEY (order_id) REFERENCES orders (id) ON UPDATE RESTRICT ON DELETE RESTRICT
+)
+    COLLATE = 'utf8mb4_general_ci'
+    ENGINE = InnoDB
+    AUTO_INCREMENT = 25
+;
 
-
-
-# CREATE TABLE `product_details` (
-#                                    `id` int PRIMARY KEY AUTO_INCREMENT,
-#                                    `type_set` varchar(255),
-#                                    `technical` varchar(255),
-#                                    `performance_filter` varchar(255),
-#                                    `power` varchar(255),
-#                                    `temperature` varchar(255),
-#                                    `height` float,
-#                                    `weight` float,
-#                                    `warranty` varchar(255)
-# );
-
-
-CREATE TABLE `contacts`
+CREATE TABLE gallerys
 (
-    `id`           int PRIMARY KEY AUTO_INCREMENT,
-    `name`         varchar(255),
-    `email`        varchar(255),
-    `phone_number` varchar(255),
-    `content`      varchar(255)
-);
-CREATE TABLE IF NOT EXISTS `comments`
+    id         INT(11)      NOT NULL AUTO_INCREMENT,
+    product_id INT(11)      NULL DEFAULT NULL,
+    img        VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+    PRIMARY KEY (id) USING BTREE,
+    INDEX product_id (product_id) USING BTREE,
+    CONSTRAINT gallerys_ibfk_1 FOREIGN KEY (product_id) REFERENCES products (id) ON UPDATE RESTRICT ON DELETE RESTRICT
+)
+    COLLATE = 'utf8mb4_general_ci'
+    ENGINE = InnoDB
+    AUTO_INCREMENT = 133
+;
+
+CREATE TABLE comments
 (
-    `id`          int PRIMARY KEY AUTO_INCREMENT,
-    `user_id`     int,
-    `product_id`  int,
-    `contents`    varchar(50),
-    `star`        varchar(50),
-    `display`     int,
-    `create_date` datetime
+    id          INT(11)     NOT NULL AUTO_INCREMENT,
+    user_id     INT(11)     NULL DEFAULT NULL,
+    product_id  INT(11)     NULL DEFAULT NULL,
+    contents    VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+    star        VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+    display     INT(11)     NULL DEFAULT NULL,
+    create_date DATETIME    NULL DEFAULT NULL,
+    PRIMARY KEY (id) USING BTREE
+)
+    COLLATE = 'utf8mb4_general_ci'
+    ENGINE = InnoDB
+    AUTO_INCREMENT = 4
+;
 
-
-);
-CREATE TABLE IF NOT EXISTS `posts`
+CREATE TABLE contacts
 (
-    `id`         INT PRIMARY KEY AUTO_INCREMENT,
-    `title`      VARCHAR(200) NOT NULL,
-    `content`    TEXT,
-    `author`     VARCHAR(50)  NOT NULL,
-    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+    id           INT(11)      NOT NULL AUTO_INCREMENT,
+    name         VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+    email        VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+    phone_number VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+    content      VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+    PRIMARY KEY (id) USING BTREE
+)
+    COLLATE = 'utf8mb4_general_ci'
+    ENGINE = InnoDB
+    AUTO_INCREMENT = 21
+;
 
-CREATE TABLE `log`
+CREATE TABLE import_product
 (
-    `id`            INT(11)     NULL DEFAULT NULL,
-    `ip_address`    VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-    `nationality`   VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-    `user_id`       INT(11)     NULL DEFAULT NULL,
-    `level`         VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-    `resource`      VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-    `status`        VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-    `pre_value`     VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-    `current_value` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-    `created_at`    DATETIME    NULL DEFAULT NULL,
-    `updated_at`    DATETIME    NULL DEFAULT NULL,
-    `action`        VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-    INDEX `FK_log_users` (`user_id`) USING BTREE,
-    CONSTRAINT `FK_log_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION
-);
+    id          INT(11)  NOT NULL AUTO_INCREMENT,
+    import_date DATETIME NULL DEFAULT NULL,
+    suplier     TEXT     NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+    total_price INT(11)  NULL DEFAULT NULL,
+    PRIMARY KEY (id) USING BTREE
+)
+    COLLATE = 'utf8mb4_general_ci'
+    ENGINE = InnoDB
+    AUTO_INCREMENT = 15
+;
 
-
-CREATE TABLE `import_detail`
+CREATE TABLE import_detail
 (
-    `id`                INT(11) NOT NULL AUTO_INCREMENT,
-    `id_import_product` INT(11) NULL DEFAULT NULL,
-    `id_product`        INT(11) NULL DEFAULT NULL,
-    `quantity`          INT(11) NULL DEFAULT NULL,
-    `price`             INT(11) NULL DEFAULT NULL,
-    PRIMARY KEY (`id`) USING BTREE,
-    INDEX `FK_id_product` (`id_product`) USING BTREE,
-    INDEX `FK2_id_import_product` (`id_import_product`) USING BTREE,
-    CONSTRAINT `FK2_id_import_product` FOREIGN KEY (`id_import_product`) REFERENCES `import_product` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION,
-    CONSTRAINT `FK_id_product` FOREIGN KEY (`id_product`) REFERENCES `products` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION
-);
-CREATE TABLE `import_product`
+    id                INT(11) NOT NULL AUTO_INCREMENT,
+    id_import_product INT(11) NULL DEFAULT NULL,
+    id_product        INT(11) NULL DEFAULT NULL,
+    quantity          INT(11) NULL DEFAULT NULL,
+    price             INT(11) NULL DEFAULT NULL,
+    PRIMARY KEY (id) USING BTREE,
+    INDEX FK_id_product (id_product) USING BTREE,
+    INDEX FK2_id_import_product (id_import_product) USING BTREE,
+    CONSTRAINT FK2_id_import_product FOREIGN KEY (id_import_product) REFERENCES import_product (id) ON UPDATE NO ACTION ON DELETE NO ACTION,
+    CONSTRAINT FK_id_product FOREIGN KEY (id_product) REFERENCES products (id) ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+    COLLATE = 'utf8mb4_general_ci'
+    ENGINE = InnoDB
+    AUTO_INCREMENT = 8
+;
+
+CREATE TABLE logs
 (
-    `id`          INT(11)  NOT NULL AUTO_INCREMENT,
-    `import_date` DATETIME NULL DEFAULT NULL,
-    `suplier`     TEXT     NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-    `total_price` INT(11)  NULL DEFAULT NULL,
-    PRIMARY KEY (`id`) USING BTREE
-);
-ALTER TABLE `users`
-    ADD FOREIGN KEY (`role_id`) REFERENCES `role` (`id`);
+    id         INT(11)      NOT NULL AUTO_INCREMENT,
+    action     VARCHAR(255) NOT NULL COLLATE 'utf8mb4_general_ci',
+    table_name VARCHAR(255) NOT NULL COLLATE 'utf8mb4_general_ci',
+    level      VARCHAR(255) NOT NULL COLLATE 'utf8mb4_general_ci',
+    beforeData VARCHAR(255) NOT NULL COLLATE 'utf8mb4_general_ci',
+    afterData  VARCHAR(255) NOT NULL COLLATE 'utf8mb4_general_ci',
+    user_id    INT(11)      NOT NULL,
+    time       TIMESTAMP    NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+    PRIMARY KEY (id) USING BTREE
+)
+    COLLATE = 'utf8mb4_general_ci'
+    ENGINE = InnoDB
+    AUTO_INCREMENT = 2
+;
 
-ALTER TABLE `products`
-    ADD FOREIGN KEY (`category_id`) REFERENCES `categorys` (`id`);
+CREATE TABLE posts
+(
+    id         INT(11)      NOT NULL AUTO_INCREMENT,
+    title      VARCHAR(200) NOT NULL COLLATE 'utf8mb4_general_ci',
+    content    TEXT         NULL     DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+    author     VARCHAR(50)  NOT NULL COLLATE 'utf8mb4_general_ci',
+    created_at TIMESTAMP    NOT NULL DEFAULT current_timestamp(),
+    PRIMARY KEY (id) USING BTREE
+)
+    COLLATE = 'utf8mb4_general_ci'
+    ENGINE = InnoDB
+    AUTO_INCREMENT = 21
+;
 
-ALTER TABLE `order_details`
-    ADD FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
+CREATE TABLE categories_use_voucher
+(
+    id          INT(11) NOT NULL AUTO_INCREMENT,
+    category_id INT(11) NOT NULL,
+    voucher_id  INT(11) NOT NULL,
+    PRIMARY KEY (id) USING BTREE,
+    INDEX FK__categorys (category_id) USING BTREE,
+    INDEX FK__vouchers_categories (voucher_id) USING BTREE,
+    CONSTRAINT FK__categorys FOREIGN KEY (category_id) REFERENCES categorys (id) ON UPDATE NO ACTION ON DELETE NO ACTION,
+    CONSTRAINT FK__vouchers_categories FOREIGN KEY (voucher_id) REFERENCES vouchers (id) ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+    COLLATE = 'utf8mb4_general_ci'
+    ENGINE = InnoDB
+    AUTO_INCREMENT = 6
+;
 
-ALTER TABLE `gallerys`
-    ADD FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
-
-ALTER TABLE `order_details`
-    ADD FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`);
-
-ALTER TABLE `orders`
-    ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
-
-ALTER TABLE `orders`
-    ADD FOREIGN KEY (`voucher_id`) REFERENCES `vouchers` (`id`);
-
-ALTER TABLE `products`
-    ADD FOREIGN KEY (`type_machine_id`) REFERENCES `type_machines` (`id`);
-
-ALTER TABLE `products`
-    ADD FOREIGN KEY (`brand_id`) REFERENCES `brands` (`id`);
-
-ALTER TABLE `product_details`
-    ADD FOREIGN KEY (`id`) REFERENCES `products` (`id`);
-
-ALTER TABLE `payments`
-    ADD FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`);
-
+CREATE TABLE product_use_voucher
+(
+    id         INT(11) NOT NULL AUTO_INCREMENT,
+    product_id INT(11) NOT NULL,
+    voucher_id INT(11) NOT NULL,
+    PRIMARY KEY (id) USING BTREE,
+    INDEX FK1 (product_id) USING BTREE,
+    INDEX FK__vouchers_product (voucher_id) USING BTREE,
+    CONSTRAINT FK1 FOREIGN KEY (product_id) REFERENCES products (id) ON UPDATE NO ACTION ON DELETE NO ACTION,
+    CONSTRAINT FK__vouchers_product FOREIGN KEY (voucher_id) REFERENCES vouchers (id) ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+    COLLATE = 'utf8mb4_general_ci'
+    ENGINE = InnoDB
+    AUTO_INCREMENT = 2
+;
 
 
 INSERT INTO `brands` (`id`, `name`)
