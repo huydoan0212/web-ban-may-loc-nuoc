@@ -38,20 +38,7 @@
         <img src="img/may-loc-nuoc-nong-lanh-karofi-kad-d50-nuoc-nong-lanh.jpg">
     </div>
     <div id="nav">
-        <!--        <div id="nav-bar">-->
-        <!--            <a href="" class="nav-item"><img src="../img/deal.png" alt="">-->
-        <!--                <span>Deal Sốc</span></a>-->
-        <!--            <a href="" class="nav-item"><img src="../img/RO.png" alt="">-->
-        <!--                <span>Lọc nước RO</span></a>-->
-        <!--            <a href="" class="nav-item"><img src="../img/nong-lanh.png" alt="">-->
-        <!--                <span>Có nóng lạnh</span></a>-->
-        <!--            <a href="" class="nav-item"><img src="../img/am-tu.png" alt="">-->
-        <!--                <span>Âm tủ, để bàn</span></a>-->
-        <!--            <a href="" class="nav-item"><img src="../img/nano-uf-mf.png" alt="">-->
-        <!--                <span>Lọc nước Nano, UF, MF</span></a>-->
-        <!--            <a href="" class="nav-item"><img src="../img/icon-loc-nuoc-khong-dien.png" alt="">-->
-        <!--                <span>Lọc nước không điện</span></a>-->
-        <!--        </div>-->
+
         <div class="nav-thuong-hieu">
             <a href="" class="nav-thuong-hieu-items"><img src="img/Karofi-200x80-1.png" alt=""></a>
             <a href="" class="nav-thuong-hieu-items"><img src="img/Kangaroo3385-b_6.png" alt=""></a>
