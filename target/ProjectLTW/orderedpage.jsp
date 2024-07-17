@@ -88,7 +88,7 @@
                             <a style="margin-left: 10px" href="paymentorderedpage.jsp?order_id=<%=order.getId()%>"
                                class="mua-lai">Thanh toán</a>
                             <%}%>
-                            <% if (!"Đã hủy".equalsIgnoreCase(order.getStatus()) && !"Đơn hàng đã giao".equalsIgnoreCase(order.getStatus())) { %>
+                            <% if (!"Đã hủy" .equalsIgnoreCase(order.getStatus()) && !"Đơn hàng đã giao" .equalsIgnoreCase(order.getStatus()) && !"Thanh toán bằng ngân hàng thành công" .equalsIgnoreCase(order.getStatus())) { %>
                             <a href="cancel-order?order_id=<%=order.getId()%>" class="mua-lai">Hủy đơn hàng</a>
                             <% } %>
 
