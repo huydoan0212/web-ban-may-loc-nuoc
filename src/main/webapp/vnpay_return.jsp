@@ -23,10 +23,10 @@
     <meta name="author" content="">
     <title>KẾT QUẢ THANH TOÁN</title>
     <!-- Bootstrap core CSS -->
-    <link href="/vnpay_jsp/assets/bootstrap.min.css" rel="stylesheet"/>
+    <link href="./js/bootstrap.min.css" rel="stylesheet"/>
     <!-- Custom styles for this template -->
-    <link href="/vnpay_jsp/assets/jumbotron-narrow.css" rel="stylesheet">
-    <script src="/vnpay_jsp/assets/jquery-1.11.3.min.js"></script>
+    <link href="./js/jumbotron-narrow.css" rel="stylesheet">
+    <script src="./js/jquery-1.11.3.min.js"></script>
 </head>
 <body>
 <%
