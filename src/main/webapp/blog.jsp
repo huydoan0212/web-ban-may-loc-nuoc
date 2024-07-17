@@ -20,11 +20,7 @@
   <link rel="stylesheet" href="css/owl_carousel_min.css" type="text/css">
   <link rel="stylesheet" href="css/slicknav_min.css" type="text/css">
   <link rel="stylesheet" href="css/style_blog.css" type="text/css">
-<%--  <link rel="stylesheet" href="css/blog.css" type="text/css">--%>
-<%--  <link rel="stylesheet" href="./css/header.css">--%>
-<%--  <link rel="stylesheet" href="./css/footer.css">--%>
-<%--&lt;%&ndash;  <link rel="stylesheet" href="./css/style.css">&ndash;%&gt;--%>
-<%--  <link rel="stylesheet" href="css/loc_nuoc_RO_page.css">--%>
+
 
 
 
