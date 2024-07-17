@@ -1,6 +1,8 @@
 package controller;
 
+import com.google.gson.Gson;
 import db.JDBIConnector;
+import model.Address;
 import org.jdbi.v3.core.Handle;
 
 import javax.servlet.ServletException;
@@ -19,38 +21,42 @@ public class CreateAddress extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // Lấy các tham số từ request
-        String orderIdStr = req.getParameter("orderId");
+        req.setCharacterEncoding("UTF-8");
+        resp.setContentType("application/json; charset=UTF-8");
+        resp.setCharacterEncoding("UTF-8");
+
+        String userId = req.getParameter("userId");
         String newAddress = req.getParameter("newAddress");
         String phoneNumber = req.getParameter("phoneNumber");
         String receiver = req.getParameter("receiver");
 
-        // Kiểm tra null và trả về lỗi nếu thiếu tham số
-        if (orderIdStr == null || newAddress == null || phoneNumber == null || receiver == null) {
+        if (userId == null || newAddress == null || phoneNumber == null || receiver == null) {
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            resp.getWriter().write("Missing required parameters");
+            resp.getWriter().write("{\"message\": \"Missing required parameters\"}");
             return;
         }
 
         int orderId;
         try {
-            orderId = Integer.parseInt(orderIdStr);
+            orderId = Integer.parseInt(userId);
         } catch (NumberFormatException e) {
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            resp.getWriter().write("Invalid orderId");
+            resp.getWriter().write("{\"message\": \"Invalid orderId\"}");
             return;
         }
-        boolean success = createAddress(orderId, newAddress, phoneNumber, receiver);
 
-        if (success) {
+        Address createdAddress = createAddress(orderId, newAddress, phoneNumber, receiver);
+
+        if (createdAddress != null) {
             resp.setStatus(HttpServletResponse.SC_OK);
+            resp.getWriter().write(new Gson().toJson(createdAddress));
         } else {
             resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
     }
 
-    private boolean createAddress(int orderId, String newAddress, String phoneNumber, String receiver) {
-        String sql = "INSERT INTO address (id, address, phone, name) " +
+    private Address createAddress(int orderId, String newAddress, String phoneNumber, String receiver) {
+        String sql = "INSERT INTO address (user_id, address, phone_number, receiver) " +
                 "VALUES (:orderId, :newAddress, :phoneNumber, :receiver)";
 
         try (Handle handle = JDBIConnector.me().open()) {
@@ -61,11 +67,16 @@ public class CreateAddress extends HttpServlet {
                     .bind("receiver", receiver)
                     .execute();
 
-            return rowsAffected > 0;
+            if (rowsAffected > 0) {
+                // Trả về đối tượng Address vừa tạo
+                Address address = new Address(phoneNumber, receiver, newAddress, orderId);
+                return address;
+            } else {
+                return null;
+            }
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            return null;
         }
     }
-
 }

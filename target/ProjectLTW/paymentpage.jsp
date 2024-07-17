@@ -112,17 +112,18 @@
                 <div class="payment-information">
                     <div class="information-1">
                         <h4>Người nhận hàng: </h4>
-                        <p id="selectedName"><%=user.getFullName()%>
+                        <p id="selectedName">Chưa có
                         </p>
                     </div>
                     <div class="information-2">
                         <h4>Số điện thoại nhận hàng:</h4>
-                        <p id="selectedPhone"><%=user.getPhoneNumber()%>
+                        <p id="selectedPhone">
+                            Chưa có
                         </p>
                     </div>
                     <div class="information-3">
                         <h4>Giao đến: </h4>
-                        <p id="selectedAddress"><%=order.getAddress()%> (nhân viên sẽ gọi xác nhận trước khi giao)</p>
+                        <p id="selectedAddress">Chưa có (nhân viên sẽ gọi xác nhận trước khi giao)</p>
                         <button id="changeAddressBtn" type="button">Thay đổi địa chỉ</button>
                     </div>
                 </div>
@@ -223,20 +224,21 @@
             var selectedPhoneElement = document.getElementById("selectedPhone");
             var selectedNameElement = document.getElementById("selectedName");
             var addAddressBtn = document.getElementById("addAddressBtn");
+            var addressList = document.getElementById("addressList");
 
             document.addEventListener('DOMContentLoaded', (event) => {
                 addAddressBtn.onclick = function () {
                     // Hiển thị form nhập liệu
                     var newAddressForm = document.createElement('div');
                     newAddressForm.innerHTML = `
-        <h3>Thêm địa chỉ mới</h3>
-        <form id="newAddressForm">
-            <input type="text" id="newAddress" placeholder="Địa chỉ giao hàng" required>
-            <input type="text" id="newReceiver" placeholder="Tên người nhận" required>
-            <input type="text" id="newPhoneNumber" placeholder="Số điện thoại" required>
-            <button type="button" id="saveAddressBtn">Lưu</button>
-        </form>
-    `;
+                <h3>Thêm địa chỉ mới</h3>
+                <form id="newAddressForm">
+                    <input type="text" id="newAddress" placeholder="Địa chỉ giao hàng" required>
+                    <input type="text" id="newReceiver" placeholder="Tên người nhận" required>
+                    <input type="text" id="newPhoneNumber" placeholder="Số điện thoại" required>
+                    <button type="button" id="saveAddressBtn">Lưu</button>
+                </form>
+            `;
                     addressList.appendChild(newAddressForm);
 
                     var saveAddressBtn = document.getElementById("saveAddressBtn");
@@ -248,7 +250,7 @@
 
                         // Gửi yêu cầu lưu địa chỉ mới vào server
                         var params = new URLSearchParams();
-                        params.append('orderId', <%=order.getId()%>);
+                        params.append('userId', '<%=user.getId()%>');
                         params.append('phoneNumber', newPhoneNumber);
                         params.append('receiver', newReceiver);
                         params.append('newAddress', newAddress);
@@ -270,11 +272,13 @@
                                 console.log('Add new address successful:', data);
                                 // Hiển thị thông tin địa chỉ mới trong modal
                                 var newAddressElement = document.createElement('div');
-                                newAddressElement.innerHTML = 'Địa chỉ: ' + newAddress + ', Tên người nhận: ' + newReceiver + ', Điện thoại: ' + newPhoneNumber;
+                                newAddressElement.innerHTML = 'Địa chỉ: ' + data.address +
+                                    ', Tên người nhận: ' + data.receiver +
+                                    ', Điện thoại: ' + data.phoneNumber;
                                 newAddressElement.onclick = function () {
-                                    selectedAddressElement.textContent = newAddress;
-                                    selectedNameElement.textContent = newReceiver;
-                                    selectedPhoneElement.textContent = newPhoneNumber;
+                                    selectedAddressElement.textContent = data.address;
+                                    selectedNameElement.textContent = data.receiver;
+                                    selectedPhoneElement.textContent = data.phoneNumber;
                                     modal.style.display = "none";
                                 };
                                 addressList.appendChild(newAddressElement);
@@ -288,6 +292,7 @@
                             });
                     };
                 };
+
                 btn.onclick = function () {
                     modal.style.display = "block";
                     // Gọi API để lấy danh sách địa chỉ
@@ -299,12 +304,13 @@
                             return response.json();
                         })
                         .then(addresses => {
-                            var addressList = document.getElementById("addressList");
                             addressList.innerHTML = '';
                             addresses.forEach(address => {
                                 console.log('Fetched address:', address); // Kiểm tra giá trị của address
                                 var addressElement = document.createElement('div');
-                                addressElement.innerHTML = 'Dia chi: ' + address.address + ", Ten nguoi nhan: " + address.receiver + ", Dien thoai: " + address.phoneNumber;
+                                addressElement.innerHTML = 'Địa chỉ: ' + address.address +
+                                    ', Tên người nhận: ' + address.receiver +
+                                    ', Điện thoại: ' + address.phoneNumber;
                                 addressElement.onclick = function () {
                                     selectedAddressElement.textContent = address.address;
                                     selectedNameElement.textContent = address.receiver;
@@ -312,7 +318,7 @@
                                     modal.style.display = "none";
                                     // Gửi yêu cầu cập nhật địa chỉ đơn hàng
                                     var params = new URLSearchParams();
-                                    params.append('orderId', <%=order.getId()%>);
+                                    params.append('orderId', '<%=order.getId()%>');
                                     params.append('phoneNumber', address.phoneNumber);
                                     params.append('receiver', address.receiver);
                                     params.append('newAddress', address.address);
