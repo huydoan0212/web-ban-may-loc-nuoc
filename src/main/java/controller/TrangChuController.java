@@ -1,9 +1,8 @@
 package controller;
 
 import dao.ProductDAO;
-import dao.UserDAO;
 import model.Product;
-import model.User;
+
 import service.ProductService;
 import service.UserService;
 
@@ -12,7 +11,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -27,8 +25,6 @@ public class TrangChuController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-
         List<Product> products = ProductService.getInstance().getAllLimit5();
         List<Product> locNuocRO = ProductDAO.getLocNuocTheoDanhMuc("Lọc nước RO");
         List<Product> coNongLanh = ProductDAO.getLocNuocTheoDanhMuc("Có nóng lạnh");
@@ -45,8 +41,6 @@ public class TrangChuController extends HttpServlet {
         req.getRequestDispatcher("trangchu.jsp").forward(req, resp);
         System.out.println(products);
     }
-
-
 
 
 }

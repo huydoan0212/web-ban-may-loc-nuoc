@@ -87,14 +87,20 @@ public class Login extends HttpServlet {
         if (user == null) {
             user = new User();
             user.setRoleId(2);
+            user.setUserName(id);
+            user.setPassword(PasswordUtils.hashPassword(id));
             user.setFullName(fullname);
+            user.setCreatedAt(LocalDateTime.now());
             user.setEmail(email);
             user.setProvider("facebook");
             user.setProviderUserId(id);
             UserService.getInstance().insertUser(user);
         }
         HttpSession session = req.getSession();
-        handleUserLoginSuccess(resp, session, user, "index.jsp");
+        session.setAttribute("user", user);
+        String name = UserDAO.getUserName(user.getUserName());
+        session.setAttribute("name", name);
+        resp.sendRedirect("/ProjectLTW_war/trangchu");
     }
 
 }

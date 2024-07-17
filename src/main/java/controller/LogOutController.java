@@ -22,11 +22,9 @@ public class LogOutController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        User user = (User) session.getAttribute("user");
-        UserDAO userDAO = new UserDAO();
         session.removeAttribute("user");
         session.removeAttribute("userName");
-        resp.sendRedirect("LoginServlet");
+        resp.sendRedirect("login.jsp");
 
     }
 }
