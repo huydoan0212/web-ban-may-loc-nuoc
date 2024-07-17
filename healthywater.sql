@@ -455,3 +455,16 @@ VALUES (1,
         'Máy lọc nước Pureit của nước nào ?',
         'Pureit là thương hiệu thuộc tập đoàn Unilever, hoạt động tại Việt Nam từ năm 1995, đã đồng hành và phát triển cùng người dân Việt Nam hơn 20 năm qua. Unilever là thương hiệu đi đầu trong lĩnh vực cung cấp các mặt hàng tiêu dùng, với các nhãn hiệu quen thuộc như OMO, Sunlight, Vim, Surf, Knorr, Walls, Lifebuoy, Clear, Sunsilk, Ponds, P/S, Close up và nhiều nhãn hiệu khác. Pureit là giải pháp của Unilever cho nhu cầu lọc nước nói chung và tại Việt Nam nói riêng. Trên toàn cầu, kể từ khi ra mắt, Pureit đã trở thành nhãn hiệu lọc nước bán chạy nhất thế giới với sự có mặt tại 13 quốc gia cùng các sản phẩm dựa trên công nghệ lọc nước mới nhất (UV, RO, bioxit).',
         'Trần Quỳnh Anh');
+CREATE TABLE IF NOT EXISTS `import_products` (
+                                                 `id` int(11) NOT NULL AUTO_INCREMENT,
+                                                 `product_id` int(11) DEFAULT NULL,
+                                                 `quantity` int(11) DEFAULT NULL,
+                                                 `created_at` datetime DEFAULT NULL,
+                                                 `user_id` int(11) DEFAULT NULL,
+                                                 `price` int(11) DEFAULT NULL,
+                                                 PRIMARY KEY (`id`),
+                                                 KEY `product_id` (`product_id`),
+                                                 KEY `user_id` (`user_id`),
+                                                 CONSTRAINT `import_products_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
+                                                 CONSTRAINT `import_products_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

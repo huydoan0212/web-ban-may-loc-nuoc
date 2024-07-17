@@ -1,8 +1,6 @@
 <%@ page import="model.User" %>
 <%@ page import="java.util.List" %>
 <%@ page import="model.Comment" %>
-<%@ page import="service.UserService" %>
-<%@ page import="dao.UserDAO" %>
 <%@ page import="service.ProductService" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -18,22 +16,20 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/pageAdmin_product.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
+    <jsp:include page="cssDatatable.jsp"/>
     <style>
         .icon-wrapper {
             margin-top: 2px;
             background-color: #4a90e2;
             display: inline-block;
             margin-right: 10px;
-            padding: 5px; /* Điều này tạo khoảng trắng xung quanh biểu tượng */
-            border-radius: 50%; /* Để tạo biểu tượng hình tròn */
+            padding: 5px;
+            border-radius: 50%;
         }
-
         .icon-wrapper i {
-            color: #ffffff; /* Màu trắng cho biểu tượng */
+            color: #ffffff;
         }
     </style>
-
 </head>
 <body>
 <%@include file="headerAdmin.jsp" %>
@@ -44,11 +40,6 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="row element-button">
-<%--                        <div class="col-sm-2">--%>
-<%--                            <a class="btn btn-add btn-sm" href="#" title="Thêm">--%>
-<%--                                <i class="fas fa-plus"></i>--%>
-<%--                                Nhập hàng mới</a>--%>
-<%--                        </div>--%>
                     </div>
                     <table id="table-id" class="table table-hover table-bordered">
                         <thead>
@@ -94,64 +85,6 @@
                             </td>
                         </tr>
                         <%}%>
-
-<%--                        <tr>--%>
-<%--                            <th scope="row">102</th>--%>
-<%--                            <td>Máy lọc nước không vỏ RO Karofi</td>--%>
-<%--                            <td>10kg</td>--%>
-<%--                            <td><img src="https://karofichinhhang.vn/Images/ImagesList/may-loc-nuoc-karofi-ksi80-2.png" style="max-width: 100px; max-height: 100px;"></td>--%>
-<%--                            <td>40</td>--%>
-<%--                            <td><span class="badge bg-success">Còn hàng</span></td>--%>
-<%--                            <td>3.800.000<sup>đ</sup></td>--%>
-<%--                            <td>0<span>%</span></td>--%>
-<%--                            <td>Âm tủ, để bàn</td>--%>
-<%--                            <td>--%>
-<%--                                <a title="Xóa" href="#" class="icon-link">--%>
-<%--                                    <i class="icon-wrapper">--%>
-<%--                                        <i class="fas fa-trash-alt"></i> <!-- Biểu tượng thùng rác -->--%>
-<%--                                    </i>--%>
-<%--                                </a>--%>
-<%--                                <a title="Chỉnh sửa" href="#" class="icon-link">--%>
-<%--                                    <i class="icon-wrapper">--%>
-<%--                                        <i class="fas fa-pen"></i> <!-- Biểu tượng thùng rác -->--%>
-<%--                                    </i>--%>
-<%--                                </a>--%>
-<%--                                <a title="Chuyển hàng từ kho lên" href="#" class="icon-link">--%>
-<%--                                    <i class="icon-wrapper">--%>
-<%--                                        <i class="fas fa-arrow-up"></i> <!-- Biểu tượng thùng rác -->--%>
-<%--                                    </i>--%>
-<%--                                </a>--%>
-
-<%--                            </td>--%>
-<%--                        </tr>--%>
-<%--                        <tr>--%>
-<%--                            <th scope="row">103</th>--%>
-<%--                            <td>Máy lọc nước RO Kangaroo</td>--%>
-<%--                            <td>13kg</td>--%>
-<%--                            <td><img src="https://kangaroo.vn/wp-content/uploads/may-loc-nuoc-ro-kg110avtu-1.jpg" style="max-width: 100px; max-height: 100px;"></td>--%>
-<%--                            <td>42</td>--%>
-<%--                            <td><span class="badge bg-success">Còn hàng</span></td>--%>
-<%--                            <td>8.575.000<sup>đ</sup></td>--%>
-<%--                            <td>0<span>%</span></td>--%>
-<%--                            <td>M</td>--%>
-<%--                            <td>--%>
-<%--                                <a title="Xóa" href="#" class="icon-link">--%>
-<%--                                    <i class="icon-wrapper">--%>
-<%--                                        <i class="fas fa-trash-alt"></i> <!-- Biểu tượng thùng rác -->--%>
-<%--                                    </i>--%>
-<%--                                </a>--%>
-<%--                                <a title="Chỉnh sửa" href="#" class="icon-link">--%>
-<%--                                    <i class="icon-wrapper">--%>
-<%--                                        <i class="fas fa-pen"></i> <!-- Biểu tượng thùng rác -->--%>
-<%--                                    </i>--%>
-<%--                                </a>--%>
-<%--                                <a title="Chuyển hàng từ kho lên" href="#" class="icon-link">--%>
-<%--                                    <i class="icon-wrapper">--%>
-<%--                                        <i class="fas fa-arrow-up"></i> <!-- Biểu tượng thùng rác -->--%>
-<%--                                    </i>--%>
-<%--                                </a>--%>
-<%--                            </td>--%>
-<%--                        </tr>--%>
                         </tbody>
                     </table>
                 </div>
@@ -162,7 +95,34 @@
 <script src="./js/jquery.min.js"></script>
 <script src="./js/jquery.dataTables.js"></script>
 <script type="text/javascript" charset="utf8" src="./js/bootstrap.bundle.min.js"></script>
-<%--<script>$("#table-id").DataTable();--%>
+<jsp:include page="jsDatatable.jsp" />
+<script>
+    new DataTable('#table-id', {
+        layout: {
+            topStart: {
+                buttons: [
+                    {
+                        extend: 'excel',
+                        exportOptions: {
+                            columns: ' :not(:nth-child(7))'
+                        }
+                    },
+                    {
+                        extend: 'pdf',
+                        exportOptions: {
+                            columns: ' :not(:nth-child(7))'
+                        }
+                    },
+                    {
+                        extend: 'print',
+                        exportOptions: {
+                            columns: ' :not(:nth-child(7))'
+                        }
+                    },
+                ]
+            }
+        },
+    });
 </script>
 </body>
 </html>
