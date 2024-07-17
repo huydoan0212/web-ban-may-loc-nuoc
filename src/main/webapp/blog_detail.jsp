@@ -32,7 +32,6 @@
 
 <!-- Header Section Begin -->
 <%@include file="header.jsp"%>
-<!-- Header Section End -->
 
 <!-- Hero Section Begin -->
 <section class="hero hero-normal">
