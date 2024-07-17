@@ -18,15 +18,38 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
     <title>KẾT QUẢ THANH TOÁN</title>
-    <!-- Bootstrap core CSS -->
     <link href="./js/bootstrap.min.css" rel="stylesheet"/>
-    <!-- Custom styles for this template -->
     <link href="./js/jumbotron-narrow.css" rel="stylesheet">
     <script src="./js/jquery-1.11.3.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var transactionStatus = "<%= request.getParameter("vnp_TransactionStatus") %>";
+            var orderId = '<%=request.getParameter("vnp_TxnRef")%>';
+
+            if (transactionStatus === "00") {
+                // Gọi đến set-success-payment nếu giao dịch thành công
+                var url = '/ProjectLTW_war/set-success-payment';
+                fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: 'orderId=' + encodeURIComponent(orderId)
+                }).then(response => {
+                    if (response.ok) {
+                        console.log('Payment status updated successfully.');
+                    } else {
+                        console.log('Failed to update payment status.');
+                    }
+                }).catch(error => {
+                    console.error('Error:', error);
+                });
+            }
+        });
+    </script>
 </head>
 <body>
 <%
@@ -113,7 +136,7 @@ color: white;border-radius: 5px;">Về trang chủ</a></div>
         &nbsp;
     </p>
     <footer class="footer">
-        <p>&copy; VNPAY 2020</p>
+        <p>&copy; VNPAY 2024</p>
     </footer>
 </div>
 </body>

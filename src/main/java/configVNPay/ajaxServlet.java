@@ -7,6 +7,10 @@ package configVNPay;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import dao.OrderDAO;
+import model.Order;
+import service.OrderService;
+import service.PaymentService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -60,7 +64,7 @@ public class ajaxServlet extends HttpServlet {
         }
 
         String bankCode = "NCB";
-        String vnp_TxnRef = Config.getRandomNumber(8);
+        String vnp_TxnRef = req.getParameter("orderId");
         String vnp_IpAddr = "192.168.0.42";
         String vnp_TmnCode = Config.vnp_TmnCode;
 
@@ -125,10 +129,26 @@ public class ajaxServlet extends HttpServlet {
         job.addProperty("code", "00");
         job.addProperty("message", "success");
         job.addProperty("data", paymentUrl);
-
+        insertOrder(req, resp);
         Gson gson = new Gson();
         resp.getWriter().write(gson.toJson(job));
     }
 
+    public void insertOrder(HttpServletRequest req, HttpServletResponse resp) {
+        Object object = req.getSession().getAttribute("order_id");
+        int order_id = 0;
+        if (object != null) {
+            if (object instanceof Integer) {
+                order_id = (Integer) object;
+            } else if (object instanceof String) {
+                order_id = Integer.valueOf((String) object);
+            }
+        }
+        boolean isPayment = OrderService.getInstance().paymentOrder("Đã chọn phương thức thanh toán bằng thẻ ngân hàng", order_id);
+        if (isPayment) {
+            req.getSession().removeAttribute("order_id");
+            req.getSession().removeAttribute("cart");
+        }
+    }
 
 }

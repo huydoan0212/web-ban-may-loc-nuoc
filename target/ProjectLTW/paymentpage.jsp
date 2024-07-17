@@ -221,18 +221,16 @@
 
                 // Lấy giá trị của amount
                 var amount = '<%=order.getTotal_money()%>';
-
+                var orderId = '<%=order.getId()%>';
                 // Nếu là thanh toán bằng thẻ ngân hàng thì gọi ajax đến servlet
                 if (paymentOptionValue === "Thanh toán bằng thẻ ngân hàng") {
                     var url = '/ProjectLTW_war/vnpay';
-                    console.log('Your URL: ' + url); // Console log URL để kiểm tra
-
                     fetch(url, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded',
                         },
-                        body: 'amount=' + encodeURIComponent(amount)
+                        body: 'amount=' + encodeURIComponent(amount) + '&orderId=' + encodeURIComponent(orderId)
                     })
                         .then(response => response.json())
                         .then(data => {

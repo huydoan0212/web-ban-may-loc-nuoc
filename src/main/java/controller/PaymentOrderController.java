@@ -30,13 +30,8 @@ public class PaymentOrderController extends HttpServlet {
                 order_id = Integer.valueOf((String) object);
             }
         }
-        Order order = OrderDAO.getOrderById(order_id);
-        System.out.println(order);
-        System.out.println(order_id);
-        String payment_type = req.getParameter("paymentOption");
-        boolean isPayment = OrderService.getInstance().paymentOrder("Đã chọn phương thức thanh toán", order_id);
-        boolean isInsertPayment = PaymentService.getInstance().insertPayment(order.getId(), payment_type, order.getTotal_money());
-        if (isPayment && isInsertPayment) {
+        boolean isPayment = OrderService.getInstance().paymentOrder("Đã chọn phương thức thanh toán bằng tiền mặt", order_id);
+        if (isPayment) {
             req.getSession().removeAttribute("order_id");
             req.getSession().removeAttribute("cart");
             resp.sendRedirect("trangchu");
