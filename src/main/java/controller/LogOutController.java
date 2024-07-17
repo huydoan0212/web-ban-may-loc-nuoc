@@ -26,7 +26,7 @@ public class LogOutController extends HttpServlet {
         UserDAO userDAO = new UserDAO();
         session.removeAttribute("user");
         session.removeAttribute("userName");
-        resp.sendRedirect("login.jsp");
+        resp.sendRedirect("LoginServlet");
 
     }
 }

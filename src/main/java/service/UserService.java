@@ -47,7 +47,7 @@ public class UserService {
     }
 
 
-    public boolean addUser(String username, String fullname, String email, String phone_number, String password) {
+    public static boolean addUser(String username, String fullname, String email, String phone_number, String password) {
         return new UserDAO().addUser(username, fullname, email, phone_number, password);
     }
 
@@ -97,6 +97,9 @@ public class UserService {
 
     public User checkProviderUserId(String providerUserId) {
         return UserDAO.checkProviderUserId(providerUserId);
+    }
+    public boolean loginUser(String username, String password){
+        return UserDAO.loginUser(username,password);
     }
 
 

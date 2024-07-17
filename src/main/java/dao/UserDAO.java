@@ -77,7 +77,7 @@ public class UserDAO extends AbsDao<User> {
         });
     }
 
-    public boolean addUser(String username, String fullname, String email, String phone_number, String password) {
+    public static boolean addUser(String username, String fullname, String email, String phone_number, String password) {
         boolean result = false;
         String insertQuery = "INSERT INTO users (role_id, username, fullname, email, phone_number, sex, address, password, created_at, status) " +
                 "VALUES (?, ?, ?, ?, ?, '', '', ?, ?, 1)";
@@ -94,14 +94,6 @@ public class UserDAO extends AbsDao<User> {
                     .execute();
 
             result = rowsInserted > 0;
-            User user = new User();
-            user.setUserName(username);
-            user.setFullName(fullname);
-            user.setEmail(email);
-            user.setPhoneNumber(phone_number);
-            user.setPassword(password);
-            super.insert(user);
-            System.out.println(user);
         } catch (Exception e) {
             e.printStackTrace(); // In ra lỗi để theo dõi và xử lý nếu cần
         }
@@ -431,30 +423,10 @@ public class UserDAO extends AbsDao<User> {
 
 
     public static void main(String[] args) {
-//        // Tạo dữ liệu mẫu
-//        int role = 1;
-//        String username = "testUse1r";
-//        String fullname = "Test User";
-//        String phone_number = "1234567890";
-//        String email = "testuser@example.com";
-//        String password = "password";
-//
-//        // Gọi hàm và in kết quả
-//        boolean isInserted = insertUserAdmin(role, username, fullname, phone_number, email, password);
-//        System.out.println("Kết quả của hàm insertUserAdmin: " + isInserted);
-        String username = "testUser";
-        String fullname = "Test User";
-        String email = "testuser@example.com";
-        String phone_number = "1234567890";
-        String password = "testPassword";
+//        User user = UserDAO.getUserInfo("112649102310854549392");
+//        System.out.println(user);
+        System.out.println(getFullNameById(1));
 
-//        boolean isUserAdded = addUser(username, fullname, email, phone_number, password);
-//
-//        if (isUserAdded) {
-//            System.out.println("User added successfully!");
-//        } else {
-//            System.out.println("Failed to add user.");
-//        }
     }
 
 
