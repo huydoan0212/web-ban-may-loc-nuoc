@@ -5,7 +5,6 @@
     String isCheckLogin = user != null ? "/ProjectLTW_war/cart" : "login.jsp";
 
 %>
-<%--<% String title = (String) request.getParameter("search"); %>--%>
 <html>
 <head>
     <title>Title</title>
