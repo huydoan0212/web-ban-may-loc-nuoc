@@ -6,9 +6,7 @@
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="service.OrderDetailService" %>
 <%@ page import="model.*" %>
-<%@ page import="service.VoucherService" %><%--
-
---%>
+<%@ page import="service.VoucherService" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% Object object = request.getParameter("order_id");
     int order_id = 0;
