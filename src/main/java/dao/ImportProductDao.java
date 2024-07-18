@@ -136,11 +136,11 @@ public class ImportProductDao {
                                     "FROM products p " +
                                     "LEFT JOIN order_details od ON p.id = od.product_id " +
                                     "LEFT JOIN import_products ip ON p.id = ip.product_id " +
-                                    "WHERE p.available > 0 " +
+                                    "WHERE p.available < 5 " +
                                     "GROUP BY p.id " +
                                     "HAVING (CASE WHEN COALESCE(SUM(ip.quantity), 0) = 0 THEN 0 " +
                                     "        ELSE CAST(COALESCE(SUM(od.quantity), 0) AS FLOAT) / COALESCE(SUM(ip.quantity), 1) " +
-                                    "   END) > 0.6"
+                                    "   END) > 0.06"
                     )
                     .map((rs, ctx) -> {
                         Product product = new Product();
@@ -165,6 +165,6 @@ public class ImportProductDao {
     public static void main(String[] args) {
 //        System.out.println(insertImportProduct(1, 100,10000, 3));
 //        System.out.println(increaseProductAvailable(100, 4));
-        System.out.println(getProductsWithHighSalesRatio());
+        System.out.println(getProductsInventory());
     }
 }
