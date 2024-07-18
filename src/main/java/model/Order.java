@@ -2,7 +2,7 @@ package model;
 
 import java.time.LocalDateTime;
 
-public class Order {
+public class Order implements IModel{
     private int id;
     private int user_id;
     private String address;
@@ -125,5 +125,20 @@ public class Order {
         this.total_money = total_money;
         this.voucher_id = voucher_id;
         this.name = name;
+    }
+
+    @Override
+    public String table() {
+        return "order";
+    }
+
+    @Override
+    public String beforeData() {
+        return "";
+    }
+
+    @Override
+    public String afterData() {
+        return toString();
     }
 }

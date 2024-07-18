@@ -1,6 +1,6 @@
 package model;
 
-public class OrderDetail {
+public class OrderDetail implements IModel{
     private int id;
     private int order_id;
     private int product_id;
@@ -78,5 +78,20 @@ public class OrderDetail {
 
     public void setTotal_money(int total_money) {
         this.total_money = total_money;
+    }
+
+    @Override
+    public String table() {
+        return "order_details";
+    }
+
+    @Override
+    public String beforeData() {
+        return "";
+    }
+
+    @Override
+    public String afterData() {
+        return toString();
     }
 }

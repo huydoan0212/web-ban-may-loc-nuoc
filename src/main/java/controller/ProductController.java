@@ -38,9 +38,6 @@ public class ProductController extends HttpServlet {
         Product product = ProductService.getInstance().getById(id);
         List<Gallery> galleries = GalleryService.getInstance().getGalleryByProductId(id);
         List<Comment> comments = CommentService.getInstance().getCommentById(id);
-        System.out.println(galleries);
-        System.out.println(product);
-        System.out.println(comments);
         req.setAttribute("product", product);
         req.setAttribute("galleries", galleries);
         req.setAttribute("comments", comments);

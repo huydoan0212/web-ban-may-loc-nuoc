@@ -1,9 +1,9 @@
 package model;
 
 public interface IModel {
-    public String getTable();
+    String table();
 
-    public String beforeData();
+    String beforeData();
 
-    public String afterData();
+    String afterData();
 }

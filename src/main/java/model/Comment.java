@@ -1,6 +1,6 @@
 package model;
 import java.time.LocalDateTime;
-public class Comment {
+public class Comment implements IModel{
     private int id;
     private int userId;
     private int productId;
@@ -91,5 +91,20 @@ public class Comment {
                 ", display=" + display +
                 ", create_date=" + create_date +
                 '}';
+    }
+
+    @Override
+    public String table() {
+        return "comments";
+    }
+
+    @Override
+    public String beforeData() {
+        return "";
+    }
+
+    @Override
+    public String afterData() {
+        return toString();
     }
 }

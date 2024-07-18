@@ -15,6 +15,7 @@
     NumberFormat numberFormat = NumberFormat.getInstance(locale);
 %>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Quản lý</title>
@@ -27,26 +28,27 @@
     <script src="DataTables/datatables.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js"
             integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-    <jsp:include page="cssDatatable.jsp" />
     <style>
         .icon-wrapper {
             margin-top: 2px;
             background-color: #4a90e2;
             display: inline-block;
             margin-right: 10px;
-            padding: 5px; /* Điều này tạo khoảng trắng xung quanh biểu tượng */
-            border-radius: 50%; /* Để tạo biểu tượng hình tròn */
+            padding: 5px;
+            /* Điều này tạo khoảng trắng xung quanh biểu tượng */
+            border-radius: 50%;
+            /* Để tạo biểu tượng hình tròn */
         }
 
         .icon-wrapper i {
-            color: #ffffff; /* Màu trắng cho biểu tượng */
+            color: #ffffff;
+            /* Màu trắng cho biểu tượng */
         }
     </style>
 </head>
+
 <body>
 <%@include file="headerAdmin.jsp" %>
-
-
 <section class="home-section">
     <div class="home-content">
         <div class="manager-product">
@@ -57,7 +59,6 @@
                         <i class="fas fa-plus"></i>
                         Thêm sản phẩm</a>
                 </div>
-
             </div>
             <div class="row">
                 <div class="col-md-12">
@@ -87,8 +88,7 @@
                             </th>
                             <td><%=product.getTitle()%>
                             </td>
-                            <td><img src="<%=product.getImg()%>"
-                                     style="max-width: 100px; max-height: 100px;">
+                            <td><img src="<%=product.getImg()%>" style="max-width: 100px; max-height: 100px;">
                             </td>
                             <td><%=product.getAvailable()%>
                             </td>
@@ -136,34 +136,48 @@
         </div>
     </div>
 </section>
-<jsp:include page="jsDatatable.jsp" />
+
+//<%--<script src="../../../js/jquery.min.js"></script>--%>
+//<%--<script src="../../../js/jquery.dataTables.js"></script>--%>
+//
+//<%--<script type="text/javascript" charset="utf8" src="../../../js/bootstrap.bundle.min.js"></script>--%>
+//<%--<script>$("#table-id").DataTable();--%>
+//<%--</script>--%>
 <script>
-    $(document).ready(function() {
-        $('#table-id').DataTable({
-            dom: 'Bfrtip',
-            buttons: [
-                {
-                    extend: 'excel',
-                    exportOptions: {
-                        columns: ':not(:nth-child(3)) : not(:nth-child(10))'
-                    }
-                },
-                {
-                    extend: 'pdf',
-                    exportOptions: {
-                        columns: ':not(:nth-child(3)) : not(:nth-child(10))'
-                    }
-                },
-                {
-                    extend: 'print',
-                    exportOptions: {
-                        columns: ':not(:nth-child(3)) : not(:nth-child(10))'
+    new DataTable('#table-id', {
+    });
+
+    function changeStatusProduct(productId) {
+        $.ajax({
+            url: '/ProjectLTW_war/change-status-product',
+            type: 'POST',
+            data: {
+                product_id: productId
+            },
+            success: function (response) {
+                // Cập nhật trạng thái của sản phẩm trong bảng
+                var newStatus = response.newStatus;
+                // Tìm hàng có chứa productId và cập nhật giá trị của cột 8
+                var table = $('#table-id').DataTable();
+                var data = table.column(0).data();
+                var index = null;
+                for (i = 0; i < data.length; i++) {
+                    if (parseInt(productId) === parseInt(data[i])) { // giả sử cột đầu tiên là cột id
+                        index = i;
+                        break;
                     }
                 }
-            ]
+                if (index !== null) {
+                    table.cell(index, 8).data(newStatus); // cập nhật giá trị của cột 8 và vẽ lại bảng
+                }
+            },
+            error: function (error) {
+                // Xử lý khi có lỗi xảy ra
+                console.log(error);
+            }
         });
-    });
-</script>
+    }
 </script>
 </body>
+
 </html>

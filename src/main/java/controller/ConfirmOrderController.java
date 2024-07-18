@@ -29,7 +29,6 @@ public class ConfirmOrderController extends HttpServlet {
         resp.setContentType("text/html; charset=UTF-8");
         resp.setCharacterEncoding("UTF-8");
         Object ob = req.getParameter("order_id");
-        System.out.println(ob);
         int order_id = 0;
         if (ob != null) {
             if (ob instanceof Integer) {
@@ -38,54 +37,47 @@ public class ConfirmOrderController extends HttpServlet {
                 order_id = Integer.valueOf((String) ob);
             }
         }
-        System.out.println(order_id);
         boolean isChangeStatus = OrderService.getInstance().changeStatusToConfirmed(order_id);
         List<Order> listOrderConfirm = OrderService.getInstance().getListOrderConfirm();
-        System.out.println(listOrderConfirm);
-//        resp.setContentType("application/json");
-//        resp.setCharacterEncoding("UTF-8");
         PrintWriter out = resp.getWriter();
         Locale locale = new Locale("vi", "VN");
         NumberFormat numberFormat = NumberFormat.getInstance(locale);
-        for (Order o : listOrderConfirm) {
-            User user = UserDAO.getUserById(o.getUser_id());
-            out.println(
-                    "                            <tr>\n" +
-                            "                                <th scope=\"row\">" + o.getId() + "\n" +
-                            "                                </th>\n" +
-                            "                                <td>" + user.getFullName() + "\n" +
-                            "                                </td>\n" +
-                            "                                <td>" + o.getOrder_date() + "\n" +
-                            "                                </td>\n" +
-                            "                                <td>" + o.getAddress() + "\n" +
-                            "                                </td>\n" +
-                            "\n" +
-                            "                                <td>" + numberFormat.format(+o.getTotal_money()) + "<sup>đ</sup></td>\n" +
-                            "                                <td>\n" +
-                            "                                    <a title=\"xem chi tiết đơn hàng\"\n" +
-                            "                                       href=\"page-admin-check-detail?order_id=" + o.getId() + "\" class=\"icon-link\">\n" +
-                            "                                        <i class=\"icon-wrapper\">\n" +
-                            "                                            <i class=\"fas fa-search\"></i> <!-- Biểu tượng kính lúp -->\n" +
-                            "                                        </i>\n" +
-                            "                                    </a>\n" +
-                            "                                    <button style=\"border: none; background: none;\" title=\"Xác nhận đơn hàng\"\n" +
-                            "                                            onclick=\"confirmOrder(" + o.getId() + ")\" class=\"icon-link\">\n" +
-                            "                                        <i class=\"icon-wrapper\">\n" +
-                            "                                            <i class=\"fas fa-check\"></i>\n" +
-                            "                                        </i>\n" +
-                            "                                    </button>\n" +
-                            "                                    <a title=\"hủy đơn hàng\" href=\"adminCancelOrder?order_id=" + o.getId() + "&page_id=1\"\n" +
-                            "                                       class=\"icon-link\">\n" +
-                            "                                        <i class=\"icon-wrapper\">\n" +
-                            "                                            <i class=\"fas fa-trash-alt\"></i> <!-- Biểu tượng thùng rác -->\n" +
-                            "                                        </i>\n" +
-                            "                                    </a>\n" +
-                            "                                </td>\n" +
-                            "                            </tr>\n" +
-                            "\n");
-        }
         if (isChangeStatus) {
-
+            for (Order o : listOrderConfirm) {
+                User user = UserDAO.getUserById(o.getUser_id());
+                out.println(
+                        "                            <tr>\n" +
+                                "                                <th scope=\"row\">" + o.getId() + "\n" +
+                                "                                </th>\n" +
+                                "                                <td>" + user.getFullName() + "\n" +
+                                "                                </td>\n" +
+                                "                                <td>" + o.getOrder_date() + "\n" +
+                                "                                </td>\n" +
+                                "                                <td>" + o.getAddress() + "\n" +
+                                "                                </td>\n" + "\n" +
+                                "                                <td>" + numberFormat.format(+o.getTotal_money()) + "<sup>đ</sup></td>\n" + "                                <td>\n" +
+                                "                                    <a title=\"xem chi tiết đơn hàng\"\n" +
+                                "                                       href=\"page-admin-check-detail?order_id=" + o.getId() + "\" class=\"icon-link\">\n" +
+                                "                                        <i class=\"icon-wrapper\">\n" +
+                                "                                            <i class=\"fas fa-search\"></i> <!-- Biểu tượng kính lúp -->\n" +
+                                "                                        </i>\n" +
+                                "                                    </a>\n" +
+                                "                                    <button style=\"border: none; background: none;\" title=\"Xác nhận đơn hàng\"\n" +
+                                "                                            onclick=\"confirmOrder(" + o.getId() + ")\" class=\"icon-link\">\n" +
+                                "                                        <i class=\"icon-wrapper\">\n" +
+                                "                                            <i class=\"fas fa-check\"></i>\n" +
+                                "                                        </i>\n" +
+                                "                                    </button>\n" +
+                                "                                    <a title=\"hủy đơn hàng\" href=\"adminCancelOrder?order_id=" + o.getId() + "&page_id=1\"\n" +
+                                "                                       class=\"icon-link\">\n" +
+                                "                                        <i class=\"icon-wrapper\">\n" +
+                                "                                            <i class=\"fas fa-trash-alt\"></i> <!-- Biểu tượng thùng rác -->\n" +
+                                "                                        </i>\n" +
+                                "                                    </a>\n" +
+                                "                                </td>\n" +
+                                "                            </tr>\n" +
+                                "\n");
+            }
 
         }
 

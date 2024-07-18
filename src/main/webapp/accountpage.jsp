@@ -4,13 +4,6 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    String inputFullName = request.getParameter("inputFullName");
-    String inputPhone = request.getParameter("inputPhone");
-    String inputAddress = request.getParameter("inputAddress");
-    String error = (String) request.getAttribute("error");
-    String inputOldPass = request.getParameter("inputOldPass");
-    String inputNewPass = request.getParameter("inputNewPass");
-    String inputRePass = request.getParameter("inputRePass");
     String error1 = (String) session.getAttribute("error");
 %>
 
@@ -53,14 +46,20 @@
                         <form action="update-user?id=<%=user.getId()%>">
                             <div class="thong-tin-ca-nhan">
                                 <p>THÔNG TIN CÁ NHÂN</p>
-                                <span><%=user.getSex()%> <span><%=user.getFullName().toUpperCase(java.util.Locale.ROOT)%></span> - <span><%=user.getPhoneNumber()%></span></span>
+                                <span><%=user.getSex() == null ? "" : user.getSex()%> <span><%=user.getFullName().toUpperCase(java.util.Locale.ROOT)%></span> - <span><%=user.getPhoneNumber() == null ? "Chưa có số điện thoại" : user.getPhoneNumber()%></span></span>
                             </div>
                             <div class="select-infor">
                                 <div class="sex">
-                                    <input type="radio" id="male" name="gender" value="Anh" <%if(user.getSex().equals("Nam")){%>checked="checked"<%}%>>
-                                    <span>Anh</span>
-                                    <input type="radio" id="female" name="gender" value="Chị" <%if(user.getSex().equals("Nữ")){%>checked="checked"<%}%>>
-                                    <span>Chị</span>
+                                    <div class="sex">
+                                        <input type="radio" id="male" name="gender" value="Anh"
+                                            <% if (user.getSex() != null && user.getSex().equals("Nam")) { %>
+                                               checked="checked" <% } %>>
+                                        <span>Anh</span>
+                                        <input type="radio" id="female" name="gender" value="Chị"
+                                            <% if (user.getSex() != null && user.getSex().equals("Nữ")) { %>
+                                               checked="checked" <% } %>>
+                                        <span>Chị</span>
+                                    </div>
                                 </div>
                                 <div class="name-phone">
                                     <div class="name">
@@ -99,34 +98,34 @@
                         </div>
                     </form>
                     <form action="change-pass">
-                    <div class="infor-address">
-                        <div class="dia-chi-nhan-hang">
-                            <p>ĐỔI MẬT KHẨU</p>
-                        </div>
-                        <div class="nhap-dia-chi">
-                            <span class="tinh-label">Mật khẩu cũ:</span>
-                            <input type="password" placeholder="Nhập mật khẩu cũ"  class="all"
-                                   value="" name="oldPass">
+                        <div class="infor-address">
+                            <div class="dia-chi-nhan-hang">
+                                <p>ĐỔI MẬT KHẨU</p>
+                            </div>
+                            <div class="nhap-dia-chi">
+                                <span class="tinh-label">Mật khẩu cũ:</span>
+                                <input type="password" placeholder="Nhập mật khẩu cũ" class="all"
+                                       value="" name="oldPass">
 
-                            <span class="tinh-label">Mật khẩu mới:</span>
-                            <input type="password" placeholder="Nhập mật khẩu mới"  class="all"
-                                   value="" name="newPass">
+                                <span class="tinh-label">Mật khẩu mới:</span>
+                                <input type="password" placeholder="Nhập mật khẩu mới" class="all"
+                                       value="" name="newPass">
 
-                            <span class="tinh-label">Nhập lại mật khẩu mới:</span>
-                            <input type="password" placeholder="Nhập lại mật khẩu mới"  class="all"
-                                   value="" name="re-enter-pass">
-                        </div>
-                        <%if(error1!=null){%>
-                        <div style="    text-align: center;
+                                <span class="tinh-label">Nhập lại mật khẩu mới:</span>
+                                <input type="password" placeholder="Nhập lại mật khẩu mới" class="all"
+                                       value="" name="re-enter-pass">
+                            </div>
+                            <%if (error1 != null) {%>
+                            <div style="    text-align: center;
     margin-bottom: 25px;
     font-size: 14px;">
-                        <span style="color: red"><%=error1%></span>
+                                <span style="color: red"><%=error1%></span>
+                            </div>
+                            <%}%>
+                            <div class="btn-frame">
+                                <button type="submit" class="cap-nhat">Cập nhật</button>
+                            </div>
                         </div>
-                        <%}%>
-                        <div class="btn-frame">
-                            <button type="submit" class="cap-nhat">Cập nhật</button>
-                        </div>
-                    </div>
                     </form>
                 </div>
             </div>

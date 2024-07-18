@@ -1,6 +1,6 @@
 package model;
 
-public class Contact {
+public class Contact implements IModel {
     private int id;
     private String name;
     private String email;
@@ -67,5 +67,20 @@ public class Contact {
                 ", phone_number='" + phone_number + '\'' +
                 ", content='" + content + '\'' +
                 '}';
+    }
+
+    @Override
+    public String table() {
+        return "Contact";
+    }
+
+    @Override
+    public String beforeData() {
+        return "";
+    }
+
+    @Override
+    public String afterData() {
+        return toString();
     }
 }

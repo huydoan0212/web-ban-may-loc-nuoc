@@ -33,7 +33,7 @@ public class UseVoucherController extends HttpServlet {
                     req.getSession().setAttribute("voucher", voucher);
                 }
                 req.getRequestDispatcher("cart").forward(req, resp);
-            }else {
+            } else {
 
             }
         } catch (NumberFormatException e) {

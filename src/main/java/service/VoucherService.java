@@ -18,7 +18,13 @@ public class VoucherService {
     public ArrayList<Voucher> getVoucher() {
         return VoucherDAO.getVoucher();
     }
-    public Voucher getVoucherById(int id){
+    public ArrayList<Voucher> getVoucherByProduct(int id) {
+        return VoucherDAO.getVoucherByProduct(id);
+    }
+    public ArrayList<Voucher> getVoucherByCategory(int id) {
+        return VoucherDAO.getVoucherByCategory(id);
+    }
+    public Voucher getVoucherById(int id) {
         return VoucherDAO.getVoucherById(id);
     }
 
