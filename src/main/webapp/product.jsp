@@ -126,15 +126,10 @@
                     </div>
                     <div class="product-content-thongtin">
                         <div class="product-content-thongtinsanpham">
-                            <p><b style="font-style: italic" style="font-size: 15px"><%=product.getTitle()%>
-                            </b>
-
-                            <p><b><%=product.getDescriptions()%>
-                            </b>
+                            <p><b style="font-style: italic" style="font-size: 15px"><%=product.getTitle()%></b></p>
+                            <p><b><%=product.getTitle()%> <%=product.getDescriptions()%></b></p>
                                 <img src="<%=galleries.get(2).getImg()%>"/>
-
                         </div>
-
                     </div>
                 </div>
             </div>

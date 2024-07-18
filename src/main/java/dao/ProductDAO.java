@@ -198,5 +198,4 @@ public class ProductDAO {
         );
         return rowsUpdated > 0;
     }
-
 }
