@@ -7,10 +7,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="dao.OrderDetailDAO" %>
 <%@ page import="dao.ProductDAO" %>
-<%@ page import="dao.VoucherDAO" %><%--
-  Created by IntelliJ IDEA.
-
---%>
+<%@ page import="dao.VoucherDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     Object object = request.getParameter("order_id");
