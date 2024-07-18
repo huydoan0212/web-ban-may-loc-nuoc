@@ -2,11 +2,7 @@
 <%@ page import="model.Post" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% Post post = (Post) request.getSession().getAttribute("post");
-//    System.out.println(post);
-//    System.out.println(request.getParameter("title"));
-//    System.out.println(request.getParameter("author"));
-//    System.out.println(request.getParameter("content"));
-//    System.out.println(request.getParameter("img"));
+
 %>
 <!DOCTYPE html>
 <html>
