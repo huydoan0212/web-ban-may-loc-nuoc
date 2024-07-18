@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 public class OrderDAO {
 
-    public static boolean insertOrder(int user_id, String address, String phone, String status, int total_money, int voucher_id,String name) {
+    public static boolean insertOrder(int user_id, String address, String phone, String status, int total_money, int voucher_id, String name) {
         int rowAffected = JDBIConnector.me().withHandle(handle ->
                 handle.createUpdate("INSERT INTO orders( user_id, address, phone, order_date,status,total_money,voucher_id,name) " +
                                 "VALUES ( :user_id, :address, :phone, :order_date, :status, :total_money,:voucher_id,:name)")
@@ -20,8 +20,8 @@ public class OrderDAO {
                         .bind("order_date", LocalDateTime.now().toString())
                         .bind("status", status)
                         .bind("total_money", total_money)
-                        .bind("voucher_id",voucher_id)
-                        .bind("name",name)
+                        .bind("voucher_id", voucher_id)
+                        .bind("name", name)
                         .execute());
         if (rowAffected > 0) {
             return true;
@@ -43,15 +43,16 @@ public class OrderDAO {
         return order.isEmpty() ? null : order.get();
     }
 
-    public static List<Order> getOrderByIdUser(int user_id){
+    public static List<Order> getOrderByIdUser(int user_id) {
         List<Order> orders = JDBIConnector.me().withHandle(handle ->
-                handle.createQuery("SELECT * FROM orders WHERE user_id = :user_id ORDER BY id DESC " )
+                handle.createQuery("SELECT * FROM orders WHERE user_id = :user_id ORDER BY id DESC ")
                         .bind("user_id", user_id)
                         .mapToBean(Order.class).stream().collect(Collectors.toList()));
         return orders.isEmpty() ? null : orders;
     }
-    public static Order getOrderById(int id){
-       Optional<Order> order = JDBIConnector.me().withHandle(handle ->
+
+    public static Order getOrderById(int id) {
+        Optional<Order> order = JDBIConnector.me().withHandle(handle ->
                 handle.createQuery("SELECT * FROM orders WHERE id = :id ")
                         .bind("id", id)
                         .mapToBean(Order.class).stream().findFirst());
@@ -78,9 +79,10 @@ public class OrderDAO {
         );
         return rowsUpdated > 0;
     }
-    public static List<Order> getListOrderWaitConfirm(){
+
+    public static List<Order> getListOrderWaitConfirm() {
         List<Order> orders = JDBIConnector.me().withHandle(handle ->
-                handle.createQuery("SELECT * FROM orders WHERE status = 'Đã chọn phương thức thanh toán' limit 100")
+                handle.createQuery("SELECT * FROM orders WHERE status = 'Đã chọn phương thức thanh toán bằng thẻ ngân hàng' or status = 'Thanh toán bằng ngân hàng thành công' or status = 'Đã chọn phương thức thanh toán bằng tiền mặt' limit 100")
                         .mapToBean(Order.class).stream().collect(Collectors.toList()));
         return orders;
     }

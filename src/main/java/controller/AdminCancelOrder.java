@@ -1,8 +1,11 @@
 package controller;
 
+import dao.ProductDAO;
 import dao.UserDAO;
 import model.Order;
+import model.OrderDetail;
 import model.User;
+import service.OrderDetailService;
 import service.OrderService;
 
 import javax.servlet.ServletException;
@@ -10,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.NumberFormat;
@@ -38,6 +42,14 @@ public class AdminCancelOrder extends HttpServlet {
             }
         }
         boolean isChangeStatus = OrderService.getInstance().changeStatusToCancel(order_id);
+        if (isChangeStatus) {
+            List<OrderDetail> orderDetails = OrderDetailService.getInstance().getOrderDetailByIdOrder(order_id);
+            for (OrderDetail detail : orderDetails) {
+                int productId = detail.getProduct_id();
+                int quantity = detail.getQuantity();
+                ProductDAO.increaseProductAvailable(quantity, productId);
+            }
+        }
         List<Order> listOrderConfirm = OrderService.getInstance().getListOrderCancel();
         PrintWriter out = resp.getWriter();
         Locale locale = new Locale("vi", "VN");

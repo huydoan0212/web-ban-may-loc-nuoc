@@ -1,11 +1,8 @@
 package controller;
 
-import dao.ProductDAO;
-import model.ImportProduct;
-import model.Product;
+
 import model.User;
 import service.ImportProductService;
-import service.ProductService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.List;
+
 @WebServlet(name = "PlusImportProductController", value = "/plusImportProductController")
 public class PlusImportProductController extends HttpServlet {
     @Override
@@ -39,6 +36,8 @@ public class PlusImportProductController extends HttpServlet {
             HttpSession session = req.getSession();
             User user = (User) session.getAttribute("user");
             ImportProductService.getInstance().increaseProductAvailable(importQuantity, id);
+            System.out.println(importQuantity);
+            System.out.println(id);
             ImportProductService.getInstance().insertImportProduct(id, importQuantity, importPrice, user.getId());
             System.out.println("Nhập hàng thành công.");
         } catch (NumberFormatException e) {

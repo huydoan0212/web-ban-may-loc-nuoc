@@ -11,11 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+
 @WebServlet(name = "PageAdminCheckOutController", value = "/page-admin-checkout")
 public class PageAdminCheckOutController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       doPost(req,resp);
+        doPost(req, resp);
     }
 
     @Override
@@ -25,11 +26,11 @@ public class PageAdminCheckOutController extends HttpServlet {
         List<Order> listOrderTransport = OrderService.getInstance().getListOrderTransport();
         List<Order> listOrderTransported = OrderService.getInstance().getListOrderTransported();
         List<Order> listOrderCancel = OrderService.getInstance().getListOrderCancel();
-        req.getSession().setAttribute("listOrderWaitConfirm",listOrderWaitConfirm);
-        req.getSession().setAttribute("listOrderConfirm",listOrderConfirm);
-        req.getSession().setAttribute("listOrderTransport",listOrderTransport);
-        req.getSession().setAttribute("listOrderTransported",listOrderTransported);
-        req.getSession().setAttribute("listOrderCancel",listOrderCancel);
-        req.getRequestDispatcher("pageAdmin_Checkout.jsp").forward(req,resp);
+        req.getSession().setAttribute("listOrderWaitConfirm", listOrderWaitConfirm);
+        req.getSession().setAttribute("listOrderConfirm", listOrderConfirm);
+        req.getSession().setAttribute("listOrderTransport", listOrderTransport);
+        req.getSession().setAttribute("listOrderTransported", listOrderTransported);
+        req.getSession().setAttribute("listOrderCancel", listOrderCancel);
+        req.getRequestDispatcher("pageAdmin_Checkout.jsp").forward(req, resp);
     }
 }
