@@ -3,7 +3,7 @@ package model;
 import java.time.LocalDateTime;
 import java.util.Date;
 
-public class ImportProduct {
+public class ImportProduct implements IModel {
     private int id;
     private int productId;
     private int quantity;
@@ -82,5 +82,20 @@ public class ImportProduct {
                 ", userId=" + userId +
                 ", price=" + price +
                 '}';
+    }
+
+    @Override
+    public String table() {
+        return "ImportProduct";
+    }
+
+    @Override
+    public String beforeData() {
+        return "";
+    }
+
+    @Override
+    public String afterData() {
+        return toString();
     }
 }

@@ -33,12 +33,12 @@ public class AddContactController extends HttpServlet {
                 content == null || content.equals("")) {
             req.setAttribute("error", "Bạn cần nhập các đủ thông tin ");
             req.getRequestDispatcher("contact.jsp").forward(req, resp);
-        }if (UserService.isValidEmail(email) == false){
+        }
+        if (UserService.isValidEmail(email) == false) {
             req.setAttribute("error", "Email không hợp lệ");
             req.getRequestDispatcher("contact.jsp").forward(req, resp);
-        }
-        else {
-            ContactDAO.insertContact(name, email, phone_number, content);
+        } else {
+            new ContactDAO().insertContact(name, email, phone_number, content);
             resp.sendRedirect("contact.jsp");
         }
     }
