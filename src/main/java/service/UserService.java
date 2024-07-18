@@ -100,7 +100,7 @@ public class UserService {
     }
 
     public boolean loginUser(String username, String password) {
-        return UserDAO.loginUser(username, password);
+        return new UserDAO().loginUser(username, password);
     }
 
 

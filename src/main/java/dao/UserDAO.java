@@ -110,7 +110,7 @@ public class UserDAO extends AbsDao<User> {
     }
 
 
-    public static boolean loginUser(String username, String password) {
+    public boolean loginUser(String username, String password) {
         try {
             int count = JDBIConnector.me().withHandle(handle ->
                     handle.createQuery("SELECT COUNT(*) FROM users WHERE username = ? AND password = ? AND active = 1")
@@ -119,7 +119,8 @@ public class UserDAO extends AbsDao<User> {
                             .mapTo(Integer.class)
                             .one()
             );
-
+            User user = getUserByUserName(username);
+            super.login(user);
             return count > 0;
         } catch (JdbiException e) {
             e.printStackTrace();

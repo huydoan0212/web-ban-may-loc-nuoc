@@ -37,13 +37,13 @@ public class LoginGoogle extends HttpServlet {
             UserService.addUser(acc.getId(), acc.getName(), acc.getEmail(), "null", PasswordUtils.hashPassword(acc.getId()));
             UserDAO.updateActiveAccount(acc.getId());
             String hashedPassword = PasswordUtils.hashPassword(acc.getId());
-            boolean loginSuccess = UserDAO.loginUser(acc.getId(), hashedPassword);
+            boolean loginSuccess = new UserDAO().loginUser(acc.getId(), hashedPassword);
             if (loginSuccess) {
                 HttpSession session = request.getSession();
                 User user = UserDAO.getUserInfo(acc.getId());
                 handleUserLoginSuccess(response, session, user, "index.jsp");
             }
-        } else if (UserDAO.loginUser(acc.getId(), PasswordUtils.hashPassword(acc.getId()))) {
+        } else if (new UserDAO().loginUser(acc.getId(), PasswordUtils.hashPassword(acc.getId()))) {
             User user = UserDAO.getUserInfo(acc.getId());
             HttpSession session = request.getSession();
             if (user != null && user.getRoleId() == 2) {

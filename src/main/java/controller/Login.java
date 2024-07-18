@@ -38,7 +38,7 @@ public class Login extends HttpServlet {
 
             String hashedPassword = PasswordUtils.hashPassword(password);
 
-            boolean loginSuccess = UserDAO.loginUser(username, hashedPassword);
+            boolean loginSuccess = new UserDAO().loginUser(username, hashedPassword);
             if (loginSuccess) {
                 HttpSession session = request.getSession();
                 User user = UserDAO.getUserInfo(username);
@@ -69,6 +69,7 @@ public class Login extends HttpServlet {
     private void handleUserLoginSuccess(HttpServletResponse response, HttpSession session, User user, String redirectPage)
             throws IOException {
         session.setAttribute("user", user);
+        UserID.setUserID(user.getId());
         String name = UserDAO.getUserName(user.getUserName());
         session.setAttribute("name", name);
         response.sendRedirect(redirectPage);

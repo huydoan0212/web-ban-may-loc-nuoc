@@ -129,6 +129,6 @@ public class Log {
     }
 
     public static <T extends IModel> Log login(T model, int user_id) {
-        return new Log("login", model.table(), "infor", "{}", "{}", user_id);
+        return new Log("login", model.table(), "infor", "{}", model.afterData(), user_id);
     }
 }
