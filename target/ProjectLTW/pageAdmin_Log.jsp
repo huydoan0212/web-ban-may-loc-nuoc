@@ -93,7 +93,7 @@
                                 <fmt:formatDate value="${p.time}" pattern="dd/MM/yyyy hh:MM:ss"/>
                             </td>
                             <td>
-                                <a href="../admin?action=detailLog&logId=${p.id}">
+                                <a href="admin-detail-log?logId=${p.id}">
                                     <button type="button" class="btn btn-sm btn-outline-success">
                                         Chi tiết
                                     </button>
