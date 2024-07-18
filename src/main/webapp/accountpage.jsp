@@ -1,7 +1,5 @@
 <%@ page import="dao.UserDAO" %>
-<%@ page import="java.util.Arrays" %><%--
-
---%>
+<%@ page import="java.util.Arrays" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String error1 = (String) session.getAttribute("error");
