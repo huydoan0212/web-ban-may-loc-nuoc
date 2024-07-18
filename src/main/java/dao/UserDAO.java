@@ -55,29 +55,28 @@ public class UserDAO extends AbsDao<User> {
 
     }
 
-    public static void insertUser(User user) {
-        JDBIConnector.me().withHandle(handle -> {
-            return handle.createUpdate("INSERT INTO users (role_id, username, fullname, email, phone_number, sex, address, password, created_at, updated_at, status, active, provider, provider_user_id) " +
-                            "VALUES (:roleId, :userName, :fullName, :email, :phoneNumber, :sex, :address, :password, :createdAt, :updatedAt, :status, :active, :provider, :providerUserId)")
-                    .bind("roleId", user.getRoleId())
-                    .bind("userName", user.getUserName())
-                    .bind("fullName", user.getFullName())
-                    .bind("email", user.getEmail())
-                    .bind("phoneNumber", user.getPhoneNumber())
-                    .bind("sex", user.getSex())
-                    .bind("address", user.getAddress())
-                    .bind("password", user.getPassword())
-                    .bind("createdAt", user.getCreatedAt())
-                    .bind("updatedAt", user.getUpdatedAt())
-                    .bind("status", user.getStatus())
-                    .bind("active", user.getActive())
-                    .bind("provider", user.getProvider())
-                    .bind("providerUserId", user.getProviderUserId())
-                    .execute();
-        });
+    public void insertUser(User user) {
+        JDBIConnector.me().withHandle(handle -> handle.createUpdate("INSERT INTO users (role_id, username, fullname, email, phone_number, sex, address, password, created_at, updated_at, status, active, provider, provider_user_id) " +
+                        "VALUES (:roleId, :userName, :fullName, :email, :phoneNumber, :sex, :address, :password, :createdAt, :updatedAt, :status, :active, :provider, :providerUserId)")
+                .bind("roleId", user.getRoleId())
+                .bind("userName", user.getUserName())
+                .bind("fullName", user.getFullName())
+                .bind("email", user.getEmail())
+                .bind("phoneNumber", user.getPhoneNumber())
+                .bind("sex", user.getSex())
+                .bind("address", user.getAddress())
+                .bind("password", user.getPassword())
+                .bind("createdAt", user.getCreatedAt())
+                .bind("updatedAt", user.getUpdatedAt())
+                .bind("status", user.getStatus())
+                .bind("active", user.getActive())
+                .bind("provider", user.getProvider())
+                .bind("providerUserId", user.getProviderUserId())
+                .execute());
+        super.insert(user);
     }
 
-    public static boolean addUser(String username, String fullname, String email, String phone_number, String password) {
+    public boolean addUser(String username, String fullname, String email, String phone_number, String password) {
         boolean result = false;
         String insertQuery = "INSERT INTO users (role_id, username, fullname, email, phone_number, sex, address, password, created_at, status) " +
                 "VALUES (?, ?, ?, ?, ?, '', '', ?, ?, 1)";
@@ -94,6 +93,15 @@ public class UserDAO extends AbsDao<User> {
                     .execute();
 
             result = rowsInserted > 0;
+            User user = new User();
+            user.setRoleId(2);
+            user.setUserName(username);
+            user.setFullName(fullname);
+            user.setEmail(email);
+            user.setPhoneNumber(phone_number);
+            user.setPassword(password);
+            user.setCreatedAt(LocalDateTime.now());
+            super.insert(user);
         } catch (Exception e) {
             e.printStackTrace(); // In ra lỗi để theo dõi và xử lý nếu cần
         }
@@ -208,7 +216,8 @@ public class UserDAO extends AbsDao<User> {
         }
     }
 
-    public static boolean changePassword(String username, String newPassword) {
+    public boolean changePassword(String username, String newPassword) {
+        User beforeData = getUserInfo(username);
         try {
             int updatedRows = JDBIConnector.me().withHandle(handle ->
                     handle.createUpdate("UPDATE users SET password = ? WHERE username = ?")
@@ -216,11 +225,15 @@ public class UserDAO extends AbsDao<User> {
                             .bind(1, username)
                             .execute()
             );
+            User user = getUserInfo(username);
+            user.setBeforeData(beforeData.toString());
+            super.update(user);
             return updatedRows > 0;
         } catch (JdbiException e) {
             e.printStackTrace();
             return false;
         }
+
     }
 
     private static final String SELECT_USER_SQL = "SELECT * FROM users WHERE username = :username";
@@ -259,7 +272,8 @@ public class UserDAO extends AbsDao<User> {
         return null;
     }
 
-    public static boolean updateUserInfomationById(String fullname, String phone_number, int id) {
+    public boolean updateUserInfomationById(String fullname, String phone_number, int id) {
+        User beforeData = getUserById(id);
         int rowsUpdated = JDBIConnector.me().withHandle(handle ->
                 handle.createUpdate("UPDATE users SET fullname = ?, phone_number = ?, updated_at = ? WHERE id = ?")
                         .bind(0, fullname)
@@ -268,6 +282,9 @@ public class UserDAO extends AbsDao<User> {
                         .bind(3, id)
                         .execute()
         );
+        User user = getUserById(id);
+        user.setBeforeData(beforeData.toString());
+        super.update(user);
         return rowsUpdated > 0;
     }
 
@@ -279,13 +296,17 @@ public class UserDAO extends AbsDao<User> {
         return user.isEmpty() ? null : user.get();
     }
 
-    public static boolean updateUserAddressById(String address, int id) {
+    public boolean updateUserAddressById(String address, int id) {
+        User beforeData = getUserById(id);
         int rowsUpdated = JDBIConnector.me().withHandle(handle ->
                 handle.createUpdate("UPDATE users SET address = :address WHERE id = :id")
                         .bind("address", address)
                         .bind("id", id)
                         .execute()
         );
+        User user = getUserById(id);
+        user.setBeforeData(beforeData.toString());
+        super.update(user);
         return rowsUpdated > 0;
     }
 
@@ -299,13 +320,17 @@ public class UserDAO extends AbsDao<User> {
         return false;
     }
 
-    public static boolean changePassworById(int id, String password) {
+    public boolean changePassworById(int id, String password) {
+        User beforeData = getUserById(id);
         int rowsUpdated = JDBIConnector.me().withHandle(handle ->
                 handle.createUpdate("UPDATE users SET password = :password WHERE id = :id")
                         .bind("password", password)
                         .bind("id", id)
                         .execute()
         );
+        User user = getUserById(id);
+        user.setBeforeData(beforeData.toString());
+        super.update(user);
         return rowsUpdated > 0;
     }
 
@@ -315,7 +340,8 @@ public class UserDAO extends AbsDao<User> {
         return users;
     }
 
-    public static boolean setStatusById(int id) {
+    public boolean setStatusById(int id) {
+        User beforeData = getUserById(id);
         int rowsUpdated = JDBIConnector.me().withHandle(handle ->
                 handle.createUpdate("UPDATE users SET status = ?, updated_at = ? WHERE id = ?")
                         .bind(0, 1)
@@ -323,10 +349,14 @@ public class UserDAO extends AbsDao<User> {
                         .bind(2, id)
                         .execute()
         );
+        User user = getUserById(id);
+        user.setBeforeData(beforeData.toString());
+        super.update(user);
         return rowsUpdated > 0;
     }
 
-    public static boolean setStatuslockById(int id) {
+    public boolean setStatuslockById(int id) {
+        User beforeData = getUserById(id);
         int rowsUpdated = JDBIConnector.me().withHandle(handle ->
                 handle.createUpdate("UPDATE users SET status = ?, updated_at = ? WHERE id = ?")
                         .bind(0, 2)
@@ -334,6 +364,9 @@ public class UserDAO extends AbsDao<User> {
                         .bind(2, id)
                         .execute()
         );
+        User user = getUserById(id);
+        user.setBeforeData(beforeData.toString());
+        super.update(user);
         return rowsUpdated > 0;
     }
 
@@ -347,7 +380,8 @@ public class UserDAO extends AbsDao<User> {
         return status;
     }
 
-    public static boolean setRoleIdAdmin(int id) {
+    public boolean setRoleIdAdmin(int id) {
+        User beforeData = getUserById(id);
         int rowsUpdated = JDBIConnector.me().withHandle(handle ->
                 handle.createUpdate("UPDATE users SET role_id = ?, updated_at = ? WHERE id = ?")
                         .bind(0, 1)
@@ -355,10 +389,14 @@ public class UserDAO extends AbsDao<User> {
                         .bind(2, id)
                         .execute()
         );
+        User user = getUserById(id);
+        user.setBeforeData(beforeData.toString());
+        super.update(user);
         return rowsUpdated > 0;
     }
 
-    public static boolean setRoleIdUser(int id) {
+    public boolean setRoleIdUser(int id) {
+        User beforeData = getUserById(id);
         int rowsUpdated = JDBIConnector.me().withHandle(handle ->
                 handle.createUpdate("UPDATE users SET role_id = ?, updated_at = ? WHERE id = ?")
                         .bind(0, 2)
@@ -366,6 +404,9 @@ public class UserDAO extends AbsDao<User> {
                         .bind(2, id)
                         .execute()
         );
+        User user = getUserById(id);
+        user.setBeforeData(beforeData.toString());
+        super.update(user);
         return rowsUpdated > 0;
     }
 
@@ -389,7 +430,8 @@ public class UserDAO extends AbsDao<User> {
         return fullName;
     }
 
-    public static boolean updateUserAdminById(int id, String username, String fullname, String phone_number, String email, String password) {
+    public boolean updateUserAdminById(int id, String username, String fullname, String phone_number, String email, String password) {
+        User beforeData = getUserById(id);
         int rowsUpdated = JDBIConnector.me().withHandle(handle ->
                 handle.createUpdate("UPDATE users SET username = ?, fullname = ?, phone_number = ?, email = ?, password = ?, updated_at = ? WHERE id = ?")
                         .bind(0, username)
@@ -401,6 +443,9 @@ public class UserDAO extends AbsDao<User> {
                         .bind(6, id)
                         .execute()
         );
+        User user = getUserById(id);
+        user.setBeforeData(beforeData.toString());
+        super.update(user);
         return rowsUpdated > 0;
     }
 
@@ -418,6 +463,16 @@ public class UserDAO extends AbsDao<User> {
                         .bind(8, LocalDateTime.now().toString())
                         .execute()
         );
+        User user = new User();
+        user.setRoleId(role);
+        user.setUserName(username);
+        user.setFullName(fullname);
+        user.setPhoneNumber(phone_number);
+        user.setEmail(email);
+        user.setPassword(password);
+        user.setActive(1);
+        user.setStatus(1);
+        user.setCreatedAt(LocalDateTime.now());
         return rowsInserted > 0;
     }
 

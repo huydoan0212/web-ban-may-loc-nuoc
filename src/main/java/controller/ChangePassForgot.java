@@ -23,11 +23,10 @@ public class ChangePassForgot extends HttpServlet {
         String username = (String) request.getSession().getAttribute("username");
         if (UserService.countPassword(newPassword) == false) {
             request.getSession().setAttribute("message", "Mật khẩu phải có ít nhất 8 kí tự");
-            request.getRequestDispatcher("newPassword.jsp").forward(request,response);
-        }
-        else if (newPassword.equals(re_newPassword)) {
+            request.getRequestDispatcher("newPassword.jsp").forward(request, response);
+        } else if (newPassword.equals(re_newPassword)) {
             String encryptedPassword = PasswordUtils.hashPassword(newPassword);
-            boolean isChangePass = UserDAO.changePassword(username, encryptedPassword);
+            boolean isChangePass = new UserDAO().changePassword(username, encryptedPassword);
             if (isChangePass) {
                 request.getSession().setAttribute("message", "Đổi mật khẩu thành công!");
                 response.sendRedirect("login.jsp");
@@ -35,7 +34,7 @@ public class ChangePassForgot extends HttpServlet {
             }
         } else {
             request.getSession().setAttribute("message", "Mật khẩu nhập lại không trùng khớp");
-            request.getRequestDispatcher("newPassword.jsp").forward(request,response);
+            request.getRequestDispatcher("newPassword.jsp").forward(request, response);
 
         }
     }

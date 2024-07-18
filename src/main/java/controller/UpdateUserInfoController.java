@@ -31,11 +31,11 @@ public class UpdateUserInfoController extends HttpServlet {
         String fullName = req.getParameter("inputFullName").trim();
         String phone = req.getParameter("inputPhone").trim();
         User user = (User) session.getAttribute("user");
-        boolean checkUpdate = UserDAO.updateUserInfomationById(fullName, phone, user.getId());
+        boolean checkUpdate = new UserDAO().updateUserInfomationById(fullName, phone, user.getId());
         if (checkUpdate) {
             User newUser = UserDAO.getUserById(user.getId());
             System.out.println(newUser);
-            session.setAttribute("user",newUser);
+            session.setAttribute("user", newUser);
             resp.sendRedirect("/ProjectLTW_war/account-page");
         } else {
             String error = "error";
@@ -43,7 +43,6 @@ public class UpdateUserInfoController extends HttpServlet {
         }
 
     }
-
 
 
 }

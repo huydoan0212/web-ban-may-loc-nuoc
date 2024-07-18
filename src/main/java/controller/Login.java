@@ -4,6 +4,7 @@ package controller;
 import dao.UserDAO;
 import model.AbsDao;
 import model.User;
+import model.UserID;
 import service.UserService;
 
 import java.io.IOException;
@@ -97,6 +98,7 @@ public class Login extends HttpServlet {
             UserService.getInstance().insertUser(user);
         }
         HttpSession session = req.getSession();
+        UserID.setUserID(user.getId());
         session.setAttribute("user", user);
         String name = UserDAO.getUserName(user.getUserName());
         session.setAttribute("name", name);
