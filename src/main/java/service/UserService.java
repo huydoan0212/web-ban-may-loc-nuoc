@@ -56,7 +56,7 @@ public class UserService {
     }
 
     public boolean changePassworById(int id, String password) {
-        return UserDAO.changePassworById(id, password);
+        return new UserDAO().changePassworById(id, password);
     }
 
     public List<User> getAll() {
@@ -65,17 +65,17 @@ public class UserService {
 
     public void editRole(int id) {
         if (UserDAO.getRoleById(id) == 1) {
-            UserDAO.setRoleIdUser(id);
+            new UserDAO().setRoleIdUser(id);
         } else if (UserDAO.getRoleById(id) == 2) {
-            UserDAO.setRoleIdAdmin(id);
+            new UserDAO().setRoleIdAdmin(id);
         }
     }
 
     public void editStatus(int id) {
         if (UserDAO.getSatusById(id) == 1) {
-            UserDAO.setStatuslockById(id);
+            new UserDAO().setStatuslockById(id);
         } else if (UserDAO.getSatusById(id) == 2) {
-            UserDAO.setStatusById(id);
+            new UserDAO().setStatusById(id);
         }
     }
 
@@ -88,22 +88,23 @@ public class UserService {
     }
 
     public boolean updateUserAdminById(int id, String username, String fullname, String phone_number, String email, String password) {
-        return UserDAO.updateUserAdminById(id, username, fullname, phone_number, email, password);
+        return new UserDAO().updateUserAdminById(id, username, fullname, phone_number, email, password);
     }
 
     public boolean insertUserAdmin(int role, String username, String fullname, String phone_number, String email, String password) {
-        return UserDAO.insertUserAdmin(role, username, fullname, phone_number, email, password);
+        return new UserDAO().insertUserAdmin(role, username, fullname, phone_number, email, password);
     }
 
     public User checkProviderUserId(String providerUserId) {
         return UserDAO.checkProviderUserId(providerUserId);
     }
-    public boolean loginUser(String username, String password){
-        return UserDAO.loginUser(username,password);
+
+    public boolean loginUser(String username, String password) {
+        return new UserDAO().loginUser(username, password);
     }
 
 
     public void insertUser(User user) {
-        UserDAO.insertUser(user);
+        new UserDAO().insertUser(user);
     }
 }

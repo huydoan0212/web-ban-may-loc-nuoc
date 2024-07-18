@@ -2,7 +2,7 @@ package model;
 
 import java.sql.Date;
 
-public class Product implements IModel{
+public class Product implements IModel {
     private int id;
     private int category_id;
     private int type_machine_id;
@@ -15,8 +15,8 @@ public class Product implements IModel{
     private int available;
     private Date created_at;
     private Date updated_at;
-
     private int status;
+    private String beforeData;
 
     @Override
     public String toString() {
@@ -141,6 +141,14 @@ public class Product implements IModel{
         this.status = status;
     }
 
+    public String getBeforeData() {
+        return beforeData;
+    }
+
+    public void setBeforeData(String beforeData) {
+        this.beforeData = beforeData;
+    }
+
     public Product() {
     }
 
@@ -158,6 +166,7 @@ public class Product implements IModel{
         this.created_at = created_at;
         this.updated_at = updated_at;
         this.status = status;
+        this.beforeData = toString();
     }
 
     @Override
@@ -167,7 +176,7 @@ public class Product implements IModel{
 
     @Override
     public String beforeData() {
-        return "";
+        return beforeData;
     }
 
     @Override

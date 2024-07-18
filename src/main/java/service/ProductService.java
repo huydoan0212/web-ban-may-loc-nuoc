@@ -15,7 +15,7 @@ public class ProductService {
     }
 
     public static List<Product> filterByTypeAndBrand(int brand, int type) {
-        return ProductDAO.filterByTypeAndBrand(brand,type);
+        return ProductDAO.filterByTypeAndBrand(brand, type);
     }
 
     public List<Product> getAllLimit5() {
@@ -30,12 +30,14 @@ public class ProductService {
         return ProductDAO.getLocNuocTheoDanhMuc(category);
     }
 
-    public List<Product> getProductByName(String title){
+    public List<Product> getProductByName(String title) {
         return ProductDAO.getProductByName(title);
     }
-    public String getNameById(int id){
+
+    public String getNameById(int id) {
         return ProductDAO.getNameById(id);
     }
+
     public static void main(String[] args) {
         System.out.println(ProductService.getInstance().getProductByName("Máy lọc nước RO"));
     }
@@ -44,11 +46,11 @@ public class ProductService {
 //        return ProductDAO.removeProductById( productId);
 //    }
 
-    public boolean changeInfoProduct(int idProduct,int category, String nameProduct, int availableProduct, int priceProduct, int discountPriceProduct, String imgProduct, String desProduct,int brand,int typeMachine) {
-        return ProductDAO.changeInfoProduct(idProduct,category,nameProduct, availableProduct,priceProduct,discountPriceProduct,imgProduct,desProduct,brand,typeMachine);
+    public boolean changeInfoProduct(int idProduct, int category, String nameProduct, int availableProduct, int priceProduct, int discountPriceProduct, String imgProduct, String desProduct, int brand, int typeMachine) {
+        return new ProductDAO().changeInfoProduct(idProduct, category, nameProduct, availableProduct, priceProduct, discountPriceProduct, imgProduct, desProduct, brand, typeMachine);
     }
 
-    public boolean addProduct(int selectedCategory, String nameProduct, int availableProduct, int priceProduct, int discountPriceProduct, String imgProduct, String desProduct,int type, int brand) {
-        return ProductDAO.addProduct(selectedCategory,nameProduct, availableProduct,priceProduct,discountPriceProduct,imgProduct,desProduct,type,brand);
+    public boolean addProduct(int selectedCategory, String nameProduct, int availableProduct, int priceProduct, int discountPriceProduct, String imgProduct, String desProduct, int type, int brand) {
+        return new ProductDAO().addProduct(selectedCategory, nameProduct, availableProduct, priceProduct, discountPriceProduct, imgProduct, desProduct, type, brand);
     }
 }

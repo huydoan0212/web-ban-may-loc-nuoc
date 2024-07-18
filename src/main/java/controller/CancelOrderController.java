@@ -39,7 +39,7 @@ public class CancelOrderController extends HttpServlet {
             for (OrderDetail detail : orderDetails) {
                 int productId = detail.getProduct_id();
                 int quantity = detail.getQuantity();
-                ProductDAO.increaseProductAvailable(quantity, productId);
+                new ProductDAO().increaseProductAvailable(quantity, productId);
             }
             HttpSession session = req.getSession();
             session.removeAttribute("cart");

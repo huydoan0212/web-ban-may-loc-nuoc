@@ -9,21 +9,23 @@ import java.util.Map;
 
 public class AbsDao<T extends IModel> implements IDao<T> {
     private LogDao logDao = new LogDao();
-    protected static int user_id = 0;
+//    protected static int user_id = ;
+
 
     @Override
     public int insert(T t) {
-        return logDao.insert(Log.insert(t, user_id));
+        System.out.println(UserID.getUserID());
+        return logDao.insert(Log.insert(t, UserID.getUserID()));
     }
 
     @Override
     public int update(T t) {
-        return logDao.insert(Log.update(t, user_id));
+        return logDao.insert(Log.update(t, UserID.getUserID()));
     }
 
     @Override
     public int delete(T t) {
-        return logDao.insert(Log.delete(t, user_id));
+        return logDao.insert(Log.delete(t, UserID.getUserID()));
     }
 
     @Override
@@ -37,7 +39,7 @@ public class AbsDao<T extends IModel> implements IDao<T> {
     }
 
     public int login(T model) {
-        return logDao.insert(Log.login(model, user_id));
+        return logDao.insert(Log.login(model, UserID.getUserID()));
     }
 }
 

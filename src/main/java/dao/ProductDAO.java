@@ -1,17 +1,18 @@
 package dao;
 
 import db.JDBIConnector;
+import model.AbsDao;
 import model.Comment;
 import model.Product;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class ProductDAO {
+public class ProductDAO extends AbsDao<Product> {
     public static List<Product> getAll() {
         List<Product> products = JDBIConnector.me().withHandle((handle -> handle.createQuery("select * from products ")
                 .mapToBean(Product.class).stream().collect(Collectors.toList())));
@@ -73,11 +74,6 @@ public class ProductDAO {
         return title;
     }
 
-    public static void main(String[] args) {
-        increaseProductAvailable(4, 2);
-
-    }
-
 
 //    public static boolean removeProductById(int productId) {
 //        int rowsUpdated = JDBIConnector.me().withHandle(handle ->
@@ -88,7 +84,8 @@ public class ProductDAO {
 //        return rowsUpdated > 0;
 //    }
 
-    public static boolean changeInfoProduct(int idProduct, int category, String nameProduct, int availableProduct, int priceProduct, int discountPriceProduct, String imgProduct, String desProduct, int brand, int type) {
+    public boolean changeInfoProduct(int idProduct, int category, String nameProduct, int availableProduct, int priceProduct, int discountPriceProduct, String imgProduct, String desProduct, int brand, int type) {
+        Product beforeData = getById(idProduct);
         int rowsUpdated = JDBIConnector.me().withHandle(handle ->
                 handle.createUpdate("UPDATE products SET " +
                                 "title = :title, " +
@@ -114,10 +111,13 @@ public class ProductDAO {
                         .bind("category_id", category)
                         .execute()
         );
+        Product product = getById(idProduct);
+        product.setBeforeData(beforeData.toString());
+        super.update(product);
         return rowsUpdated > 0;
     }
 
-    public static boolean addProduct(int category, String nameProduct, int availableProduct, int priceProduct, int discountPriceProduct, String imgProduct, String desProduct, int type, int brand) {
+    public boolean addProduct(int category, String nameProduct, int availableProduct, int priceProduct, int discountPriceProduct, String imgProduct, String desProduct, int type, int brand) {
         int rowsUpdated = JDBIConnector.me().withHandle(handle ->
                 handle.createUpdate("INSERT INTO products(title,available,category_id,price,discount_price,img,descriptions,updated_at,created_at,type_machine_id,brand_id,status) \n" +
                                 "values (:title, :available, :category_id, :price, :discount_price, :img, :descriptions, :updated_at, :created_at, :type_machine_id, :brand_id,:status)\n")
@@ -135,6 +135,20 @@ public class ProductDAO {
                         .bind("status", 1)
                         .execute()
         );
+        Product product = new Product();
+        product.setTitle(nameProduct);
+        product.setAvailable(availableProduct);
+        product.setPrice(priceProduct);
+        product.setDiscount_price(discountPriceProduct);
+        product.setImg(imgProduct);
+        product.setDescriptions(desProduct);
+        product.setCategory_id(category);
+        product.setType_machine_id(type);
+        product.setBrand_id(brand);
+        product.setStatus(1);
+        product.setCreated_at((java.sql.Date) new Date());
+        product.setUpdated_at((java.sql.Date) new Date());
+        super.insert(product);
         return rowsUpdated > 0;
 
     }
@@ -148,20 +162,28 @@ public class ProductDAO {
         return product != null && product.get().getAvailable() > quantity;
     }
 
-    public static void decreaseProductAvailable(int quantity, int product_id) {
+    public void decreaseProductAvailable(int quantity, int product_id) {
+        Product beforeData = getById(product_id);
         JDBIConnector.me().withHandle(handle ->
                 handle.createUpdate("UPDATE products SET available = available - :quantity where id=:id")
                         .bind("id", product_id)
                         .bind("quantity", quantity)
                         .execute());
+        Product product = getById(product_id);
+        product.setBeforeData(beforeData.toString());
+        super.update(product);
     }
 
-    public static void increaseProductAvailable(int quantity, int product_id) {
+    public void increaseProductAvailable(int quantity, int product_id) {
+        Product beforeData = getById(product_id);
         JDBIConnector.me().withHandle(handle ->
                 handle.createUpdate("UPDATE products SET available = available + :quantity where id=:id")
                         .bind("id", product_id)
                         .bind("quantity", quantity)
                         .execute());
+        Product product = getById(product_id);
+        product.setBeforeData(beforeData.toString());
+        super.update(product);
     }
 
     public static int getSatusById(int id) {
@@ -174,7 +196,8 @@ public class ProductDAO {
         return status;
     }
 
-    public static String editStatus(int id) {
+    public String editStatus(int id) {
+        Product beforeData = getById(id);
         if (ProductDAO.getSatusById(id) == 0) {
             ProductDAO.setStatusById(id);
             return "Hiện";
@@ -182,6 +205,9 @@ public class ProductDAO {
             ProductDAO.setStatus(id);
             return "Ẩn";
         }
+        Product product = getById(id);
+        product.setBeforeData(beforeData.toString());
+        super.update(product);
         return "";
     }
 

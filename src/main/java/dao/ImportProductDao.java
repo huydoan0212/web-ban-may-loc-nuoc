@@ -1,6 +1,7 @@
 package dao;
 
 import db.JDBIConnector;
+import model.AbsDao;
 import model.ImportProduct;
 import model.Product;
 
@@ -10,7 +11,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ImportProductDao {
+public class ImportProductDao extends AbsDao<ImportProduct> {
     public static List<ImportProduct> getAll() {
         List<ImportProduct> importProducts = JDBIConnector.me().withHandle(handle ->
                 handle.createQuery("SELECT * from import_products")
@@ -39,7 +40,7 @@ public class ImportProductDao {
         );
     }
 
-    public static boolean insertImportProduct(int productId, int quantity, int price, int userId) {
+    public boolean insertImportProduct(int productId, int quantity, int price, int userId) {
         JDBIConnector.me().useHandle(handle ->
                 handle.createUpdate("INSERT INTO import_products (product_id, quantity, price, created_at, user_id) VALUES (:productId, :quantity, :price, :createdAt, :userId)")
                         .bind("productId", productId)
@@ -49,10 +50,17 @@ public class ImportProductDao {
                         .bind("userId", userId)
                         .execute()
         );
+        ImportProduct importProduct = new ImportProduct();
+        importProduct.setProductId(productId);
+        importProduct.setQuantity(quantity);
+        importProduct.setPrice(price);
+        importProduct.setCreated_At(LocalDateTime.now());
+        importProduct.setUserId(userId);
+        super.insert(importProduct);
         return true;
     }
 
-    public static boolean increaseProductAvailable(int quantity, int product_id) {
+    public boolean increaseProductAvailable(int quantity, int product_id) {
         JDBIConnector.me().withHandle(handle ->
                 handle.createUpdate("UPDATE products SET available = available + :quantity where id=:id")
                         .bind("id", product_id)
@@ -175,6 +183,6 @@ public class ImportProductDao {
     public static void main(String[] args) {
 //        System.out.println(insertImportProduct(1, 100,10000, 3));
 //        System.out.println(increaseProductAvailable(100, 4));
-        System.out.println(increaseProductAvailable(120, 2));
+
     }
 }

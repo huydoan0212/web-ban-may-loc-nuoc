@@ -15,27 +15,34 @@ public class OrderService {
         return instance;
     }
 
-    public boolean insertOrder(int user_id, String address, String phone, String status, int total_money, int voucher_id,String name) {
-        return OrderDAO.insertOrder(user_id, address, phone, status, total_money,voucher_id,name);
+    public boolean insertOrder(int user_id, String address, String phone, String status, int total_money, int voucher_id, String name) {
+        return new OrderDAO().insertOrder(user_id, address, phone, status, total_money, voucher_id, name);
     }
-    public Order getOrder(int user_id, String address, int total_money){
+
+    public Order getOrder(int user_id, String address, int total_money) {
         return OrderDAO.getOrder(user_id, address, total_money);
     }
-    public Order getOrderById(int id){
+
+    public Order getOrderById(int id) {
         return OrderDAO.getOrderById(id);
     }
-    public List<Order> getOrderByIdUser(int user_id){
+
+    public List<Order> getOrderByIdUser(int user_id) {
         return OrderDAO.getOrderByIdUser(user_id);
     }
-    public boolean cancelOrder(String status , int id){
-        return OrderDAO.cancelOrder(status,id);
+
+    public boolean cancelOrder(String status, int id) {
+        return new OrderDAO().cancelOrder(status, id);
     }
-    public boolean paymentOrder(String status , int id){
-        return OrderDAO.paymentOrder(status,id);
+
+    public boolean paymentOrder(String status, int id) {
+        return new OrderDAO().paymentOrder(status, id);
     }
-    public List<Order> getListOrderWaitConfirm(){
+
+    public List<Order> getListOrderWaitConfirm() {
         return OrderDAO.getListOrderWaitConfirm();
     }
+
     public static void main(String[] args) {
     }
 
@@ -56,18 +63,18 @@ public class OrderService {
     }
 
     public boolean changeStatusToConfirmed(int id) {
-        return OrderDAO.changeStatusToConfirmed(id);
+        return new OrderDAO().changeStatusToConfirmed(id);
     }
 
     public boolean changeStatusToTransport(int orderId) {
-        return OrderDAO.changeStatusToTransport(orderId);
+        return new OrderDAO().changeStatusToTransport(orderId);
     }
 
     public boolean changeStatusToTransported(int orderId) {
-        return OrderDAO.changeStatusToTransported(orderId);
+        return new OrderDAO().changeStatusToTransported(orderId);
     }
 
     public boolean changeStatusToCancel(int orderId) {
-        return OrderDAO.changeStatusToCancel(orderId);
+        return new OrderDAO().changeStatusToCancel(orderId);
     }
 }

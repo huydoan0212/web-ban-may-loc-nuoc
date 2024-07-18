@@ -79,7 +79,7 @@ public class OrderController extends HttpServlet {
                             int total_money = price * quantity;
 
                             OrderDetailService.getInstance().insertOrder(order_id, product_id, price, quantity, total_money);
-                            ProductDAO.decreaseProductAvailable(quantity, product_id);
+                            new ProductDAO().decreaseProductAvailable(quantity, product_id);
                         }
                     } else {
                         // Xử lý trường hợp không tạo được đơn hàng

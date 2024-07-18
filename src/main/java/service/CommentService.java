@@ -21,31 +21,35 @@ public class CommentService {
     }
 
     public static void insertComment(int userId, int productId, String contents, String star) {
-        CommentDao.insertComment(userId, productId, contents, star);
+        new CommentDao().insertComment(userId, productId, contents, star);
     }
 
     public List<Comment> getAllComment() {
-      return CommentDao.getAllComment();
+        return CommentDao.getAllComment();
     }
-    public int getDisplayById(int id){
-        return CommentDao.getDisplayById(id);
+
+    public int getDisplayById(int id) {
+        return new CommentDao().getDisplayById(id);
     }
-    public boolean setDisplayHidden(int id){
-        return CommentDao.setDisplayHidden(id);
+
+    public boolean setDisplayHidden(int id) {
+        return new CommentDao().setDisplayHidden(id);
     }
-    public boolean setDisplayShow(int id){
-        return CommentDao.setDisplayShow(id);
+
+    public boolean setDisplayShow(int id) {
+        return new CommentDao().setDisplayShow(id);
     }
-    public void setDisplay(int id){
-        if (CommentService.getInstance().getDisplayById(id) == 1){
+
+    public void setDisplay(int id) {
+        if (CommentService.getInstance().getDisplayById(id) == 1) {
             CommentService.getInstance().setDisplayHidden(id);
-        } else if (CommentService.getInstance().getDisplayById(id) == 2){
+        } else if (CommentService.getInstance().getDisplayById(id) == 2) {
             CommentService.getInstance().setDisplayShow(id);
         }
     }
 
     public static void main(String[] args) {
-            CommentService.getInstance().setDisplay(1);
+        CommentService.getInstance().setDisplay(1);
     }
 
 }

@@ -26,11 +26,11 @@ public class UpdateAddressInfoController extends HttpServlet {
         HttpSession session = req.getSession();
         String address = req.getParameter("inputAddress").trim();
         User user = (User) session.getAttribute("user");
-        boolean checkUpdate = UserDAO.updateUserAddressById(address, user.getId());
+        boolean checkUpdate = new UserDAO().updateUserAddressById(address, user.getId());
         if (checkUpdate) {
             User newUser = UserDAO.getUserById(user.getId());
             System.out.println(newUser);
-            session.setAttribute("user",newUser);
+            session.setAttribute("user", newUser);
             resp.sendRedirect("/ProjectLTW_war/account-page");
         } else {
             String error = "error";
@@ -38,7 +38,6 @@ public class UpdateAddressInfoController extends HttpServlet {
         }
 
     }
-
 
 
 }

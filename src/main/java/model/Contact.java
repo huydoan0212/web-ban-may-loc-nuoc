@@ -6,6 +6,7 @@ public class Contact implements IModel {
     private String email;
     private String phone_number;
     private String content;
+    private String beforeData;
 
     public Contact() {
     }
@@ -16,6 +17,7 @@ public class Contact implements IModel {
         this.email = email;
         this.phone_number = phone_number;
         this.content = content;
+        this.beforeData = toString();
     }
 
     public int getId() {
@@ -58,6 +60,14 @@ public class Contact implements IModel {
         this.content = content;
     }
 
+    public String getBeforeData() {
+        return beforeData;
+    }
+
+    public void setBeforeData(String beforeData) {
+        this.beforeData = beforeData;
+    }
+
     @Override
     public String toString() {
         return "Contact{" +
@@ -76,7 +86,7 @@ public class Contact implements IModel {
 
     @Override
     public String beforeData() {
-        return "";
+        return beforeData;
     }
 
     @Override

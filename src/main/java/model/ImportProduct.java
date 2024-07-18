@@ -3,13 +3,14 @@ package model;
 import java.time.LocalDateTime;
 import java.util.Date;
 
-public class ImportProduct {
+public class ImportProduct implements IModel {
     private int id;
     private int productId;
     private int quantity;
     private LocalDateTime created_At;
     private int userId;
     private int price;
+    private String beforeData;
 
     public ImportProduct() {
 
@@ -22,6 +23,7 @@ public class ImportProduct {
         this.price = price;
         this.created_At = created_At;
         this.userId = userId;
+        this.beforeData = toString();
     }
 
     public int getId() {
@@ -72,6 +74,14 @@ public class ImportProduct {
         this.price = price;
     }
 
+    public String getBeforeData() {
+        return beforeData;
+    }
+
+    public void setBeforeData(String beforeData) {
+        this.beforeData = beforeData;
+    }
+
     @Override
     public String toString() {
         return "ImportProduct{" +
@@ -82,5 +92,20 @@ public class ImportProduct {
                 ", userId=" + userId +
                 ", price=" + price +
                 '}';
+    }
+
+    @Override
+    public String table() {
+        return "ImportProduct";
+    }
+
+    @Override
+    public String beforeData() {
+        return beforeData;
+    }
+
+    @Override
+    public String afterData() {
+        return toString();
     }
 }

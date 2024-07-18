@@ -1,6 +1,8 @@
 package model;
+
 import java.time.LocalDateTime;
-public class Comment implements IModel{
+
+public class Comment implements IModel {
     private int id;
     private int userId;
     private int productId;
@@ -8,10 +10,10 @@ public class Comment implements IModel{
     private String star;
     private int display;
     private LocalDateTime create_date;
+    private String beforeData;
 
     public Comment() {
     }
-
 
 
     public Comment(int id, int userId, int productId, String contents, String star, int display, LocalDateTime create_date) {
@@ -22,6 +24,7 @@ public class Comment implements IModel{
         this.star = star;
         this.display = display;
         this.create_date = create_date;
+        this.beforeData = toString();
     }
 
     public int getId() {
@@ -80,6 +83,14 @@ public class Comment implements IModel{
         this.create_date = create_date;
     }
 
+    public String getBeforeData() {
+        return beforeData;
+    }
+
+    public void setBeforeData(String beforeData) {
+        this.beforeData = beforeData;
+    }
+
     @Override
     public String toString() {
         return "Comment{" +
@@ -100,7 +111,7 @@ public class Comment implements IModel{
 
     @Override
     public String beforeData() {
-        return "";
+        return beforeData;
     }
 
     @Override

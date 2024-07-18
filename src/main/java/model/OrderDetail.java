@@ -1,12 +1,13 @@
 package model;
 
-public class OrderDetail implements IModel{
+public class OrderDetail implements IModel {
     private int id;
     private int order_id;
     private int product_id;
     private int price;
     private int quantity;
     private int total_money;
+    private String beforeData;
 
     public OrderDetail(int id, int order_id, int product_id, int price, int quantity, int total_money) {
         this.id = id;
@@ -15,6 +16,7 @@ public class OrderDetail implements IModel{
         this.price = price;
         this.quantity = quantity;
         this.total_money = total_money;
+        this.beforeData = toString();
     }
 
     public OrderDetail() {
@@ -80,6 +82,14 @@ public class OrderDetail implements IModel{
         this.total_money = total_money;
     }
 
+    public String getBeforeData() {
+        return beforeData;
+    }
+
+    public void setBeforeData(String beforeData) {
+        this.beforeData = beforeData;
+    }
+
     @Override
     public String table() {
         return "order_details";
@@ -87,7 +97,7 @@ public class OrderDetail implements IModel{
 
     @Override
     public String beforeData() {
-        return "";
+        return beforeData;
     }
 
     @Override
