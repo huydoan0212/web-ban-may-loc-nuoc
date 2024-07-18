@@ -154,7 +154,6 @@
                 </div>
                 <%
                     String errorMessage = (String) request.getAttribute("errorMessage");
-                    System.out.println(errorMessage);
                 %>
                 <div>
                     <p style="color: red; font-weight: bold; padding: 0 30px"><%= errorMessage != null ? errorMessage : ""

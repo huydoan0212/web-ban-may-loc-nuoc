@@ -88,87 +88,12 @@
                             <a style="margin-left: 10px" href="paymentorderedpage.jsp?order_id=<%=order.getId()%>"
                                class="mua-lai">Thanh toán</a>
                             <%}%>
-                            <% if (!"Đã hủy" .equalsIgnoreCase(order.getStatus()) && !"Đơn hàng đã giao" .equalsIgnoreCase(order.getStatus()) && !"Thanh toán bằng ngân hàng thành công" .equalsIgnoreCase(order.getStatus())) { %>
+                            <% if (!"Đã hủy".equalsIgnoreCase(order.getStatus()) && !"Đơn hàng đã giao".equalsIgnoreCase(order.getStatus()) && !"Thanh toán bằng ngân hàng thành công".equalsIgnoreCase(order.getStatus())) { %>
                             <a href="cancel-order?order_id=<%=order.getId()%>" class="mua-lai">Hủy đơn hàng</a>
                             <% } %>
-
-                            <%--                            <%if (order.getStatus().equalsIgnoreCase("Đã hủy")||order.getStatus().equalsIgnoreCase("Đơn hàng đã giao")) {%>--%>
-                            <%--                            <%}else{%>--%>
-                            <%--                                <a href="cancel-order?order_id=<%=order.getId()%>" class="mua-lai">Hủy đơn hàng</a>--%>
-                            <%--                            <%}%>--%>
                         </div>
                     </div>
                     <%}%>
-
-                    <%--                    <div class="content-small">--%>
-                    <%--                        <div class="code-order">--%>
-                    <%--                            <span class="text-code-order"><span>Đơn hàng: </span>#75552141</span>--%>
-                    <%--                            <span class="date-receive">Nhận Trước 12:00 - Thứ Tư (01/11)</span>--%>
-                    <%--                            <span class="condition">Đã hủy</span>--%>
-                    <%--                        </div>--%>
-                    <%--                        <div class="product">--%>
-                    <%--                            <img src="../src/main/webapp/img/samsung-10kg-ww10tp44dsb-sv-301122-103815-200x200.jpg"--%>
-                    <%--                                 alt="">--%>
-                    <%--                            <div class="information-product">--%>
-                    <%--                                <div class="product-value">--%>
-                    <%--                                    <span class="name-product">Máy giặt Samsung WW10TP44DSB/SV</span>--%>
-                    <%--                                    <span class="total">Tổng tiền: <span class="money">11.390.000₫</span></span>--%>
-                    <%--                                    <span class="purchase">Thanh toán online thất bại</span>--%>
-                    <%--                                </div>--%>
-                    <%--                            </div>--%>
-                    <%--                        </div>--%>
-                    <%--                        <div class="btn-bot">--%>
-                    <%--                            <a href="chi_tiet_don_hang.html" class="xem-chi-tiet">Xem chi tiết</a>--%>
-                    <%--                            <a href="" class="mua-lai">Mua lại</a>--%>
-
-                    <%--                        </div>--%>
-                    <%--                    </div>--%>
-                    <%--                    <div class="content-small">--%>
-                    <%--                        <div class="code-order">--%>
-                    <%--                            <span class="text-code-order"><span>Đơn hàng: </span>#75552141</span>--%>
-                    <%--                            <span class="date-receive">Nhận Trước 12:00 - Thứ Tư (01/11)</span>--%>
-                    <%--                            <span class="condition">Đã hủy</span>--%>
-                    <%--                        </div>--%>
-                    <%--                        <div class="product">--%>
-                    <%--                            <img src="../src/main/webapp/img/samsung-10kg-ww10tp44dsb-sv-301122-103815-200x200.jpg"--%>
-                    <%--                                 alt="">--%>
-                    <%--                            <div class="information-product">--%>
-                    <%--                                <div class="product-value">--%>
-                    <%--                                    <span class="name-product">Máy giặt Samsung WW10TP44DSB/SV</span>--%>
-                    <%--                                    <span class="total">Tổng tiền: <span class="money">11.390.000₫</span></span>--%>
-                    <%--                                    <span class="purchase">Thanh toán online thất bại</span>--%>
-                    <%--                                </div>--%>
-                    <%--                            </div>--%>
-                    <%--                        </div>--%>
-                    <%--                        <div class="btn-bot">--%>
-                    <%--                            <a href="chi_tiet_don_hang.html" class="xem-chi-tiet">Xem chi tiết</a>--%>
-                    <%--                            <a href="" class="mua-lai">Mua lại</a>--%>
-
-                    <%--                        </div>--%>
-                    <%--                    </div>--%>
-                    <%--                    <div class="content-small">--%>
-                    <%--                        <div class="code-order">--%>
-                    <%--                            <span class="text-code-order"><span>Đơn hàng: </span>#75552141</span>--%>
-                    <%--                            <span class="date-receive">Nhận Trước 12:00 - Thứ Tư (01/11)</span>--%>
-                    <%--                            <span class="condition">Đã hủy</span>--%>
-                    <%--                        </div>--%>
-                    <%--                        <div class="product">--%>
-                    <%--                            <img src="../src/main/webapp/img/samsung-10kg-ww10tp44dsb-sv-301122-103815-200x200.jpg"--%>
-                    <%--                                 alt="">--%>
-                    <%--                            <div class="information-product">--%>
-                    <%--                                <div class="product-value">--%>
-                    <%--                                    <span class="name-product">Máy giặt Samsung WW10TP44DSB/SV</span>--%>
-                    <%--                                    <span class="total">Tổng tiền: <span class="money">11.390.000₫</span></span>--%>
-                    <%--                                    <span class="purchase">Thanh toán online thất bại</span>--%>
-                    <%--                                </div>--%>
-                    <%--                            </div>--%>
-                    <%--                        </div>--%>
-                    <%--                        <div class="btn-bot">--%>
-                    <%--                            <a href="chi_tiet_don_hang.html" class="xem-chi-tiet">Xem chi tiết</a>--%>
-                    <%--                            <a href="" class="mua-lai">Mua lại</a>--%>
-
-                    <%--                        </div>--%>
-                    <%--                    </div>--%>
                 </div>
             </div>
         </div>

@@ -51,7 +51,7 @@ public class OrderController extends HttpServlet {
 
         if (cart.getTotal() > 0 && user != null) {
             boolean outOfStock = false;
-            for (Object key : set) {
+            for (Integer key : set) {
                 int product_id = cart.getData().get(key).getProduct().getId();
                 int quantity = cart.getData().get(key).getQuantity();
                 Product product = ProductDAO.getById(product_id);
@@ -71,12 +71,13 @@ public class OrderController extends HttpServlet {
                     System.out.println(order);
                     if (order != null) {
                         session.setAttribute("order", order);
-                        for (Object key : set) {
+                        for (Integer key : set) {
                             int order_id = order.getId();
                             int product_id = cart.getData().get(key).getProduct().getId();
                             int price = cart.getData().get(key).getProduct().getDiscount_price();
                             int quantity = cart.getData().get(key).getQuantity();
                             int total_money = price * quantity;
+
                             OrderDetailService.getInstance().insertOrder(order_id, product_id, price, quantity, total_money);
                             ProductDAO.decreaseProductAvailable(quantity, product_id);
                         }
