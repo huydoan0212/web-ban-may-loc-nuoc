@@ -74,7 +74,7 @@ public class ProductDAO {
     }
 
     public static void main(String[] args) {
-        System.out.println(getProductByName("Máy lọc nước RO"));
+        increaseProductAvailable(4, 2);
 
     }
 
@@ -156,6 +156,14 @@ public class ProductDAO {
                         .execute());
     }
 
+    public static void increaseProductAvailable(int quantity, int product_id) {
+        JDBIConnector.me().withHandle(handle ->
+                handle.createUpdate("UPDATE products SET available = available + :quantity where id=:id")
+                        .bind("id", product_id)
+                        .bind("quantity", quantity)
+                        .execute());
+    }
+
     public static int getSatusById(int id) {
         int status = JDBIConnector.me().withHandle(handle ->
                 handle.createQuery("SELECT status FROM products WHERE id = ?")
@@ -198,5 +206,6 @@ public class ProductDAO {
         );
         return rowsUpdated > 0;
     }
+
 
 }

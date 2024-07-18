@@ -20,6 +20,7 @@ public class ImportProductDao {
         );
         return importProducts;
     }
+
     public static String getNameProductById(int id) {
         return JDBIConnector.me().withHandle(handle ->
                 handle.createQuery("SELECT title FROM products WHERE id = :id")
@@ -28,6 +29,7 @@ public class ImportProductDao {
                         .one()
         );
     }
+
     public static String getFullNameById(int id) {
         return JDBIConnector.me().withHandle(handle ->
                 handle.createQuery("SELECT fullname FROM users WHERE id = :id")
@@ -36,6 +38,7 @@ public class ImportProductDao {
                         .one()
         );
     }
+
     public static boolean insertImportProduct(int productId, int quantity, int price, int userId) {
         JDBIConnector.me().useHandle(handle ->
                 handle.createUpdate("INSERT INTO import_products (product_id, quantity, price, created_at, user_id) VALUES (:productId, :quantity, :price, :createdAt, :userId)")
@@ -48,6 +51,7 @@ public class ImportProductDao {
         );
         return true;
     }
+
     public static boolean increaseProductAvailable(int quantity, int product_id) {
         JDBIConnector.me().withHandle(handle ->
                 handle.createUpdate("UPDATE products SET available = available + :quantity where id=:id")
@@ -56,6 +60,7 @@ public class ImportProductDao {
                         .execute());
         return true;
     }
+
     public static int countProductSoldQuantity(int productId) {
         return JDBIConnector.me().withHandle(handle ->
                 handle.createQuery("SELECT SUM(order_details.quantity) AS total_sold " +
@@ -68,6 +73,7 @@ public class ImportProductDao {
                         .orElse(0)
         );
     }
+
     public static int countProductImportQuantity(int productId) {
         return JDBIConnector.me().withHandle(handle ->
                 handle.createQuery("SELECT SUM(quantity) AS total_import " +
@@ -79,6 +85,7 @@ public class ImportProductDao {
                         .orElse(0)
         );
     }
+
     public static List<Product> getProductsInventory() {
         return JDBIConnector.me().withHandle(handle ->
                 handle.createQuery("SELECT p.id, p.category_id, p.type_machine_id, p.brand_id, p.title, p.price, p.img, p.discount_price, p.descriptions, p.available, p.created_at, p.updated_at, p.status, " +
@@ -107,6 +114,7 @@ public class ImportProductDao {
                         .list()
         );
     }
+
     public static double getProductSalesRatio(int productId) {
         return JDBIConnector.me().withHandle(handle -> {
             return handle.createQuery("SELECT " +
@@ -127,6 +135,7 @@ public class ImportProductDao {
                     .findOnly();
         });
     }
+
     public static List<Product> getProductsWithHighSalesRatio() {
         return JDBIConnector.me().withHandle(handle -> {
             return handle.createQuery(
@@ -136,11 +145,11 @@ public class ImportProductDao {
                                     "FROM products p " +
                                     "LEFT JOIN order_details od ON p.id = od.product_id " +
                                     "LEFT JOIN import_products ip ON p.id = ip.product_id " +
-                                    "WHERE p.available > 0 " +
+                                    "WHERE p.available < 5 " +
                                     "GROUP BY p.id " +
                                     "HAVING (CASE WHEN COALESCE(SUM(ip.quantity), 0) = 0 THEN 0 " +
                                     "        ELSE CAST(COALESCE(SUM(od.quantity), 0) AS FLOAT) / COALESCE(SUM(ip.quantity), 1) " +
-                                    "   END) > 0.6"
+                                    "   END) > 0.06"
                     )
                     .map((rs, ctx) -> {
                         Product product = new Product();
@@ -162,9 +171,10 @@ public class ImportProductDao {
                     .list();
         });
     }
+
     public static void main(String[] args) {
 //        System.out.println(insertImportProduct(1, 100,10000, 3));
 //        System.out.println(increaseProductAvailable(100, 4));
-        System.out.println(getProductsWithHighSalesRatio());
+        System.out.println(increaseProductAvailable(120, 2));
     }
 }

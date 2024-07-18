@@ -1,12 +1,10 @@
 package controller;
 
 import cart.Cart;
-import dao.OrderDAO;
-import dao.OrderDetailDAO;
 import dao.ProductDAO;
 import model.Order;
+import model.Product;
 import model.User;
-import model.Voucher;
 import service.OrderDetailService;
 import service.OrderService;
 
@@ -40,7 +38,7 @@ public class OrderController extends HttpServlet {
         }
         Cart cart = (Cart) session.getAttribute("cart");
         User user = (User) session.getAttribute("user");
-        Set set = cart.getData().keySet();
+        Set<Integer> set = cart.getData().keySet();
         Object tempObj = req.getParameter("total_decrease");
         int total_decrease = 0;
         if (tempObj != null) {
@@ -52,33 +50,51 @@ public class OrderController extends HttpServlet {
         }
 
         if (cart.getTotal() > 0 && user != null) {
-            boolean checkCreatedOrder = OrderService.getInstance().insertOrder(user.getId(), user.getAddress(), user.getPhoneNumber(), "Chưa chọn phương thức thanh toán", total_decrease, voucher_id, user.getFullName());
-
-            if (checkCreatedOrder) {
-                Order order = OrderService.getInstance().getOrder(user.getId(), "Chưa chọn phương thức thanh toán", total_decrease);
-                System.out.println(order);
-                if (order != null) {
-                    session.setAttribute("order", order);
-                    for (Object key : set) {
-                        int order_id = order.getId();
-                        int product_id = cart.getData().get(key).getProduct().getId();
-                        int price = cart.getData().get(key).getProduct().getDiscount_price();
-                        int quantity = cart.getData().get(key).getQuantity();
-                        int total_money = price * quantity;
-                        OrderDetailService.getInstance().insertOrder(order_id, product_id, price, quantity, total_money);
-                        ProductDAO.decreaseProductAvailable(quantity, product_id);
-
-                    }
-                } else {
-                    // Xử lý trường hợp không tạo được đơn hàng
-                    req.setAttribute("errorMessage", "Không thể tạo đơn hàng. Vui lòng thử lại.");
-                    req.getRequestDispatcher("error.jsp").forward(req, resp);
+            boolean outOfStock = false;
+            for (Integer key : set) {
+                int product_id = cart.getData().get(key).getProduct().getId();
+                int quantity = cart.getData().get(key).getQuantity();
+                Product product = ProductDAO.getById(product_id);
+                if (product.getAvailable() < quantity) {
+                    outOfStock = true;
+                    req.setAttribute("errorMessage", "Sản phẩm " + product.getTitle() + " không đủ hàng. Vui lòng kiểm tra lại giỏ hàng.");
+                    req.getRequestDispatcher("giohang.jsp").forward(req, resp);
                     return;
                 }
-
-                req.getRequestDispatcher("paymentpage.jsp").forward(req, resp);
             }
+
+            if (!outOfStock) {
+                boolean checkCreatedOrder = OrderService.getInstance().insertOrder(user.getId(), user.getAddress(), user.getPhoneNumber(), "Chưa chọn phương thức thanh toán", total_decrease, voucher_id, user.getFullName());
+
+                if (checkCreatedOrder) {
+                    Order order = OrderService.getInstance().getOrder(user.getId(), "Chưa chọn phương thức thanh toán", total_decrease);
+                    System.out.println(order);
+                    if (order != null) {
+                        session.setAttribute("order", order);
+                        for (Integer key : set) {
+                            int order_id = order.getId();
+                            int product_id = cart.getData().get(key).getProduct().getId();
+                            int price = cart.getData().get(key).getProduct().getDiscount_price();
+                            int quantity = cart.getData().get(key).getQuantity();
+                            int total_money = price * quantity;
+
+                            OrderDetailService.getInstance().insertOrder(order_id, product_id, price, quantity, total_money);
+                            ProductDAO.decreaseProductAvailable(quantity, product_id);
+                        }
+                    } else {
+                        // Xử lý trường hợp không tạo được đơn hàng
+                        req.setAttribute("errorMessage", "Không thể tạo đơn hàng. Vui lòng thử lại.");
+                        req.getRequestDispatcher("error.jsp").forward(req, resp);
+                        return;
+                    }
+
+                    req.getRequestDispatcher("paymentpage.jsp").forward(req, resp);
+                }
+            }
+        } else {
+            // Xử lý trường hợp giỏ hàng rỗng hoặc người dùng chưa đăng nhập
+            req.setAttribute("errorMessage", "Giỏ hàng rỗng hoặc người dùng chưa đăng nhập.");
+            req.getRequestDispatcher("error.jsp").forward(req, resp);
         }
     }
 }
-

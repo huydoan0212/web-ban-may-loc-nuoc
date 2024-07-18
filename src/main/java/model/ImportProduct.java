@@ -10,9 +10,11 @@ public class ImportProduct {
     private LocalDateTime created_At;
     private int userId;
     private int price;
+
     public ImportProduct() {
 
     }
+
     public ImportProduct(int id, int productId, int quantity, int price, LocalDateTime created_At, int userId) {
         this.id = id;
         this.productId = productId;
@@ -69,6 +71,7 @@ public class ImportProduct {
     public void setPrice(int price) {
         this.price = price;
     }
+
     @Override
     public String toString() {
         return "ImportProduct{" +

@@ -79,7 +79,7 @@ public class UserService {
         }
     }
 
-    public String getFullNameById(int id) {
+    public static String getFullNameById(int id) {
         return UserDAO.getFullNameById(id);
     }
 
