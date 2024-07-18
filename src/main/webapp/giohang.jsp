@@ -152,6 +152,17 @@
                             id="quantity-products"><%=cart.getTotal()%></span> sản phẩm):</span>
                     <span class="total-money"><%=numberFormat.format(total)%>₫</span>
                 </div>
+                <%
+                    String errorMessage = (String) request.getAttribute("errorMessage");
+                    System.out.println(errorMessage);
+                %>
+                <div>
+                    <p style="color: red; font-weight: bold; padding: 0 30px"><%= errorMessage != null ? errorMessage : ""
+                    %>
+                    </p>
+                </div>
+                <%request.removeAttribute("errorMessage");%>
+
                 <div class="voucher">
                     <p class="label-voucher">Mã giảm giá/ Phiếu mua hàng</p>
                     <div class="nhap-voucher">
@@ -159,7 +170,8 @@
                         <select id="ma-giam-gia">
                             <option selected disabled>Chọn mã giảm giá</option>
                             <%for (Voucher v : vouchers) {%>
-                            <option class="voucher-option" value="<%=v.getId()%>"><%=v.getVoucher_name()%></option>
+                            <option class="voucher-option" value="<%=v.getId()%>"><%=v.getVoucher_name()%>
+                            </option>
                             <%}%>
                         </select>
 
@@ -186,9 +198,10 @@
                         <form action="order-controller" method="GET">
                             <input type="hidden" name="total_decrease" value="<%=total_decrease%>">
                             <input type="hidden" name="voucher_id" value="<%=voucher_id%>">
-                            <%String error = (String) request.getSession().getAttribute("error");
+                            <%
+                                String error = (String) request.getSession().getAttribute("error");
                             %>
-                            <%if (error!=null){%>
+                            <%if (error != null) {%>
                             <div><span><%=error%></span></div>
                             <%}%>
                             <%request.getSession().removeAttribute("error");%>
@@ -197,8 +210,8 @@
                     </div>
                     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                     <script>
-                        $(document).ready(function() {
-                            $("#btn-order").click(function() {
+                        $(document).ready(function () {
+                            $("#btn-order").click(function () {
                                 var checked = $("#checkbox-policy").prop("checked");
                                 if (checked) {
                                     // Chuyển hướng đến order-controller với các tham số
@@ -211,10 +224,6 @@
                             });
                         });
                     </script>
-
-
-
-
                     <div class="note"><span>Bạn có thể chọn hình thức thanh toán sau khi đặt hàng</span></div>
                 </div>
             </div>
@@ -238,118 +247,8 @@
                 </div>
             </form>
         </div>
-        <div class="content-big">
-            <div class="content-modal">
-                <p class="title">Hoặc chọn tỉnh, thành phố</p>
-                <ul class="list-tinh-thanh">
-                    <li><a href="">Hồ Chí Minh</a></li>
-                    <li><a href="">Hà Nội</a></li>
-                    <li><a href="">Đà Nẵng</a></li>
-                    <li><a href="">An Giang</a></li>
-                    <li><a href="">Bà Rịa - Vũng Tàu</a></li>
-                    <li><a href="">Bắc Giang</a></li>
-                    <li><a href="">Bắc Kạn</a></li>
-                    <li><a href="">Bạc Liêu</a></li>
-                    <li><a href="">Bắc Ninh</a></li>
-                    <li><a href="">Bến Tre</a></li>
-                    <li><a href="">Bình Định</a></li>
-                    <li><a href="">Bình Dương</a></li>
-                    <li><a href="">Bình Phước</a></li>
-                    <li><a href="">Bình Thuận</a></li>
-                    <li><a href="">Cà Mau</a></li>
-                    <li><a href="">Cần Thơ</a></li>
-                    <li><a href="">Cao Bằng</a></li>
-                    <li><a href="">Đắk Lắk</a></li>
-                    <li><a href="">Đắk Nông</a></li>
-                    <li><a href="">Điện Biên</a></li>
-                    <li><a href="">Đồng Nai</a></li>
-                    <li><a href="">Đồng Tháp</a></li>
-                    <li><a href="">Gia Lai</a></li>
-                    <li><a href="">Hà Giang</a></li>
-                    <li><a href="">Hà Nam</a></li>
-                    <li><a href="">Hà Tĩnh</a></li>
-                    <li><a href="">Hải Dương</a></li>
-                    <li><a href="">Hải Phòng</a></li>
-                    <li><a href="">Hậu Giang</a></li>
-                    <li><a href="">Hòa Bình</a></li>
-                    <li><a href="">Hưng Yên</a></li>
-                    <li><a href="">Khánh Hòa</a></li>
-                    <li><a href="">Kiên Giang</a></li>
-                    <li><a href="">Kon Tum</a></li>
-                    <li><a href="">Lai Châu</a></li>
-                    <li><a href="">Lâm Đồng</a></li>
-                    <li><a href="">Lạng Sơn</a></li>
-                    <li><a href="">Lào Cai</a></li>
-                    <li><a href="">Long An</a></li>
-                    <li><a href="">Nam Định</a></li>
-                    <li><a href="">Nghệ An</a></li>
-                    <li><a href="">Ninh Bình</a></li>
-                    <li><a href="">Ninh Thuận</a></li>
-                    <li><a href="">Phú Thọ</a></li>
-                    <li><a href="">Phú Yên</a></li>
-                    <li><a href="">Quảng Bình</a></li>
-                    <li><a href="">Quảng Nam</a></li>
-                    <li><a href="">Quảng Ngãi</a></li>
-                    <li><a href="">Quảng Ninh</a></li>
-                    <li><a href="">Quảng Trị</a></li>
-                    <li><a href="">Sóc Trăng</a></li>
-                    <li><a href="">Sơn La</a></li>
-                    <li><a href="">Tây Ninh</a></li>
-                    <li><a href="">Thái Bình</a></li>
-                    <li><a href="">Thái Nguyên</a></li>
-                    <li><a href="">Thanh Hóa</a></li>
-                    <li><a href="">Thừa Thiên Huế</a></li>
-                    <li><a href="">Tiền Giang</a></li>
-                    <li><a href="">Trà Vinh</a></li>
-                    <li><a href="">Tuyên Quang</a></li>
-                    <li><a href="">Vĩnh Long</a></li>
-                    <li><a href="">Vĩnh Phúc</a></li>
-                    <li><a href="">Yên Bái</a></li>
-                </ul>
-            </div>
-        </div>
 
     </div>
-    <script>
-        window.onload;
-
-        const timTinh = document.querySelectorAll('.js-tim-tinh');
-        const modal = document.querySelector('.js-modal-tinh-thanh');
-        const close = document.querySelectorAll('.js-close');
-        const modalContainer = document.querySelector('.js-modal-container');
-        const content = document.getElementById('content');
-        const products = Number(document.getElementById('quantity-products').value);
-
-        if (products > 0) {
-            content.addClass('appear');
-        } else {
-            content.removeClass('appear');
-        }
-
-
-        function showTinhThanh() {
-            modal.classList.add('open');
-        }
-
-        function hideTinhThanh() {
-            modal.classList.remove('open');
-        }
-
-        for (const timTinhElement of timTinh) {
-            timTinhElement.addEventListener('click', showTinhThanh);
-
-        }
-        for (const closeElement of close) {
-            closeElement.addEventListener('click', hideTinhThanh);
-
-        }
-
-        modal.addEventListener('click', hideTinhThanh);
-        modalContainer.addEventListener('click', function (event) {
-            event.stopPropagation();
-        });
-    </script>
 </div>
-<!--Kết thúc phẩn tỉnh thành-->
 </body>
 </html>

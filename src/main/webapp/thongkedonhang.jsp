@@ -1,7 +1,4 @@
-<%@ page import="model.User" %>
 <%@ page import="java.util.List" %>
-<%@ page import="model.Comment" %>
-<%@ page import="service.ProductService" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="model.Order" %>
 <%@ page import="java.util.Locale" %>
@@ -27,7 +24,7 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/pageAdmin_product.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <jsp:include page="cssDatatable.jsp" />
+    <jsp:include page="cssDatatable.jsp"/>
     <style>
         .icon-wrapper {
             margin-top: 2px;
@@ -37,6 +34,7 @@
             padding: 5px;
             border-radius: 50%;
         }
+
         .icon-wrapper i {
             color: #ffffff;
         }
@@ -94,7 +92,8 @@
                             </td>
                             <td><%=order.getStatus()%>
                             </td>
-                            <td><%=numberFormat.format(order.getTotal_money())%></td>
+                            <td><%=numberFormat.format(order.getTotal_money())%>
+                            </td>
                         </tr>
                         <%}%>
                         </tbody>
@@ -109,7 +108,7 @@
 <script type="text/javascript" charset="utf8" src="./js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-2.0.8/datatables.min.js"></script>
-<jsp:include page="jsDatatable.jsp" />
+<jsp:include page="jsDatatable.jsp"/>
 <script>
     new DataTable('#table-id', {
         layout: {
