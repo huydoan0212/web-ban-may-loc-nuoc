@@ -10,6 +10,7 @@ public class ImportProduct implements IModel {
     private LocalDateTime created_At;
     private int userId;
     private int price;
+    private String beforeData;
 
     public ImportProduct() {
 
@@ -22,6 +23,7 @@ public class ImportProduct implements IModel {
         this.price = price;
         this.created_At = created_At;
         this.userId = userId;
+        this.beforeData = toString();
     }
 
     public int getId() {
@@ -72,6 +74,14 @@ public class ImportProduct implements IModel {
         this.price = price;
     }
 
+    public String getBeforeData() {
+        return beforeData;
+    }
+
+    public void setBeforeData(String beforeData) {
+        this.beforeData = beforeData;
+    }
+
     @Override
     public String toString() {
         return "ImportProduct{" +
@@ -91,7 +101,7 @@ public class ImportProduct implements IModel {
 
     @Override
     public String beforeData() {
-        return "";
+        return beforeData;
     }
 
     @Override

@@ -19,6 +19,7 @@ public class User implements IModel {
     private int active;
     private String provider;
     private String providerUserId;
+    private String beforeData;
 
     public User() {
     }
@@ -39,6 +40,7 @@ public class User implements IModel {
         this.active = active;
         this.provider = provider;
         this.providerUserId = providerUserId;
+        this.beforeData = toString();
     }
 
     public String getProvider() {
@@ -161,6 +163,14 @@ public class User implements IModel {
         this.active = active;
     }
 
+    public String getBeforeData() {
+        return beforeData;
+    }
+
+    public void setBeforeData(String beforeData) {
+        this.beforeData = beforeData;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -189,7 +199,7 @@ public class User implements IModel {
 
     @Override
     public String beforeData() {
-        return "";
+        return beforeData;
     }
 
     @Override

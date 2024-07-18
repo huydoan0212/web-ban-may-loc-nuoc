@@ -59,28 +59,41 @@ public class CommentDao extends AbsDao<Comment> {
         return display;
     }
 
+    public Comment getComment(int id) {
+        return JDBIConnector.me().withHandle(handle ->
+                handle.createQuery("SELECT * FROM comments WHERE id = :id")
+                        .bind("id", id)
+                        .mapToBean(Comment.class)
+                        .findFirst()
+                        .orElse(null)  // Sử dụng orElse để xử lý trường hợp không tìm thấy
+        );
+    }
+
+
     public boolean setDisplayHidden(int id) {
+        Comment beforeData = getComment(id);
         int rowsDisplay = JDBIConnector.me().withHandle(handle ->
                 handle.createUpdate("UPDATE comments SET display = ? WHERE id = ?")
                         .bind(0, 2)
                         .bind(1, id)
                         .execute()
         );
-        Comment comment = (Comment) getCommentById(id);
+        Comment comment = getComment(id);
+        comment.setBeforeData(beforeData.toString());
         super.update(comment);
         return rowsDisplay > 0;
     }
 
     public boolean setDisplayShow(int id) {
-        Comment beforeData = (Comment) getCommentById(id);
+        Comment beforeData = getComment(id);
         int rowsDisplay = JDBIConnector.me().withHandle(handle ->
                 handle.createUpdate("UPDATE comments SET display = ? WHERE id = ?")
                         .bind(0, 1)
                         .bind(1, id)
                         .execute()
         );
-        Comment comment = (Comment) getCommentById(id);
-        comment.beforeData();
+        Comment comment = getComment(id);
+        comment.setBeforeData(beforeData.toString());
         super.update(comment);
         return rowsDisplay > 0;
     }

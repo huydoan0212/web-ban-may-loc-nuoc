@@ -3,10 +3,12 @@ package model;
 public class Category implements IModel {
     private int id;
     private String name;
+    private String beforeData;
 
     public Category(int id, String name) {
         this.id = id;
         this.name = name;
+        this.beforeData = toString();
     }
 
     public Category() {
@@ -28,6 +30,14 @@ public class Category implements IModel {
         this.name = name;
     }
 
+    public String getBeforeData() {
+        return beforeData;
+    }
+
+    public void setBeforeData(String beforeData) {
+        this.beforeData = beforeData;
+    }
+
     @Override
     public String toString() {
         return "Category{" +
@@ -43,7 +53,7 @@ public class Category implements IModel {
 
     @Override
     public String beforeData() {
-        return "";
+        return beforeData;
     }
 
     @Override

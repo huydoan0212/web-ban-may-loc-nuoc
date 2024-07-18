@@ -2,7 +2,7 @@ package model;
 
 import java.time.LocalDateTime;
 
-public class Order implements IModel{
+public class Order implements IModel {
     private int id;
     private int user_id;
     private String address;
@@ -12,6 +12,7 @@ public class Order implements IModel{
     private LocalDateTime received_date;
     private int total_money;
     private int voucher_id;
+    private String beforeData;
 
     private String name;
 
@@ -111,6 +112,14 @@ public class Order implements IModel{
         this.name = name;
     }
 
+    public String getBeforeData() {
+        return beforeData;
+    }
+
+    public void setBeforeData(String beforeData) {
+        this.beforeData = beforeData;
+    }
+
     public Order() {
     }
 
@@ -125,6 +134,7 @@ public class Order implements IModel{
         this.total_money = total_money;
         this.voucher_id = voucher_id;
         this.name = name;
+        this.beforeData = toString();
     }
 
     @Override
@@ -134,7 +144,7 @@ public class Order implements IModel{
 
     @Override
     public String beforeData() {
-        return "";
+        return beforeData;
     }
 
     @Override
