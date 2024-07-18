@@ -110,4 +110,8 @@ public class LogDao implements IDao<Log> {
         );
     }
 
+    public static void main(String[] args) {
+        LogDao dao = new LogDao();
+        System.out.println(dao.selectAll());
+    }
 }

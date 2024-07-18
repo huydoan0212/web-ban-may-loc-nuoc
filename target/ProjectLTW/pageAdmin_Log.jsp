@@ -1,14 +1,10 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.Locale" %>
-<%@ page import="java.text.NumberFormat" %>
 <%@ page import="model.*" %>
-<%@ page import="dao.CategoryDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%
-    List<Log> logs = (List<Log>) request.getAttribute("logs");
-    if (logs == null) logs = new ArrayList<>();
-%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<jsp:useBean id="logDao" class="dao.LogDao"/>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,19 +12,18 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/pageAdmin_product.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <jsp:include page="cssDatatable.jsp"/>
     <style>
-        .icon-wrapper {
-            margin-top: 2px;
-            background-color: #4a90e2;
-            display: inline-block;
-            margin-right: 10px;
-            padding: 5px;
-            border-radius: 50%;
-        }
-
         .icon-wrapper i {
             color: #ffffff;
+        }
+
+        td, th {
+            vertical-align: middle; /* Căn giữa theo chiều dọc */
         }
     </style>
 </head>
@@ -45,7 +40,6 @@
                         <button type="submit" class="btn btn-sm btn-outline-success">
                             Xóa Log
                         </button>
-
                     </div>
                 </div>
                 <table class="table" id="tableLog">
@@ -54,18 +48,16 @@
                         <th class="text-center"><input type="checkbox" id="selectAll" class="log-checkbox"></th>
                         <th scope="col">Level</th>
                         <th scope="col">#</th>
-                        <th scope="col"> Hành Động</th>
-                        <th scope="col"> Table</th>
-                        <th scope="col"> Thời gian</th>
+                        <th scope="col">Hành Động</th>
+                        <th scope="col">Table</th>
+                        <th scope="col">Thời gian</th>
                         <th scope="col"></th>
                         <th>Customer Id</th>
                         <th>Before Data</th>
                         <th>After Data</th>
-
                     </tr>
                     </thead>
                     <tbody>
-
                     <c:forEach var="p" items="${logDao.selectAll()}">
                         <tr id="log-${p.id}">
                             <td class="text-center align-middle">
@@ -73,27 +65,33 @@
                                        data-cart-id="${p.id}">
                             </td>
                             <td>
-                                <c:if test="${p.level eq 'infor'}">
-                                    <div class="badge text-bg-success text-wrap" style="width: 6rem;">
-                                        Infor
-                                    </div>
-                                </c:if>
-                                <c:if test="${p.level eq 'warning'}">
-                                    <div class="badge text-bg-warning text-wrap" style="width: 6rem;">
-                                        Warning
-                                    </div>
-                                </c:if>
-                                <c:if test="${p.level eq 'danger'}">
-                                    <div class="badge text-bg-danger text-wrap" style="width: 6rem;">
-                                        Danger
-                                    </div>
-                                </c:if>
+                                <c:choose>
+                                    <c:when test="${p.level eq 'infor'}">
+                                        <div class="badge text-wrap"
+                                             style="width: 6rem;background-color: green">
+                                            Infor
+                                        </div>
+                                    </c:when>
+                                    <c:when test="${p.level eq 'warning'}">
+                                        <div class="badge text-wrap"
+                                             style="width: 6rem;background-color: yellow">
+                                            Warning
+                                        </div>
+                                    </c:when>
+                                    <c:when test="${p.level eq 'danger'}">
+                                        <div class="badge text-wrap"
+                                             style="width: 6rem;background-color: red">
+                                            Danger
+                                        </div>
+                                    </c:when>
+                                </c:choose>
                             </td>
                             <td> ${p.id} </td>
                             <td> ${p.action} </td>
                             <td> ${p.table} </td>
                             <td>
-                                    <fmt:formatDate value="${p.time}" pattern="dd/MM/yyyy hh:MM:ss"/>
+                                <fmt:formatDate value="${p.time}" pattern="dd/MM/yyyy hh:MM:ss"/>
+                            </td>
                             <td>
                                 <a href="../admin?action=detailLog&logId=${p.id}">
                                     <button type="button" class="btn btn-sm btn-outline-success">
@@ -104,21 +102,14 @@
                             <td> ${p.user_id} </td>
                             <td> ${p.beforeData} </td>
                             <td> ${p.afterData} </td>
-
                         </tr>
                     </c:forEach>
-
                     </tbody>
                 </table>
             </form>
         </main>
     </div>
 </div>
-<script src="./js/jquery.min.js"></script>
-<script src="./js/jquery.dataTables.js"></script>
-<script type="text/javascript" charset="utf8" src="./js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-2.0.8/datatables.min.js"></script>
 <jsp:include page="jsDatatable.jsp"/>
 <script>
     new DataTable('#tableLog', {
@@ -154,8 +145,7 @@
                         exportOptions: {
                             columns: ':not(:eq(6))' // xuất tất cả các cột trừ cột thứ 6
                         }
-                    },
-
+                    }
                 ]
             }
         },
@@ -165,52 +155,39 @@
         ]
     });
 
-</script>
-
-<script>
     // Hàm này được gọi khi checkbox "Select All" được nhấn
     function toggleSelectAll() {
         var checkboxes = document.querySelectorAll('.log-checkbox'); // Lấy tất cả các checkbox
         var selectAllCheckbox = document.getElementById('selectAll'); // Lấy checkbox "Select All"
+        var deleteButton = document.getElementById('deleteButton'); // Lấy nút "Xóa Log"
 
         // Lặp qua tất cả các checkbox và thiết lập trạng thái checked của chúng
         checkboxes.forEach(function (checkbox) {
             checkbox.checked = selectAllCheckbox.checked;
         });
-        if (selectAllCheckbox.checked) {
-            // Nếu checkbox "Select All" được chọn, hiển thị nút "Xóa Log"
-            deleteButton.style.display = 'block';
-        } else {
-            // Nếu checkbox "Select All" không được chọn, ẩn nút "Xóa Log"
-            deleteButton.style.display = 'none';
-        }
+
+        // Hiển thị hoặc ẩn nút "Xóa Log" tùy thuộc vào trạng thái của checkbox "Select All"
+        deleteButton.style.display = selectAllCheckbox.checked ? 'block' : 'none';
     }
 
+    // Kiểm tra xem có ít nhất một checkbox được chọn không
     function checkIfAnyCheckboxChecked() {
         var checkboxes = document.querySelectorAll('.log-checkbox'); // Lấy tất cả các checkbox
         var deleteButton = document.getElementById('deleteButton'); // Lấy nút "Xóa Log"
 
-        // Kiểm tra xem có ít nhất một checkbox được chọn không
-        var atLeastOneChecked = Array.from(checkboxes).some(function (checkbox) {
-            return checkbox.checked;
-        });
-
         // Hiển thị hoặc ẩn nút "Xóa Log" tùy thuộc vào kết quả kiểm tra
-        if (atLeastOneChecked) {
-            deleteButton.style.display = 'block';
-        } else {
-            deleteButton.style.display = 'none';
-        }
+        deleteButton.style.display = Array.from(checkboxes).some(function (checkbox) {
+            return checkbox.checked;
+        }) ? 'block' : 'none';
     }
 
     // Gắn sự kiện click cho tất cả các checkbox
-    var checkboxes = document.querySelectorAll('.log-checkbox');
-    checkboxes.forEach(function (checkbox) {
+    document.querySelectorAll('.log-checkbox').forEach(function (checkbox) {
         checkbox.addEventListener('click', checkIfAnyCheckboxChecked);
     });
+
     // Gắn sự kiện click cho checkbox "Select All"
     document.getElementById('selectAll').addEventListener('click', toggleSelectAll);
-
 </script>
 </body>
 </html>
