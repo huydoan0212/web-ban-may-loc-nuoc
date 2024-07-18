@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     Log log = (Log) request.getSession().getAttribute("log");
 %>
@@ -12,16 +13,16 @@
     <title>Thêm sản phẩm</title>
     <%@ include file="./common.jsp" %>
     <link href="./css/style.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../assets/css/dangKi.css">
+    <link rel="stylesheet" type="text/css" href="./css/dangKi.css">
 </head>
 <body>
+<%@ include file="headerAdmin.jsp" %>
 <div class="container-fluid">
     <div class="row">
-        <%@ include file="headerAdmin.jsp" %>
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="container_form">
-                <form class="form-container" action="pageAdmin_Log.jsp"
-                >
+                <form class="form-container" action="pageAdmin_Log.jsp">
+
                     <h3 class="text-center text-success">Chi tiết Log #<%=log.getId()%>
                     </h3>
 
