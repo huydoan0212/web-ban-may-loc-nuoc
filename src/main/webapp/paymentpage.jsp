@@ -6,13 +6,7 @@
 <%@ page import="dao.OrderDetailDAO" %>
 <%@ page import="dao.VoucherDAO" %>
 <%@ page import="java.util.List" %>
-<%@ page import="dao.ProductDAO" %><%--
-  Created by IntelliJ IDEA.
-  User: admin
-  Date: 21/01/2024
-  Time: 8:02 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="dao.ProductDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     Order order = (Order) session.getAttribute("order");

@@ -1,10 +1,4 @@
-<%@ page import="model.User" %><%--
-  Created by IntelliJ IDEA.
-  User: admin
-  Date: 27/01/2024
-  Time: 10:29 AM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="model.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% User userAdmin = (User) session.getAttribute("user");
     String checkLogin = userAdmin != null ? "pageAdminController" : "login.jsp";

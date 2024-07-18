@@ -5,7 +5,6 @@
 <% String email = (String) request.getParameter("email"); %>
 <% String password = (String) request.getParameter("password"); %>
 <% String error = (String) request.getAttribute("error");%>
-<%--<% String success = (String) request.getAttribute("success");%>--%>
 <!DOCTYPE html>
 <html lang="en">
 <head>

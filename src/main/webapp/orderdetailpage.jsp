@@ -6,13 +6,7 @@
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="service.OrderDetailService" %>
 <%@ page import="model.*" %>
-<%@ page import="service.VoucherService" %><%--
-  Created by IntelliJ IDEA.
-  User: admin
-  Date: 22/01/2024
-  Time: 7:08 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="service.VoucherService" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% Object object = request.getParameter("order_id");
     int order_id = 0;
