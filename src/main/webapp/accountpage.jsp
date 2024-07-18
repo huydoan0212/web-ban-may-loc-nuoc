@@ -9,8 +9,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String error1 = (String) session.getAttribute("error");
-    User user = (User) session.getAttribute("user");
-    System.out.println(user);
 %>
 
 <!DOCTYPE html>
@@ -52,16 +50,20 @@
                         <form action="update-user?id=<%=user.getId()%>">
                             <div class="thong-tin-ca-nhan">
                                 <p>THÔNG TIN CÁ NHÂN</p>
-                                <span><%=user.getSex()%> <span><%=user.getFullName().toUpperCase(java.util.Locale.ROOT)%></span> - <span><%=user.getPhoneNumber()%></span></span>
+                                <span><%=user.getSex() == null ? "" : user.getSex()%> <span><%=user.getFullName().toUpperCase(java.util.Locale.ROOT)%></span> - <span><%=user.getPhoneNumber() == null ? "Chưa có số điện thoại" : user.getPhoneNumber()%></span></span>
                             </div>
                             <div class="select-infor">
                                 <div class="sex">
-                                    <input type="radio" id="male" name="gender" value="Anh"
-                                           <%if(user.getSex().equals("Nam")){%>checked="checked"<%}%>>
-                                    <span>Anh</span>
-                                    <input type="radio" id="female" name="gender" value="Chị"
-                                           <%if(user.getSex().equals("Nữ")){%>checked="checked"<%}%>>
-                                    <span>Chị</span>
+                                    <div class="sex">
+                                        <input type="radio" id="male" name="gender" value="Anh"
+                                            <% if (user.getSex() != null && user.getSex().equals("Nam")) { %>
+                                               checked="checked" <% } %>>
+                                        <span>Anh</span>
+                                        <input type="radio" id="female" name="gender" value="Chị"
+                                            <% if (user.getSex() != null && user.getSex().equals("Nữ")) { %>
+                                               checked="checked" <% } %>>
+                                        <span>Chị</span>
+                                    </div>
                                 </div>
                                 <div class="name-phone">
                                     <div class="name">

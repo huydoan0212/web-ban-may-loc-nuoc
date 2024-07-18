@@ -111,7 +111,8 @@
                 <button type="button" class="btnfb" onclick="checkLoginState()">
                     <i class="fa-brands fa-facebook"></i> Facebook
                 </button>
-                <a href="https://accounts.google.com/o/oauth2/auth?scope=email profile openid
+                <button class="btngg">
+                    <a href="https://accounts.google.com/o/oauth2/auth?scope=email profile openid
 
 &redirect_uri=http://localhost:8080/ProjectLTW_war/loginGoogle
 
@@ -119,9 +120,10 @@
 
 &client_id=192822040743-2t27r1e2sp8ounatnoqjid4o2qvqij9h.apps.googleusercontent.com
 
-&approval_prompt=force">
-                    <i class="fa-brands fa-google"></i> Google
-                </a>
+&approval_prompt=force" style="color: white; text-decoration: none; font-size: 16px ">
+                        <i class="fa-brands fa-google" style="color: white"></i> Google
+                    </a>
+                </button>
             </div>
             <div class="des">
                 <p>Bạn mới biết đến Healthywater? </p>
