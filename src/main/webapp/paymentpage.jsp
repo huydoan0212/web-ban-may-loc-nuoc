@@ -6,9 +6,7 @@
 <%@ page import="dao.OrderDetailDAO" %>
 <%@ page import="dao.VoucherDAO" %>
 <%@ page import="java.util.List" %>
-<%@ page import="dao.ProductDAO" %><%--
-
---%>
+<%@ page import="dao.ProductDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     Order order = (Order) session.getAttribute("order");
