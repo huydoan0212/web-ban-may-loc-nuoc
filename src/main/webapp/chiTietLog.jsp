@@ -1,19 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
-
+<%@ page import="model.Log" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
-/>
-/>
+<%
+    Log log = (Log) request.getSession().getAttribute("log");
+%>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>Thêm sản phẩm</title>
     <%@ include file="./common.jsp" %>
-    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../assets/css/dangKi.css">
 </head>
 <body>
@@ -22,9 +20,10 @@
         <%@ include file="headerAdmin.jsp" %>
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="container_form">
-                <form class="form-container" action="quanLyLog.jsp"
+                <form class="form-container" action="pageAdmin_Log.jsp"
                 >
-                    <h3 class="text-center text-success">Chi tiết Log #${log.id}</h3>
+                    <h3 class="text-center text-success">Chi tiết Log #<%=log.getId()%>
+                    </h3>
 
                     <table class="table">
                         <tr>
@@ -49,24 +48,28 @@
 
                         <tr>
                             <td>#ID</td>
-                            <td>${log.id}</td>
+                            <td><%=log.getId()%>
+                            </td>
                         </tr>
                         <tr>
                             <td>Action</td>
-                            <td>${log.action}</td>
+                            <td><%=log.getAction()%>
+                            </td>
                         </tr>
                         <tr>
                             <td>Table</td>
-                            <td>${log.table}</td>
+                            <td><%=log.getTable()%>
+                            </td>
                         </tr>
                         <tr>
                             <td>UserId</td>
-                            <td>${log.user_id}</td>
+                            <td><%=log.getUser_id()%>
+                            </td>
                         </tr>
                         <tr>
                             <td>Thời gian</td>
                             <td>
-                                <fmt:formatDate value="${log.time}" pattern="dd/MM/yyyy hh:MM:ss"/>
+                                <fmt:formatDate value="<%=log.getTime()%>" pattern="dd/MM/yyyy hh:MM:ss"/>
                         </tr>
 
                     </table>
@@ -74,14 +77,14 @@
                         <label for="before" class="form-label">Before Data </label>
                         <textarea type="text" class="form-control" id="before"
                                   placeholder="" rows="5"
-                                  cols="50" readonly> ${log.beforeData} </textarea>
+                                  cols="50" readonly> <%=log.getBeforeData()%> </textarea>
 
                     </div>
                     <div class="mb-3">
                         <label for="after" class="form-label"> After Data </label>
                         <textarea type="text" class="form-control" id="after"
                                   placeholder="" rows="5"
-                                  cols="50" readonly> ${log.afterData} </textarea>
+                                  cols="50" readonly> <%=log.getAfterData()%> </textarea>
 
                     </div>
                     <div class="mb-3">
