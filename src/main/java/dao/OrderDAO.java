@@ -80,7 +80,7 @@ public class OrderDAO {
     }
     public static List<Order> getListOrderWaitConfirm(){
         List<Order> orders = JDBIConnector.me().withHandle(handle ->
-                handle.createQuery("SELECT * FROM orders WHERE status = 'Đã chọn phương thức thanh toán' limit 100")
+                handle.createQuery("SELECT * FROM orders WHERE status = 'Đã chọn phương thức thanh toán bằng thẻ ngân hàng' or status = 'Thanh toán bằng ngân hàng thành công' or status = 'Đã chọn phương thức thanh toán bằng tiền mặt' limit 100")
                         .mapToBean(Order.class).stream().collect(Collectors.toList()));
         return orders;
     }
