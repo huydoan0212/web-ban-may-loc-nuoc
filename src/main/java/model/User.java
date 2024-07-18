@@ -1,10 +1,9 @@
 package model;
 
-//import java.util.Date;
 
 import java.time.LocalDateTime;
 
-public class User implements IModel{
+public class User implements IModel {
     private int id;
     private int roleId;
     private String userName;
@@ -18,8 +17,13 @@ public class User implements IModel{
     private LocalDateTime updatedAt;
     private int status;
     private int active;
+    private String provider;
+    private String providerUserId;
 
-    public User(int id, int roleId, String userName, String fullName, String email, String phoneNumber, String sex, String address, String password, LocalDateTime createdAt, LocalDateTime updatedAt, int status, int active) {
+    public User() {
+    }
+
+    public User(int id, int roleId, String userName, String fullName, String email, String phoneNumber, String sex, String address, String password, LocalDateTime createdAt, LocalDateTime updatedAt, int status, int active, String provider, String providerUserId) {
         this.id = id;
         this.roleId = roleId;
         this.userName = userName;
@@ -33,9 +37,24 @@ public class User implements IModel{
         this.updatedAt = updatedAt;
         this.status = status;
         this.active = active;
+        this.provider = provider;
+        this.providerUserId = providerUserId;
     }
 
-    public User() {
+    public String getProvider() {
+        return provider;
+    }
+
+    public void setProvider(String provider) {
+        this.provider = provider;
+    }
+
+    public String getProviderUserId() {
+        return providerUserId;
+    }
+
+    public void setProviderUserId(String providerUserId) {
+        this.providerUserId = providerUserId;
     }
 
     public int getId() {
@@ -158,25 +177,25 @@ public class User implements IModel{
                 ", updatedAt=" + updatedAt +
                 ", status=" + status +
                 ", active=" + active +
+                ", provider='" + provider + '\'' +
+                ", providerUserId='" + providerUserId + '\'' +
                 '}';
     }
 
     @Override
-    public String getTable() {
-        return "User";
+    public String table() {
+        return "user";
     }
 
     @Override
     public String beforeData() {
-        return null;
+        return "";
     }
 
     @Override
     public String afterData() {
-        return null;
+        return toString();
     }
-
-
 }
 
 

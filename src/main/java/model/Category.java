@@ -1,6 +1,6 @@
 package model;
 
-public class Category {
+public class Category implements IModel {
     private int id;
     private String name;
 
@@ -34,5 +34,20 @@ public class Category {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    @Override
+    public String table() {
+        return "categorys";
+    }
+
+    @Override
+    public String beforeData() {
+        return "";
+    }
+
+    @Override
+    public String afterData() {
+        return toString();
     }
 }

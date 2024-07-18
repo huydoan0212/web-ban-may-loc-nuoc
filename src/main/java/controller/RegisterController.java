@@ -65,9 +65,9 @@ public class RegisterController extends HttpServlet {
             String otpString = String.format("%06d", otp);
             MailService.send(email, "Mã xác nhận", "Mã xác nhận của bạn là: " + otpString);
             String encryptedPassword = PasswordUtils.hashPassword(password);
-            UserService.addUser(userName, fullName, email, phone, encryptedPassword);
-            req.getSession().setAttribute("otp",otpString);
-            req.getSession().setAttribute("userName",userName);
+            UserService.getInstance().addUser(userName, fullName, email, phone, encryptedPassword);
+            req.getSession().setAttribute("otp", otpString);
+            req.getSession().setAttribute("userName", userName);
             resp.sendRedirect("enterOTP.jsp");
 //            EmailNotification.sendNotification("binhquoc23@gmail.com");
         }

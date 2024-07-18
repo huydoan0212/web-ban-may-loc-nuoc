@@ -30,6 +30,7 @@ public class LoginGoogle extends HttpServlet {
         GoogleAccount acc = gg.getUserInfo(accessToken);
         System.out.println(acc.getId());
         if(!(UserService.getInstance().loginUser(acc.getId(), PasswordUtils.hashPassword(acc.getId())))){
+
             UserService.addUser(acc.getId(),acc.getName(), acc.getEmail(), "null", PasswordUtils.hashPassword(acc.getId()));
             UserDAO.updateActiveAccount(acc.getId());
             String hashedPassword = PasswordUtils.hashPassword(acc.getId());
@@ -37,11 +38,7 @@ public class LoginGoogle extends HttpServlet {
             if (loginSuccess) {
                 HttpSession session = request.getSession();
                 User user = UserDAO.getUserInfo(acc.getId());
-                UserDAO userDAO = new UserDAO();
-                boolean inserted = userDAO.insert(user, user.getId(), request.getHeader("X-Forwarded-For") != null ? request.getHeader("X-Forwarded-For") : request.getRemoteAddr(), "Login", "LoginController", "Normal", LocalDateTime.now(), LocalDateTime.now(), true, "Viet Nam");
-                System.out.println(inserted);
                 handleUserLoginSuccess(response, session, user, "index.jsp");
-                System.out.println(user);
             }
         }
         else if (UserDAO.loginUser(acc.getId(), PasswordUtils.hashPassword(acc.getId()))) {
@@ -49,7 +46,6 @@ public class LoginGoogle extends HttpServlet {
             HttpSession session = request.getSession();
             if (user != null && user.getRoleId() == 2) {
                 UserDAO userDAO = new UserDAO();
-                boolean inserted = userDAO.insert(user, user.getId(), request.getHeader("X-Forwarded-For") != null ? request.getHeader("X-Forwarded-For") : request.getRemoteAddr(), "Login", "LoginController", "Normal", LocalDateTime.now(), LocalDateTime.now(), true, "Viet Nam");
                 handleUserLoginSuccess(response, session, user, "index.jsp");
             } else if (user != null && user.getRoleId() == 1) {
                 request.getSession().setAttribute("user", user);
@@ -65,8 +61,7 @@ public class LoginGoogle extends HttpServlet {
             throws IOException {
         session.setAttribute("user", user);
         response.sendRedirect(redirectPage);
-        System.out.println("User: " + user);
-        System.out.println("Session after setting attribute: " + session.getAttribute("user"));
+
     }
     private void handleLoginFailure(HttpServletResponse response, HttpServletRequest request, String errorMessage) throws IOException {
         HttpSession session = request.getSession();

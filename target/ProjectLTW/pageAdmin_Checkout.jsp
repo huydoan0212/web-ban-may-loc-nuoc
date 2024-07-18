@@ -91,7 +91,6 @@
                                 </td>
                                 <td><%=o.getAddress()%>
                                 </td>
-
                                 <td><%=numberFormat.format(o.getTotal_money())%><sup>đ</sup></td>
                                 <td>
                                     <a title="xem chi tiết đơn hàng"
@@ -100,18 +99,20 @@
                                             <i class="fas fa-search"></i> <!-- Biểu tượng kính lúp -->
                                         </i>
                                     </a>
-                                    <button style="border: none; background: none;" title="Xác nhận đơn hàng"
+                                    <button style="border: none; background: none;" tsitle="Xác nhận đơn hàng"
                                             onclick="confirmOrder(<%=o.getId()%>)" class="icon-link">
                                         <i class="icon-wrapper">
                                             <i class="fas fa-check"></i>
                                         </i>
                                     </button>
-                                    <a title="hủy đơn hàng" href="adminCancelOrder?order_id=<%=o.getId()%>&page_id=1"
-                                       class="icon-link">
+                                    <%--    adminCancelOrder?order_id=<%=o.getId()%>&page_id=1--%>
+                                    <button style="border: none; background: none;" title="hủy đơn hàng"
+                                            onclick="cancelOrder(<%=o.getId()%>)"
+                                            class="icon-link">
                                         <i class="icon-wrapper">
                                             <i class="fas fa-trash-alt"></i> <!-- Biểu tượng thùng rác -->
                                         </i>
-                                    </a>
+                                    </button>
                                 </td>
                             </tr>
                             <%}%>
@@ -188,7 +189,7 @@
                                 <th scope="col">Chức năng</th>
                             </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="body-cancel">
                             <%
                                 for (Order o : listOrderCancel) {
                                     User user = UserDAO.getUserById(o.getUser_id());
@@ -330,9 +331,36 @@
 <script>
     let table1 = $("#table-id-1").DataTable();
     let table2 = $("#table-id-2").DataTable();
-    let table3 = $("#table-id-3").DataTable();
+    let table3 = $("#table-id").DataTable();
     let table4 = $("#table-id-4").DataTable();
     let table5 = $("#table-id-5").DataTable();
+
+    function cancelOrder(order_id) {
+        $.ajax({
+            url: '/ProjectLTW_war/adminCancelOrder',
+            type: "POST",
+            data: {
+                order_id: order_id
+            },
+            success: function (response) {
+                var index = null;
+                var data = table1.column(0).data();
+                for (i = 0; i < data.length; i++) {
+                    if (parseInt(order_id) === parseInt(data[i])) {
+                        index = i;
+                        break;
+                    }
+                }
+                if (index !== null) {
+                    table1.row(index).remove().draw();
+                }
+                var body = document.getElementById('body-cancel')
+                body.innerHTML = response;
+            },
+            error: function (error) {
+            }
+        });
+    }
 
     function confirmOrder(order_id) {
         $.ajax({
@@ -350,7 +378,6 @@
                         break;
                     }
                 }
-                console.log(index);
                 if (index !== null) {
                     table1.row(index).remove().draw();
                 }

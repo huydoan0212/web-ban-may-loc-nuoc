@@ -2,7 +2,9 @@ package controller;
 
 import dao.ProductDAO;
 import model.Product;
+
 import service.ProductService;
+import service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,9 +16,11 @@ import java.util.List;
 
 @WebServlet(name = "Trangchu", value = "/trangchu")
 public class TrangChuController extends HttpServlet {
+    private UserService userService = new UserService();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       doPost(req, resp);
+        doPost(req, resp);
     }
 
     @Override

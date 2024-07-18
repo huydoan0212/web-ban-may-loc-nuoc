@@ -30,35 +30,46 @@ public class AddCartController extends HttpServlet {
         int id = Integer.parseInt(req.getParameter("id"));
         int page = Integer.parseInt(req.getParameter("page"));
         cart.add(id);
-        ArrayList<Voucher> vouchers = VoucherService.getInstance().getVoucher();
-        session.setAttribute("vouchers", vouchers );
+        Product product = ProductService.getInstance().getById(id);
+        ArrayList<Voucher> vouchers = VoucherService.getInstance().getVoucherByCategory(product.getCategory_id());
+        ArrayList<Voucher> vouchers1 = VoucherService.getInstance().getVoucherByProduct(product.getId());
+        ArrayList<Voucher> vouchers2 = VoucherService.getInstance().getVoucher();
+        for (Voucher v : vouchers1) {
+            vouchers.add(v);
+
+        }
+        for (Voucher v : vouchers2) {
+            vouchers.add(v);
+
+        }
+        session.setAttribute("vouchers", vouchers);
         session.setAttribute("cart", cart);
         switch (page) {
             case 1:
-                req.getRequestDispatcher("trangchu").forward(req,resp);
+                req.getRequestDispatcher("trangchu").forward(req, resp);
                 break;
             case 2:
-                req.getRequestDispatcher("locnuocro").forward(req,resp);
+                req.getRequestDispatcher("locnuocro").forward(req, resp);
 //                resp.sendRedirect("locnuocro");
                 break;
             case 3:
-                req.getRequestDispatcher("locnuocnonglanh").forward(req,resp);
+                req.getRequestDispatcher("locnuocnonglanh").forward(req, resp);
 //                resp.sendRedirect("locnuocnonglanh");
                 break;
             case 4:
-                req.getRequestDispatcher("locnuocamtudeban").forward(req,resp);
+                req.getRequestDispatcher("locnuocamtudeban").forward(req, resp);
 //                resp.sendRedirect("locnuocamtudeban");
                 break;
             case 5:
-                req.getRequestDispatcher("locnuocnanoufmf").forward(req,resp);
+                req.getRequestDispatcher("locnuocnanoufmf").forward(req, resp);
 //                resp.sendRedirect("locnuocnanoufmf");
                 break;
             case 6:
-                req.getRequestDispatcher("locnuockhongdien").forward(req,resp);
+                req.getRequestDispatcher("locnuockhongdien").forward(req, resp);
 //                resp.sendRedirect("locnuockhongdien");
                 break;
             case 7:
-                req.getRequestDispatcher("cart").forward(req,resp);
+                req.getRequestDispatcher("cart").forward(req, resp);
 //                resp.sendRedirect("cart");
                 break;
         }

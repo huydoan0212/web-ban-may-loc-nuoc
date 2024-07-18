@@ -35,6 +35,48 @@ public class UserDAO extends AbsDao<User> {
         return count > 0;
     }
 
+    public static User checkProviderUserId(String providerUserId) {
+        return JDBIConnector.me().withHandle(handle -> {
+            return handle.createQuery("SELECT * FROM users WHERE provider_user_id = :providerUserId")
+                    .bind("providerUserId", providerUserId)
+                    .map((rs, ctx) -> {
+                        User c = new User();
+                        c.setId(rs.getInt("id"));
+                        c.setRoleId(2);
+                        c.setFullName(rs.getString("fullName"));
+                        c.setEmail(rs.getString("email"));
+                        c.setProvider(rs.getString("provider"));
+                        c.setProviderUserId(rs.getString("provider_user_id"));
+                        return c;
+                    })
+                    .findFirst()
+                    .orElse(null);
+        });
+
+    }
+
+    public static void insertUser(User user) {
+        JDBIConnector.me().withHandle(handle -> {
+            return handle.createUpdate("INSERT INTO users (role_id, username, fullname, email, phone_number, sex, address, password, created_at, updated_at, status, active, provider, provider_user_id) " +
+                            "VALUES (:roleId, :userName, :fullName, :email, :phoneNumber, :sex, :address, :password, :createdAt, :updatedAt, :status, :active, :provider, :providerUserId)")
+                    .bind("roleId", user.getRoleId())
+                    .bind("userName", user.getUserName())
+                    .bind("fullName", user.getFullName())
+                    .bind("email", user.getEmail())
+                    .bind("phoneNumber", user.getPhoneNumber())
+                    .bind("sex", user.getSex())
+                    .bind("address", user.getAddress())
+                    .bind("password", user.getPassword())
+                    .bind("createdAt", user.getCreatedAt())
+                    .bind("updatedAt", user.getUpdatedAt())
+                    .bind("status", user.getStatus())
+                    .bind("active", user.getActive())
+                    .bind("provider", user.getProvider())
+                    .bind("providerUserId", user.getProviderUserId())
+                    .execute();
+        });
+    }
+
     public static boolean addUser(String username, String fullname, String email, String phone_number, String password) {
         boolean result = false;
         String insertQuery = "INSERT INTO users (role_id, username, fullname, email, phone_number, sex, address, password, created_at, status) " +
@@ -199,7 +241,9 @@ public class UserDAO extends AbsDao<User> {
 
 
     private static final String SELECT_USERNAME_SQL = "SELECT username FROM users WHERE username = :username";
-    // Các phương thức khác của lớp DAO
+
+// Các phương thức khác của lớp DAO
+
     public static String getUserName(String username) {
         try {
             JDBIConnector.me().withHandle(handle ->
@@ -302,6 +346,7 @@ public class UserDAO extends AbsDao<User> {
         );
         return status;
     }
+
     public static boolean setRoleIdAdmin(int id) {
         int rowsUpdated = JDBIConnector.me().withHandle(handle ->
                 handle.createUpdate("UPDATE users SET role_id = ?, updated_at = ? WHERE id = ?")
@@ -376,26 +421,6 @@ public class UserDAO extends AbsDao<User> {
         return rowsInserted > 0;
     }
 
-
-    @Override
-    public boolean insert(IModel model, int userId, String ipAddress, String action, String resource, String level, LocalDateTime created_at, LocalDateTime updated_at, boolean status, String nationality) {
-        return super.insert(model, userId, ipAddress, action, resource, level, created_at, updated_at, status, nationality);
-    }
-
-    @Override
-    public int update(IModel model, int userId, String ipAddress, String action, String resource, int previousValue, int currentValue, String level, LocalDateTime created_at, LocalDateTime updated_at, boolean status, String nationality) {
-        return 0;
-    }
-
-    @Override
-    public int delete(IModel model, int userId, String ipAddress, String action, String resource, int previousValue, int currentValue, String level, LocalDateTime created_at, LocalDateTime updated_at, boolean status, String nationality) {
-        return 0;
-    }
-
-    @Override
-    public List<User> select(IModel model, int userId, String ipAddress, String action, String resource, int previousValue, int currentValue, String level, LocalDateTime created_at, LocalDateTime updated_at, boolean status, String nationality) {
-        return null;
-    }
 
     public static void main(String[] args) {
 //        User user = UserDAO.getUserInfo("112649102310854549392");
