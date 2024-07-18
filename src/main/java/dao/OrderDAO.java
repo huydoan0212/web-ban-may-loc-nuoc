@@ -1,6 +1,7 @@
 package dao;
 
 import db.JDBIConnector;
+import model.AbsDao;
 import model.Order;
 
 import java.time.LocalDateTime;
@@ -8,9 +9,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class OrderDAO {
+public class OrderDAO extends AbsDao<Order> {
 
-    public static boolean insertOrder(int user_id, String address, String phone, String status, int total_money, int voucher_id, String name) {
+    public boolean insertOrder(int user_id, String address, String phone, String status, int total_money, int voucher_id, String name) {
         int rowAffected = JDBIConnector.me().withHandle(handle ->
                 handle.createUpdate("INSERT INTO orders( user_id, address, phone, order_date,status,total_money,voucher_id,name) " +
                                 "VALUES ( :user_id, :address, :phone, :order_date, :status, :total_money,:voucher_id,:name)")
@@ -24,6 +25,16 @@ public class OrderDAO {
                         .bind("name", name)
                         .execute());
         if (rowAffected > 0) {
+            Order order = new Order();
+            order.setUser_id(user_id);
+            order.setAddress(address);
+            order.setPhone(phone);
+            order.setStatus(status);
+            order.setTotal_money(total_money);
+            order.setVoucher_id(voucher_id);
+            order.setName(name);
+            order.setOrder_date(LocalDateTime.now());
+            super.insert(order);
             return true;
         } else {
             return false;
@@ -59,17 +70,22 @@ public class OrderDAO {
         return order.isEmpty() ? null : order.get();
     }
 
-    public static boolean cancelOrder(String status, int id) {
+    public boolean cancelOrder(String status, int id) {
+        Order beforeData = getOrderById(id);
         int rowsUpdated = JDBIConnector.me().withHandle(handle ->
                 handle.createUpdate("UPDATE orders SET status = :status WHERE id = :id")
                         .bind("status", status)
                         .bind("id", id)
                         .execute()
         );
+        Order order = getOrderById(id);
+        order.setBeforeData(beforeData.toString());
+        super.update(order);
         return rowsUpdated > 0;
     }
 
-    public static boolean paymentOrder(String status, int id) {
+    public boolean paymentOrder(String status, int id) {
+        Order beforeData = getOrderById(id);
         int rowsUpdated = JDBIConnector.me().withHandle(handle ->
                 handle.createUpdate("UPDATE orders SET status = :status, received_date = :received_date WHERE id = :id")
                         .bind("status", status)
@@ -77,6 +93,9 @@ public class OrderDAO {
                         .bind("id", id)
                         .execute()
         );
+        Order order = getOrderById(id);
+        order.setBeforeData(beforeData.toString());
+        super.update(order);
         return rowsUpdated > 0;
     }
 
@@ -116,42 +135,58 @@ public class OrderDAO {
         return orders;
     }
 
-    public static boolean changeStatusToConfirmed(int id) {
+    public boolean changeStatusToConfirmed(int id) {
+        Order beforeData = getOrderById(id);
         int rowsUpdated = JDBIConnector.me().withHandle(handle ->
                 handle.createUpdate("UPDATE orders SET status = 'Đã xác nhận đơn hàng' WHERE id = :id")
                         .bind("id", id)
                         .execute()
         );
+        Order order = getOrderById(id);
+        order.setBeforeData(beforeData.toString());
+        super.update(order);
         return rowsUpdated > 0;
 
     }
 
-    public static boolean changeStatusToTransport(int orderId) {
+    public boolean changeStatusToTransport(int orderId) {
+        Order beforeData = getOrderById(orderId);
         int rowsUpdated = JDBIConnector.me().withHandle(handle ->
                 handle.createUpdate("UPDATE orders SET status = 'Đơn hàng đang vận chuyển' WHERE id = :id")
                         .bind("id", orderId)
                         .execute()
         );
+        Order order = getOrderById(orderId);
+        order.setBeforeData(beforeData.toString());
+        super.update(order);
         return rowsUpdated > 0;
 
     }
 
-    public static boolean changeStatusToTransported(int orderId) {
+    public boolean changeStatusToTransported(int orderId) {
+        Order beforeData = getOrderById(orderId);
         int rowsUpdated = JDBIConnector.me().withHandle(handle ->
                 handle.createUpdate("UPDATE orders SET status = 'Đơn hàng đã giao' WHERE id = :id")
                         .bind("id", orderId)
                         .execute()
         );
+        Order order = getOrderById(orderId);
+        order.setBeforeData(beforeData.toString());
+        super.update(order);
         return rowsUpdated > 0;
 
     }
 
-    public static boolean changeStatusToCancel(int orderId) {
+    public boolean changeStatusToCancel(int orderId) {
+        Order beforeData = getOrderById(orderId);
         int rowsUpdated = JDBIConnector.me().withHandle(handle ->
                 handle.createUpdate("UPDATE orders SET status = 'Đã hủy' WHERE id = :id")
                         .bind("id", orderId)
                         .execute()
         );
+        Order order = getOrderById(orderId);
+        order.setBeforeData(beforeData.toString());
+        super.update(order);
         return rowsUpdated > 0;
 
     }
@@ -165,6 +200,7 @@ public class OrderDAO {
                         .bind("name", name)
                         .execute()
         );
+
         return rowsUpdated > 0;
     }
 

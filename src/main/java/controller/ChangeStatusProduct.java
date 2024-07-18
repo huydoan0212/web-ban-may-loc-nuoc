@@ -30,7 +30,7 @@ public class ChangeStatusProduct extends HttpServlet {
         }
         System.out.println(product_id);
         // Giả sử rằng phương thức editStatus trả về trạng thái mới của sản phẩm
-        String newStatus = ProductDAO.editStatus(product_id);
+        String newStatus = new ProductDAO().editStatus(product_id);
 
         // Thiết lập kiểu nội dung phản hồi là JSON
         resp.setContentType("application/json");

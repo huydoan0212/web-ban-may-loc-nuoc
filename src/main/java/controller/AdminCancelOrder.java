@@ -47,7 +47,7 @@ public class AdminCancelOrder extends HttpServlet {
             for (OrderDetail detail : orderDetails) {
                 int productId = detail.getProduct_id();
                 int quantity = detail.getQuantity();
-                ProductDAO.increaseProductAvailable(quantity, productId);
+                new ProductDAO().increaseProductAvailable(quantity, productId);
             }
         }
         List<Order> listOrderConfirm = OrderService.getInstance().getListOrderCancel();
