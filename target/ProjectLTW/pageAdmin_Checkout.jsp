@@ -8,15 +8,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     List<Order> listOrderWaitConfirm = (List<Order>) session.getAttribute("listOrderWaitConfirm");
-    if (listOrderWaitConfirm == null) listOrderWaitConfirm = new ArrayList<Order>();
+    if (listOrderWaitConfirm == null) listOrderWaitConfirm = new ArrayList<>();
     List<Order> listOrderConfirm = (List<Order>) session.getAttribute("listOrderConfirm");
-    if (listOrderConfirm == null) listOrderConfirm = new ArrayList<Order>();
+    if (listOrderConfirm == null) listOrderConfirm = new ArrayList<>();
     List<Order> listOrderTransport = (List<Order>) session.getAttribute("listOrderTransport");
-    if (listOrderTransport == null) listOrderTransport = new ArrayList<Order>();
+    if (listOrderTransport == null) listOrderTransport = new ArrayList<>();
     List<Order> listOrderTransported = (List<Order>) session.getAttribute("listOrderTransported");
-    if (listOrderTransported == null) listOrderTransported = new ArrayList<Order>();
+    if (listOrderTransported == null) listOrderTransported = new ArrayList<>();
     List<Order> listOrderCancel = (List<Order>) session.getAttribute("listOrderCancel");
-    if (listOrderCancel == null) listOrderCancel = new ArrayList<Order>();
+    if (listOrderCancel == null) listOrderCancel = new ArrayList<>();
 %>
 <% Locale locale = new Locale("vi", "VN");
     NumberFormat numberFormat = NumberFormat.getInstance(locale);
@@ -25,12 +25,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Quản lý đơn hàng</title>
-    <link rel="stylesheet" href="./css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="./css/all.min.css">
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/checkout.css">
+    <%--    <link rel="stylesheet" href="./css/checkout.css">--%>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <jsp:include page="cssDatatable.jsp"/>
     <style>
         .icon-wrapper {
             margin-top: 2px;
@@ -122,7 +122,7 @@
                     </div>
 
                     <div id="tab2" class="tabcontent">
-                        <table id="table-id-2" class="table table-hover table-bordered">
+                        <table style="width: 100%" id="table-id-2" class="table table-hover table-bordered">
                             <thead>
                             <tr>
                                 <th scope="col">Mã đơn hàng</th>
@@ -178,7 +178,7 @@
                     </div>
 
                     <div id="tab3" class="tabcontent">
-                        <table id="table-id" class="table table-hover table-bordered">
+                        <table style="width: 100%" id="table-id" class="table table-hover table-bordered">
                             <thead>
                             <tr>
                                 <th scope="col">Mã đơn hàng</th>
@@ -220,7 +220,7 @@
                         </table>
                     </div>
                     <div id="tab4" class="tabcontent">
-                        <table id="table-id-4" class="table table-hover table-bordered">
+                        <table style="width: 100%" id="table-id-4" class="table table-hover table-bordered">
                             <thead>
                             <tr>
                                 <th scope="col">Mã đơn hàng</th>
@@ -276,7 +276,7 @@
                         </table>
                     </div>
                     <div id="tab5" class="tabcontent">
-                        <table id="table-id-5" class="table table-hover table-bordered">
+                        <table style="width: 100%" id="table-id-5" class="table table-hover table-bordered">
                             <thead>
                             <tr>
                                 <th scope="col">Mã đơn hàng</th>
@@ -324,10 +324,9 @@
 </section>
 
 
-<script src="./js/jquery.min.js"></script>
-<script src="./js/jquery.dataTables.js"></script>
-<script type="text/javascript" charset="utf8" src="./js/bootstrap.bundle.min.js"></script>
 <script src="./js/pageAdmin_main.js"></script>
+<jsp:include page="jsDatatable.jsp"/>
+
 <script>
     let table1 = $("#table-id-1").DataTable();
     let table2 = $("#table-id-2").DataTable();
