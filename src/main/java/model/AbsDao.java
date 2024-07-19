@@ -9,7 +9,6 @@ import java.util.Map;
 
 public class AbsDao<T extends IModel> implements IDao<T> {
     private LogDao logDao = new LogDao();
-//    protected static int user_id = ;
 
 
     @Override

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+
 @WebServlet(name = "AdminEditUser", value = "/adminEditUser")
 public class AdminEditUser extends HttpServlet {
     @Override
@@ -28,14 +29,14 @@ public class AdminEditUser extends HttpServlet {
         String pass = req.getParameter("pass").trim();
         Object temp = req.getParameter("id");
         int id = 0;
-        if(temp != null){
-            if(temp instanceof Integer){
+        if (temp != null) {
+            if (temp instanceof Integer) {
                 id = (int) temp;
-            }else if(temp instanceof String){
+            } else if (temp instanceof String) {
                 id = Integer.valueOf((String) temp);
             }
         }
-        UserService.getInstance().updateUserAdminById(id, tendangnhap, hovaten, sdt, gmail, pass);
+        UserService.getInstance().updateUserAdminById(id, tendangnhap, hovaten, sdt, gmail, PasswordUtils.hashPassword(pass));
         req.getRequestDispatcher("/pageAdminUserController").forward(req, resp);
     }
 }

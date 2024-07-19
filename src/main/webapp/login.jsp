@@ -69,16 +69,12 @@
             <img src="./img/logo-removebg-preview.png" alt="">
         </div>
         <div class="slider-form">
-            <form action="LoginServlet" method="post">
+            <form id="loginForm" action="LoginServlet" method="post">
                 <%
                     String message = (String) request.getSession().getAttribute("message");
                     if (message != null && !message.isEmpty()) {
                 %>
-                <p style="color: red;
-    text-align: center;
-    font-size: 14px;
-    font-weight: bold;
-    margin-top: 10px;"><%= message %>
+                <p style="color: red; text-align: center; font-size: 14px; font-weight: bold; margin-top: 10px;"><%= message %>
                 </p>
                 <%
                         // Đặt lại giá trị message sau khi đã hiển thị
@@ -92,27 +88,27 @@
                 <div class="input-box">
                     <input type="password" placeholder="Mật khẩu" name="password" value="${passwordCookie}"/>
                 </div>
-
                 <div class="signin-btn">
-                    <button type="submit" class="btn">Đăng Nhập</button>
+                    <button id="loginButton" type="submit" class="btn">Đăng Nhập</button>
                 </div>
                 <div style="padding-left: 20px; padding-top: 20px">
                     <input type="checkbox" name="remember" style="cursor: pointer" value="on">
                     <label style="font-size: 14px">Ghi nhớ tài khoản</label><br>
                 </div>
-            </form>
-            <div class="label-forget">
-                <a href="forgotPassword.jsp" class="forget">Quên mật khẩu</a>
-            </div>
-            <div class="label-or">
-                <p for="">Hoặc</p>
-            </div>
-            <div class="btn-ggfb">
-                <button type="button" class="btnfb" onclick="checkLoginState()">
-                    <i class="fa-brands fa-facebook"></i> Facebook
-                </button>
-                <button class="btngg">
-                    <a href="https://accounts.google.com/o/oauth2/auth?scope=email profile openid
+                <div class="label-forget">
+                    <a href="forgotPassword.jsp" class="forget">Quên mật khẩu</a>
+                </div>
+                <div style="padding: 0 50px; margin-top: 10px" class="g-recaptcha" data-sitekey="6LfifBMqAAAAAAwRbxm7eZE9Za6lfEi-1QKw8lAk"></div>
+                <div id="error" style="color: red; text-align: center; margin-top: 10px;"></div>
+                <div class="label-or">
+                    <p for="">Hoặc</p>
+                </div>
+                <div class="btn-ggfb">
+                    <button type="button" class="btnfb" onclick="checkLoginState()">
+                        <i class="fa-brands fa-facebook"></i> Facebook
+                    </button>
+                    <button class="btngg">
+                        <a href="https://accounts.google.com/o/oauth2/auth?scope=email profile openid
 
 &redirect_uri=http://localhost:8080/ProjectLTW_war/loginGoogle
 
@@ -121,25 +117,26 @@
 &client_id=192822040743-2t27r1e2sp8ounatnoqjid4o2qvqij9h.apps.googleusercontent.com
 
 &approval_prompt=force" style="color: white; text-decoration: none; font-size: 16px ">
-                        <i class="fa-brands fa-google" style="color: white"></i> Google
-                    </a>
-                </button>
-            </div>
-            <div class="des">
-                <p>Bạn mới biết đến Healthywater? </p>
-                <a href="register.jsp">Đăng kí</a>
-            </div>
-            <%
-                String message2 = (String) request.getSession().getAttribute("message2");
-                if (message2 != null && !message2.isEmpty()) {
-            %>
-            <p style="color: red"><%= message2 %>
-            </p>
-            <%
-                    // Đặt lại giá trị message sau khi đã hiển thị
-                    request.getSession().removeAttribute("message2");
-                }
-            %>
+                            <i class="fa-brands fa-google" style="color: white"></i> Google
+                        </a>
+                    </button>
+                </div>
+                <div class="des">
+                    <p>Bạn mới biết đến Healthywater? </p>
+                    <a href="register.jsp">Đăng kí</a>
+                </div>
+                <%
+                    String message2 = (String) request.getSession().getAttribute("message2");
+                    if (message2 != null && !message2.isEmpty()) {
+                %>
+                <p style="color: red"><%= message2 %>
+                </p>
+                <%
+                        // Đặt lại giá trị message sau khi đã hiển thị
+                        request.getSession().removeAttribute("message2");
+                    }
+                %>
+            </form>
         </div>
     </div>
 </div>
@@ -151,7 +148,22 @@
     $('.message a').click(function () {
         $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
     });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById("loginForm");
+        const error = document.getElementById("error");
+        const loginButton = document.getElementById("loginButton");
+
+        loginButton.addEventListener("click", function (event) {
+            const response = grecaptcha.getResponse();
+            if (!response) {
+                event.preventDefault();
+                error.innerHTML = "Vui lòng xác nhận reCAPTCHA.";
+            }
+        });
+    });
 </script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js"></script>
 </body>
 </html>

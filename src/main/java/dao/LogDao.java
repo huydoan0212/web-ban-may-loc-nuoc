@@ -7,23 +7,6 @@ import model.Log;
 import java.util.ArrayList;
 
 public class LogDao implements IDao<Log> {
-    public static boolean insertLog(Log log) {
-        int rowAffected = JDBIConnector.me().withHandle(handle ->
-                handle.createUpdate("INSERT INTO logs (action, table_name, level, beforeData, afterData, user_id, time) " +
-                                "VALUES (:action, :table_name, :level, :beforeData, :afterData, :user_id, :time)")
-                        .bind("action", log.getAction())
-                        .bind("table_name", log.getTable())
-                        .bind("level", log.getLevel())
-                        .bind("beforeData", log.getBeforeData())
-                        .bind("afterData", log.getAfterData())
-                        .bind("user_id", log.getUser_id())
-                        .bind("time", log.getTime())
-                        .execute());
-
-        return rowAffected > 0;
-    }
-
-
     @Override
     public int insert(Log log) {
         try {

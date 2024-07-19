@@ -83,44 +83,61 @@
                             for (Product product : products) {
                         %>
                         <tr>
-                            <th scope="row"><%=product.getId()%></th>
-                            <td><%=product.getTitle()%></td>
+                            <th scope="row"><%=product.getId()%>
+                            </th>
+                            <td><%=product.getTitle()%>
+                            </td>
                             <td><img src="<%=product.getImg()%>" style="max-width: 100px; max-height: 100px;"></td>
                             <td>
                                 <% if (product.getAvailable() > 0) { %>
-                                <span class="badge bg-success">Còn hàng</span>
+                                <span class="badge" style="background-color: #2c9700">Còn hàng</span>
                                 <% } else { %>
-                                <span style="background-color: #efbfbf !important; color: #790202 !important;" class="badge bg-failed">Hết hàng</span>
+                                <span style="background-color: #efbfbf !important; color: #790202 !important;"
+                                      class="badge " style="background-color: red">Hết hàng</span>
                                 <% } %>
                             </td>
-                            <td><%=product.getAvailable()%></td>
+                            <td><%=product.getAvailable()%>
+                            </td>
                             <td><%=numberFormat.format(product.getPrice())%><sup>đ</sup></td>
-                            <td><%=ImportProductService.getInstance().countInventory(product.getId())%></td>
+                            <td><%=ImportProductService.getInstance().countInventory(product.getId())%>
+                            </td>
                             <td><%=ImportProductService.getInstance().getProductSalesRatio(product.getId())%>%</td>
                             <td>
-                                <a title="Nhập hàng" href="#" class="icon-link import-btn" data-bs-toggle="modal" data-bs-target="#importModal<%=product.getId()%>">
+                                <a title="Nhập hàng" href="#" class="icon-link import-btn" data-bs-toggle="modal"
+                                   data-bs-target="#importModal<%=product.getId()%>">
                                     <i class="icon-wrapper">
                                         <i class="fa-solid fa-plus"></i>
                                     </i>
                                 </a>
                                 <!-- Modal -->
-                                <div class="modal fade" id="importModal<%=product.getId()%>" tabindex="-1" aria-labelledby="importModalLabel<%=product.getId()%>" aria-hidden="true">
+                                <div class="modal fade" id="importModal<%=product.getId()%>" tabindex="-1"
+                                     aria-labelledby="importModalLabel<%=product.getId()%>" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="importModalLabel<%=product.getId()%>">Nhập hàng</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                <h5 class="modal-title" id="importModalLabel<%=product.getId()%>">Nhập
+                                                    hàng</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <form id="importForm" method="post" action="plusImportProductController?id=<%=product.getId()%>">
-                                                    <input type="hidden" id="productId" name="productId" value="<%=product.getId()%>">
+                                                <form id="importForm" method="post"
+                                                      action="plusImportProductController?id=<%=product.getId()%>">
+                                                    <input type="hidden" id="productId" name="productId"
+                                                           value="<%=product.getId()%>">
                                                     <div class="mb-3">
-                                                        <label for="importQuantity<%=product.getId()%>" class="form-label">Số lượng</label>
-                                                        <input type="number" class="form-control" id="importQuantity<%=product.getId()%>" name="importQuantity" required>
+                                                        <label for="importQuantity<%=product.getId()%>"
+                                                               class="form-label">Số lượng</label>
+                                                        <input type="number" class="form-control"
+                                                               id="importQuantity<%=product.getId()%>"
+                                                               name="importQuantity" required>
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label for="importPrice<%=product.getId()%>" class="form-label">Giá nhập</label>
-                                                        <input type="number" class="form-control" id="importPrice<%=product.getId()%>" name="importPrice" required>
+                                                        <label for="importPrice<%=product.getId()%>" class="form-label">Giá
+                                                            nhập</label>
+                                                        <input type="number" class="form-control"
+                                                               id="importPrice<%=product.getId()%>" name="importPrice"
+                                                               required>
                                                     </div>
                                                     <button type="submit" class="btn btn-primary">Lưu</button>
                                                 </form>
@@ -139,9 +156,9 @@
         </div>
     </div>
 </section>
-<jsp:include page="jsDatatable.jsp" />
+<jsp:include page="jsDatatable.jsp"/>
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('#table-id').DataTable({
             dom: 'Bfrtip',
             buttons: [

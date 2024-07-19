@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+
 @WebServlet(name = "PageAdminUpdateUser", value = "/pageAdminUpdateUser")
 public class PageAdminUpdateUser extends HttpServlet {
     @Override
@@ -21,10 +22,10 @@ public class PageAdminUpdateUser extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Object temp = req.getParameter("id");
         int id = 0;
-        if(temp != null){
-            if(temp instanceof Integer){
+        if (temp != null) {
+            if (temp instanceof Integer) {
                 id = (int) temp;
-            }else if(temp instanceof String){
+            } else if (temp instanceof String) {
                 id = Integer.valueOf((String) temp);
             }
         }
