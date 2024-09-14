@@ -25,23 +25,28 @@
             <form class="row" action="adminEditUser?id=<%=userEdit.getId()%>" method="post">
                 <div class="form-group col-md-4">
                     <label class="control-label">Tên tài khoản</label>
-                    <input class="form-control" type="text" name="tendangnhap" value="<%=userEdit.getUserName()!=null?userEdit.getUserName():""%>" placeholder="">
+                    <input class="form-control" type="text" name="tendangnhap"
+                           value="<%=userEdit.getUserName()!=null?userEdit.getUserName():""%>" placeholder="">
                 </div>
                 <div class="form-group col-md-4">
                     <label class="control-label">Họ và tên</label>
-                    <input class="form-control" type="text" name="hovaten" value="<%=userEdit.getFullName()!=null?userEdit.getFullName():""%>">
+                    <input class="form-control" type="text" name="hovaten"
+                           value="<%=userEdit.getFullName()!=null?userEdit.getFullName():""%>">
                 </div>
                 <div class="form-group col-md-4">
                     <label class="control-label">Số điện thoại</label>
-                    <input class="form-control" type="text" name="sdt" value="<%=userEdit.getPhoneNumber()!=null?userEdit.getPhoneNumber():""%>">
+                    <input class="form-control" type="text" name="sdt"
+                           value="<%=userEdit.getPhoneNumber()!=null?userEdit.getPhoneNumber():""%>">
                 </div>
                 <div class="form-group col-md-6 ">
                     <label class="control-label">Email</label>
-                    <input class="form-control" type="email" name="gmail" value="<%=userEdit.getEmail()!=null?userEdit.getEmail():""%>">
+                    <input class="form-control" type="email" name="gmail"
+                           value="<%=userEdit.getEmail()!=null?userEdit.getEmail():""%>">
                 </div>
                 <div class="form-group col-md-6">
                     <label class="control-label">Mật khẩu</label>
-                    <input class="form-control" type="password" name="pass" value="<%=userEdit.getPassword()!=null?userEdit.getPassword():""%>">
+                    <input class="form-control" type="password" name="pass"
+                           value="<%=userEdit.getPassword()!=null?userEdit.getPassword():""%>">
                 </div>
                 <button class="btn btn-save" type="submit">Lưu lại</button>
             </form>

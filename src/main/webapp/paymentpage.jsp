@@ -326,6 +326,32 @@
                                     selectedPhoneElement.textContent = data.phoneNumber;
                                     modal.style.display = "none";
                                 };
+                                var params = new URLSearchParams();
+                                params.append('orderId', '<%=order.getId()%>');
+                                params.append('phoneNumber', data.phoneNumber);
+                                params.append('receiver', data.receiver);
+                                params.append('newAddress', data.address);
+                                fetch('/ProjectLTW_war/update-order-address', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/x-www-form-urlencoded',
+                                    },
+                                    body: params.toString()
+                                })
+                                    .then(response => {
+                                        if (!response.ok) {
+                                            throw new Error('Network response was not ok');
+                                        }
+                                        return response.json();
+                                    })
+                                    .then(data => {
+                                        console.log('Update order address successful:', data);
+                                        // Thực hiện các hành động cần thiết sau khi cập nhật thành công
+                                    })
+                                    .catch(error => {
+                                        console.error('Error updating order address:', error);
+                                        // Xử lý lỗi khi gọi API
+                                    });
                                 addressList.appendChild(newAddressElement);
 
                                 // Xóa form nhập liệu sau khi lưu thành công
